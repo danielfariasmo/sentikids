@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Pop-up Form</title>
+</head>
+
+<body>
+    <!-- Botón 1 -->
+    <button class="myBtn" data-modal-id="modal1">Agregar Niño/a</button>
+    <!-- Botón 2 -->
+    <button class="myBtn" data-modal-id="modal2">Eliminar Niño/a</button>
+
+    <!-- Contenido del boton 1 -->
+    <div id="modal1" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-modal-id="modal1">&times;</span>
+                <h2>Agregar Niño/a</h2>
+            </div>
+            <div class="modal-body">
+                <form class="popup_body" id="modal1">
+                    <!--Group: kids name-->
+                    <div class="form__group" id="group__nameKids">
+                        <label for="nameKids" class="form__label">Nombre y Apellidos del niño/a:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="nameKids" id="nameKids" placeholder="Jose Perez">
+                            <img src="icon/boton-eliminar.png" class="form__validation-status errors">
+                        </div>
+                        <p class="form__input-error">El nombre tiene que ser de 2 a 40 dígitos. Solo puede contener letras y espacios.</p>
+                    </div>
+                
+                    <!--Group: age-->
+                    <div class="form__group" id="group__age">
+                        <label for="age" class="form__label">Edad del niño/a:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="age" id="age" placeholder="6">
+                            <img src="icon/boton-eliminar.png" class="form__validation-status">
+                        </div>
+                        <p class="form__input-error">El teléfono solo puede contener 1 número y sin espacio.</p>
+                    </div>
+                
+                    <!--Group: parents name-->
+                    <div class="form__group" id="group__nameParents">
+                        <label for="nameParents" class="form__label">Nombre y Apellidos:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="nameParents" id="nameParents" placeholder="Ana Lopez">
+                            <img src="icon/boton-eliminar.png" class="form__validation-status errors">
+                        </div>
+                        <p class="form__input-error">El nombre tiene que ser de 2 a 40 dígitos. Solo puede contener letras y espacios.</p>
+                    </div>
+                
+                    <!--Group: phone-->
+                    <div class="form__group" id="group__phone">
+                        <label for="phone" class="form__label">Teléfono:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="phone" id="phone" placeholder="659789145">
+                            <img src="icon/boton-eliminar.png" class="form__validation-status">
+                        </div>
+                        <p class="form__input-error">El teléfono solo puede contener números y el máximo es de 9 números.</p>
+                    </div>
+                
+                    <p></p>
+                
+                    <!--Button-->
+                    <div class="form__message" id="form__message">
+                        <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error:</b> Por favor rellene el formulario correctamente.</p>
+                    </div>
+                
+                    <div class="form__group form__group-btn-submit">
+                        <button type="submit" class="form__btn">Agregar Niño/a</button>
+                        <p class="form__success-message" id="form__success-message">Niño/a agregado.</p>
+                    </div>
+                    <p></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-modal-id="modal2">&times;</span>
+                <h2>Modal Header 2</h2>
+            </div>
+            <div class="modal-body">
+                <form class="popup_body" id="modal2">
+                    <!--Group: select kids-->
+                    <div class="form__group" id="group__nameSelect">
+                        <label for="select-kids" class="form__label">Seleccione a un niño/a:</label>
+                        <div class="form__input-group">
+                            <select class="form__input" name="select-kids" id="select-kids">
+                                <option value="" selected>Seleccione un niño/a</option>
+                                <option value="jose-perez">Jose Perez</option>
+                                <option value="maria-gomez">Maria Gomez</option>
+                                <option value="lucas-martinez">Lucas Martinez</option>
+                            </select>
+                            <img src="icon/boton-eliminar.png" class="form__validation-status errors">
+                        </div>
+                        <p class="form__input-error">
+                            Seleccione un niño/a.
+                        </p>
+                    </div>
+                    <p></p>
+
+                    <!--Button-->
+                    <div class="form__message" id="form__message">
+                        <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error:</b> Por favor rellene el formulario
+                            correctamente.</p>
+                    </div>
+
+                    <div class="form__group form__group-btn-submit">
+                        <button type="submit" class="form__btn">Solicitar Visita</button>
+                        <p class="form__success-message" id="form__success-message">
+                            Visita enviada exitosamente.
+                        </p>
+                    </div>
+                    <p></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="js/inscribir-ninho-admin.js"></script>
+</body>
+
+</html>
