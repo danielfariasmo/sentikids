@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+    <form id="formContact">
+        <h2>Contacta con nosotros</h2>
+        <label for="inputName">Nombre:</label>
+        <input type="text" id="inputName" placeholder="dani" required>
+        <div class="error" id="errorName"></div>
+
+        <label for="inputEmail">Email:</label>
+        <input type="email" id="inputEmail" placeholder="xxx@xxxx.xx" required>
+        <div class="error" id="errorEmail"></div>
+
+        <label for="inputMessage">Escribe tu mensaje:</label>
+        <textarea id="inputMessage" rows="5" placeholder="Escribe aquí" required></textarea>
+        <div class="error" id="errorMessage"></div>
+
+        <button type="submit" id="buttonSubmit" disabled>Enviar</button>
+    </form>
+
+    <form id="formFile">
+        <h2>Sube tu Curriculum!!</h2>
+        <label for="inputNameFile">Nombre:</label>
+        <input type="text" id="inputNameFile" placeholder="dani" required>
+        <div class="error" id="errorNameFile"></div>
+
+        <label for="inputEmailFile">Email:</label>
+        <input type="email" id="inputEmailFile" placeholder="xxx@xxxx.xx" required>
+        <div class="error" id="errorEmailFile"></div>
+
+        <label for="inputFile">Sube tu archivo:</label>
+        <input type="file" id="inputFile" accept=".pdf,.jpg,.png" required>
+       
+        <div class="error" id="errorFile"></div>
+
+        <button type="submit" id="buttonSubmitFile" disabled>EnviarS</button>
+    </form>
+
+    <script src="js/contacto.js"></script>
+</body>
+</html>
