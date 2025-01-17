@@ -9,8 +9,14 @@ const buttonSubmit = document.getElementById('buttonSubmit');
 
 // Funcion para validar el nombre
 function validateName() {
-    if (inputName.value.trim() === '') {
-        errorName.textContent = 'EL nombre no puede estar vacío';
+    const nameInput = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Permite solo letras, espacios y caracteres acentuados
+    const inputNameValue = inputName.value.trim();
+
+    if (inputNameValue === '') {
+        errorName.textContent = 'El nombre no puede estar vacío';
+        return false;
+    } else if (!nameInput.test(inputNameValue)) {
+        errorName.textContent = 'El nombre solo puede contener letras y espacios';
         return false;
     } else {
         errorName.textContent = '';
@@ -74,8 +80,15 @@ const buttonSubmitFile = document.getElementById('buttonSubmitFile');
 
 // Función para validar el nombre
 function validateNameFile() {
-    if (inputNameFile.value.trim() === '') {
+
+    const namePattern = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const inputNameFileValue = inputNameFile.value.trim();
+
+    if (inputNameFileValue === '') {
         errorNameFile.textContent = 'El nombre no puede estar vacío';
+        return false;
+    } else if (!namePattern.test(inputNameFileValue)) {
+        errorNameFile.textContent = 'El nombre solo puede contener letras y espacios';
         return false;
     } else {
         errorNameFile.textContent = '';
