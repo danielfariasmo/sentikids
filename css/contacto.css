@@ -1,0 +1,148 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --success: #50812A;
+    --information: #6291E8;
+    --warning: #ffcd2b;
+    --error: #F66060;
+    --background: #E5E5E5;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+form {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--black);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--black);
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    background: var(--white);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: var(--information);
+    box-shadow: 0 0 10px rgba(98, 145, 232, 0.5);
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: var(--information);
+    box-shadow: 0 0 15px rgba(98, 145, 232, 0.5);
+}
+
+button:disabled {
+    background: var(--black);
+    cursor: not-allowed;
+}
+
+.error {
+    color: var(--error);
+    font-size: 0.9em;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.form__message {
+    height: 45px;
+    line-height: 45px;
+    background: var(--error);
+    padding: 0 15px;
+    border-radius: 3px;
+    display: none;
+    color: var(--white);
+    font-size: 0.9em;
+}
+
+.form__message-active {
+    display: block;
+}
+
+.form__success-message {
+    font-size: 0.9em;
+    color: var(--success);
+    display: none;
+}
+
+.form__success-message-active {
+    display: block;
+}
+
+input.error {
+    border: 3px solid var(--error);
+}
+
+label.error {
+    color: var(--error);
+}
+
+/* Media Queries */
+@media screen and (max-width: 600px) {
+    form {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 0.9em;
+    }
+
+    textarea {
+        height: 80px;
+    }
+}
