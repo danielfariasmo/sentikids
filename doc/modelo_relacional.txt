@@ -1,0 +1,120 @@
+@startuml
+
+entity Usuarios {
+  id_usuario PK
+  Clave
+  Tipo_de_usuario
+}
+
+entity Administradores {
+  id_administrador PK
+  id_usuario FK Usuarios
+  Nombre
+  Apellidos
+  Correo_electronico
+}
+
+entity Monitores {
+  id_monitor PK
+  id_usuario FK Usuarios
+  id_grupo FK Grupos
+  Nombre
+  Apellidos
+  DNI
+  Población
+  Correo_electronico
+}
+
+entity Tutores {
+  id_tutor PK
+  id_usuario FK Usuarios
+  Nombre
+  Apellidos
+  Teléfono
+  DNI
+  Población
+  Correo_electronico
+}
+
+entity Persona_Confianza {
+  id_persona PK
+  id_tutor FK Tutores
+  Nombre
+  Apellidos
+  Teléfono
+  Relación
+}
+
+entity Niños {
+  id_niño PK
+  id_tutor FK Tutores
+  id_grupo FK Grupos
+  id_dieta FK Dietas
+  Nombre
+  Apellidos
+  Edad
+}
+
+entity Dietas {
+  id_dieta PK
+  Selección_dieta
+  Tipo_menu
+}
+
+entity Grupos {
+  id_grupo PK
+  id_monitor FK Monitores
+  id_horario FK Horarios
+  Nombre
+}
+
+entity Horarios {
+  id_horario PK
+  id_grupo FK Grupos
+  Día_semana
+  Hora_inicio
+  Hora_fin
+}
+
+entity Actividades {
+  id_actividad PK
+  Nombre
+  Descripción
+  Duración
+  Tipo
+}
+
+entity Horarios_Actividades {
+  id_horario FK Horarios
+  id_actividad FK Actividades
+}
+
+entity Multimedia {
+  id_multimedia PK
+  id_grupo FK Grupos
+  Url
+}
+
+entity Notificaciones {
+  id_notificaciones PK
+  id_tutor FK Tutores
+  Mensaje
+  Fecha
+}
+
+Usuarios --o Administradores : "Tiene Usuario"
+Usuarios --o Monitores : "Tiene Usuario"
+Usuarios --o Tutores : "Tiene Usuario"
+Tutores --o Niños : "Tiene Tutor"
+Niños --o Grupos : "Pertenece a Grupo"
+Grupos --o Monitores : "Tiene Monitor"
+Grupos --o Horarios : "Tiene Horario"
+Grupos --o Multimedia : "Tiene Multimedia"
+Grupos --o Actividades : "Tiene Actividades"
+Actividades --o Horarios_Actividades : "Está Programado en Horario"
+Dietas --o Niños : "Tiene Dieta"
+Horarios --o Grupos : "Tiene Grupo"
+Tutores --o Notificaciones : "Recibe Notificaciones"
+Persona_Confianza --o Tutores : "Confianza del Tutor"
+
+@enduml
