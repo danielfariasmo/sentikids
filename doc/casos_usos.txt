@@ -1,0 +1,46 @@
+@startuml
+left to right direction
+
+actor "Tutor" as tutor
+actor "Monitor" as monitor
+actor "Administrador" as admin
+
+usecase "Iniciar Sesión" as UC1
+
+usecase "Editar Perfil" as UC2
+usecase "Añadir Más Hijos" as UC3
+usecase "Ver Multimedia" as UC4
+usecase "Ver Horarios" as UC5
+usecase "Ver Notificaciones" as UC6
+
+usecase "Crear Actividades" as UC7
+usecase "Ver Grupos Asignados" as UC8
+usecase "Crear Notificaciones" as UC9
+usecase "Acceder a Multimedia" as UC10
+usecase "Crear Horario" as UC11
+
+usecase "Agregar Usuarios" as UC12
+usecase "Inscribir Niños" as UC13
+usecase "Subir Multimedia" as UC14
+usecase "Crear Grupo" as UC15
+
+tutor --> UC1
+tutor --> UC2
+tutor --> UC3
+tutor --> UC4
+tutor --> UC5
+tutor --> UC6
+
+monitor --> UC1
+monitor --> UC7
+monitor --> UC8
+monitor --> UC9
+monitor --> UC10
+monitor --> UC11
+
+admin --> UC1
+admin --> UC12
+admin --> UC13
+admin --> UC14
+admin --> UC15
+@enduml
