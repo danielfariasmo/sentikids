@@ -82,7 +82,7 @@ const validateField = (expression, input, field) => {
         document.getElementById(`group__${field}`).classList.remove('form__group-incorrect');
         document.getElementById(`group__${field}`).classList.add('form__group-correct');
 
-        document.querySelector(`#group__${field} img`).src = 'icon/boton-correcto.png'; 
+        document.querySelector(`#group__${field} img`).src = '../../../assets/icon/boton-correcto.png'; 
         document.querySelector(`#group__${field} img`).classList.remove('errors');
 
         document.querySelector(`#group__${field} .form__input-error`).classList.remove('form__input-error-active');
@@ -92,7 +92,7 @@ const validateField = (expression, input, field) => {
         document.getElementById(`group__${field}`).classList.remove('form__group-correct');
 
         document.querySelector(`#group__${field} img`).classList.add('errors');
-        document.querySelector(`#group__${field} img`).src = 'icon/boton-eliminar.png';
+        document.querySelector(`#group__${field} img`).src = '../../../assets/icon/boton-eliminar.png';
 
         document.querySelector(`#group__${field} .form__input-error`).classList.add('form__input-error-active');
         fields[field] = false;
@@ -111,7 +111,7 @@ const validateSelect = (input) => {
         selectGroup.classList.remove('form__group-incorrect');
         selectGroup.classList.add('form__group-correct');
 
-        document.querySelector(`#group__nameSelect img`).src = 'icon/boton-correcto.png'; 
+        document.querySelector(`#group__nameSelect img`).src = '../../../assets/icon/boton-correcto.png'; 
         document.querySelector(`#group__nameSelect img`).classList.remove('errors');
 
         document.querySelector(`#group__nameSelect .form__input-error`).classList.remove('form__input-error-active');
@@ -120,7 +120,7 @@ const validateSelect = (input) => {
         selectGroup.classList.remove('form__group-correct');
 
         document.querySelector(`#group__nameSelect img`).classList.add('errors');
-        document.querySelector(`#group__nameSelect img`).src = 'icon/boton-eliminar.png';
+        document.querySelector(`#group__nameSelect img`).src = '../../../assets/icon/boton-eliminar.png';
 
         document.querySelector(`#group__nameSelect .form__input-error`).classList.add('form__input-error-active');
     }
