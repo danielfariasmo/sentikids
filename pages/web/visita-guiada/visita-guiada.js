@@ -48,7 +48,7 @@ const validateField = (expression, input, field) => {
         document.getElementById(`group__${field}`).classList.add('form__group-correct');
 
         // Añadir botón correcto y eliminar la X
-		document.querySelector(`#group__${field} img`).src = 'icon/boton-correcto.png'; // Prefijo #
+		document.querySelector(`#group__${field} img`).src = '../../../assets/icon/boton-correcto.png'; 
 		document.querySelector(`#group__${field} img`).classList.remove('errors');
 
         //Eliminar mensaje de error
@@ -60,7 +60,7 @@ const validateField = (expression, input, field) => {
 
         // Actualizar el ícono y las clases relacionadas
 		document.querySelector(`#group__${field} img`).classList.add('errors'); // Añadir clase de error
-		document.querySelector(`#group__${field} img`).src = 'icon/boton-eliminar.png'; // Cambiar al ícono de error
+		document.querySelector(`#group__${field} img`).src = '../../../assets/icon/boton-eliminar.png'; // Cambiar al ícono de error
 
 		// Mostrar mensaje de error
         document.querySelector(`#group__${field} .form__input-error`).classList.add('form__input-error-active');
@@ -79,7 +79,7 @@ const validateDate = () => {
 
         // Actualizar el ícono y las clases relacionadas
 		document.querySelector(`#group__date img`).classList.add('errors'); // Añadir clase de error
-		document.querySelector(`#group__date img`).src = 'icon/boton-eliminar.png'; // Cambiar al ícono de error
+		document.querySelector(`#group__date img`).src = '../../../assets/icon/boton-eliminar.png'; // Cambiar al ícono de error
 
 		// Mostrar mensaje de error
         document.querySelector(`#group__date .form__input-error`).classList.add('form__input-error-active');
@@ -97,7 +97,7 @@ const validateDate = () => {
         document.getElementById(`group__date`).classList.add('form__group-correct');
 
         // Añadir botón correcto y eliminar la X
-		document.querySelector(`#group__date img`).src = 'icon/boton-correcto.png'; 
+		document.querySelector(`#group__date img`).src = '../../../assets/icon/boton-correcto.png'; 
 		document.querySelector(`#group__date img`).classList.remove('errors');
 
         //Eliminar mensaje de error
@@ -108,7 +108,7 @@ const validateDate = () => {
 
         // Actualizar el ícono y las clases relacionadas
 		document.querySelector(`#group__date img`).classList.add('errors'); // Añadir clase de error
-		document.querySelector(`#group__date img`).src = 'icon/boton-eliminar.png'; // Cambiar al ícono de error
+		document.querySelector(`#group__date img`).src = '../../../assets/icon/boton-eliminar.png'; // Cambiar al ícono de error
 
 		// Mostrar mensaje de error
         document.querySelector(`#group__date .form__input-error`).classList.add('form__input-error-active');
