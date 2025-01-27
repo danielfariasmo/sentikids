@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscribirse</title>
-    <link rel="stylesheet" href="inscribirse.css">
+    <title>Ajustes de la cuenta</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <div class="form-container">
-        <h1>Inscribirse</h1>
+        <h1>Ajustes de la cuenta</h1>
         <form id="userForm">
-            <h2>Información Madre/Padre/Tutor</h2>
+            <h2>Información Básica</h2>
 
             <div class="input-field">
                 <input type="text" id="name" placeholder=""><br>
@@ -50,32 +50,38 @@
             </div>
             <span class="error hidden" id="populationError">Por favor, introduce una población válida.</span><br>
 
-            <h3>¿Quieres añadir otra persona de confianza?</h3>
+            <h2>Detalles de inicio de sesión</h2>
 
             <div class="input-field">
-                <input type="text" id="name2" placeholder=""><br>
-                <label for="name2">Nombre</label>
+                <input type="text" id="user" placeholder=""><br>
+                <label for="user">Usuario</label>
             </div>
-            <span class="error hidden" id="name2Error">Por favor, introduce un nombre válido.</span><br>
+            <span class="error hidden" id="userError">Por favor, introduce un usuario válido.</span><br>
+
+            <button type="button" id="passwordButton">Cambiar contraseña</button>
 
             <div class="input-field">
-                <input type="text" id="lastName2" placeholder=""><br>
-                <label for="lastName2">Apellidos</label>
+                <input type="password" id="lastPassword" placeholder=""><br>
+                <label for="lastPassword">Anterior contraseña</label>
             </div>
-            <span class="error hidden" id="lastName2Error">Por favor, introduce un apellido válido.</span><br>
+            <span class="error hidden" id="lastPasswordError">Por favor, introduce su contraseña anterior.</span><br>
 
             <div class="input-field">
-                <input type="text" id="dni2" placeholder=""><br>
-                <label for="dni2">DNI</label>
+                <input type="password" id="password" placeholder=""><br>
+                <label for="password">Nueva contraseña</label>
             </div>
-            <span class="error hidden" id="dni2Error">Por favor, introduce un dni válido.</span><br>
+            <span class="error hidden" id="lastPasswordError">Por favor, introduce una contraseña válida.</span><br>
 
-            <div class="input-field">
-                <input type="tel2" id="tel2" placeholder=""><br>
-                <label for="tel2">Telefono</label>
-            </div>
-            <span class="error hidden" id="tel2Error">Por favor, introduce un telefono válido.</span><br>
-            Podra editar y añadir más personas de confianza en su area privada más adelante.
+            <h2>Cambiar el idioma</h2>
+            <select name="" id="">
+                <option value="">Español (España)</option>
+                <option value="">Ingles</option>
+            </select>
+            <h2>Tus hijos</h2>
+
+            <button type="submit">Borrar cuenta</button>
+            <button type="submit">Cancelar</button>
+            <button type="submit">Guardar cambios</button>
 
             <div class="child-block">
                 <h2>Información Niño/a</h2>
@@ -94,11 +100,12 @@
 
                 <div class="input-field">
                     <input type="date" id="childAge1" name="childAge[]" placeholder=""><br>
-
-                    <label for="childAge1" id="childAge1">Fecha de Nacimiento*</label>
+                    <label for="childAge1" id="childAge1">Edad*</label>
                 </div>
                 <span class="error hidden" id="childAge1Error">Por favor, introduce una fecha válida.</span><br>
 
+                <label for="childMedical">Condiciones médicas o observaciones</label>
+                <textarea id="childMedical" name="childMedical[]"></textarea><br>
 
                 <h2>Detalles adicionales</h2>
                 <label for="diet">Dieta</label>
@@ -122,7 +129,7 @@
             <button type="submit">CONTINUAR</button>
         </form>
     </div>
-    <script src="inscribirse.js"></script>
+    <script src="js/ajustesPadres.js"></script>
 </body>
 
 </html>
