@@ -309,3 +309,4 @@ input:-webkit-autofill {
     box-shadow: 0 0 0 1000px var(--background) inset !important; /* Elimina el color extraño del navegador */
     transition: background-color 5000s ease-in-out 0s; /* Elimina transiciones bruscas */
 }
+
