@@ -303,3 +303,9 @@ input:not(:placeholder-shown) ~ label {
     background: var(--background);
 }
 
+input:-webkit-autofill {
+    background-color: transparent !important; /* Transparente para mantener el diseño */
+    color: inherit !important; /* Asegura que el color del texto sea consistente */
+    box-shadow: 0 0 0 1000px var(--background) inset !important; /* Elimina el color extraño del navegador */
+    transition: background-color 5000s ease-in-out 0s; /* Elimina transiciones bruscas */
+}
