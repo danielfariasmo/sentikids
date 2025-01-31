@@ -125,12 +125,8 @@ mysqli_query($connection, $multimedia) or die("ERROR: no se puede crear la tabla
 /** ACTIVIDADES*/
 $activity = "CREATE TABLE IF NOT EXISTS actividades (
     id_actividad INT AUTO_INCREMENT PRIMARY KEY, 
-    nombre VARCHAR(255) NOT NULL,
-    descripcion VARCHAR(255) NOT NULL,
-    duracion VARCHAR(255) NOT NULL,
-    tipo ENUM('audicion', 'tacto', 'gusto', 'olfato', 'vista') NOT NULL);";
+    nombre VARCHAR(255) NOT NULL);";
 mysqli_query($connection, $activity) or die("ERROR: no se puede crear la tabla Actividades: " . mysqli_error($connection));
-
 
 /** HORARIOS_ACTIVIDADES*/
 $scheduleActivity = "CREATE TABLE IF NOT EXISTS horarios_actividad (
