@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    color: black;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 62px;
+    height: 96px;
+    background: #FFD6D0;
+    box-sizing: border-box;
+  }
+  
+  .logo {
+    width: 258px;
+    height: 68px;
+  }
+  
+  .menu {
+    display: flex;
+    gap: 32px;
+  }
+  
+  .menu-item {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .welcome-section {
+    padding: 28px 0;
+    margin-top: 20px;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+  
+  .welcome-section h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 78.4px;
+    color: #CD4533;
+    margin: 0;
+  }
+  
+  .welcome-section p {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 58px;
+    margin: 0;
+  }
+  
+  .section-title {
+    width: 100%;
+    background: #FFD6D0;
+    text-align: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+  }
+  
+  .section-title h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 69px;
+    letter-spacing: 4.32px;
+    color: #CD4533;
+    margin: 0;
+  }
+  
+  .content-section {
+    padding: 0 159px;
+    margin-top: 20px;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 39px;
+    box-sizing: border-box;
+  }
+  
+  .content-item {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .icon,
+  .icon-group {
+    width: 123px;
+    height: 123px;
+  }
+  
+  .text h3 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 69px;
+    letter-spacing: 3.24px;
+    margin: 0;
+  }
+  
+  .text p {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 58px;
+    margin: 0;
+  }
+  
+  .footer {
+    width: 100%;
+    max-width: 100%;
+    padding: 67px 50px 81px;
+    background: black;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .footer-content {
+    max-width: 1052px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    box-sizing: border-box;
+  }
+  
+  .footer-line {
+    width: 100%;
+    height: 0;
+    border: 2px solid white;
+  }
+  
+  .footer p {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    color: white;
+    opacity: 0.5;
+    margin: 0;
+  }
+  
+  @media (max-width: 1200px) {
+    .header {
+      padding: 4px 30px;
+    }
+    .logo {
+      width: 200px;
+      height: auto;
+    }
+    .menu-item {
+      font-size: 18px;
+    }
+    .welcome-section h1 {
+      font-size: 42px;
+    }
+    .welcome-section p {
+      font-size: 20px;
+      line-height: 32px;
+    }
+    .section-title h2 {
+      font-size: 36px;
+    }
+    .content-section {
+      padding: 0 50px;
+    }
+    .text h3 {
+      font-size: 28px;
+      line-height: 40px;
+    }
+    .text p {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      height: auto;
+      padding: 10px 20px;
+    }
+    .menu {
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .welcome-section {
+      padding: 20px;
+    }
+    .welcome-section h1 {
+      font-size: 36px;
+    }
+    .welcome-section p {
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .section-title h2 {
+      font-size: 28px;
+    }
+    .content-section {
+      padding: 0 20px;
+    }
+    .content-item {
+      flex-direction: column;
+      text-align: center;
+    }
+    .icon {
+      margin: 0 auto;
+    }
+    .text h3 {
+      font-size: 24px;
+      line-height: 30px;
+    }
+    .text p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  
