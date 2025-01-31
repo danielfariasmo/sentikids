@@ -3,103 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrador Campamento</title>
+  <title>Inicio Administrador</title>
   <link rel="stylesheet" href="home-admin.css">
+  <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <a href="home-admin.html"><img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo"></a>
-      <div class="menu">
-        <div class="menu-item"><a href="">Tutores</a></div>
-        <div class="menu-item"><a href="">Monitores</a></div>
-        <div class="menu-item"><a href="">Usuarios</a></div>
-        <div class="menu-item"><a href="">Inscribir niño/a</a></div>
-        <div class="menu-item"><a href="">Grupos</a></div>
-        <div class="menu-item"><a href="">Otros Tutores</a></div>
+  <header class="header">
+    <a href="home-admin.html">
+      <img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo">
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="../admin-tutores/tutores-admin.html">Tutores</a></li>
+        <li><a href="">Monitores</a></li>
+        <li><a href="">Usuarios</a></li>
+        <li><a href="">Inscribir niño/a</a></li>
+        <li><a href="">Grupos</a></li>
+        <li><a href="">Otros Tutores</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="welcome-section">
+    <h1>¡Bienvenido/a Administrador/a!</h1>
+    <p>Gestiona el campamento de forma eficiente y mantén todo bajo control.</p>
+  </div>
+  <div class="section-title">
+    <h2>¿Qué puedes hacer como administrador?</h2>
+  </div>
+  <div class="content-section">
+    <div class="content-item">
+      <div class="icon">
+        <a href=""><img src="../../../assets/icon/tutor-admin.png" alt="icon-user"></a>
+      </div>
+      <div class="text">
+        <a href=""><h3>Tutores</h3></a>
+        <p>Agrega a los tutores de manera eficiente, de esa forma podrás visualizar en todo momento. Es necesario para poder inscribir a los niños al campamento.</p>
       </div>
     </div>
-    <div class="welcome-section">
-      <h1>¡Bienvenido/a Administrador/a!</h1>
-      <p>Gestiona el campamento de forma eficiente y mantén todo bajo control.</p>
-    </div>
-    <div class="section-title">
-      <h2>¿Qué puedes hacer como administrador?</h2>
-    </div>
-    <div class="content-section">
-      <div class="content-item">
-        <div class="icon">
-          <a href="">
-            <img src="../../../assets/icon/tutor-admin.png" alt="icon-user">
-          </a>
-        </div>
-        <div class="text">
-          <a href=""><h3>Tutores</h3></a>
-          <p>Agrega a los tutores de manera eficiente, de esa forma podrás visualizar en todo momento. Es necesario para poder inscribir a los niños al campamento.</p>
-        </div>
+    <div class="content-item">
+      <div class="icon">
+        <a href=""><img src="../../../assets/icon/tutor-admin.png" alt="icon-user"></a>
       </div>
-      <div class="content-item">
-        <div class="icon">
-          <a href="">
-            <img src="../../../assets/icon/tutor-admin.png" alt="icon-user">
-          </a>
-        </div>
-        <div class="text">
-          <a href=""><h3>Monitores</h3></a>
-          <p>Además de los tutores, también puedes añadir a los monitores del campamento. Será útil para crear los grupos del campamento.</p>
-        </div>
-      </div>
-      <div class="content-item">
-        <div class="icon">
-          <a href="">
-            <img src="../../../assets/icon/user-admin.png" alt="icon-user">
-          </a>
-        </div>
-        <div class="text">
-          <a href=""><h3>Usuarios</h3></a>
-          <p>Para acceder a cada área privada, ya sea monitor o tutor, tendrán que hacerlo mediante un usuario y contraseña. Crea los usuarios y las contraseñas... luego cada usuario puede cambiar su contraseña.</p>
-        </div>
-      </div>
-      <div class="content-item">
-        <div class="icon">
-          <a href="">
-            <img src="../../../assets/icon/ninho-admin.png" alt="icon-user">
-          </a>
-        </div>
-        <div class="text">
-          <a href=""><h3>Inscribir niño/a</h3></a>
-          <p>Puedes inscribir a niños y niñas que vayan a participar en el campamento, de esa forma llevas un registro completo.</p>
-        </div>
-      </div>
-      <div class="content-item">
-        <div class="icon">
-          <a href="">
-            <img src="../../../assets/icon/grupo-admin.png" alt="icon-user">
-          </a>
-        </div>
-        <div class="text">
-          <a href=""><h3>Gestión de grupos</h3></a>
-          <p>Para tener un mejor orden, asigna a los niños a un grupo con su monitor correspondiente. Además añade la URL de las imágenes y los padres podrán visualizarla.</p>
-        </div>
-      </div>
-      <div class="content-item">
-        <div class="icon">
-          <a href="">
-            <img src="../../../assets/icon/tutor-admin.png" alt="icon-user">
-          </a>
-        </div>
-        <div class="text">
-          <a href=""><h3>Otros Tutores</h3></a>
-          <p>Puedes añadir otras personas de confianza o tutores, de esa forma damos mayor seguridad a los padres al momento de recoger a los niños de nuestro campamento.</p>
-        </div>
+      <div class="text">
+        <a href=""><h3>Monitores</h3></a>
+        <p>Además de los tutores, también puedes añadir a los monitores del campamento. Será útil para crear los grupos del campamento.</p>
       </div>
     </div>
-    <div class="footer">
-      <div class="footer-content">
-        <div class="footer-line"></div>
-        <p>Copyright © 2025. All Right Reserved.</p>
+    <div class="content-item">
+      <div class="icon">
+        <a href=""><img src="../../../assets/icon/user-admin.png" alt="icon-user"></a>
+      </div>
+      <div class="text">
+        <a href=""><h3>Usuarios</h3></a>
+        <p>Para acceder a cada área privada, ya sea monitor o tutor, tendrán que hacerlo mediante un usuario y contraseña. Crea los usuarios y las contraseñas... luego cada usuario puede cambiar su contraseña.</p>
+      </div>
+    </div>
+    <div class="content-item">
+      <div class="icon">
+        <a href=""><img src="../../../assets/icon/ninho-admin.png" alt="icon-user"></a>
+      </div>
+      <div class="text">
+        <a href=""><h3>Inscribir niño/a</h3></a>
+        <p>Puedes inscribir a niños y niñas que vayan a participar en el campamento, de esa forma llevas un registro completo.</p>
+      </div>
+    </div>
+    <div class="content-item">
+      <div class="icon">
+        <a href=""><img src="../../../assets/icon/grupo-admin.png" alt="icon-user"></a>
+      </div>
+      <div class="text">
+        <a href=""><h3>Gestión de grupos</h3></a>
+        <p>Para tener un mejor orden, asigna a los niños a un grupo con su monitor correspondiente. Además añade la URL de las imágenes y los padres podrán visualizarla.</p>
+      </div>
+    </div>
+    <div class="content-item">
+      <div class="icon">
+        <a href=""><img src="../../../assets/icon/tutor-admin.png" alt="icon-user"></a>
+      </div>
+      <div class="text">
+        <a href=""><h3>Otros Tutores</h3></a>
+        <p>Añade personas de confianza para recoger a los niños.</p>
       </div>
     </div>
   </div>
+
+  <div class="footer">
+    <div class="footer-content">
+      <div class="footer-line"></div>
+      <p>Copyright © 2025. All Right Reserved.</p>
+    </div>
+  </div>
+  <script src="home-admin.js"></script>
 </body>
 </html>
