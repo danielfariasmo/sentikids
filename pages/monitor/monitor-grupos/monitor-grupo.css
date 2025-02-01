@@ -1,0 +1,160 @@
+/* Estilo base para el body */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Poppins, sans-serif; /* Establecer una fuente común */
+}
+
+/* El contenedor principal ocupa toda la pantalla */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden; /* Evita el desbordamiento */
+}
+
+/* Cabecera superior */
+.header-top {
+    width: 100%; /* Ocupa todo el ancho */
+    height: 8vh; /* Usa un 8% de la altura de la pantalla */
+    background: #FFD6D0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 20vw; /* Ancho relativo al 20% del ancho de la pantalla */
+    height: auto;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50vw; /* Ancho relativo al 50% del ancho de la pantalla */
+}
+
+.nav-item {
+    font-size: 1.5rem; /* Ajuste de fuente más flexible */
+    color: black;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+
+/* Título principal */
+.header-title {
+    width: 100%;
+    height: 10vh; /* Usa un 10% de la altura de la pantalla */
+    background: #FFD6D0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-text {
+    color: #CD4533;
+    font-size: 3rem; /* Ajuste para que se vea bien en pantallas grandes */
+    font-weight: 700;
+    letter-spacing: 4.32px;
+}
+
+/* Estilo para la tabla */
+.table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+    background: white;
+    flex-grow: 1; /* Permite que la tabla ocupe el espacio restante */
+    overflow: hidden; /* Evita desbordamiento */
+}
+
+.table-header {
+    background: #80C4D3;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+.header-item {
+    font-size: 1.2rem; /* Tamaño de fuente más flexible */
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    width: 18%;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 6vh;
+}
+
+.row:nth-child(odd) {
+    background: #BACBCF;
+}
+
+.row:nth-child(even) {
+    background: #949494;
+}
+
+/* Estilo para la sección de más información */
+.more-info {
+    width: 50vw;
+    margin: 20px auto;
+    padding: 15px;
+    background: #CD4533;
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.more-info-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 4.32px;
+}
+
+/* Pie de página */
+.footer {
+    width: 100%;
+    background: black;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-line {
+    width: 100%;
+    border: 2px solid white;
+    margin: 15px 0;
+}
+
+.footer-text {
+    color: white;
+    font-size: 1rem;
+    opacity: 0.5;
+    text-align: center;
+}
