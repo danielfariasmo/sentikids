@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Select y Tabla</title>
+    <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
+    <link rel="stylesheet" href="lista-grupos-admin.css">
+</head>
+
+<body>
+    <!-- Contenedor principal -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <a href="../home/home-admin.html">
+                <img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo">
+            </a>
+            <h1 class="section-title">Listado de Grupos</h1>
+        </header>
+
+        <!-- Contenedor del contenido -->
+        <div class="container">
+            <!-- Select y Tabla -->
+            <div class="content">
+                <div class="select-container">
+                    <label for="grupo">Selecciona al grupo:</label>
+                    <p></p>
+                    <select id="grupo" name="grupo">
+                        <option value="grupo1">Grupo 1</option>
+                        <option value="grupo2">Grupo 2</option>
+                        <option value="grupo3">Grupo 3</option>
+                    </select>
+                </div>
+
+                <!-- Tabla -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="header-item">Lista de niños/as:</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="header-item">Juan Pérez</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="header-item">Ana Gómez</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="header-item">Carlos Ruiz</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="header-item">Marta Díaz</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="header-item">Luis Martínez</div>
+                    </div>
+                    <!-- Más filas se pueden agregar dinámicamente con JS/PHP -->
+                </div>
+
+                <!-- Botón Volver a Grupos -->
+                <div class="button-container">
+                    <button class="button sin-button"><a href="grupos-admin.html">Volver a Grupos</a></button>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Cierre del main-wrapper -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-line"></div>
+            <p class="footer-text">Copyright © 2025. All Right Reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
