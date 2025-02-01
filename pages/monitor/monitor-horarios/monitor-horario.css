@@ -1,0 +1,279 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    color: black;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 62px;
+    height: 96px;
+    background: #FFD6D0;
+    box-sizing: border-box;
+  }
+  .header-top {
+    width: 100%; /* Ocupa todo el ancho */
+    height: 8vh; /* Usa un 8% de la altura de la pantalla */
+    background: #FFD6D0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50vw; /* Ancho relativo al 50% del ancho de la pantalla */
+}
+
+.nav-item {
+    font-size: 1.5rem; /* Ajuste de fuente más flexible */
+    color: black;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+
+  .logo {
+    width: 258px;
+    height: 68px;
+  }
+
+  .menu ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  /* Contenedor principal */
+  .container {
+    width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Título */
+  .section-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #CD4533;
+    width: 100%;
+    background: #FFD6D0;
+    text-align: center;
+    padding: 5px 0;
+    box-sizing: border-box;
+  }
+
+  /* Tabla de horarios */
+  .schedule {
+    margin-top: 10px;
+    background: white;
+    padding: 20px;
+  }
+
+  .schedule-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #BACBCF;
+  }
+  
+  .schedule-row:nth-child(even) {
+    background: #949494;
+  }
+  
+  .schedule-row.header {
+    background: #80C4D3;
+  }
+  
+  .schedule-item,
+  .schedule-time {
+    flex: 1;
+    text-align: center;
+    color: black;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .event-name {
+    flex: 1;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  /* Botón Aceptar */
+  .accept-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .accept-text {
+    padding: 15px 40px;
+    background: #10BFFB;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Footer */
+  .footer {
+    width: 100%;
+    padding: 67px 50px 81px;
+    background: black;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .footer-content {
+    max-width: 1052px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  
+  .footer-divider {
+    width: 100%;
+    height: 0;
+    border: 2px solid white;
+  }
+  
+  .footer-note {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    color: white;
+    opacity: 0.5;
+  }
+  
+  /* Estilos Responsive para Tablets */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .header {
+      padding: 10px 30px;
+    }
+  
+    .logo {
+      width: 200px;
+      height: auto;
+    }
+  
+    .menu ul {
+      gap: 20px;
+    }
+  
+    .menu a {
+      font-size: 18px;
+    }
+  
+    .container {
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+  
+    .section-title {
+      font-size: 26px;
+      padding: 10px 0;
+    }
+  
+    .schedule {
+      padding: 15px;
+    }
+  
+    .schedule-item {
+      font-size: 20px;
+    }
+  
+    .event-name {
+      font-size: 18px;
+    }
+  
+    .footer {
+      padding: 50px 20px;
+    }
+  
+    .footer-note {
+      font-size: 16px;
+    }
+  }
+  
+  /* Estilos Responsive para Móviles */
+  @media (max-width: 768px) {
+    .header {
+      height: auto;
+      padding: 10px 20px;
+    }
+  
+    .hamburger {
+      display: flex;
+    }
+  
+    .menu ul {
+      flex-direction: column;
+      gap: 16px;
+      display: none;
+    }
+  
+    .menu ul.active {
+      display: flex;
+    }
+  
+    .container {
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+  
+    .section-title {
+      font-size: 24px;
+      padding: 10px 0;
+    }
+  
+    .schedule {
+      padding: 10px;
+    }
+  
+    .schedule-item {
+      font-size: 18px;
+    }
+  
+    .event-name {
+      font-size: 16px;
+    }
+  
+    .footer {
+      padding: 40px 20px;
+    }
+  
+    .footer-note {
+      font-size: 16px;
+    }
+  }
+  

@@ -1,0 +1,143 @@
+/* General */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+    overflow-x: hidden; /* Evita el scroll horizontal */
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%; /* Se ajusta a toda la ventana */
+    height: 100%; /* Asegura que el contenedor ocupe toda la altura */
+    margin: 0; /* Elimina márgenes */
+    padding: 0; /* Elimina rellenos */
+    background: white;
+    box-sizing: border-box; /* El tamaño incluye padding y borde */
+}
+
+/* Header */
+.header {
+    width: 100%;
+    background: #FFD6D0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Ajustado para evitar desbordamientos */
+    box-sizing: border-box; /* Incluye padding en el cálculo de tamaño */
+}
+
+.logo {
+    width: 180px; /* Reducido para que se ajuste mejor */
+    height: auto;
+}
+
+.header-links {
+    display: flex;
+    gap: 20px;
+}
+
+.header-link {
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Título */
+.header-title {
+    width: 100%;
+    background: #FFD6D0;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.header-title-text {
+    color: #CD4533;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+/* Notificaciones */
+.previous-notifications-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.notifications-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+}
+
+.notification-card {
+    width: 280px; /* Ajustado para mejor responsividad */
+    background: white;
+    border: 5px #FF725E solid;
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.notification-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.notification-text {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* Botón Crear Notificación */
+.create-notification {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 15px;
+    background: #CD4533;
+    border-radius: 32px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.create-notification-text {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    background: black;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-text {
+    color: white;
+    opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .header-links {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .notification-card {
+        width: 90%;
+    }
+}
