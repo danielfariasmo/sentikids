@@ -186,7 +186,7 @@ button:hover {
 
 .input-field label{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 15px;
     transform: translateY(-50%);
     color: #000000;
