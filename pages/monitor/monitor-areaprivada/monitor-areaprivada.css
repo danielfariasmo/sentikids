@@ -26,41 +26,58 @@ body {
     box-sizing: border-box;
 }
 
- .header {
+/* Header */
+.header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 62px;
+    padding: 4px 0;
     height: 96px;
     background: #FFD6D0;
     box-sizing: border-box;
-  }
+}
 
 .header img {
     width: 100%;
     max-width: 258px;
     height: auto;
 }
+
 .logo {
     width: 258px;
     height: 68px;
+    margin-left: 62px;
 }
 
+/* Menú de navegación */
 .nav {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
+    padding-right: 62px;
 }
 
-.nav div {
+.nav a {
     text-align: center;
     color: black;
     font-size: 18px;
     font-weight: 400;
+    text-decoration: none; /* Elimina el subrayado */
+    padding: 8px 16px; /* Espaciado para mejorar accesibilidad */
+    border-radius: 8px; /* Bordes redondeados */
+    transition: all 0.3s ease-in-out; /* Animación suave */
 }
 
+.nav a:hover {
+    background-color: #FF725E; /* Color de fondo al hacer hover */
+    color: white; /* Texto en blanco */
+}
+
+/* Título */
 .title {
     width: 100%;
     max-width: 872px;
@@ -73,6 +90,7 @@ body {
     text-align: center;
 }
 
+/* Contenido */
 .content {
     width: 100%;
     max-width: 902px;
@@ -82,6 +100,7 @@ body {
     gap: 40px;
 }
 
+/* Tarjetas */
 .card {
     display: flex;
     flex-direction: column;
@@ -89,6 +108,14 @@ body {
     gap: 20px;
     background: rgba(255, 255, 255, 0);
     text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Efecto de crecimiento */
+    background: #FFE5E0; /* Cambio de color de fondo */
 }
 
 .card .icon {
@@ -96,13 +123,15 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
-}
-
-.card .circle {
     width: 120px;
     height: 120px;
     background: rgba(205, 69, 51, 0.80);
     border-radius: 50%;
+    transition: background 0.3s ease-in-out;
+}
+
+.card:hover .icon {
+    background: #CD4533; /* Cambio de color del icono */
 }
 
 .card img {
@@ -138,31 +167,13 @@ body {
 /* Footer */
 .footer {
     width: 100%;
-    padding: 40px 20px;
     background: black;
     text-align: center;
-    box-sizing: border-box;
-}
-
-.footer-content {
-    max-width: 1052px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.footer-line {
-    width: 100%;
-    height: 0;
-    border: 1px solid white;
+    padding: 20px 0;
+    margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
 .footer-text {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
     color: white;
     opacity: 0.5;
 }
@@ -172,11 +183,12 @@ body {
     .header {
         flex-direction: row;
         justify-content: space-between;
-        padding: 20px 40px;
+        padding: 20px 0;
     }
 
     .nav {
         gap: 32px;
+        padding-right: 40px;
     }
 
     .title {
@@ -196,7 +208,7 @@ body {
         font-size: 48px;
     }
 
-    .card .circle {
+    .card .icon {
         width: 174px;
         height: 174px;
     }
@@ -209,7 +221,7 @@ body {
 
 @media (min-width: 1024px) {
     .header {
-        padding: 20px 62px;
+        padding: 20px 0;
     }
 
     .nav div {

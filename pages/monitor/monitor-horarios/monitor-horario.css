@@ -1,66 +1,60 @@
-/* Estilos generales */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: white;
-    color: black;
-    overflow-x: hidden;
-  }
-
-  /* Header */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 62px;
-    height: 96px;
-    background: #FFD6D0;
-    box-sizing: border-box;
-  }
-  .header-top {
-    width: 100%; /* Ocupa todo el ancho */
-    height: 8vh; /* Usa un 8% de la altura de la pantalla */
-    background: #FFD6D0;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Poppins, sans-serif; /* Establecer una fuente común */
+  min-height: 100vh; /* Ocupa toda la pantalla */
+  display: flex;
+  flex-direction: column; /* Organiza los elementos en columna */
+  box-sizing: border-box;
 }
-.header-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 50vw; /* Ancho relativo al 50% del ancho de la pantalla */
+ /* Header */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  height: 96px;
+  background: #FFD6D0;
+  box-sizing: border-box;
 }
 
-.nav-item {
-    font-size: 1.5rem; /* Ajuste de fuente más flexible */
-    color: black;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
+.logo {
+  width: 258px;
+  height: 68px;
+  margin-left: 62px; /* Añade margen izquierdo para alinear el logo */
 }
 
-  .logo {
-    width: 258px;
-    height: 68px;
-  }
+/* Menú de navegación */
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding-right: 62px;
+}
 
-  .menu ul {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+/* Elimina subrayado de los enlaces */
+.nav a {
+  text-decoration: none; /* Quita el subrayado */
+  color: black; /* Color del texto */
+  font-size: 18px;
+  font-weight: 400;
+}
 
-  .menu a {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-weight: 400;
-  }
+.nav a div {
+  padding: 10px 15px;
+  transition: background 0.3s ease;
+}
+
+/* Efecto hover */
+.nav a div:hover {
+  background: #FF725E;
+  color: white;
+  border-radius: 5px;
+}
 
   /* Contenedor principal */
   .container {
@@ -141,38 +135,20 @@ body {
     cursor: pointer;
   }
   
-  /* Footer */
-  .footer {
-    width: 100%;
-    padding: 67px 50px 81px;
-    background: black;
-    text-align: center;
-    box-sizing: border-box;
-  }
-  
-  .footer-content {
-    max-width: 1052px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-  }
-  
-  .footer-divider {
-    width: 100%;
-    height: 0;
-    border: 2px solid white;
-  }
-  
-  .footer-note {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 21px;
-    color: white;
-    opacity: 0.5;
-  }
-  
+/* Pie de página */
+.footer {
+  width: 100%;
+  background: black;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto; /* Empuja el footer hacia abajo */
+}
+
+.footer-text {
+  color: white;
+  opacity: 0.5;
+}
+
   /* Estilos Responsive para Tablets */
   @media (min-width: 768px) and (max-width: 1024px) {
     .header {

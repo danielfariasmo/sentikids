@@ -18,35 +18,51 @@ body, html {
     overflow: hidden; /* Evita el desbordamiento */
 }
 
-/* Cabecera superior */
-.header-top {
-    width: 100%; /* Ocupa todo el ancho */
-    height: 8vh; /* Usa un 8% de la altura de la pantalla */
-    background: #FFD6D0;
-    padding: 10px;
+/* Header */
+.header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 4px 0;
+    height: 96px;
+    background: #FFD6D0;
+    box-sizing: border-box;
 }
 
 .logo {
-    width: 20vw; /* Ancho relativo al 20% del ancho de la pantalla */
-    height: auto;
+    width: 258px;
+    height: 68px;
+    margin-left: 62px; /* Añade margen izquierdo para alinear el logo */
 }
 
-.header-nav {
+/* Menú de navegación */
+.nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    width: 50vw; /* Ancho relativo al 50% del ancho de la pantalla */
+    gap: 20px;
+    padding-right: 62px;
 }
 
-.nav-item {
-    font-size: 1.5rem; /* Ajuste de fuente más flexible */
-    color: black;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
+/* Elimina subrayado de los enlaces */
+.nav a {
+    text-decoration: none; /* Quita el subrayado */
+    color: black; /* Color del texto */
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.nav a div {
+    padding: 10px 15px;
+    transition: background 0.3s ease;
+}
+
+/* Efecto hover */
+.nav a div:hover {
+    background: #FF725E;
+    color: white;
+    border-radius: 5px;
 }
 
 /* Título principal */
@@ -111,8 +127,8 @@ body, html {
 
 /* Estilo para la sección de más información */
 .more-info {
-    width: 50vw;
-    margin: 20px auto;
+    width: 25vw;
+    margin: 15px auto;
     padding: 15px;
     background: #CD4533;
     border-radius: 32px;
@@ -123,7 +139,7 @@ body, html {
 
 .more-info-text {
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 4.32px;
 }
@@ -132,29 +148,12 @@ body, html {
 .footer {
     width: 100%;
     background: black;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-line {
-    width: 100%;
-    border: 2px solid white;
-    margin: 15px 0;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
 .footer-text {
     color: white;
-    font-size: 1rem;
     opacity: 0.5;
-    text-align: center;
 }

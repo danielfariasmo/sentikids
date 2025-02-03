@@ -3,45 +3,65 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
-    overflow-x: hidden; /* Evita el scroll horizontal */
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column; /* Organiza el contenido en columna */
+    overflow-x: hidden; /* Evita scroll horizontal */
 }
 
 /* Contenedor principal */
 .container {
-    width: 100%; /* Se ajusta a toda la ventana */
-    height: 100%; /* Asegura que el contenedor ocupe toda la altura */
-    margin: 0; /* Elimina márgenes */
-    padding: 0; /* Elimina rellenos */
+    flex: 1; /* Hace que el contenido crezca y el footer se quede abajo */
+    width: 100%;
     background: white;
-    box-sizing: border-box; /* El tamaño incluye padding y borde */
+    box-sizing: border-box;
 }
 
 /* Header */
 .header {
     width: 100%;
-    background: #FFD6D0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px; /* Ajustado para evitar desbordamientos */
-    box-sizing: border-box; /* Incluye padding en el cálculo de tamaño */
+    padding: 4px 0;
+    height: 96px;
+    background: #FFD6D0;
+    box-sizing: border-box;
 }
 
 .logo {
-    width: 180px; /* Reducido para que se ajuste mejor */
-    height: auto;
+    width: 258px;
+    height: 68px;
+    margin-left: 62px; /* Añade margen izquierdo para alinear el logo */
 }
 
-.header-links {
+/* Menú de navegación */
+.nav {
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
     gap: 20px;
+    padding-right: 62px;
 }
 
-.header-link {
-    color: black;
-    font-size: 20px;
-    cursor: pointer;
+/* Elimina subrayado de los enlaces */
+.nav a {
+    text-decoration: none; /* Quita el subrayado */
+    color: black; /* Color del texto */
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.nav a div {
+    padding: 10px 15px;
+    transition: background 0.3s ease;
+}
+
+/* Efecto hover */
+.nav a div:hover {
+    background: #FF725E;
+    color: white;
+    border-radius: 5px;
 }
 
 /* Título */
@@ -72,11 +92,11 @@ body {
     gap: 20px;
     justify-content: center;
     padding: 20px;
-    box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+    box-sizing: border-box;
 }
 
 .notification-card {
-    width: 280px; /* Ajustado para mejor responsividad */
+    width: 280px;
     background: white;
     border: 5px #FF725E solid;
     padding: 15px;
@@ -117,6 +137,7 @@ body {
     background: black;
     text-align: center;
     padding: 20px 0;
+    margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
 .footer-text {
@@ -132,7 +153,7 @@ body {
         padding: 10px;
     }
 
-    .header-links {
+    .nav {
         flex-direction: row;
         gap: 10px;
     }
