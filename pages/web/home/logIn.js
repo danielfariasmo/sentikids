@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mensajes de validación de login
     function mostrarMensajeLogin(mensaje, esError) {
         const errorSpan = document.getElementById("loginError");
-        errorSpan.textContent = mensaje; // Muestra el mensaje
+        errorSpan.textContent = mensaje;
         if (esError) {
             errorSpan.classList.remove("hidden", "success");
             errorSpan.classList.add("error");
