@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajustes de la cuenta</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -60,76 +60,40 @@
 
             <button type="button" id="passwordButton">Cambiar contraseña</button>
 
-            <div class="input-field">
-                <input type="password" id="lastPassword" placeholder=""><br>
-                <label for="lastPassword">Anterior contraseña</label>
+            <div id="newPassContainer" class="hidden">
+                <div class="input-field">
+                    <input type="password" id="lastPassword" placeholder=""><br>
+                    <label for="lastPassword">Anterior contraseña</label>
+                </div>
+                <span class="error hidden" id="lastPasswordError">Por favor, introduce su contraseña anterior.</span><br>
+    
+                <div class="input-field">
+                    <input type="password" id="password" placeholder=""><br>
+                    <label for="password">Nueva contraseña</label>
+                </div>
+                <span class="error hidden" id="lastPasswordError">Por favor, introduce una contraseña válida.</span><br>
             </div>
-            <span class="error hidden" id="lastPasswordError">Por favor, introduce su contraseña anterior.</span><br>
-
-            <div class="input-field">
-                <input type="password" id="password" placeholder=""><br>
-                <label for="password">Nueva contraseña</label>
-            </div>
-            <span class="error hidden" id="lastPasswordError">Por favor, introduce una contraseña válida.</span><br>
 
             <h2>Cambiar el idioma</h2>
             <select name="" id="">
                 <option value="">Español (España)</option>
                 <option value="">Ingles</option>
             </select>
+
             <h2>Tus hijos</h2>
+            <div id="childrenContainer" class="hidden"></div>
+
+            <h2>Tus personas de confianza</h2>
+            <div id="trustedContainer" class="hidden"></div>
+
+            <span id="AjustesError" class="hidden"></span><br>
 
             <button type="submit">Borrar cuenta</button>
             <button type="submit">Cancelar</button>
             <button type="submit">Guardar cambios</button>
-
-            <div class="child-block">
-                <h2>Información Niño/a</h2>
-
-                <div class="input-field">
-                    <input type="text" id="childName1" name="childName[]" placeholder=""><br>
-                    <label for="childName1">Nombre*</label>
-                </div>
-                <span class="error hidden" id="childName1Error">Por favor, introduce un nombre válido.</span><br>
-
-                <div class="input-field">
-                    <input type="text" id="childLastName1" name="childLastName[]" placeholder=""><br>
-                    <label for="childLastName1">Apellidos*</label>
-                </div>
-                <span class="error hidden" id="childLastName1Error">Por favor, introduce un apellido válido.</span><br>
-
-                <div class="input-field">
-                    <input type="date" id="childAge1" name="childAge[]" placeholder=""><br>
-                    <label for="childAge1" id="childAge1">Edad*</label>
-                </div>
-                <span class="error hidden" id="childAge1Error">Por favor, introduce una fecha válida.</span><br>
-
-                <label for="childMedical">Condiciones médicas o observaciones</label>
-                <textarea id="childMedical" name="childMedical[]"></textarea><br>
-
-                <h2>Detalles adicionales</h2>
-                <label for="diet">Dieta</label>
-                <select id="diet" name="diet[]">
-                    <option value="none">Sin restricciones</option>
-                    <option value="vegetarian">Vegetariana</option>
-                    <option value="vegan">Vegana</option>
-                    <option value="gluten-free">Sin gluten</option>
-                    <option value="dairy-free">Sin lácteos</option>
-                </select><br>
-
-                <label for="allergies">Alergias o condiciones médicas</label>
-                <textarea id="allergies" name="allergies[]"></textarea><br>
-            </div>
-
-            <div id="childrenContainer"></div>
-
-            <button type="button" id="addChildButton">Añadir niño/a</button>
-
-            <span id="inscribirseError" class="hidden"></span><br>
-            <button type="submit">CONTINUAR</button>
         </form>
     </div>
-    <script src="js/ajustesPadres.js"></script>
+    <script src="ajustesPadres.js"></script>
 </body>
 
 </html>
