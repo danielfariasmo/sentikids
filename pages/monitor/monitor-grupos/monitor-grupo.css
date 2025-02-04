@@ -92,6 +92,8 @@ body, html {
     background: white;
     flex-grow: 1; /* Permite que la tabla ocupe el espacio restante */
     overflow: hidden; /* Evita desbordamiento */
+    width: 90%; /* Reducimos un poco el ancho */
+    margin: 20px auto;
 }
 
 .table-header {
@@ -108,7 +110,110 @@ body, html {
     text-align: center;
     width: 18%;
 }
+/* Resaltar fila al pasar el mouse */
+.row:hover {
+    background: #54504e !important; /* Color de fondo cuando se hace hover */
+    color: white; /* Color del texto al hacer hover */
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
 
+/* Agrandar el popup */
+/* Estilos mejorados para el pop-up */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 90%;
+    max-width: 600px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.popup h2 {
+    font-size: 1.8rem;
+    color: #CD4533;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.popup p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+.popup p strong {
+    color: #CD4533;
+    font-weight: 600;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #CD4533;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #FF725E;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    animation: fadeInOverlay 0.3s ease-in-out;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+}
+
+@keyframes fadeOutOverlay {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
 .row {
     display: flex;
     justify-content: space-between;
@@ -156,4 +261,34 @@ body, html {
 .footer-text {
     color: white;
     opacity: 0.5;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.close-btn {
+    cursor: pointer;
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
