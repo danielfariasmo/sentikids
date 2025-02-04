@@ -11,7 +11,6 @@
 
     <!-- Header -->
     <div class="header">
-
         <a href="../monitor-areaprivada/monitor-areaprivada.html"><img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo"></a>
         <div class="nav">
             <a href="../monitor-horarios/monitor-horario.html"><div>Horarios</div></a>
@@ -56,19 +55,44 @@
         </div>
 
         <!-- Botón Crear Notificación -->
-        <div class="create-notification">
+        <div class="create-notification" onclick="openPopup()">
             <div class="create-notification-text">Crear Notificación</div>
         </div>
 
     </div>
 
+   <!-- Pop-up -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2>Crear Notificación</h2>
+        <form id="notification-form">
+            <label for="recipient">Seleccione el destinatario:</label>
+            <select id="recipient" name="recipient">
+                <option value="Luis Gómez">Luis Gómez</option>
+                <option value="Sara Pérez">Sara Pérez</option>
+                <option value="Juan Guzman">Juan Guzman</option>
+                <option value="Lucia Villa">Lucia Villa</option>
+                <option value="Ana López">Ana López</option>
+                <option value="Todos los Padres">Todos los Padres</option>
+            </select>
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea>
+            <button type="submit" class="send-btn">Enviar</button>
+        </form>
+        <div id="success-message" class="success-message">¡Notificación enviada con éxito!</div>
+    </div>
+</div>
+
     <!-- Footer -->
     <div class="footer">
         <div class="footer-content">
             <div class="footer-line"></div>
-            <div class="footer-text">Copyright © 2021. All Right Reserved.</div>
+            <div class="footer-text">Copyright © 2025. All Right Reserved.</div>
         </div>
     </div>
+
+    <script src="monitor-asesoramiento.js"></script>
 
 </body>
 </html>
