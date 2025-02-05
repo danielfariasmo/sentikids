@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscribirse</title>
-    <link rel="stylesheet" href="inscribirse.css">
+    <link rel="stylesheet" href="inscribir.css">
 </head>
 
 <body>
@@ -15,63 +15,63 @@
             <h2>Información Madre/Padre/Tutor</h2>
 
             <div class="input-field">
-                <input type="text" id="name" placeholder=""><br>
+                <input type="text" id="name" name="nombre" placeholder=""><br>
                 <label for="name">Nombre*</label>
             </div>
             <span class="error hidden" id="nameError">Por favor, introduce un nombre válido.</span><br>
 
             <div class="input-field">
-                <input type="text" id="lastName" placeholder=""><br>
+                <input type="text" id="lastName" name="apellidos" placeholder=""><br>
                 <label for="lastName">Apellidos*</label>
             </div>
             <span class="error hidden" id="lastNameError">Por favor, introduce un apellido válido.</span><br>
 
             <div class="input-field">
-                <input type="text" id="dni" placeholder=""><br>
+                <input type="text" id="dni" name="dni" placeholder=""><br>
                 <label for="dni">DNI*</label>
             </div>
             <span class="error hidden" id="dniError">Por favor, introduce un dni válido.</span><br>
 
             <div class="input-field">
-                <input type="email" id="email" placeholder=""><br>
+                <input type="email" id="email" name="email" placeholder=""><br>
                 <label for="email">Correo*</label>
             </div>
             <span class="error hidden" id="emailError">Por favor, introduce un correo válido.</span><br>
 
             <div class="input-field">
-                <input type="tel" id="tel" placeholder=""><br>
+                <input type="tel" id="tel" name="telefono" placeholder=""><br>
                 <label for="tel">Telefono*</label>
             </div>
             <span class="error hidden" id="telError">Por favor, introduce un telefono válido.</span><br>
 
-            <div class="input-field">
+            <!-- <div class="input-field">
                 <input type="text" id="population" placeholder=""><br>
                 <label for="population">Población*</label>
             </div>
-            <span class="error hidden" id="populationError">Por favor, introduce una población válida.</span><br>
+            <span class="error hidden" id="populationError">Por favor, introduce una población válida.</span><br> -->
 
             <h3>¿Quieres añadir otra persona de confianza?</h3>
 
             <div class="input-field">
-                <input type="text" id="name2" placeholder=""><br>
+                <input type="text" id="name2" name="nombre2" placeholder=""><br>
                 <label for="name2">Nombre</label>
             </div>
             <span class="error hidden" id="name2Error">Por favor, introduce un nombre válido.</span><br>
 
             <div class="input-field">
-                <input type="text" id="lastName2" placeholder=""><br>
+                <input type="text" id="lastName2" name="apellidos2" placeholder=""><br>
                 <label for="lastName2">Apellidos</label>
             </div>
             <span class="error hidden" id="lastName2Error">Por favor, introduce un apellido válido.</span><br>
 
             <div class="input-field">
-                <input type="text" id="dni2" placeholder=""><br>
+                <input type="text" id="dni2" name="dni2" placeholder=""><br>
                 <label for="dni2">DNI</label>
             </div>
             <span class="error hidden" id="dni2Error">Por favor, introduce un dni válido.</span><br>
 
             <div class="input-field">
-                <input type="tel2" id="tel2" placeholder=""><br>
+                <input type="tel2" id="tel2" name="telefono2" placeholder=""><br>
                 <label for="tel2">Telefono</label>
             </div>
             <span class="error hidden" id="tel2Error">Por favor, introduce un telefono válido.</span><br>
@@ -104,8 +104,6 @@
                 <label for="diet">Dieta</label>
                 <select id="diet" name="diet[]">
                     <option value="none">Sin restricciones</option>
-                    <option value="vegetarian">Vegetariana</option>
-                    <option value="vegan">Vegana</option>
                     <option value="gluten-free">Sin gluten</option>
                     <option value="dairy-free">Sin lácteos</option>
                 </select><br>
@@ -122,7 +120,7 @@
             <button type="submit">CONTINUAR</button>
         </form>
     </div>
-    <script src="inscribirse.js"></script>
+    <script src="inscribir.js"></script>
 </body>
 
 </html>

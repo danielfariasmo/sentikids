@@ -33,10 +33,20 @@ $insertCoach = "INSERT INTO monitor (id_monitor, nombre_usuario, clave_usuario, 
 mysqli_query($connection, $insertCoach) or die("ERROR: no se puede insertar en la tabla monitores: " . mysqli_error($connection));
 
 /** TUTORES*/
-$tutor = "CREATE TABLE IF NOT EXISTS tutor (
+/* $tutor = "CREATE TABLE IF NOT EXISTS tutor (
     id_tutor INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
     clave_usuario VARCHAR(255) NOT NULL,
+    dni VARCHAR(9) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    apellidos VARCHAR(255) NOT NULL,
+    correo_electronico VARCHAR(50) NOT NULL,
+    telefono VARCHAR(9) NOT NULL
+);"; */
+$tutor = "CREATE TABLE IF NOT EXISTS tutor (
+    id_tutor INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50),
+    clave_usuario VARCHAR(255),
     dni VARCHAR(9) NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
@@ -120,33 +130,31 @@ $scheduleActivity = "CREATE TABLE IF NOT EXISTS horario_actividad (
 mysqli_query($connection, $scheduleActivity) or die("ERROR: no se puede crear la tabla Horarios_Actividades: " . mysqli_error($connection));
 
 /** DIETAS*/
-$diet = "CREATE TABLE IF NOT EXISTS dieta (
-    id_dieta INT AUTO_INCREMENT PRIMARY KEY,
-    seleccion ENUM('con menu', 'sin menu') NOT NULL,
-    tipo_menu ENUM('normal', 'especial', 'sin menu')
-);";
-mysqli_query($connection, $diet) or die("ERROR: no se puede crear la tabla Dietas: " . mysqli_error($connection));
+// $diet = "CREATE TABLE IF NOT EXISTS dieta (
+//     id_dieta INT AUTO_INCREMENT PRIMARY KEY,
+//     seleccion ENUM('con menu', 'sin menu') NOT NULL,
+//     tipo_menu ENUM('normal', 'especial', 'sin menu')
+// );";
+// mysqli_query($connection, $diet) or die("ERROR: no se puede crear la tabla Dietas: " . mysqli_error($connection));
 
-$insertDiet = "INSERT INTO dieta (id_dieta, seleccion, tipo_menu) VALUES 
-                (1, 'sin menu', 'sin menu'),
-                (2, 'con menu', 'normal'),
-                (3, 'con menu', 'especial');";
-mysqli_query($connection, $insertDiet) or die("ERROR: no se puede insertar en la tabla dietas: " . mysqli_error($connection));
+// $insertDiet = "INSERT INTO dieta (id_dieta, seleccion, tipo_menu) VALUES 
+//                 (1, 'sin menu', 'sin menu'),
+//                 (2, 'con menu', 'normal'),
+//                 (3, 'con menu', 'especial');";
+// mysqli_query($connection, $insertDiet) or die("ERROR: no se puede insertar en la tabla dietas: " . mysqli_error($connection));
 
 /** NIÑOS*/
-$kid = "CREATE TABLE IF NOT EXISTS ninho (
-    id_ninho INT AUTO_INCREMENT PRIMARY KEY,
+$kid = "CREATE TABLE IF NOT EXISTS hijo (
+    id_hijo INT AUTO_INCREMENT PRIMARY KEY,
     id_tutor INT,
     id_grupo INT,
-    id_dieta INT,
     nombre VARCHAR(255) NOT NULL, 
     apellidos VARCHAR(255) NOT NULL, 
-    edad VARCHAR(1) NOT NULL, 
-    alergias VARCHAR(255) NOT NULL, 
+    fecha_nacimiento DATE, /** ESTO ES FECHA DE NACIMIENTO */
+    dieta ENUM('sin restricciones', 'sin gluten', 'sin lacteos'),
+    alergias VARCHAR(255), /** CONDICIONES? */
     FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor),
-    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo),
-    FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta)
+    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
 );";
 mysqli_query($connection, $kid) or die("ERROR: no se puede crear la tabla Niños: " . mysqli_error($connection));
-
 
