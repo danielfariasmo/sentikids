@@ -23,17 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Validación al enviar el formulario
     form.addEventListener('submit', (event) => {
         event.preventDefault();
+
+        // Validación local
         const usuarioValido = validarUsuario();
         const contraseñaValida = validarContraseña();
 
         if (usuarioValido && contraseñaValida) {
-            mostrarMensajeLogin("Inicio de sesión exitoso", false);
+            // Si la validación local es correcta, proceder con la validación en el servidor
+            const usuario = document.getElementById("user").value.trim();
+            const contraseña = document.getElementById("password").value.trim();
+            validarUsuarioContraseña(usuario, contraseña);
         } else {
             mostrarMensajeLogin("Por favor, corrige los errores antes de continuar.", true);
         }
     });
 
-    /** VALIDACIONES */
+    /** VALIDACIONES LOCALES */
     function validarElemento(elemento) {
         const valor = elemento.value.trim();
         let esValido = true;
@@ -59,5 +64,45 @@ document.addEventListener('DOMContentLoaded', () => {
     function validarContraseña() {
         const valor = document.getElementById("password").value.trim();
         return valor !== "";
+    }
+
+    /** VALIDACIÓN EN EL SERVIDOR CON FETCH */
+    function validarUsuarioContraseña(usuario, contraseña) {
+        const formData = new FormData();
+        formData.append("funcion", "validando");
+        formData.append("usuario", usuario);
+        formData.append("contra", contraseña);
+
+        fetch("logIn.php", {
+            
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error en la solicitud: " + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            if (data.status === "success") {
+                mostrarMensajeLogin(data.message, false);
+                // Redirigir según el rol del usuario
+                if (data.role === "administrador") {
+                    window.location.href = `../../administrador/home/home-admin.html`;
+                } else if (data.role === "monitor") {
+                    window.location.href = `../../monitor/monitor-areaprivada/monitor-areaprivada.html`;
+                } else if (data.role === "tutor") {
+                    window.location.href = `../../tutor/tutor.html`;
+                }
+            } else {
+                mostrarMensajeLogin(data.message, true);
+            }
+        })
+        .catch(error => {
+            console.error("Error en la solicitud:", error);
+            mostrarMensajeLogin("Error en la solicitud. Consulta la consola para más detalles.", true);
+        });
     }
 });
