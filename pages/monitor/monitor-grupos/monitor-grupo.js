@@ -43,3 +43,28 @@ function hidePopup() {
         overlay.style.animation = '';
     }, 300); 
 }
+document.addEventListener('DOMContentLoaded', function() {
+    // Realizar una solicitud AJAX para obtener los datos de los niños del grupo
+    fetch('get_students.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const tableBody = document.querySelector('.table');
+                data.students.forEach(student => {
+                    const row = document.createElement('div');
+                    row.className = 'row';
+                    row.innerHTML = `
+                        <div>${student.nombre}</div>
+                        <div>${student.apellidos}</div>
+                        <div>${student.nombre_tutor}</div>
+                        <div>${student.telefono}</div>
+                        <div>${student.correo_electronico}</div>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+});
