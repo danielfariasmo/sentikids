@@ -107,11 +107,11 @@ mysqli_query($connection, $schedule) or die("ERROR: no se puede crear la tabla H
 
 /** Insertar datos en la tabla horario */
 $insertSchedule = "INSERT INTO horario (nombre, url) VALUES
-                     ('Horario1', '../assets/img/horario1.png'),
-                     ('Horario2', '../assets/img/horario2.png'),
-                     ('Horario3', '../assets/img/horario3.png'),
-                     ('Horario4', '../assets/img/horario4.png'),
-                     ('Horario5', '../assets/img/horario5.png');";
+                     ('Horario1', '/sentikids/assets/img/horario1.png'),
+                     ('Horario2', '/sentikids/assets/img/horario2.png'),
+                     ('Horario3', '/sentikids/assets/img/horario3.png'),
+                     ('Horario4', '/sentikids/assets/img/horario4.png'),
+                     ('Horario5', '/sentikids/assets/img/horario5.png');";
 mysqli_query($connection, $insertSchedule) or die("ERROR: no se puede insertar en la tabla horarios: " . mysqli_error($connection));
 
 
@@ -128,10 +128,10 @@ mysqli_query($connection, $group) or die("ERROR: no se puede crear la tabla Grup
 /** Insertar 5 grupos en la tabla grupo */
 $insertGroups = "INSERT INTO grupo (id_grupo, id_monitor, id_horario, nombre) VALUES
                 (1, 1, 1, 'Grupo A'),
-                (2, 2, 1, 'Grupo B'),
-                (3, 3, 1, 'Grupo C'),
-                (4, 4, 1, 'Grupo D'),
-                (5, 5, 1, 'Grupo E');";  // Todos los grupos se asignan al mismo monitor e horario (id_monitor = 1, id_horario = 1)
+                (2, 2, 2, 'Grupo B'),
+                (3, 3, 3, 'Grupo C'),
+                (4, 4, 4, 'Grupo D'),
+                (5, 5, 5, 'Grupo E');";  // Todos los grupos se asignan al mismo monitor e horario (id_monitor = 1, id_horario = 1)
 mysqli_query($connection, $insertGroups) or die("ERROR: no se puede insertar en la tabla grupos: " . mysqli_error($connection));
 
 /** NIÑOS */
