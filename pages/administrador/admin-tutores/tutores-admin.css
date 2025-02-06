@@ -77,38 +77,36 @@ body {
 }
 
 /* Tabla de tutores */
+/* Tabla de tutores */
 .content {
   margin-top: 10px;
   background: white;
   padding: 20px;
 }
 
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #80C4D3;
-  padding: 10px;
+table {
+  width: 100%;
+  border-collapse: separate; /* Para que funcione el border-spacing */
+  border-spacing: 0 10px; /* Espacio entre el encabezado y las filas */
 }
 
-.header-item {
-  flex: 1;
-  text-align: center;
-  color: black;
-  font-size: 24px;
-  font-weight: 700;
+.table-header th {
+  padding: 15px; /* Espacio interno en el encabezado */
+  background-color: #80C4D3; /* Color de fondo del encabezado */
+  border-bottom: 2px solid; /* Línea que separa el encabezado de las filas */
+  text-align: center; /* Centrar el texto */
+  font-weight: bold; /* Texto en negrita */
 }
 
-.table-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: #BACBCF;
+tbody td {
+  padding: 10px; /* Espacio interno de las filas */
+  text-align: center; /* Centrar el texto de las filas */
+  background-color: #fff; /* Color de fondo de las filas */
+  border-bottom: 1px solid #e0e0e0; /* Línea divisoria entre filas */
 }
 
-.table-row:nth-child(even) {
-  background: #949494;
+tbody tr:last-child td {
+  border-bottom: none; /* Quitar la línea del último elemento si no quieres borde final */
 }
 
 /* Botones */
@@ -135,6 +133,30 @@ body {
   border: none; /* Elimina el borde por defecto */
 }
 
+.information {
+  width: 100px;
+  height: 35px;
+  color: black;
+  border-color: #80C4D3;
+  border-radius: 5px;
+  background-color: #80C4D3;
+  display: flex;            
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px; 
+  font-weight: bold;
+}
+
+ a .information{
+  color: black;
+  text-decoration: none;
+}
+
+.information:hover {
+  background-color: #10BFFB;
+}
+
 .add-button {
   background: #10BFFB;
   border-color: #10BFFB;
@@ -144,14 +166,7 @@ body {
   background: #80C4D3;
 }
 
-.delete-button {
-  background: #CD4533;
-  border-color: #CD4533;
-}
 
-.delete-button:hover {
-  background: #FF725E;
-}
 
 /* Footer */
 .footer {

@@ -36,24 +36,21 @@
 
   <div class="container">
     <div class="content">
-      <div class="table-header">
-        <div class="header-item">Nombre</div>
-        <div class="header-item">Apellidos</div>
-        <div class="header-item">Teléfono</div>
-        <div class="header-item">DNI</div>
-        <div class="header-item">Correo electrónico</div>
-      </div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
+        <table>
+            <thead>
+                <tr class="table-header">
+                    <th class="header-item">Nombre</th>
+                    <th class="header-item">Apellidos</th>
+                    <th class="header-item">DNI</th>
+                    <th class="header-item">Teléfono</th>
+                    <th class="header-item">Correo Electrónico</th>
+                    <th class="header-item"></th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
     </div>
+</div>
     <div class="button-container">
       <!-- Botón 1 -->
       <button class="myBtn button add-button" data-modal-id="modal2">Dar de alta</button>
@@ -83,10 +80,7 @@
             <div class="form__input-group">
               <select class="form__input" name="select-kids-delete" id="select-kids-delete">
                 <option value="" selected>Seleccione un tutor</option>
-                <option value="jose-perez">Jose Perez</option>
-                <option value="maria-gomez">Maria Gomez</option>
-                <option value="lucas-martinez">Lucas Martinez</option>
-              </select>
+              </select>              
               <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
             </div>
             <p class="form__input-error">Seleccione un tutor.</p>
