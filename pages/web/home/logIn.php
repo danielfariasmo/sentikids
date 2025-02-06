@@ -1,4 +1,5 @@
 <?php
+session_start(); // Iniciar la sesión
 header("Content-Type: application/json");
 
 include "../../../server/database.php";
@@ -26,23 +27,32 @@ $usuario = mysqli_real_escape_string($conexion, $_POST['usuario']);
 $contra = mysqli_real_escape_string($conexion, $_POST['contra']);
 
 // Consultar si el usuario es administrador
-$queryAdministrador = "SELECT * FROM administrador WHERE nombre_usuario = '$usuario' AND clave_usuario = '$contra'";
+$queryAdministrador = "SELECT id_administrador FROM administrador WHERE nombre_usuario = '$usuario' AND clave_usuario = '$contra'";
 $resultAdministrador = mysqli_query($conexion, $queryAdministrador);
 
 // Consultar si el usuario es monitor
-$queryMonitor = "SELECT * FROM monitor WHERE nombre_usuario = '$usuario' AND clave_usuario = '$contra'";
+$queryMonitor = "SELECT id_monitor FROM monitor WHERE nombre_usuario = '$usuario' AND clave_usuario = '$contra'";
 $resultMonitor = mysqli_query($conexion, $queryMonitor);
 
 // Consultar si el usuario es tutor
-$queryTutor = "SELECT * FROM tutor WHERE nombre_usuario = '$usuario' AND clave_usuario = '$contra'";
+$queryTutor = "SELECT id_tutor FROM tutor WHERE nombre_usuario = '$usuario' AND clave_usuario = '$contra'";
 $resultTutor = mysqli_query($conexion, $queryTutor);
 
 if ($resultAdministrador && mysqli_num_rows($resultAdministrador) > 0) {
-    echo json_encode(['status' => 'success', 'message' => 'Bienvenido Administrador/a', 'role' => 'administrador', 'usuario' => $usuario]);
+    $row = mysqli_fetch_assoc($resultAdministrador);
+    $_SESSION['id_usuario'] = $row['id_administrador']; // Guardar el ID del administrador en la sesión
+    $_SESSION['rol'] = 'administrador'; // Guardar el rol en la sesión
+    echo json_encode(['status' => 'success', 'message' => 'Bienvenido Administrador/a', 'role' => 'administrador']);
 } elseif ($resultMonitor && mysqli_num_rows($resultMonitor) > 0) {
-    echo json_encode(['status' => 'success', 'message' => 'Bienvenido Monitor/a', 'role' => 'monitor', 'usuario' => $usuario]);
+    $row = mysqli_fetch_assoc($resultMonitor);
+    $_SESSION['id_usuario'] = $row['id_monitor']; // Guardar el ID del monitor en la sesión
+    $_SESSION['rol'] = 'monitor'; // Guardar el rol en la sesión
+    echo json_encode(['status' => 'success', 'message' => 'Bienvenido Monitor/a', 'role' => 'monitor']);
 } elseif ($resultTutor && mysqli_num_rows($resultTutor) > 0) {
-    echo json_encode(['status' => 'success', 'message' => 'Bienvenido Tutor/a', 'role' => 'tutor', 'usuario' => $usuario]);
+    $row = mysqli_fetch_assoc($resultTutor);
+    $_SESSION['id_usuario'] = $row['id_tutor']; // Guardar el ID del tutor en la sesión
+    $_SESSION['rol'] = 'tutor'; // Guardar el rol en la sesión
+    echo json_encode(['status' => 'success', 'message' => 'Bienvenido Tutor/a', 'role' => 'tutor']);
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Usuario o contraseña incorrectos']);
 }

@@ -1,9 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Función para obtener los datos del tutor
+    function obtenerDatosTutor() {
+        fetch("obtenerDatosTutor.php", {
+            method: "GET"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error en la solicitud: " + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === "success") {
+                // Rellenar los campos del formulario con los datos del tutor
+                const tutor = data.data;
+                document.getElementById("name").value = tutor.nombre;
+                document.getElementById("lastName").value = tutor.apellidos;
+                document.getElementById("dni").value = tutor.dni;
+                document.getElementById("email").value = tutor.correo_electronico;
+                document.getElementById("tel").value = tutor.telefono;
+                document.getElementById("user").value = tutor.nombre_usuario;
+            } else {
+                mostrarMensaje(data.message, true);
+            }
+        })
+        .catch(error => {
+            console.error("Error en la solicitud:", error);
+            mostrarMensaje("Error al obtener los datos del tutor.", true);
+        });
+    }
+
+    // Llamar a la función para obtener los datos del tutor al cargar la página
+    obtenerDatosTutor();
+
+
     // Mensajes de validación
     function mostrarMensaje(mensaje, esError) {
         const errorSpan = document.getElementById("AjustesError");
-        errorSpan.textContent = mensaje; // Muestra el mensaje
+        errorSpan.textContent = mensaje;
         if (esError) {
             errorSpan.classList.remove("hidden", "success");
             errorSpan.classList.add("error");
@@ -21,50 +56,64 @@ document.addEventListener('DOMContentLoaded', () => {
         validarElemento(event.target);
     });
 
+    // Envío del formulario
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         const esValido = [...form.querySelectorAll("input, select")].every(validarElemento);
         if (esValido) {
-            mostrarMensaje("Inscripción exitosa", false);
+            const formData = new FormData(form);
+            formData.append("funcion", "ajustes");
+
+            fetch("ajustesPadres.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    mostrarMensaje(data.message, false);
+                    // Redirigir o realizar otras acciones
+                } else {
+                    mostrarMensaje(data.message, true);
+                }
+            })
+            .catch(error => {
+                console.error("Error en la solicitud:", error);
+                mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true);
+            });
         } else {
             mostrarMensaje("Por favor, corrige los errores antes de continuar.", true);
         }
     });
+    
 
+    // Validación de campos
     function validarElemento(elemento) {
         const valor = elemento.value.trim();
         let esValido = true;
 
         switch (true) {
             case ["name", "lastName"].includes(elemento.id):
-                // Letras y espacios, pueden llevar acentos
-                console.log("por aqui esta pasando en validarElemento ");
                 esValido = /^[a-zA-ZÀ-ÿ\s]{2,40}$/.test(valor);
-                console.log(esValido);
                 break;
 
             case elemento.id === "dni":
-                // Validación para DNI español
                 esValido = /^[0-9]{8}[A-Za-z]$/.test(valor) && validarLetraDNI(valor);
                 break;
 
             case elemento.id === "email":
-                // Validación para correo electrónico
                 esValido = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(valor);
                 break;
 
             case elemento.id === "tel":
-                // Validación para teléfono (asumiendo un formato de teléfono de España)
                 esValido = /^(\+34|0034|34)?[6-9]\d{8}$/.test(valor);
                 break;
 
-            case elemento.id === "population":
-                // Letras, números, y espacios, con longitud entre 2 y 40
+            /* case elemento.id === "population":
                 esValido = /^[a-zA-ZÀ-ÿ0-9\s]{2,40}$/.test(valor);
-                break;
+                break; */
 
             default:
-                // Otros casos comunes o por defecto
                 console.warn(`No hay reglas de validación para el campo con id "${elemento.id}"`);
                 break;
         }
@@ -77,19 +126,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return esValido;
     }
 
+    // Validar letra del DNI
     function validarLetraDNI(dni) {
-        const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        const numero = parseInt(dni.slice(0, 8), 10); // Los primeros 8 caracteres son números
-        const letra = dni.slice(-1).toUpperCase(); // Último carácter es la letra
-        return letra === letras[numero % 23];
+        const regex = /^\d{8}[A-Z]$/;
+        return regex.test(dni);
     }
 
     // Función para mostrar "Cambiar contraseña"
     const passwordButton = document.getElementById('passwordButton');
-
     passwordButton.addEventListener('click', function () {
         const newPassContainer = document.getElementById('newPassContainer');
-        newPassContainer.classList.toggle('hidden'); //muestra y oculta
+        newPassContainer.classList.toggle('hidden'); // Muestra y oculta
     });
-
 });
+
