@@ -4,84 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajustes de la cuenta</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Inscribirse</title>
+    <link rel="stylesheet" href="inscribir.css">
 </head>
 
 <body>
     <div class="form-container">
-        <h1>Ajustes de la cuenta</h1>
+        <h1>Inscribirse</h1>
         <form id="userForm">
-            <h2>Información Básica</h2>
+            <h2>Información Madre/Padre/Tutor</h2>
 
             <div class="input-field">
-                <input type="text" id="name" placeholder=""><br>
+                <input type="text" id="name" name="nombre" placeholder=""><br>
                 <label for="name">Nombre*</label>
             </div>
             <span class="error hidden" id="nameError">Por favor, introduce un nombre válido.</span><br>
 
             <div class="input-field">
-                <input type="text" id="lastName" placeholder=""><br>
+                <input type="text" id="lastName" name="apellidos" placeholder=""><br>
                 <label for="lastName">Apellidos*</label>
             </div>
             <span class="error hidden" id="lastNameError">Por favor, introduce un apellido válido.</span><br>
 
             <div class="input-field">
-                <input type="text" id="dni" placeholder=""><br>
+                <input type="text" id="dni" name="dni" placeholder=""><br>
                 <label for="dni">DNI*</label>
             </div>
             <span class="error hidden" id="dniError">Por favor, introduce un dni válido.</span><br>
 
             <div class="input-field">
-                <input type="email" id="email" placeholder=""><br>
+                <input type="email" id="email" name="email" placeholder=""><br>
                 <label for="email">Correo*</label>
             </div>
             <span class="error hidden" id="emailError">Por favor, introduce un correo válido.</span><br>
 
             <div class="input-field">
-                <input type="tel" id="tel" placeholder=""><br>
+                <input type="tel" id="tel" name="telefono" placeholder=""><br>
                 <label for="tel">Telefono*</label>
             </div>
             <span class="error hidden" id="telError">Por favor, introduce un telefono válido.</span><br>
 
-            <div class="input-field">
+            <!-- <div class="input-field">
                 <input type="text" id="population" placeholder=""><br>
                 <label for="population">Población*</label>
             </div>
-            <span class="error hidden" id="populationError">Por favor, introduce una población válida.</span><br>
+            <span class="error hidden" id="populationError">Por favor, introduce una población válida.</span><br> -->
 
-            <h2>Detalles de inicio de sesión</h2>
-
-            <div class="input-field">
-                <input type="text" id="user" placeholder=""><br>
-                <label for="user">Usuario</label>
-            </div>
-            <span class="error hidden" id="userError">Por favor, introduce un usuario válido.</span><br>
-
-            <button type="button" id="passwordButton">Cambiar contraseña</button>
+            <h3>¿Quieres añadir otra persona de confianza?</h3>
 
             <div class="input-field">
-                <input type="password" id="lastPassword" placeholder=""><br>
-                <label for="lastPassword">Anterior contraseña</label>
+                <input type="text" id="name2" name="nombre2" placeholder=""><br>
+                <label for="name2">Nombre</label>
             </div>
-            <span class="error hidden" id="lastPasswordError">Por favor, introduce su contraseña anterior.</span><br>
+            <span class="error hidden" id="name2Error">Por favor, introduce un nombre válido.</span><br>
 
             <div class="input-field">
-                <input type="password" id="password" placeholder=""><br>
-                <label for="password">Nueva contraseña</label>
+                <input type="text" id="lastName2" name="apellidos2" placeholder=""><br>
+                <label for="lastName2">Apellidos</label>
             </div>
-            <span class="error hidden" id="lastPasswordError">Por favor, introduce una contraseña válida.</span><br>
+            <span class="error hidden" id="lastName2Error">Por favor, introduce un apellido válido.</span><br>
 
-            <h2>Cambiar el idioma</h2>
-            <select name="" id="">
-                <option value="">Español (España)</option>
-                <option value="">Ingles</option>
-            </select>
-            <h2>Tus hijos</h2>
+            <div class="input-field">
+                <input type="text" id="dni2" name="dni2" placeholder=""><br>
+                <label for="dni2">DNI</label>
+            </div>
+            <span class="error hidden" id="dni2Error">Por favor, introduce un dni válido.</span><br>
 
-            <button type="submit">Borrar cuenta</button>
-            <button type="submit">Cancelar</button>
-            <button type="submit">Guardar cambios</button>
+            <div class="input-field">
+                <input type="tel2" id="tel2" name="telefono2" placeholder=""><br>
+                <label for="tel2">Telefono</label>
+            </div>
+            <span class="error hidden" id="tel2Error">Por favor, introduce un telefono válido.</span><br>
+            Podra editar y añadir más personas de confianza en su area privada más adelante.
 
             <div class="child-block">
                 <h2>Información Niño/a</h2>
@@ -100,19 +94,16 @@
 
                 <div class="input-field">
                     <input type="date" id="childAge1" name="childAge[]" placeholder=""><br>
-                    <label for="childAge1" id="childAge1">Edad*</label>
+
+                    <label for="childAge1" id="childAge1">Fecha de Nacimiento*</label>
                 </div>
                 <span class="error hidden" id="childAge1Error">Por favor, introduce una fecha válida.</span><br>
 
-                <label for="childMedical">Condiciones médicas o observaciones</label>
-                <textarea id="childMedical" name="childMedical[]"></textarea><br>
 
                 <h2>Detalles adicionales</h2>
                 <label for="diet">Dieta</label>
                 <select id="diet" name="diet[]">
                     <option value="none">Sin restricciones</option>
-                    <option value="vegetarian">Vegetariana</option>
-                    <option value="vegan">Vegana</option>
                     <option value="gluten-free">Sin gluten</option>
                     <option value="dairy-free">Sin lácteos</option>
                 </select><br>
@@ -129,7 +120,7 @@
             <button type="submit">CONTINUAR</button>
         </form>
     </div>
-    <script src="js/ajustesPadres.js"></script>
+    <script src="inscribir.js"></script>
 </body>
 
 </html>

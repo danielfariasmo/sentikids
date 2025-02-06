@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otros Tutores</title>
+    <link rel="stylesheet" href="otros-tutores-admin.css">
+    <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="../home/home-admin.html">
+            <img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo">
+        </a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="../admin-tutores/tutores-admin.html">Tutores</a></li>
+                <li><a href="../admin-monitores/monitores-admin.html">Monitores</a></li>
+                <li><a href="../admin-usuarios/usuarios-admin.html">Usuarios</a></li>
+                <li><a href="../admin-inscribir-ninho/ninhos-admin.html">Inscribir niño/a</a></li>
+                <li><a href="../admin-grupos/grupos-admin.html">Grupos</a></li>
+                <li><a href="../admin-otros-tutores/otros-tutores-admin.html"><b>Otros Tutores</b></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="section-title">
+        <h1>Otros Tutores</h1>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="table-header">
+                <div class="header-item">Nombre</div>
+                <div class="header-item">Apellidos</div>
+                <div class="header-item">DNI</div>
+                <div class="header-item">Teléfono</div>
+                <div class="header-item">Relación</div>
+                <div class="header-item">Tutor Principal</div>
+            </div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+            <div class="table-row"></div>
+        </div>
+        <div class="button-container">
+            <!-- Botón 1 -->
+            <button class="myBtn button add-button" data-modal-id="modal1">Agregar Otro Tutor</button>
+            <!-- Botón 2 -->
+            <button class="myBtn button delete-button" data-modal-id="modal2">Eliminar Otro Tutor</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-line"></div>
+            <p class="footer-text">Copyright © 2025. All Right Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal 1 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-modal-id="modal1">&times;</span>
+                <h2>Agregar Niño/a</h2>
+            </div>
+            <div class="modal-body">
+                <form class="popup_body" id="form-add">
+                    <!--Group: kids name-->
+                    <div class="form__group" id="group__name">
+                        <label for="nameKids" class="form__label">Nombre del tutor:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="name" id="name"
+                                placeholder="Jose Manual">
+                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
+                        </div>
+                        <p class="form__input-error">El nombre tiene que ser de 2 a 40 dígitos. Solo puede contener
+                            letras y espacios.</p>
+                    </div>
+
+                    <!--Group: kids surname-->
+                    <div class="form__group" id="group__surname">
+                        <label for="surnameKids" class="form__label">Apellidos del tutor:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="surname" id="surname"
+                                placeholder="Perez Gonzalez">
+                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
+                        </div>
+                        <p class="form__input-error">Los apellidos tiene que ser de 2 a 40 dígitos. Solo puede contener
+                            letras y espacios.</p>
+                    </div>
+
+                    <!--Group: dni-->
+                    <div class="form__group" id="group__dni">
+                        <label for="dni" class="form__label">DNI:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="dni" id="dni" placeholder="123456789A">
+                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+                        </div>
+                        <p class="form__input-error">El dni solo puede contener números y una letra.</p>
+                    </div>
+
+                    <!--Group: phone-->
+                    <div class="form__group" id="group__phone">
+                        <label for="phone" class="form__label">Teléfono:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="phone" id="phone" placeholder="659789145">
+                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+                        </div>
+                        <p class="form__input-error">El teléfono solo puede contener números y el máximo es de 9
+                            números.</p>
+                    </div>
+
+                    <!--Group: principal Tutor-->
+                    <div class="form__group" id="group__principalTutor">
+                        <label for="select-principalTutor" class="form__label">Seleccione al tutor princial:</label>
+                        <div class="form__input-group">
+                            <select class="form__input" name="select-principalTutor" id="select-principalTutor">
+                                <option value="" selected disabled>Seleccione una tutor</option>
+                                <option value="jose-perez">José Perez</option>
+                                <option value="maria-gomez">María Gómez</option>
+                            </select>
+                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
+                        </div>
+                    </div>
+
+                    <!--Group: relation-->
+                    <div class="form__group" id="group__relation">
+                        <label for="relation" class="form__label">Relación:</label>
+                        <div class="form__input-group">
+                            <input type="text" class="form__input" name="relation" id="relation"
+                                placeholder="Frutos secos">
+                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
+                        </div>
+                        <p class="form__input-error">La relación tiene que ser de 2 a 40 dígitos. Solo puede contener
+                            letras y espacios.</p>
+                    </div>
+                    <p></p>
+
+                    <!--Button-->
+                    <div class="form__message" id="form__message-add">
+                        <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error:</b> Por favor rellene el formulario
+                            correctamente.</p>
+                    </div>
+                    <p></p>
+                    <div class="form__group form__group-btn-submit">
+                        <button type="submit" class="form__btn button add-button">Agregar Tutor</button>
+                        <p class="form__success-message" id="form__success-message-add"><b>Tutor agregado</b></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-modal-id="modal2">&times;</span>
+                <h2>Eliminar Tutor</h2>
+            </div>
+            <div class="modal-body">
+                <form class="popup_body" id="form-delete">
+                    <!--Group: select kids-->
+                    <div class="form__group" id="group__nameSelect-delete">
+                        <label for="select-kids-delete" class="form__label">Seleccione a un tutor:</label>
+                        <div class="form__input-group">
+                            <select class="form__input" name="select-kids-delete" id="select-kids-delete">
+                                <option value="" selected disabled>Seleccione una tutor</option>
+                                <option value="jose-perez">José Perez</option>
+                                <option value="maria-gomez">María Gómez</option>
+                            </select>
+                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
+                        </div>
+                        <p class="form__input-error">Seleccione un tutor.</p>
+                        <p></p>
+                    </div>
+
+                    <!--Button-->
+                    <div class="form__message" id="form__message-delete">
+                        <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error:</b> Por favor rellene el formulario
+                            correctamente.</p>
+                    </div>
+                    <p></p>
+
+                    <div class="form__group form__group-btn-submit">
+                        <button type="submit" class="form__btn button delete-button">Eliminar Tutor</button>
+                        <p class="form__success-message" id="form__success-message-delete"><b>Tutor eliminado</b></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="otros-tutores-admin.js"></script>
+</body>
+
+</html>

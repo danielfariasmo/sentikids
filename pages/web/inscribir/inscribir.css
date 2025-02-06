@@ -1,0 +1,77 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --success: #50812A;
+    --information: #6291E8;
+    --warning: #ffcd2b;
+    --error: #F66060;
+    --background: #E5E5E5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+}
+
+  .hidden {
+    display: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+}
+
+.success {
+    color: green;
+    font-size: 0.9rem;
+}
+
+/* Estilo place */
+
+.input-field{
+    position: relative;
+    margin-top: 20px;
+}
+
+.input-field input{
+    width: 350px;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid #000000;
+    background: transparent;
+    color: #000000;
+    outline: none;
+}
+
+.input-field label{
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #000000;
+    font-size: 19px;
+    pointer-events: none;
+    transition: .3s;
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    top: 0;
+    font-size: 16px;
+    padding: 0 15px;
+    background: var(--background);
+}
+
+input:-webkit-autofill {
+    background-color: transparent !important; /* Transparente para mantener el diseño */
+    color: inherit !important; /* Asegura que el color del texto sea consistente */
+    box-shadow: 0 0 0 1000px var(--background) inset !important; /* Elimina el color extraño del navegador */
+    transition: background-color 5000s ease-in-out 0s; /* Elimina transiciones bruscas */
+}
