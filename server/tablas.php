@@ -56,10 +56,10 @@ $tutor = "CREATE TABLE IF NOT EXISTS tutor (
     apellidos VARCHAR(255) NOT NULL,
     correo_electronico VARCHAR(50) NOT NULL,
     telefono VARCHAR(9) NOT NULL,
-    alta VARCHAR(3) DEFAULT 'NO'
+    alta VARCHAR(3) DEFAULT 'NO' 
 );";
 mysqli_query($connection, $tutor) or die("ERROR: no se puede crear la tabla tutores: " . mysqli_error($connection));
-
+// INserto datos
 $insertTutor = "INSERT INTO tutor (id_tutor, nombre_usuario, clave_usuario, dni, nombre, apellidos, correo_electronico, telefono) VALUES 
                 (1, 'candela', 'candela', '50558596J', 'Candela', 'Martinez Sanchez', 'candelamartinez@gmail.com', '654591011'),
                 (2, 'sara', 'sara', '48978563P', 'Sara', 'Villanueva Rosa', 'saravillanueva@gmail.com', '600002563'),
