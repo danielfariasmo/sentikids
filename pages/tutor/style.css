@@ -17,7 +17,8 @@ body {
     background: var(--background);
 }
 
-  .hidden {
+/* Estilo base */
+.hidden {
     display: none;
 }
 
@@ -32,13 +33,12 @@ body {
 }
 
 /* Estilo place */
-
-.input-field{
+.input-field {
     position: relative;
     margin-top: 20px;
 }
 
-.input-field input{
+.input-field input {
     width: 350px;
     height: 60px;
     border-radius: 6px;
@@ -48,11 +48,23 @@ body {
     background: transparent;
     color: #000000;
     outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones suaves */
 }
 
-.input-field label{
+.input-field input:disabled {
+    background-color: #E5E5E5; /* Fondo gris para denotar que está desactivado */
+    color: #9e9e9e; /* Color de texto gris para hacerlo más claro */
+    border-color: #d3d3d3; /* Borde gris más claro */
+    cursor: not-allowed; /* Cambia el cursor para que no se pueda interactuar */
+}
+
+.input-field input:disabled ~ label {
+    color: #565656; /* Color de texto más claro para el label cuando el input está desactivado */
+}
+
+.input-field label {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 15px;
     transform: translateY(-50%);
     color: #000000;
@@ -66,7 +78,7 @@ input:not(:placeholder-shown) ~ label {
     top: 0;
     font-size: 16px;
     padding: 0 15px;
-    background: var(--background);
+    background: #E5E5E5;
 }
 
 input:-webkit-autofill {

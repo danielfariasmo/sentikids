@@ -15,45 +15,45 @@
             <h2>Información Básica</h2>
 
             <div class="input-field">
-                <input type="text" id="name" placeholder=""><br>
-                <label for="name">Nombre*</label>
+                <input type="text" id="name" name="nombre" placeholder="" disabled><br>
+                <label for="name">Nombre</label>
             </div>
             <span class="error hidden" id="nameError">Por favor, introduce un nombre válido.</span><br>
 
             <div class="input-field">
-                <input type="text" id="lastName" placeholder=""><br>
-                <label for="lastName">Apellidos*</label>
+                <input type="text" id="lastName" name="apellidos" placeholder="" disabled><br>
+                <label for="lastName">Apellidos</label>
             </div>
             <span class="error hidden" id="lastNameError">Por favor, introduce un apellido válido.</span><br>
 
             <div class="input-field">
-                <input type="text" id="dni" placeholder=""><br>
-                <label for="dni">DNI*</label>
+                <input type="text" id="dni" name="dni" placeholder="" disabled><br>
+                <label for="dni">DNI</label>
             </div>
             <span class="error hidden" id="dniError">Por favor, introduce un dni válido.</span><br>
 
             <div class="input-field">
-                <input type="email" id="email" placeholder=""><br>
+                <input type="email" id="email" name="email" placeholder=""><br>
                 <label for="email">Correo*</label>
             </div>
             <span class="error hidden" id="emailError">Por favor, introduce un correo válido.</span><br>
 
             <div class="input-field">
-                <input type="tel" id="tel" placeholder=""><br>
+                <input type="tel" id="tel" name="tel" placeholder=""><br>
                 <label for="tel">Telefono*</label>
             </div>
             <span class="error hidden" id="telError">Por favor, introduce un telefono válido.</span><br>
 
-            <div class="input-field">
+            <!-- <div class="input-field">
                 <input type="text" id="population" placeholder=""><br>
                 <label for="population">Población*</label>
             </div>
-            <span class="error hidden" id="populationError">Por favor, introduce una población válida.</span><br>
+            <span class="error hidden" id="populationError">Por favor, introduce una población válida.</span><br> -->
 
             <h2>Detalles de inicio de sesión</h2>
 
             <div class="input-field">
-                <input type="text" id="user" placeholder=""><br>
+                <input type="text" id="user" name="usuario" placeholder="" disabled><br>
                 <label for="user">Usuario</label>
             </div>
             <span class="error hidden" id="userError">Por favor, introduce un usuario válido.</span><br>
@@ -62,23 +62,17 @@
 
             <div id="newPassContainer" class="hidden">
                 <div class="input-field">
-                    <input type="password" id="lastPassword" placeholder=""><br>
+                    <input type="password" id="lastPassword" name="lastPassword" placeholder=""><br>
                     <label for="lastPassword">Anterior contraseña</label>
                 </div>
                 <span class="error hidden" id="lastPasswordError">Por favor, introduce su contraseña anterior.</span><br>
     
                 <div class="input-field">
-                    <input type="password" id="password" placeholder=""><br>
+                    <input type="password" id="password" name="password" placeholder=""><br>
                     <label for="password">Nueva contraseña</label>
                 </div>
                 <span class="error hidden" id="lastPasswordError">Por favor, introduce una contraseña válida.</span><br>
             </div>
-
-            <h2>Cambiar el idioma</h2>
-            <select name="" id="">
-                <option value="">Español (España)</option>
-                <option value="">Ingles</option>
-            </select>
 
             <h2>Tus hijos</h2>
             <div id="childrenContainer" class="hidden"></div>

@@ -124,10 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validar letra del DNI
     function validarLetraDNI(dni) {
-        const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        const numero = parseInt(dni.slice(0, 8), 10);
-        const letra = dni.slice(-1).toUpperCase();
-        return letra === letras[numero % 23];
+        const regex = /^\d{8}[A-Z]$/;
+        return regex.test(dni);
     }
 
     // Validar edad del alumno
