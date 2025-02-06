@@ -3,7 +3,7 @@
 include '../../../server/database.php';
 
 // Selecciono datos de tutor.
-$query = "SELECT id_tutor, nombre, apellidos, dni, telefono, correo_electronico FROM tutor";
+$query = "SELECT * FROM tutor";
 $result = mysqli_query($connection, $query) or die ('Query de busqueda no funciono' . mysqli_error($connection));
 
 // Envio datos al js.
@@ -15,7 +15,8 @@ while ($row = mysqli_fetch_array($result)) {
         'apellidos' => $row ['apellidos'], 
         'dni' => $row ['dni'],
         'telefono' => $row ['telefono'],
-        'correo_electronico' => $row ['correo_electronico']
+        'correo_electronico' => $row ['correo_electronico'],
+        'alta' => $row ['alta']
     );
 }
 

@@ -86,52 +86,16 @@ $(".popup_body").on("submit", function (e) {
   }
 });
 
-/**Relleno de tablas con ajax */
-$(document).ready(function() {
-  fetchTutor();
-
-  function fetchTutor() {
-    $.ajax({
-      url: 'tutores-admin.php',
-      type: 'GET',
-      success: function (response) {
-        let tutores = JSON.parse(response);
-        let template = ' ';
-        tutores.forEach(tutor => {
-          template += `
-                      <tr taskId="${tutor.id_tutor}">
-                          <td >${tutor.nombre}</td>
-                          <td >${tutor.apellidos}</td>
-                          <td >${tutor.dni}</td>
-                          <td >${tutor.telefono}</td>
-                          <td >${tutor.correo_electronico}</td>
-                          <td>
-                              <button class="information">
-                                  <a style="text-decoration: none; color: black;" href="info-tutores-admin.html">+ info</a>
-                              </button>
-                          </td>
-                      </tr>
-                      `
-        });
-  
-        $('#table-body').html(template);
-      }
-  
-    });
-  }
-  
-})
-
 /**Relleno de select con ajax */
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const selectElement = document.getElementById("select-kids-delete");
   fetchTutores();
 
   function fetchTutores() {
     $.ajax({
-      url: 'tutores-admin.php', 
+      url: 'tutores.php',
       type: 'GET',
-      success: function(response) {
+      success: function (response) {
         let tutores = JSON.parse(response);
 
         // Limpiar las opciones anteriores (excepto la primera)
@@ -148,4 +112,112 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+// /**Dar de alta con ajax */
+// $(document).on('click', 'dar-alta', function () {
+//   let element = $(this)[0]
+// })
+
+
+
+
+$(document).ready(function () {
+  console.log("document ready");
+  const searchInput = $('#search-input');
+  fetchTutor();
+
+  function fetchTutor() {
+    $.ajax({
+      url: 'tutores.php',
+      type: 'GET',
+      success: function (response) {
+        let tutores = JSON.parse(response);
+        let template = '';
+
+        tutores.forEach(tutor => {
+          template += `
+            <tr tutorId="${tutor.id_tutor}">
+            <td>${tutor.id_tutor}</td>
+              <td class="nombre">${tutor.nombre}</td>
+              <td class="apellidos">${tutor.apellidos}</td>
+              <td>${tutor.dni}</td>
+              <td>${tutor.telefono}</td>
+              <td>${tutor.correo_electronico}</td>
+              <td>
+                <input type="text" class="pagado-input" value="${tutor.alta}" data-id="${tutor.id_tutor}" />
+              </td>
+              <td>
+                <button class="information">
+                  <a style="text-decoration: none; color: black;" 
+                    href="info-tutores-admin.html?nombre=${encodeURIComponent(tutor.nombre + ' ' + tutor.apellidos)}">
+                    + info
+                  </a>
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+
+        $('#table-body').html(template);
+      }
+    });
+
+  }
+
+  // Función para filtrar la tabla
+  searchInput.on('input', function () {
+    const searchTerm = searchInput.val().toLowerCase();
+
+    // Filtrar las filas de la tabla según el nombre y apellido
+    $('#table-body tr').each(function () {
+      const nombre = $(this).find('.nombre').text().toLowerCase();
+      const apellidos = $(this).find('.apellidos').text().toLowerCase();
+      const fullName = nombre + ' ' + apellidos;
+
+      if (fullName.indexOf(searchTerm) !== -1) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+
+  // Actualizar el valor de "Alta" cuando el usuario edite el campo
+//  $(".pagado-input").on("change", function () {
+  $(document).on('change', '.pagado-input', function () {
+    const idTutor = $(this).data("id");
+    const pagadoValue = $(this).val();
+    console.log(idTutor, pagadoValue); // Agrega esto para ver si los valores se capturan correctamente
+
+
+    $.ajax({
+      url: 'dar-alta-tutor.php',
+      type: 'POST',
+      data: {
+        id_tutor: idTutor,
+        alta: pagadoValue
+      },
+      success: function (response) {
+        alert(response);  // Muestra un mensaje de éxito o error
+      },
+      error: function () {
+        alert('Hubo un error al actualizar los datos.');
+      }
+    });
+  });
+});
+
+
+
+
+/**Relleno de titulo */
+function obtenerParametro(nombre) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(nombre);
+}
+
+const nombreTutor = obtenerParametro('nombre');
+if (nombreTutor) {
+  document.getElementById('titulo-datos').textContent = `${nombreTutor}`;
+}
 
