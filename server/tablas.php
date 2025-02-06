@@ -56,7 +56,7 @@ $tutor = "CREATE TABLE IF NOT EXISTS tutor (
     apellidos VARCHAR(255) NOT NULL,
     correo_electronico VARCHAR(50) NOT NULL,
     telefono VARCHAR(9) NOT NULL,
-    alta VARCHAR(3) DEFAULT 'NO' 
+    alta VARCHAR(2) DEFAULT 'NO' 
 );";
 mysqli_query($connection, $tutor) or die("ERROR: no se puede crear la tabla tutores: " . mysqli_error($connection));
 // INserto datos
