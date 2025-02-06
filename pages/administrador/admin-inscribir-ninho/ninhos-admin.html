@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscribir niños/as</title>
+    <title>Niños/as</title>
     <link rel="stylesheet" href="ninhos-admin.css">
     <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -24,15 +24,14 @@
             <ul>
                 <li><a href="../admin-tutores/tutores-admin.html">Tutores</a></li>
                 <li><a href="../admin-monitores/monitores-admin.html">Monitores</a></li>
-                <li><a href="../admin-usuarios/usuarios-admin.html">Usuarios</a></li>
-                <li><a href="ninhos-admin.html"><b>Inscribir niño/a</b></a></li>
+                <li><a href="ninhos-admin.html"><b>Niños/as</b></a></li>
                 <li><a href="../admin-grupos/grupos-admin.html">Grupos</a></li>
                 <li><a href="../admin-otros-tutores/otros-tutores-admin.html">Otros Tutores</a></li>
             </ul>
         </nav>
     </header>
     <div class="section-title">
-        <h1>Inscribir Niños/as</h1>
+        <h1>Niños/as</h1>
     </div>
 
     <div class="container">
@@ -42,6 +41,7 @@
                 <div class="header-item">Apellidos</div>
                 <div class="header-item">Edad</div>
                 <div class="header-item">Nombre del tutor</div>
+                <div class="header-item">Teléfono</div>
                 <div class="header-item">Dieta</div>
                 <div class="header-item">Alergias</div>
             </div>
@@ -56,12 +56,7 @@
             <div class="table-row"></div>
             <div class="table-row"></div>
         </div>
-        <div class="button-container">
-            <!-- Botón 1 -->
-            <button class="myBtn button add-button" data-modal-id="modal1">Agregar Niño/a</button>
-            <!-- Botón 2 -->
-            <button class="myBtn button delete-button" data-modal-id="modal2">Eliminar Niño/a</button>
-        </div>
+        
     </div>
 
     <footer class="footer">
@@ -70,156 +65,6 @@
             <p class="footer-text">Copyright © 2025. All Right Reserved.</p>
         </div>
     </footer>
-
-    <!-- Modal 1 -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close" data-modal-id="modal1">&times;</span>
-                <h2>Agregar Niño/a</h2>
-            </div>
-            <div class="modal-body">
-                <form class="popup_body" id="form-add">
-                    <!--Group: kids name-->
-                    <div class="form__group" id="group__nameKids">
-                        <label for="nameKids" class="form__label">Nombre del niño/a:</label>
-                        <div class="form__input-group">
-                            <input type="text" class="form__input" name="nameKids" id="nameKids"
-                                placeholder="Jose Perez">
-                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
-                        </div>
-                        <p class="form__input-error">El nombre tiene que ser de 2 a 40 dígitos. Solo puede contener
-                            letras y espacios.</p>
-                    </div>
-
-                    <!--Group: kids surname-->
-                    <div class="form__group" id="group__surnameKids">
-                        <label for="surnameKids" class="form__label">Apellidos del niño/a:</label>
-                        <div class="form__input-group">
-                            <input type="text" class="form__input" name="surnameKids" id="surnameKids"
-                                placeholder="Perez Gonzalez">
-                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
-                        </div>
-                        <p class="form__input-error">Los apellidos tiene que ser de 2 a 40 dígitos. Solo puede contener
-                            letras y espacios.</p>
-                    </div>
-
-                    <!--Group: age-->
-                    <div class="form__group" id="group__age">
-                        <label for="age" class="form__label">Edad del niño/a:</label>
-                        <div class="form__input-group">
-                            <input type="text" class="form__input" name="age" id="age" placeholder="6">
-                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
-                        </div>
-                        <p class="form__input-error">La edad solo puede contener 1 número y sin espacio.</p>
-                    </div>
-
-                    <!--Group: parents name-->
-                    <div class="form__group" id="group__nameParents">
-                        <label for="nameParents" class="form__label">Nombre y Apellidos:</label>
-                        <div class="form__input-group">
-                            <input type="text" class="form__input" name="nameParents" id="nameParents"
-                                placeholder="Ana Lopez">
-                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
-                        </div>
-                        <p class="form__input-error">El nombre tiene que ser de 2 a 40 dígitos. Solo puede contener
-                            letras y espacios.</p>
-                    </div>
-
-                    <!--Group: phone-->
-                    <div class="form__group" id="group__phone">
-                        <label for="phone" class="form__label">Teléfono:</label>
-                        <div class="form__input-group">
-                            <input type="text" class="form__input" name="phone" id="phone" placeholder="659789145">
-                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
-                        </div>
-                        <p class="form__input-error">El teléfono solo puede contener números y el máximo es de 9
-                            números.</p>
-                    </div>
-
-                    <!--Group: diet-->
-                    <div class="form__group" id="group__diet">
-                        <label for="select-diet" class="form__label">Seleccione la dieta:</label>
-                        <div class="form__input-group">
-                            <select class="form__input" name="select-diet" id="select-diet">
-                                <option value="" selected disabled>Seleccione una dieta</option>
-                                <option value="con-menu">Con menu</option>
-                                <option value="sin-menu">Sin menu</option>
-                            </select>
-                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
-                        </div>
-                        <p class="form__input-error">La dieta tiene que ser de 2 a 40 dígitos. Solo puede contener
-                            letras y espacios.</p>
-                    </div>
-
-                    <!--Group: allergies-->
-                    <div class="form__group" id="group__allergiesKids">
-                        <label for="allergiesKids" class="form__label">Alergias:</label>
-                        <div class="form__input-group">
-                            <input type="text" class="form__input" name="allergiesKids" id="allergiesKids"
-                                placeholder="Frutos secos">
-                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
-                        </div>
-                        <p class="form__input-error">La alergia tiene que ser de 2 a 40 dígitos. Solo puede contener
-                            letras y espacios.</p>
-                    </div>
-                    <p></p>
-
-                    <!--Button-->
-                    <div class="form__message" id="form__message-add">
-                        <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error:</b> Por favor rellene el formulario
-                            correctamente.</p>
-                    </div>
-                    <p></p>
-                    <div class="form__group form__group-btn-submit">
-                        <button type="submit" class="form__btn button add-button">Agregar Niño/a</button>
-                        <p class="form__success-message" id="form__success-message-add"><b>Niño/a agregado</b></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2 -->
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close" data-modal-id="modal2">&times;</span>
-                <h2>Eliminar Niño/a</h2>
-            </div>
-            <div class="modal-body">
-                <form class="popup_body" id="form-delete">
-                    <!--Group: select kids-->
-                    <div class="form__group" id="group__nameSelect-delete">
-                        <label for="select-kids-delete" class="form__label">Seleccione a un niño/a:</label>
-                        <div class="form__input-group">
-                            <select class="form__input" name="select-kids-delete" id="select-kids-delete">
-                                <option value="" selected>Seleccione un niño/a</option>
-                                <option value="jose-perez">Jose Perez</option>
-                                <option value="maria-gomez">Maria Gomez</option>
-                                <option value="lucas-martinez">Lucas Martinez</option>
-                            </select>
-                            <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
-                        </div>
-                        <p class="form__input-error">Seleccione un niño/a.</p>
-                        <p></p>
-                    </div>
-
-                    <!--Button-->
-                    <div class="form__message" id="form__message-delete">
-                        <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error:</b> Por favor rellene el formulario
-                            correctamente.</p>
-                    </div>
-                    <p></p>
-
-                    <div class="form__group form__group-btn-submit">
-                        <button type="submit" class="form__btn button delete-button">Eliminar Niño/a</button>
-                        <p class="form__success-message" id="form__success-message-delete"><b>Niño/a eliminado</b></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <script src="ninhos-admin.js"></script>
 </body>
