@@ -76,6 +76,34 @@ body {
   box-sizing: border-box;
 }
 
+/* Estilo para el contenedor de la barra de búsqueda */
+.search-container {
+  width: 100%;
+  margin-bottom: 20px; 
+  display: flex;
+  justify-content: center; 
+  padding: 10px 20px; 
+}
+
+.search-container input {
+  width: 60%; 
+  height: 45px;
+  padding: 0 15px; 
+  font-size: 16px; 
+  border: 2px solid #80C4D3; 
+  border-radius: 5px; 
+  outline: none; 
+  box-sizing: border-box; 
+  transition: border 0.3s ease; 
+}
+
+/* Efecto al hacer focus en el campo de búsqueda */
+.search-container input:focus {
+  border-color: #10BFFB; 
+  box-shadow: 0 0 5px rgba(16, 191, 251, 0.5); 
+}
+
+
 /* Tabla de tutores */
 .content {
   margin-top: 10px;
@@ -83,32 +111,29 @@ body {
   padding: 20px;
 }
 
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #80C4D3;
-  padding: 10px;
+table {
+  width: 100%;
+  border-collapse: separate; 
+  border-spacing: 0 10px; 
 }
 
-.header-item {
-  flex: 1;
-  text-align: center;
-  color: black;
-  font-size: 24px;
-  font-weight: 700;
+.table-header th {
+  padding: 15px;
+  background-color: #80C4D3; 
+  border-bottom: 2px solid; 
+  text-align: center; 
+  font-weight: bold; 
 }
 
-.table-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: #BACBCF;
+tbody td {
+  padding: 10px; 
+  text-align: center; 
+  background-color: #fff; 
+  border-bottom: 1px solid #e0e0e0; 
 }
 
-.table-row:nth-child(even) {
-  background: #949494;
+tbody tr:last-child td {
+  border-bottom: none; 
 }
 
 /* Botones */
@@ -135,6 +160,30 @@ body {
   border: none; /* Elimina el borde por defecto */
 }
 
+.information {
+  width: 100px;
+  height: 35px;
+  color: black;
+  border-color: #80C4D3;
+  border-radius: 5px;
+  background-color: #80C4D3;
+  display: flex;            
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px; 
+  font-weight: bold;
+}
+
+ a .information{
+  color: black;
+  text-decoration: none;
+}
+
+.information:hover {
+  background-color: #10BFFB;
+}
+
 .add-button {
   background: #10BFFB;
   border-color: #10BFFB;
@@ -144,14 +193,7 @@ body {
   background: #80C4D3;
 }
 
-.delete-button {
-  background: #CD4533;
-  border-color: #CD4533;
-}
 
-.delete-button:hover {
-  background: #FF725E;
-}
 
 /* Footer */
 .footer {
