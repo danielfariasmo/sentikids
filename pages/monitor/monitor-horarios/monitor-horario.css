@@ -77,64 +77,18 @@ body, html {
     box-sizing: border-box;
   }
 
-  /* Tabla de horarios */
-  .schedule {
-    margin-top: 10px;
-    background: white;
-    padding: 20px;
+  .horario {
+
+    width: 50%; /* Ajusta este valor según lo pequeño que quieras que sea el contenedor */
+    margin: 0 auto; /* Centra el contenedor */
   }
 
-  .schedule-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: #BACBCF;
+  .horario img {
+    margin-top: 20px;
+    width: 100%; /* La imagen ocupará el 100% del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
   }
-  
-  .schedule-row:nth-child(even) {
-    background: #949494;
-  }
-  
-  .schedule-row.header {
-    background: #80C4D3;
-  }
-  
-  .schedule-item,
-  .schedule-time {
-    flex: 1;
-    text-align: center;
-    color: black;
-    font-size: 24px;
-    font-weight: 700;
-  }
-  
-  .event-name {
-    flex: 1;
-    text-align: center;
-    color: black;
-    font-size: 20px;
-    font-weight: 400;
-  }
-  
-  /* Botón Aceptar */
-  .accept-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-  }
-  
-  .accept-text {
-    padding: 15px 40px;
-    background: #10BFFB;
-    color: white;
-    font-size: 24px;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+
 /* Pie de página */
 .footer {
   width: 100%;
