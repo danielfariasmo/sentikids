@@ -29,7 +29,11 @@ $coach = "CREATE TABLE IF NOT EXISTS monitor (
 mysqli_query($connection, $coach) or die("ERROR: no se puede crear la tabla monitores: " . mysqli_error($connection));
 
 $insertCoach = "INSERT INTO monitor (id_monitor, nombre_usuario, clave_usuario, dni, nombre, apellidos, correo_electronico, telefono) VALUES 
-                    (1, 'danielgonzalez', 'daniel', '43456952Y', 'Daniel', 'Gonzalez Garrote', 'danielgonzalez@gmail.com', '658991011');";
+                    (1, 'danielgonzalez', 'daniel', '43456952Y', 'Daniel', 'Gonzalez Garrote', 'danielgonzalez@gmail.com', '658991011'),
+                    (2,'mariahernandez', 'maria', '12345678X', 'Maria', 'Hernandez Lopez', 'mariahernandez@gmail.com', '612345678'),
+                    (3,'pedrolopez', 'pedro', '23456789Y', 'Pedro', 'Lopez Garcia', 'pedrolopez@gmail.com', '623456789'),
+                    (4,'juanperez', 'juan', '34567890Z', 'Juan', 'Perez Martinez', 'juanperez@gmail.com', '634567890'),
+                    (5,'luisgarcia', 'luis', '45678901A', 'Luis', 'Garcia Fernandez', 'luisgarcia@gmail.com', '645678901');";
 mysqli_query($connection, $insertCoach) or die("ERROR: no se puede insertar en la tabla monitores: " . mysqli_error($connection));
 
 /** TUTORES*/
@@ -51,7 +55,8 @@ $tutor = "CREATE TABLE IF NOT EXISTS tutor (
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
     correo_electronico VARCHAR(50) NOT NULL,
-    telefono VARCHAR(9) NOT NULL
+    telefono VARCHAR(9) NOT NULL,
+    alta VARCHAR(3) DEFAULT 'NO'
 );";
 mysqli_query($connection, $tutor) or die("ERROR: no se puede crear la tabla tutores: " . mysqli_error($connection));
 
@@ -59,7 +64,8 @@ $insertTutor = "INSERT INTO tutor (id_tutor, nombre_usuario, clave_usuario, dni,
                 (1, 'candela', 'candela', '50558596J', 'Candela', 'Martinez Sanchez', 'candelamartinez@gmail.com', '654591011'),
                 (2, 'sara', 'sara', '48978563P', 'Sara', 'Villanueva Rosa', 'saravillanueva@gmail.com', '600002563'),
                 (3, 'irene', 'irene', '43854741M', 'Irene', 'del Rincon Bello', 'irenedelrincon@gmail.com', '677889630'),
-                (4, 'raquel', 'raquel', '41456789F', 'Raquel', 'Cerda Losa', 'raquelcerda@gmail.com', '630901045');";
+                (4, 'raquel', 'raquel', '41456789F', 'Raquel', 'Cerda Losa', 'raquelcerda@gmail.com', '630901045'),
+                 (5, 'raquel', 'raquel', '41456789F', 'Raquel', 'Cerda Losa', 'raquelcerda@gmail.com', '630901045');";
 mysqli_query($connection, $insertTutor) or die("ERROR: no se puede insertar en la tabla tutores: " . mysqli_error($connection));
 
 /** OTRO TUTOR: persona de confianza*/
@@ -88,14 +94,28 @@ $notification = "CREATE TABLE IF NOT EXISTS notificacion (
     FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor));";
 mysqli_query($connection, $notification) or die("ERROR: no se puede crear la tabla Notificaciones: " . mysqli_error($connection));
 
-/** HORARIOS*/
+
+
+
+/** HORARIOS */
 $schedule = "CREATE TABLE IF NOT EXISTS horario (
     id_horario INT AUTO_INCREMENT PRIMARY KEY, 
-    dia_semana ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes') NOT NULL,         
-    franja_horaria ENUM('10:00-11:30', '11:30-12:00', '12:00-13:30', '13:30-14:30', '14:30-15:00') NOT NULL);";
+    nombre VARCHAR(255) NOT NULL,  /** Nombre del horario */
+    url VARCHAR(255) NULL /** Columna para almacenar la URL de la foto */
+);";
 mysqli_query($connection, $schedule) or die("ERROR: no se puede crear la tabla Horarios: " . mysqli_error($connection));
 
-/** GRUPO*/
+/** Insertar datos en la tabla horario */
+$insertSchedule = "INSERT INTO horario (nombre, url) VALUES
+                     ('Horario1', '../assets/img/horario1.png'),
+                     ('Horario2', '../assets/img/horario2.png'),
+                     ('Horario3', '../assets/img/horario3.png'),
+                     ('Horario4', '../assets/img/horario4.png'),
+                     ('Horario5', '../assets/img/horario5.png');";
+mysqli_query($connection, $insertSchedule) or die("ERROR: no se puede insertar en la tabla horarios: " . mysqli_error($connection));
+
+
+/** GRUPO */
 $group = "CREATE TABLE IF NOT EXISTS grupo (
     id_grupo INT AUTO_INCREMENT PRIMARY KEY,
     id_monitor INT NOT NULL,
@@ -104,6 +124,40 @@ $group = "CREATE TABLE IF NOT EXISTS grupo (
     FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor),
     FOREIGN KEY (id_horario) REFERENCES horario(id_horario));";
 mysqli_query($connection, $group) or die("ERROR: no se puede crear la tabla Grupos: " . mysqli_error($connection));
+
+/** Insertar 5 grupos en la tabla grupo */
+$insertGroups = "INSERT INTO grupo (id_grupo, id_monitor, id_horario, nombre) VALUES
+                (1, 1, 1, 'Grupo A'),
+                (2, 2, 1, 'Grupo B'),
+                (3, 3, 1, 'Grupo C'),
+                (4, 4, 1, 'Grupo D'),
+                (5, 5, 1, 'Grupo E');";  // Todos los grupos se asignan al mismo monitor e horario (id_monitor = 1, id_horario = 1)
+mysqli_query($connection, $insertGroups) or die("ERROR: no se puede insertar en la tabla grupos: " . mysqli_error($connection));
+
+/** NIÑOS */
+$kid = "CREATE TABLE IF NOT EXISTS hijo (
+    id_hijo INT AUTO_INCREMENT PRIMARY KEY,
+    id_tutor INT,
+    id_grupo INT,
+    nombre VARCHAR(255) NOT NULL, 
+    apellidos VARCHAR(255) NOT NULL, 
+    fecha_nacimiento DATE, /** ESTO ES FECHA DE NACIMIENTO */
+    dieta ENUM('sin restricciones', 'sin gluten', 'sin lacteos'),
+    alergias VARCHAR(255), /** CONDICIONES? */
+    FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor),
+    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
+);";
+mysqli_query($connection, $kid) or die("ERROR: no se puede crear la tabla Niños: " . mysqli_error($connection));
+
+/** Insertar datos en la tabla hijos */
+$insertKid = "INSERT INTO hijo (id_tutor, id_grupo, nombre, apellidos, fecha_nacimiento, dieta, alergias) VALUES
+                (1, 1, 'Lucia', 'Gomez Fernandez', '2015-03-20', 'sin gluten', 'ninguna'),
+                (2, 1, 'Carlos', 'Lopez Perez', '2014-07-15', 'sin lacteos', 'polen'),
+                (3, 1, 'Elena', 'Rodriguez Ruiz', '2016-11-01', 'sin restricciones', 'ninguna');";
+mysqli_query($connection, $insertKid) or die("ERROR: no se puede insertar en la tabla niños: " . mysqli_error($connection));
+
+
+
 
 /** MULTIMEDIA*/
 $multimedia = "CREATE TABLE IF NOT EXISTS multimedia (
@@ -120,14 +174,6 @@ $activity = "CREATE TABLE IF NOT EXISTS actividad (
     descripcion VARCHAR(255) NOT NULL);";
 mysqli_query($connection, $activity) or die("ERROR: no se puede crear la tabla Actividades: " . mysqli_error($connection));
 
-/** HORARIOS_ACTIVIDADES*/
-$scheduleActivity = "CREATE TABLE IF NOT EXISTS horario_actividad (
-    id_horario_actividad INT AUTO_INCREMENT PRIMARY KEY,
-    id_horario INT NOT NULL, 
-    id_actividad INT NOT NULL,
-    FOREIGN KEY (id_horario) REFERENCES horario(id_horario),
-    FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad));";
-mysqli_query($connection, $scheduleActivity) or die("ERROR: no se puede crear la tabla Horarios_Actividades: " . mysqli_error($connection));
 
 /** DIETAS*/
 // $diet = "CREATE TABLE IF NOT EXISTS dieta (
@@ -142,19 +188,4 @@ mysqli_query($connection, $scheduleActivity) or die("ERROR: no se puede crear la
 //                 (2, 'con menu', 'normal'),
 //                 (3, 'con menu', 'especial');";
 // mysqli_query($connection, $insertDiet) or die("ERROR: no se puede insertar en la tabla dietas: " . mysqli_error($connection));
-
-/** NIÑOS*/
-$kid = "CREATE TABLE IF NOT EXISTS hijo (
-    id_hijo INT AUTO_INCREMENT PRIMARY KEY,
-    id_tutor INT,
-    id_grupo INT,
-    nombre VARCHAR(255) NOT NULL, 
-    apellidos VARCHAR(255) NOT NULL, 
-    fecha_nacimiento DATE, /** ESTO ES FECHA DE NACIMIENTO */
-    dieta ENUM('sin restricciones', 'sin gluten', 'sin lacteos'),
-    alergias VARCHAR(255), /** CONDICIONES? */
-    FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor),
-    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
-);";
-mysqli_query($connection, $kid) or die("ERROR: no se puede crear la tabla Niños: " . mysqli_error($connection));
 
