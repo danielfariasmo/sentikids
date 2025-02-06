@@ -34,69 +34,15 @@ $('.close').on('click', function () {
 // Cerrar modal si el usuario hace clic fuera del modal
 $(window).on('click', function (event) {
   $('.modal').each(function () {
-      if (event.target == this) {
-          $(this).css('display', 'none');
-      }
+    if (event.target == this) {
+      $(this).css('display', 'none');
+    }
   });
 });
 
 /** 
 * Validación de formularios 
 */
-
-// Expresiones regulares para validación
-const expressions = {
-  name: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, // Letras, con espacios, mínimo 2 y máximo 40 (incluye hasta 4 espacios).
-  surname: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, // Letras, con espacios, mínimo 2 y máximo 40 (incluye hasta 4 espacios).
-  phone: /^\d{9}$/, // Teléfono de 9 dígitos.
-  dni: /^[0-9]{8}[A-Za-z]$/,
-  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Formato de correo.
-};
-
-// Campos del formulario
-const fields = {
-  name: false,
-  surname: false,
-  phone: false,
-  dni: false,
-  email: false
-};
-
-// Función para validar un campo
-const validateField = (expression, input, field) => {
-  if (expression.test(input.value)) {
-      $(`#group__${field}`).removeClass('form__group-incorrect').addClass('form__group-correct');
-      $(`#group__${field} img`).attr('src', '../../../assets/icon/boton-correcto.png').removeClass('errors');
-      $(`#group__${field} .form__input-error`).removeClass('form__input-error-active');
-      fields[field] = true;
-  } else {
-      $(`#group__${field}`).addClass('form__group-incorrect').removeClass('form__group-correct');
-      $(`#group__${field} img`).addClass('errors').attr('src', '../../../assets/icon/boton-eliminar.png');
-      $(`#group__${field} .form__input-error`).addClass('form__input-error-active');
-      fields[field] = false;
-  }
-};
-
-// Validar formulario al escribir o salir del campo
-$('.form__input').on('keyup blur', function (e) {
-  switch (e.target.name) {
-      case "name":
-          validateField(expressions.name, e.target, 'name');
-          break;
-      case "surname":
-          validateField(expressions.name, e.target, 'surname');
-          break;
-      case "dni":
-          validateField(expressions.dni, e.target, 'dni');
-          break;
-      case "email":
-          validateField(expressions.email, e.target, 'email');
-          break;
-      case "phone":
-          validateField(expressions.phone, e.target, 'phone');
-          break;
-  }
-});
 
 // Validar campo de selección en el formulario de eliminar
 $('#select-kids-delete').on('change', function () {
@@ -126,17 +72,80 @@ $(".popup_body").on("submit", function (e) {
   let successMessageId = formId === "form-add" ? "#form__success-message-add" : "#form__success-message-delete";
 
   if (Object.values(fields).every(Boolean)) {
-      $(this).trigger("reset");
-      $(successMessageId).addClass("form__success-message-active");
-      setTimeout(() => {
-          $(successMessageId).removeClass("form__success-message-active");
-      }, 5000);
+    $(this).trigger("reset");
+    $(successMessageId).addClass("form__success-message-active");
+    setTimeout(() => {
+      $(successMessageId).removeClass("form__success-message-active");
+    }, 5000);
 
-      $(".form__group-correct").removeClass("form__group-correct");
-      $(errorMessageId).removeClass("form__message-active"); // Ocultar error si todo está bien
+    $(".form__group-correct").removeClass("form__group-correct");
+    $(errorMessageId).removeClass("form__message-active"); // Ocultar error si todo está bien
   } else {
-      $(errorMessageId).addClass("form__message-active");
-      console.log("Formulario con errores:", fields); // Depuración
+    $(errorMessageId).addClass("form__message-active");
+    console.log("Formulario con errores:", fields); // Depuración
+  }
+});
+
+/**Relleno de tablas con ajax */
+$(document).ready(function() {
+  fetchTutor();
+
+  function fetchTutor() {
+    $.ajax({
+      url: 'tutores-admin.php',
+      type: 'GET',
+      success: function (response) {
+        let tutores = JSON.parse(response);
+        let template = ' ';
+        tutores.forEach(tutor => {
+          template += `
+                      <tr taskId="${tutor.id_tutor}">
+                          <td >${tutor.nombre}</td>
+                          <td >${tutor.apellidos}</td>
+                          <td >${tutor.dni}</td>
+                          <td >${tutor.telefono}</td>
+                          <td >${tutor.correo_electronico}</td>
+                          <td>
+                              <button class="information">
+                                  <a style="text-decoration: none; color: black;" href="info-tutores-admin.html">+ info</a>
+                              </button>
+                          </td>
+                      </tr>
+                      `
+        });
+  
+        $('#table-body').html(template);
+      }
+  
+    });
+  }
+  
+})
+
+/**Relleno de select con ajax */
+document.addEventListener("DOMContentLoaded", function() {
+  const selectElement = document.getElementById("select-kids-delete");
+  fetchTutores();
+
+  function fetchTutores() {
+    $.ajax({
+      url: 'tutores-admin.php', 
+      type: 'GET',
+      success: function(response) {
+        let tutores = JSON.parse(response);
+
+        // Limpiar las opciones anteriores (excepto la primera)
+        selectElement.innerHTML = '<option value="" selected>Seleccione un tutor</option>';
+
+        // Rellenar el select con los tutores
+        tutores.forEach(tutor => {
+          const option = document.createElement("option");
+          option.value = `${tutor.nombre.toLowerCase().replace(/ /g, '-')}-${tutor.apellidos.toLowerCase().replace(/ /g, '-')}`;
+          option.textContent = `${tutor.nombre} ${tutor.apellidos}`;
+          selectElement.appendChild(option);
+        });
+      }
+    });
   }
 });
 
