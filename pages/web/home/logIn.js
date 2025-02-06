@@ -74,35 +74,34 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append("contra", contraseña);
 
         fetch("logIn.php", {
-            
             method: "POST",
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error en la solicitud: " + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            if (data.status === "success") {
-                mostrarMensajeLogin(data.message, false);
-                // Redirigir según el rol del usuario
-                if (data.role === "administrador") {
-                    window.location.href = `../../administrador/home/home-admin.html`;
-                } else if (data.role === "monitor") {
-                    window.location.href = `../../monitor/monitor-areaprivada/monitor-areaprivada.html`;
-                } else if (data.role === "tutor") {
-                    window.location.href = `../../tutor/ajustesPadres.html`;
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error en la solicitud: " + response.statusText);
                 }
-            } else {
-                mostrarMensajeLogin(data.message, true);
-            }
-        })
-        .catch(error => {
-            console.error("Error en la solicitud:", error);
-            mostrarMensajeLogin("Error en la solicitud. Consulta la consola para más detalles.", true);
-        });
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                if (data.status === "success") {
+                    mostrarMensajeLogin(data.message, false);
+                    // Redirigir según el rol del usuario
+                    if (data.role === "administrador") {
+                        window.location.href = `../../administrador/home/home-admin.html`;
+                    } else if (data.role === "monitor") {
+                        window.location.href = `../../monitor/monitor-areaprivada/monitor-areaprivada.html`;
+                    } else if (data.role === "tutor") {
+                        window.location.href = `../../tutor/ajustesPadres.html`;
+                    }
+                } else {
+                    mostrarMensajeLogin(data.message, true);
+                }
+            })
+            .catch(error => {
+                console.error("Error en la solicitud:", error);
+                mostrarMensajeLogin("Error en la solicitud. Consulta la consola para más detalles.", true);
+            });
     }
 });
