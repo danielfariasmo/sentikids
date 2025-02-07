@@ -180,7 +180,6 @@ function fetchOtrosTutores(idTutor) {
       if (otrosTutores && otrosTutores.length > 0) {
         otrosTutores.forEach(otroTutor => {
           template += `
-            <h2>Información Hijos</h2>
             <div class="otro-tutor-info">
                 <h3>Nombre: ${otroTutor.nombre} ${otroTutor.apellidos}</h3>
                 <p><strong>Teléfono:</strong> ${otroTutor.telefono}</p>
