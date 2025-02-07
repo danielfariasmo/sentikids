@@ -40,29 +40,33 @@
 
   <div class="container">
     <div class="content">
-        <table>
-            <thead>
-                <tr class="table-header">
-                    <th class="header-item">Nombre</th>
-                    <th class="header-item">Apellidos</th>
-                    <th class="header-item">DNI</th>
-                    <th class="header-item">Teléfono</th>
-                    <th class="header-item">Correo Electrónico</th>
-                    <th class="header-item">Pagado</th>
-                    <th class="header-item"></th>
-                </tr>
-            </thead>
-            <tbody id="table-body"></tbody>
-        </table>
+      <table>
+        <thead>
+          <tr class="table-header">
+            <th class="header-item">Nombre</th>
+            <th class="header-item">Apellidos</th>
+            <th class="header-item">DNI</th>
+            <th class="header-item">Teléfono</th>
+            <th class="header-item">Correo Electrónico</th>
+            <th class="header-item">Pagado</th>
+            <th class="header-item"></th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
     </div>
-</div>
-    <div class="button-container">
-      <!-- Botón 1 -->
-      <button class="myBtn button add-button" data-modal-id="modal2">Dar de alta</button>
-    </div>
-
   </div>
 
+  <!--Alert personalizado-->
+  <div id="custom-alert" style="display:none;">
+    <div class="alert-content">
+      <h3>SentiKids dice:</h3>
+      <p id="alert-message"></p>
+      <button id="close-alert">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-line"></div>
@@ -70,43 +74,6 @@
     </div>
   </footer>
 
-  <!-- Modal 2 -->
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close" data-modal-id="modal2">&times;</span>
-        <h2>Dar de alta al Tutor</h2>
-      </div>
-      <div class="modal-body">
-        <form class="popup_body" id="form-delete">
-          <!--Group: select tutor-->
-          <div class="form__group" id="group__nameSelect-delete">
-            <label for="select-kids-delete" class="form__label">Seleccione a un tutor:</label>
-            <div class="form__input-group">
-              <select class="form__input" name="select-kids-delete" id="select-kids-delete">
-                <option value="" selected>Seleccione un tutor</option>
-              </select>              
-              <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status errors">
-            </div>
-            <p class="form__input-error">Seleccione un tutor.</p>
-            <p></p>
-          </div>
-
-          <!--Button-->
-          <div class="form__message" id="form__message-delete">
-            <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error:</b> Por favor rellene el formulario
-              correctamente.</p>
-          </div>
-          <p></p>
-
-          <div class="form__group form__group-btn-submit">
-            <button type="submit" class="form__btn button add-button dar-alta">Dar de Alta</button>
-            <p class="form__success-message" id="form__success-message-delete"><b>Tutor dado de alta</b></p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <script src="tutores-admin.js"></script>
 </body>
