@@ -45,7 +45,7 @@ function hidePopup() {
 }
 document.addEventListener('DOMContentLoaded', function() {
     // Realizar una solicitud AJAX para obtener los datos de los niños del grupo
-    fetch('get_students.php')
+    fetch('monitor-grupos.php')
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
