@@ -5,130 +5,27 @@ function toggleMenu() {
   $('.menu ul').toggleClass('active');
 }
 
-/**
-* Funcionalidad para el pop up
-*/
-
-// Función para abrir un modal específico basado en el ID proporcionado
-function openModal(modalId) {
-  $('#' + modalId).css('display', 'block');
+/**Alert personalizado */
+function showCustomAlert(message) {
+  $('#alert-message').text(message);
+  $('#custom-alert').fadeIn();
 }
 
-// Función para cerrar un modal específico basado en el ID proporcionado
-function closeModal(modalId) {
-  $('#' + modalId).css('display', 'none');
-}
-
-// Asignar eventos a cada botón que abre los modales
-$('.myBtn').on('click', function () {
-  var modalId = $(this).data('modal-id');  // Obtener el ID del modal asociado
-  openModal(modalId);
+// Cerrar la alerta cuando se presione el botón
+$('#close-alert').on('click', function () {
+  $('#custom-alert').fadeOut();
 });
 
-// Asignar eventos para cerrar cada modal
-$('.close').on('click', function () {
-  var modalId = $(this).data('modal-id');  // Obtener el ID del modal asociado
-  closeModal(modalId);
-});
-
-// Cerrar modal si el usuario hace clic fuera del modal
-$(window).on('click', function (event) {
-  $('.modal').each(function () {
-    if (event.target == this) {
-      $(this).css('display', 'none');
-    }
-  });
-});
-
-/** 
-* Validación de formularios 
-*/
-
-// Validar campo de selección en el formulario de eliminar
-$('#select-kids-delete').on('change', function () {
-  validateSelect($(this), '#group__nameSelect-delete');
-});
-
-// Función para validar un campo de selección
-const validateSelect = (input, groupId) => {
-  const selectGroup = $(groupId);
-  if (input.val() !== "" && input.val() !== "Seleccione un niño/a") {
-    selectGroup.removeClass('form__group-incorrect').addClass('form__group-correct');
-    selectGroup.find('img').attr('src', '../../../assets/icon/boton-correcto.png').removeClass('errors');
-    selectGroup.find('.form__input-error').removeClass('form__input-error-active');
-  } else {
-    selectGroup.addClass('form__group-incorrect').removeClass('form__group-correct');
-    selectGroup.find('img').addClass('errors').attr('src', '../../../assets/icon/boton-eliminar.png');
-    selectGroup.find('.form__input-error').addClass('form__input-error-active');
-  }
-};
-
-
-// Manejo del envío del formulario
-$(".popup_body").on("submit", function (e) {
-  e.preventDefault();
-  let formId = $(this).attr("id");
-  let errorMessageId = formId === "form-add" ? "#form__message-add" : "#form__message-delete";
-  let successMessageId = formId === "form-add" ? "#form__success-message-add" : "#form__success-message-delete";
-
-  if (Object.values(fields).every(Boolean)) {
-    $(this).trigger("reset");
-    $(successMessageId).addClass("form__success-message-active");
-    setTimeout(() => {
-      $(successMessageId).removeClass("form__success-message-active");
-    }, 5000);
-
-    $(".form__group-correct").removeClass("form__group-correct");
-    $(errorMessageId).removeClass("form__message-active"); // Ocultar error si todo está bien
-  } else {
-    $(errorMessageId).addClass("form__message-active");
-    console.log("Formulario con errores:", fields); // Depuración
-  }
-});
-
-/**Relleno de select con ajax */
-document.addEventListener("DOMContentLoaded", function () {
-  const selectElement = document.getElementById("select-kids-delete");
-  fetchTutores();
-
-  function fetchTutores() {
-    $.ajax({
-      url: 'tutores.php',
-      type: 'GET',
-      success: function (response) {
-        let tutores = JSON.parse(response);
-
-        // Limpiar las opciones anteriores (excepto la primera)
-        selectElement.innerHTML = '<option value="" selected>Seleccione un tutor</option>';
-
-        // Rellenar el select con los tutores
-        tutores.forEach(tutor => {
-          const option = document.createElement("option");
-          option.value = `${tutor.nombre.toLowerCase().replace(/ /g, '-')}-${tutor.apellidos.toLowerCase().replace(/ /g, '-')}`;
-          option.textContent = `${tutor.nombre} ${tutor.apellidos}`;
-          selectElement.appendChild(option);
-        });
-      }
-    });
-  }
-});
-
-// /**Dar de alta con ajax */
-// $(document).on('click', 'dar-alta', function () {
-//   let element = $(this)[0]
-// })
-
-
-
-
+/**Relleno de tabla con AJAX*/
 $(document).ready(function () {
   console.log("document ready");
   const searchInput = $('#search-input');
   fetchTutor();
 
+  // Relleno de tabla
   function fetchTutor() {
     $.ajax({
-      url: 'tutores.php',
+      url: 'tutores-admin.php',
       type: 'GET',
       success: function (response) {
         let tutores = JSON.parse(response);
@@ -137,19 +34,17 @@ $(document).ready(function () {
         tutores.forEach(tutor => {
           template += `
             <tr tutorId="${tutor.id_tutor}">
-            <td>${tutor.id_tutor}</td>
               <td class="nombre">${tutor.nombre}</td>
               <td class="apellidos">${tutor.apellidos}</td>
               <td>${tutor.dni}</td>
               <td>${tutor.telefono}</td>
               <td>${tutor.correo_electronico}</td>
               <td>
-                <input type="text" class="pagado-input" value="${tutor.alta}" data-id="${tutor.id_tutor}" />
+                <input type="text" class="pagado-input" value="${tutor.alta}" data-id="${tutor.id_tutor}" style="text-transform: uppercase;"/>
               </td>
               <td>
                 <button class="information">
-                  <a style="text-decoration: none; color: black;" 
-                    href="info-tutores-admin.html?nombre=${encodeURIComponent(tutor.nombre + ' ' + tutor.apellidos)}">
+                  <a href="info-tutores-admin.html" style="text-decoration: none; color: black;" class="info-link" data-id="${tutor.id_tutor}" data-nombre="${tutor.nombre} ${tutor.apellidos}">
                     + info
                   </a>
                 </button>
@@ -161,7 +56,6 @@ $(document).ready(function () {
         $('#table-body').html(template);
       }
     });
-
   }
 
   // Función para filtrar la tabla
@@ -182,13 +76,23 @@ $(document).ready(function () {
     });
   });
 
+  // Capturar valor anterior por si hay un error.
+  let previousValue = '';
+  $(document).on('focus', '.pagado-input', function () {
+    previousValue = $(this).val();
+  });
+
   // Actualizar el valor de "Alta" cuando el usuario edite el campo
-//  $(".pagado-input").on("change", function () {
   $(document).on('change', '.pagado-input', function () {
     const idTutor = $(this).data("id");
     const pagadoValue = $(this).val();
-    console.log(idTutor, pagadoValue); // Agrega esto para ver si los valores se capturan correctamente
 
+    // Validación para permitir solo "si" o "no"
+    if (pagadoValue !== "SI" && pagadoValue !== "NO") {
+      showCustomAlert('Por favor, ingresa "SI" o "NO".');
+      $(this).val(previousValue);
+      return;
+    }
 
     $.ajax({
       url: 'dar-alta-tutor.php',
@@ -198,26 +102,110 @@ $(document).ready(function () {
         alta: pagadoValue
       },
       success: function (response) {
-        alert(response);  // Muestra un mensaje de éxito o error
+        showCustomAlert(response);
       },
       error: function () {
-        alert('Hubo un error al actualizar los datos.');
+        showCustomAlert('Hubo un error al actualizar los datos.');
       }
     });
   });
 });
 
-
-
-
+/*-------------------MAS INFORMACION-----------------*/
 /**Relleno de titulo */
 function obtenerParametro(nombre) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(nombre);
 }
 
-const nombreTutor = obtenerParametro('nombre');
-if (nombreTutor) {
-  document.getElementById('titulo-datos').textContent = `${nombreTutor}`;
+$(document).ready(function () {
+  // Recuperar los datos desde sessionStorage
+  const nombreTutor = sessionStorage.getItem('nombre_tutor');
+  const idTutor = sessionStorage.getItem('id_tutor');
+
+  if (nombreTutor) {
+    document.getElementById('titulo-datos').textContent = `${nombreTutor}`;
+  }
+
+  if (idTutor) {
+    fetchNinos(idTutor);
+    fetchOtrosTutores(idTutor);
+  } else {
+    console.error('No se encontró el id_tutor en sessionStorage');
+  }
+});
+
+// Función para cargar los niños usando el ID del tutor
+function fetchNinos(idTutor) {
+  $.ajax({
+    url: 'hijos-admin.php',
+    type: 'POST',
+    data: { id_tutor: idTutor },
+    success: function(response) {
+      let hijos = JSON.parse(response);
+      let template = '';
+
+      hijos.forEach(hijo => {
+        template += `
+            <div class="hijo-info">
+                <h3>Nombre: ${hijo.nombre} ${hijo.apellidos}</h3>
+                <p><strong>Fecha de Nacimiento:</strong> ${hijo.fecha_nacimiento}</p>
+                <p><strong>Dieta:</strong> ${hijo.dieta}</p>
+                <p><strong>Alergias:</strong> ${hijo.alergias}</p>
+                <p><strong>ID Grupo:</strong> ${hijo.id_grupo}</p>
+            </div>
+        `;
+      });
+
+      $('#hijos-container').html(template);
+    },
+    error: function() {
+      showCustomAlert('Error al cargar los datos de los niños.');
+      console.error('Error al cargar los datos de los niños.');
+    }
+  });
 }
 
+// Función para cargar los otros tutores usando el ID del tutor
+function fetchOtrosTutores(idTutor) {
+  $.ajax({
+    url: 'otroTutor-admin.php',
+    type: 'POST',
+    data: { id_tutor: idTutor },
+    success: function(response) {
+      console.log('Datos recibidos de otros tutores:', response);  // Verifica los datos que recibes
+      let otrosTutores = JSON.parse(response);
+      let template = '';
+
+      if (otrosTutores && otrosTutores.length > 0) {
+        otrosTutores.forEach(otroTutor => {
+          template += `
+            <div class="otro-tutor-info">
+                <h3>Nombre: ${otroTutor.nombre} ${otroTutor.apellidos}</h3>
+                <p><strong>Teléfono:</strong> ${otroTutor.telefono}</p>
+                <p><strong>DNI:</strong> ${otroTutor.dni}</p>
+            </div>
+          `;
+        });
+        $('#otros-tutores-container').html(template);
+      } else {
+        $('#otros-tutores-container').html('<p>No se encontraron personas de confianza para este tutor.</p>');
+      }
+    },
+    error: function() {
+      showCustomAlert('Error al cargar los datos de los otros tutores.');
+      console.error('Error al cargar los datos de los otros tutores.');
+    }
+  });
+}
+
+/*-------------------ALMACENAR EN SESSION STORAGE-----------------*/
+// Al hacer clic en el enlace, guardar el id_tutor y nombre en sessionStorage
+$(document).on('click', '.info-link', function(event) {
+  const idTutor = $(this).data('id');
+  const nombreTutor = $(this).data('nombre');
+  
+  // Guardar en sessionStorage
+  sessionStorage.setItem('id_tutor', idTutor);
+  sessionStorage.setItem('nombre_tutor', nombreTutor);
+});

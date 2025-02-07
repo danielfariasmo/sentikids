@@ -76,6 +76,23 @@ body {
   box-sizing: border-box;
 }
 
+.pagado-input {
+  width: 20%; 
+  height: 45px;
+  padding: 0 15px; 
+  font-size: 16px; 
+  border: 2px solid #80C4D3; 
+  border-radius: 5px; 
+  outline: none; 
+  box-sizing: border-box; 
+  transition: border 0.3s ease; 
+}
+
+.pagado-input:focus {
+  border-color: #10BFFB; 
+  box-shadow: 0 0 5px rgba(16, 191, 251, 0.5); 
+}
+
 /* Estilo para el contenedor de la barra de búsqueda */
 .search-container {
   width: 100%;
@@ -97,7 +114,6 @@ body {
   transition: border 0.3s ease; 
 }
 
-/* Efecto al hacer focus en el campo de búsqueda */
 .search-container input:focus {
   border-color: #10BFFB; 
   box-shadow: 0 0 5px rgba(16, 191, 251, 0.5); 
@@ -107,6 +123,7 @@ body {
 /* Tabla de tutores */
 .content {
   margin-top: 10px;
+  margin-bottom: 30px;
   background: white;
   padding: 20px;
 }
@@ -137,15 +154,8 @@ tbody tr:last-child td {
 }
 
 /* Botones */
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 80px; /* Espacio entre los botones */
-  margin: 20px 0; /* Margen superior e inferior */
-}
-
 .button {
-  width: 300px; /* Ancho reducido para que quepan dos botones */
+  width: 300px; 
   height: 66px;
   padding: 8px 10px;
   margin-bottom: 30px;
@@ -157,7 +167,7 @@ tbody tr:last-child td {
   font-weight: 700;
   color: white;
   cursor: pointer;
-  border: none; /* Elimina el borde por defecto */
+  border: none; 
 }
 
 .information {
@@ -184,13 +194,45 @@ tbody tr:last-child td {
   background-color: #10BFFB;
 }
 
-.add-button {
-  background: #10BFFB;
-  border-color: #10BFFB;
+#custom-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-.add-button:hover {
-  background: #80C4D3;
+.alert-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alert-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+  color: #D0090B; 
+}
+
+#close-alert {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #CD4533;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#close-alert:hover {
+  background-color: #D0090B;
 }
 
 
