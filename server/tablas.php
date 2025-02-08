@@ -154,6 +154,8 @@ mysqli_query($connection, $insertKid) or die("ERROR: no se puede insertar en la 
 $multimedia = "CREATE TABLE IF NOT EXISTS multimedia (
     id_multimedia INT AUTO_INCREMENT PRIMARY KEY,
     id_grupo INT NOT NULL,
+
+    
     url VARCHAR(255),
     FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo));";
 mysqli_query($connection, $multimedia) or die("ERROR: no se puede crear la tabla Multimedia: " . mysqli_error($connection));

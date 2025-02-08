@@ -79,7 +79,7 @@ $(document).ready(function () {
   // Capturar valor anterior por si hay un error.
   let previousValue = '';
   $(document).on('focus', '.pagado-input', function () {
-    previousValue = $(this).val();
+    previousValue = $(this).val().toUpperCase;
   });
 
   // Actualizar el valor de "Alta" cuando el usuario edite el campo
@@ -88,7 +88,7 @@ $(document).ready(function () {
     const pagadoValue = $(this).val();
 
     // Validación para permitir solo "si" o "no"
-    if (pagadoValue !== "SI" && pagadoValue !== "NO") {
+    if (pagadoValue !== "si" && pagadoValue !== "no") {
       showCustomAlert('Por favor, ingresa "SI" o "NO".');
       $(this).val(previousValue);
       return;
