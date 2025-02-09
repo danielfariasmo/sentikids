@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data.success) {
                         alert(data.message);
                         // Redirigir al usuario después de borrar la cuenta
-                        window.location.href = 'logIn.html'; // Te lleva al iniciar sesión
+                        window.location.href = '../../web/home/logIn.html'; // Te lleva al iniciar sesión
                     } else {
                         alert(data.message);
                     }

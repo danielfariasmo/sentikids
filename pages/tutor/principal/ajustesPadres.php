@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json");
 
-include "../../server/database.php";
+include "../../../server/database.php";
 
 // Configuración de la base de datos
 $servidor = "localhost";
@@ -41,9 +41,14 @@ if ($rol !== 'tutor') {
 // Obtener el ID del tutor desde la sesión
 $id_tutor = $_SESSION['id_usuario'];
 
-
+// Recoger y sanitizar los datos del formulario
+// $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+// $apellido = mysqli_real_escape_string($conexion, $_POST['apellidos']);
+// $dni = mysqli_real_escape_string($conexion, $_POST['dni']);
 $email = mysqli_real_escape_string($conexion, $_POST['email']);
 $telefono = mysqli_real_escape_string($conexion, $_POST['tel']);
+//$poblacion = mysqli_real_escape_string($conexion, $_POST['poblacion']);
+//$usuario = mysqli_real_escape_string($conexion, $_POST['usuario']);
 $lastPassword = mysqli_real_escape_string($conexion, $_POST['lastPassword'] ?? '');
 $newPassword = mysqli_real_escape_string($conexion, $_POST['password'] ?? '');
 

@@ -1,0 +1,228 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --success: #50812A;
+    --information: #6291E8;
+    --warning: #ffcd2b;
+    --error: #F66060;
+    --background: #E5E5E5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+}
+
+/** Menú desplegable **/
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 8px 0;
+    min-width: 150px;
+    z-index: 10;
+}
+
+.menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu button:hover {
+    background: #f0f0f0;
+}
+
+/** Popup **/
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.popup {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    /* text-align: center; */
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.popup h2 {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: left;
+}
+
+.popup button {
+    margin-top: 0px;
+}
+
+
+.popup {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+    max-height: 580px;
+    overflow-y: auto;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
+    /* text-align: center; */
+    position: relative;
+}
+
+/* Estilo personalizado para el scrollbar */
+.popup::-webkit-scrollbar {
+    width: 10px; /* Ancho del scrollbar */
+}
+
+.popup::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo de la pista del scrollbar */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.popup::-webkit-scrollbar-thumb {
+    background: #888; /* Color del scrollbar */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.popup::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del scrollbar al pasar el mouse */
+}
+
+
+/** Formulario dentro del popup **/
+.form-container {
+    width: 100%;
+    padding: 15px;
+}
+
+.form-container h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+/* Estilo inputs */
+.input-field {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px; /* Espacio entre campos */
+}
+
+.input-field input {
+    width: 100%;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 0 12px;
+    border: 2px solid var(--black);
+    background: transparent;
+    outline: none;
+}
+
+.input-field input::placeholder {
+    color: transparent;
+}
+
+.input-field label {
+    position: absolute;
+    top: 15px; /* Posición inicial del label */
+    left: 12px;
+    color: var(--black);
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.3s;
+    background: var(--white); /* Fondo para que no se superponga con el borde */
+    padding: 0 4px; /* Espacio interno para que no toque el borde */
+}
+
+.input-field input:focus ~ label,
+.input-field input:not(:placeholder-shown) ~ label {
+    top: -8px; /* Mueve el label hacia arriba */
+    font-size: 12px;
+    color: var(--black);
+    background: var(--white); /* Fondo para que no se superponga con el borde */
+}
+
+/* Botón de cerrar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+/* Estilo place */
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+}
+
+.success {
+    color: green;
+    font-size: 0.9rem;
+}
+
+
+
+

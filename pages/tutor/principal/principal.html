@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Privada</title>
+    <link rel="stylesheet" href="principal.css">
+</head>
+<body>
+
+    <!-- Menú desplegable -->
+    <div class="menu-container">
+        <button class="menu-button" id="menuBtn">Perfil ⌄</button>
+        <div class="menu" id="menu">
+            <button id="editProfileBtn">Editar perfil</button>
+            <button id="deleteAccountBtn">Borrar cuenta</button>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <h2>Ajustes de la cuenta</h2>
+            <div class="form-container">
+                <form id="userForm">
+                    <h2>Información Básica</h2>
+                    <div class="input-grid">
+                        <div class="input-field">
+                            <input type="text" id="name" name="nombre" placeholder="" disabled>
+                            <label for="name">Nombre</label>
+                            <span class="error hidden" id="nameError">Por favor, introduce un nombre válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" id="lastName" name="apellidos" placeholder="" disabled>
+                            <label for="lastName">Apellidos</label>
+                            <span class="error hidden" id="lastNameError">Por favor, introduce un apellido válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" id="dni" name="dni" placeholder="" disabled>
+                            <label for="dni">DNI</label>
+                            <span class="error hidden" id="dniError">Por favor, introduce un DNI válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" id="email" name="email" placeholder="">
+                            <label for="email">Correo*</label>
+                            <span class="error hidden" id="emailError">Por favor, introduce un correo válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="tel" id="tel" name="tel" placeholder="">
+                            <label for="tel">Telefono*</label>
+                            <span class="error hidden" id="telError">Por favor, introduce un teléfono válido.</span>
+                        </div>
+                    </div>
+
+                    <h2>Detalles de inicio de sesión</h2>
+                    <div class="input-grid">
+                        <div class="input-field">
+                            <input type="text" id="user" name="usuario" placeholder="" disabled>
+                            <label for="user">Usuario</label>
+                            <span class="error hidden" id="userError">Por favor, introduce un usuario válido.</span>
+                        </div>
+                    </div>
+                    <button type="button" id="passwordButton">Cambiar contraseña</button>
+
+                    <div id="newPassContainer" class="hidden">
+                        <div class="input-grid">
+                            <div class="input-field">
+                                <input type="password" id="lastPassword" name="lastPassword" placeholder="">
+                                <label for="lastPassword">Anterior contraseña</label>
+                                <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña anterior.</span>
+                            </div>
+                            <div class="input-field">
+                                <input type="password" id="password" name="password" placeholder="">
+                                <label for="password">Nueva contraseña</label>
+                                <span class="error hidden" id="passwordError">Por favor, introduce una contraseña válida.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Tus hijos</h2>
+                    <!-- <div id="childrenContainer" class="hidden"></div> -->
+                    <div id="childrenContainer">
+                        <!-- La lista de hijos se cargará aquí dinámicamente -->
+                    </div>
+
+                    <h2>Tus personas de confianza</h2>
+                    <div id="trustedContainer"></div>
+
+                    <span id="AjustesError" class="error hidden"></span>
+                    
+                </form>
+                <div class="button-group">
+                    <button id="closePopupBtn">Cancelar</button>
+                    <form id="saveChangesForm">
+                        <button type="submit">Guardar cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="principal.js"></script>
+</body>
+</html>
