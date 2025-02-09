@@ -22,7 +22,6 @@ $(document).ready(function () {
   const searchInput = $('#search-input');
   fetchTutor();
 
-  // Relleno de tabla
   function fetchTutor() {
     $.ajax({
       url: 'tutores-admin.php',
@@ -32,6 +31,8 @@ $(document).ready(function () {
         let template = '';
 
         tutores.forEach(tutor => {
+          const isDisabled = tutor.alta.toUpperCase() === "SI" ? 'disabled' : '';
+
           template += `
             <tr tutorId="${tutor.id_tutor}">
               <td class="nombre">${tutor.nombre}</td>
@@ -40,7 +41,7 @@ $(document).ready(function () {
               <td>${tutor.telefono}</td>
               <td>${tutor.correo_electronico}</td>
               <td>
-                <input type="text" class="pagado-input" value="${tutor.alta}" data-id="${tutor.id_tutor}" style="text-transform: uppercase;"/>
+                <input type="text" class="pagado-input" value="${tutor.alta}" data-id="${tutor.id_tutor}" style="text-transform: uppercase;" ${isDisabled} />
               </td>
               <td>
                 <button class="information">
@@ -78,22 +79,24 @@ $(document).ready(function () {
 
   // Capturar valor anterior por si hay un error.
   let previousValue = '';
-  $(document).on('focus', '.pagado-input', function () {
-    previousValue = $(this).val().toUpperCase;
-  });
-
   // Actualizar el valor de "Alta" cuando el usuario edite el campo
   $(document).on('change', '.pagado-input', function () {
     const idTutor = $(this).data("id");
-    const pagadoValue = $(this).val();
+    let pagadoValue = $(this).val().toUpperCase();
 
-    // Validación para permitir solo "si" o "no"
-    if (pagadoValue !== "si" && pagadoValue !== "no") {
+    // Validación para permitir solo "SI" o "NO"
+    if (pagadoValue !== "SI" && pagadoValue !== "NO") {
       showCustomAlert('Por favor, ingresa "SI" o "NO".');
       $(this).val(previousValue);
       return;
     }
 
+    // Si el valor es "SI", deshabilitamos el campo después de la actualización
+    if (pagadoValue === "SI") {
+      $(this).prop('disabled', true);
+    }
+
+    // Enviar la actualización al servidor
     $.ajax({
       url: 'dar-alta-tutor.php',
       type: 'POST',
@@ -109,6 +112,7 @@ $(document).ready(function () {
       }
     });
   });
+
 });
 
 /*-------------------MAS INFORMACION-----------------*/
@@ -141,7 +145,7 @@ function fetchNinos(idTutor) {
     url: 'hijos-admin.php',
     type: 'POST',
     data: { id_tutor: idTutor },
-    success: function(response) {
+    success: function (response) {
       let hijos = JSON.parse(response);
       let template = '';
 
@@ -159,7 +163,7 @@ function fetchNinos(idTutor) {
 
       $('#hijos-container').html(template);
     },
-    error: function() {
+    error: function () {
       showCustomAlert('Error al cargar los datos de los niños.');
       console.error('Error al cargar los datos de los niños.');
     }
@@ -172,7 +176,7 @@ function fetchOtrosTutores(idTutor) {
     url: 'otroTutor-admin.php',
     type: 'POST',
     data: { id_tutor: idTutor },
-    success: function(response) {
+    success: function (response) {
       console.log('Datos recibidos de otros tutores:', response);  // Verifica los datos que recibes
       let otrosTutores = JSON.parse(response);
       let template = '';
@@ -192,7 +196,7 @@ function fetchOtrosTutores(idTutor) {
         $('#otros-tutores-container').html('<p>No se encontraron personas de confianza para este tutor.</p>');
       }
     },
-    error: function() {
+    error: function () {
       showCustomAlert('Error al cargar los datos de los otros tutores.');
       console.error('Error al cargar los datos de los otros tutores.');
     }
@@ -201,10 +205,10 @@ function fetchOtrosTutores(idTutor) {
 
 /*-------------------ALMACENAR EN SESSION STORAGE-----------------*/
 // Al hacer clic en el enlace, guardar el id_tutor y nombre en sessionStorage
-$(document).on('click', '.info-link', function(event) {
+$(document).on('click', '.info-link', function (event) {
   const idTutor = $(this).data('id');
   const nombreTutor = $(this).data('nombre');
-  
+
   // Guardar en sessionStorage
   sessionStorage.setItem('id_tutor', idTutor);
   sessionStorage.setItem('nombre_tutor', nombreTutor);
