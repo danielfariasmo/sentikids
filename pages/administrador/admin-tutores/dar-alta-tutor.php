@@ -3,7 +3,7 @@ include '../../../server/database.php';
 
 if (isset($_POST['id_tutor']) && isset($_POST['alta'])) {
     $id_tutor = $_POST['id_tutor'];
-    $alta = $_POST['alta'];
+    $alta = strtoupper($_POST['alta']);
 
     // Aquí se hace el UPDATE en la base de datos
     $query = "UPDATE tutor SET alta = '$alta' WHERE id_tutor = $id_tutor";
