@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (data.role === "monitor") {
                         window.location.href = `../../monitor/monitor-areaprivada/monitor-areaprivada.html`;
                     } else if (data.role === "tutor") {
-                        window.location.href = `../../tutor/ajustesPadres.html`;
+                        window.location.href = `../../tutor/principal/principal.html`;
                     }
                 } else {
                     mostrarMensajeLogin(data.message, true);
