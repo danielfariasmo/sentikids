@@ -1,33 +1,38 @@
-/**
- * Utilidad de menú "hamburguesa"
- */
+/** Utilidad de menú "hamburguesa" */
 function toggleMenu() {
   $('.menu ul').toggleClass('active');
 }
 
+/**Alert personalizado */
+function showCustomAlert(message) {
+  $('#alert-message').text(message);
+  $('#custom-alert').fadeIn();
+}
+
+// Cerrar la alerta cuando se presione el botón
+$('#close-alert').on('click', function () {
+  $('#custom-alert').fadeOut();
+});
+
 /**
 * Funcionalidad para el pop up
 */
-
-// Función para abrir un modal específico basado en el ID proporcionado
 function openModal(modalId) {
   $('#' + modalId).css('display', 'block');
 }
 
-// Función para cerrar un modal específico basado en el ID proporcionado
 function closeModal(modalId) {
   $('#' + modalId).css('display', 'none');
 }
 
-// Asignar eventos a cada botón que abre los modales
 $('.myBtn').on('click', function () {
-  var modalId = $(this).data('modal-id');  // Obtener el ID del modal asociado
+  var modalId = $(this).data('modal-id');  
   openModal(modalId);
 });
 
 // Asignar eventos para cerrar cada modal
 $('.close').on('click', function () {
-  var modalId = $(this).data('modal-id');  // Obtener el ID del modal asociado
+  var modalId = $(this).data('modal-id');  
   closeModal(modalId);
 });
 
@@ -138,5 +143,104 @@ $(".popup_body").on("submit", function (e) {
       $(errorMessageId).addClass("form__message-active");
       console.log("Formulario con errores:", fields); // Depuración
   }
+});
+
+/**Relleno de tabla con AJAX*/
+$(document).ready(function () {
+  const searchInput = $('#search-input');
+  fetchMonitor();
+
+  // Relleno de tabla
+  function fetchMonitor() {
+      $.ajax({
+          url: 'monitores-admin.php',
+          type: 'GET',
+          success: function (response) {
+              let monitores = JSON.parse(response);
+              let template = '';
+
+              monitores.forEach(monitor => {
+                  template += `
+            <tr tutorId="${monitor.id_monitor}">
+              <td class="nombre">${monitor.nombre}</td>
+              <td class="apellidos">${monitor.apellidos}</td>
+              <td>${monitor.telefono}</td>
+              <td>${monitor.dni}</td>
+              <td>${monitor.correo_electronico}</td>
+              <td>
+                        <img src="../../../assets/icon/papelera1.png" alt="Editar" id="edit-${monitor.id_monitor}" 
+                            onmouseover="changeImage(this)" onmouseout="resetImage(this)">
+                      </td>
+
+            </tr>
+          `;
+              });
+
+              $('#table-body').html(template);
+          }
+      });
+  }
+
+  /*Función para filtrar la tabla*/
+  searchInput.on('input', function () {
+      const searchTerm = searchInput.val().toLowerCase();
+
+      // Filtrar las filas de la tabla según el nombre y apellido
+      $('#table-body tr').each(function () {
+          const nombre = $(this).find('.nombre').text().toLowerCase();
+          const apellidos = $(this).find('.apellidos').text().toLowerCase();
+          const fullName = nombre + ' ' + apellidos;
+
+          if (fullName.indexOf(searchTerm) !== -1) {
+              $(this).show();
+          } else {
+              $(this).hide();
+          }
+      });
+  });
+
+  /**Funcion para cambiar de img "papelera" */
+  window.changeImage = function(img) {
+    img.src = '../../../assets/icon/papelera2.png';  // Cambia a la imagen de hover
+  }
+
+  // Función para restaurar la imagen original al quitar el mouse
+  window.resetImage = function(img) {
+    img.src = '../../../assets/icon/papelera1.png';  // Restaura la imagen original
+  }
+
+  // // Capturar valor anterior por si hay un error.
+  // let previousValue = '';
+  // $(document).on('focus', '.grupo-input', function () {
+  //     previousValue = $(this).val();  
+  // });
+
+  // // Actualizar el valor de "Grupo" cuando el usuario edite el campo
+  // $(document).on('change', '.grupo-input', function () {
+  //     const idHijo = $(this).data("id");
+  //     const grupoValue = $(this).val();
+
+  //     // Validación para permitir solo números del 1 al 5
+  //     if (isNaN(grupoValue) || grupoValue < 1 || grupoValue > 5) {
+  //         showCustomAlert('Por favor, ingresa un grupo del 1 al 5.');
+  //         $(this).val(previousValue);
+  //         return;
+  //     }
+
+  //     $.ajax({
+  //         url: 'cambiar-grupo-ninhos.php',
+  //         type: 'POST',
+  //         data: {
+  //             id_hijo: idHijo,
+  //             id_grupo: grupoValue  
+  //         },
+  //         success: function (response) {
+  //             showCustomAlert(response);
+  //         },
+  //         error: function () {
+  //             showCustomAlert('Hubo un error al actualizar los datos.');
+  //         }
+  //     });
+  // });
 });
 
