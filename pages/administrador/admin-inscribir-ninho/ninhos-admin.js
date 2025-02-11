@@ -18,7 +18,6 @@ $('#close-alert').on('click', function () {
 
 /**Relleno de tabla con AJAX*/
 $(document).ready(function () {
-    console.log("document ready");
     const searchInput = $('#search-input');
     fetchHijo();
 
@@ -33,7 +32,7 @@ $(document).ready(function () {
 
                 hijos.forEach(hijo => {
                     template += `
-                <tr tutorId="${hijo.id_hijo} ">
+                <tr tutorId="${hijo.id_hijo}">
                 <td class="nombre">${hijo.nombre}</td>
                 <td class="apellidos">${hijo.apellidos}</td>
                 <td>${hijo.fecha_nacimiento}</td>
@@ -44,9 +43,7 @@ $(document).ready(function () {
                 </td>
                 <td>
                   <button class="information">
-                    <a href="info-extra-ninhos.html" style="text-decoration: none; color: black;" class="info-link" data-id="${hijo.id_tutor}" data-nombre="${hijo.nombre} ${hijo.apellidos}">
-                      + info
-                    </a>
+                    <a href="info-extra-ninhos.html" style="text-decoration: none; color: black;" class="info-link" data-id="${hijo.id_hijo}" data-nombre="${hijo.nombre} ${hijo.apellidos}">+ info</a>
                   </button>
                 </td>
               </tr>
@@ -86,7 +83,6 @@ $(document).ready(function () {
     $(document).on('change', '.grupo-input', function () {
         const idHijo = $(this).data("id");
         const grupoValue = $(this).val();
-        console.log(grupoValue);
 
         // Validación para permitir solo números del 1 al 5
         if (isNaN(grupoValue) || grupoValue < 1 || grupoValue > 5) {
@@ -120,40 +116,34 @@ function obtenerParametro(nombre) {
 }
 
 $(document).ready(function () {
-    // Recuperar los datos desde sessionStorage
-    const nombreTutor = sessionStorage.getItem('nombre_tutor');
-    const idTutor = sessionStorage.getItem('id_tutor');
+    const nombreHijo = sessionStorage.getItem('nombre_hijo');
+    const idHijo = sessionStorage.getItem('id_hijo');
 
-    if (nombreTutor) {
-        document.getElementById('titulo-datos').textContent = `${nombreTutor}`;
+    if (nombreHijo) {
+        $('#titulo-datos').text(nombreHijo);
     }
 
-    if (idTutor) {
-        fetchNinos(idTutor);
-        fetchOtrosTutores(idTutor);
-    } else {
-        console.error('No se encontró el id_tutor en sessionStorage');
-    }
+    if (idHijo) {
+        fetchPadres(idHijo);
+        fetchOtrosTutores(idHijo);
+    } 
 });
 
-// Función para cargar los niños usando el ID del tutor
-function fetchNinos(idTutor) {
+function fetchPadres(idHijo) {
     $.ajax({
-        url: 'hijos-admin.php',
+        url: 'padres-admin.php',
         type: 'POST',
-        data: { id_tutor: idTutor },
+        data: { id_hijo: idHijo },
         success: function (response) {
-            let hijos = JSON.parse(response);
+            let tutores = JSON.parse(response);
             let template = '';
 
-            hijos.forEach(hijo => {
+            tutores.forEach(tutor => {
                 template += `
               <div class="hijo-info">
-                  <h3>Nombre: ${hijo.nombre} ${hijo.apellidos}</h3>
-                  <p><strong>Fecha de Nacimiento:</strong> ${hijo.fecha_nacimiento}</p>
-                  <p><strong>Dieta:</strong> ${hijo.dieta}</p>
-                  <p><strong>Alergias:</strong> ${hijo.alergias}</p>
-                  <p><strong>ID Grupo:</strong> ${hijo.id_grupo}</p>
+                  <h3>Nombre: ${tutor.nombre} ${tutor.apellidos}</h3>
+                  <p><strong>Correo Electrónico:</strong> ${tutor.correo_electronico}</p>
+                  <p><strong>Teléfono:</strong> ${tutor.telefono}</p>
               </div>
           `;
             });
@@ -161,20 +151,18 @@ function fetchNinos(idTutor) {
             $('#hijos-container').html(template);
         },
         error: function () {
-            showCustomAlert('Error al cargar los datos de los niños.');
-            console.error('Error al cargar los datos de los niños.');
+            showCustomAlert('Error al cargar los datos de los tutores.');
         }
     });
 }
 
 // Función para cargar los otros tutores usando el ID del tutor
-function fetchOtrosTutores(idTutor) {
+function fetchOtrosTutores(idHijo) {
     $.ajax({
-        url: 'otroTutor-admin.php',
+        url: 'otroTutor-ninho-admin.php',
         type: 'POST',
-        data: { id_tutor: idTutor },
+        data: { id_hijo: idHijo },
         success: function (response) {
-            console.log('Datos recibidos de otros tutores:', response);  // Verifica los datos que recibes
             let otrosTutores = JSON.parse(response);
             let template = '';
 
@@ -182,9 +170,9 @@ function fetchOtrosTutores(idTutor) {
                 otrosTutores.forEach(otroTutor => {
                     template += `
               <div class="otro-tutor-info">
-                  <h3>Nombre: ${otroTutor.nombre} ${otroTutor.apellidos}</h3>
-                  <p><strong>Teléfono:</strong> ${otroTutor.telefono}</p>
-                  <p><strong>DNI:</strong> ${otroTutor.dni}</p>
+                  <h3>Nombre: ${otroTutor.nombre_otro_tutor} ${otroTutor.apellidos_otro_tutor}</h3>
+                  <p><strong>Teléfono:</strong> ${otroTutor.telefono_otro_tutor}</p>
+                  <p><strong>DNI:</strong> ${otroTutor.dni_otro_tutor}</p>
               </div>
             `;
                 });
@@ -195,18 +183,24 @@ function fetchOtrosTutores(idTutor) {
         },
         error: function () {
             showCustomAlert('Error al cargar los datos de los otros tutores.');
-            console.error('Error al cargar los datos de los otros tutores.');
         }
     });
 }
 
 /*-------------------ALMACENAR EN SESSION STORAGE-----------------*/
-// Al hacer clic en el enlace, guardar el id_tutor y nombre en sessionStorage
+// Al hacer clic en el enlace, guardar el id_hijo y nombre en sessionStorage
 $(document).on('click', '.info-link', function (event) {
-    const idTutor = $(this).data('id');
-    const nombreTutor = $(this).data('nombre');
+    event.preventDefault();  // Detiene la redirección inmediata
 
-    // Guardar en sessionStorage
-    sessionStorage.setItem('id_tutor', idTutor);
-    sessionStorage.setItem('nombre_tutor', nombreTutor);
+    const idHijo = $(this).data('id');
+    const nombreHijo = $(this).data('nombre');
+
+    sessionStorage.setItem('id_hijo', idHijo);
+    sessionStorage.setItem('nombre_hijo', nombreHijo);
+
+    // Retraso para recargar la pagina de +info
+    setTimeout(() => {
+        window.location.href = $(this).attr('href');
+    }, 100); 
 });
+
