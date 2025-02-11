@@ -135,16 +135,114 @@ tbody td {
 tbody tr:last-child td {
   border-bottom: none; 
 }
+
+/*Alerta*/
+#custom-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.alert-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alert-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+  color: #D0090B; 
+}
+
+#close-alert {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #CD4533;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#close-alert:hover {
+  background-color: #D0090B;
+}
+
+#delete-confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirm-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+  color: #D0090B;  /* Color de la advertencia */
+}
+
+#confirm-delete,
+#cancel-delete {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#confirm-delete {
+  background-color: #CD4533;
+  color: white;
+}
+
+#confirm-delete:hover {
+  background-color: #D0090B;
+}
+
+#cancel-delete {
+  background-color: #ccc;
+  color: black;
+}
+
+#cancel-delete:hover {
+  background-color: #aaa;
+}
+
+
+
 /* Botones */
 .button-container {
   display: flex;
   justify-content: center;
-  gap: 80px; /* Espacio entre los botones */
-  margin: 20px 0; /* Margen superior e inferior */
+  gap: 80px; 
+  margin: 20px 0; 
 }
 
 .button {
-  width: 380px; /* Ancho reducido para que quepan dos botones */
+  width: 380px; 
   height: 66px;
   padding: 8px 10px;
   margin-bottom: 30px;
@@ -156,25 +254,16 @@ tbody tr:last-child td {
   font-weight: 700;
   color: white;
   cursor: pointer;
-  border: none; /* Elimina el borde por defecto */
+  border: none; 
 }
 
 .add-button {
-  background: #10BFFB;
-  border-color: #10BFFB;
+  background: #80C4D3;
+  border-color: #80C4D3;
 }
 
 .add-button:hover {
-  background: #80C4D3;
-}
-
-.delete-button {
-  background: #CD4533;
-  border-color: #CD4533;
-}
-
-.delete-button:hover {
-  background: #FF725E;
+  background: #10BFFB;
 }
 
 /* Footer */
