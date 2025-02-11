@@ -2,22 +2,20 @@
 
 include '../../../server/database.php';
 
-// Selecciono datos de tutor.
-$query = "SELECT * FROM hijo";
+// Selecciono datos de monitor.
+$query = "SELECT * FROM monitor";
 $result = mysqli_query($connection, $query) or die ('Query de busqueda no funciono' . mysqli_error($connection));
 
 // Envio datos al js.
 $json = array();
 while ($row = mysqli_fetch_array($result)) {
     $json[] = array (
-        'id_hijo' => $row ['id_hijo'],
+        'id_monitor' => $row ['id_monitor'],
         'nombre' => $row ['nombre'],
         'apellidos' => $row ['apellidos'], 
-        'fecha_nacimiento' => $row ['fecha_nacimiento'],
-        'dieta' => $row ['dieta'],
-        'alergias' => $row ['alergias'],
-        'id_grupo' => $row ['id_grupo'],
-        'id_tutor' => $row ['id_tutor']
+        'telefono' => $row ['telefono'],
+        'dni' => $row ['dni'],
+        'correo_electronico' => $row ['correo_electronico']
     );
 }
 

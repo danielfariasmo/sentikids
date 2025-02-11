@@ -34,32 +34,44 @@
     <h1>Monitores</h1>
   </div>
 
+  <!--Barra de busqueda-->
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Buscar por nombre y apellido..." />
+  </div>
+
+  <!--Tabala-->
   <div class="container">
     <div class="content">
-      <div class="table-header">
-        <div class="header-item">Nombre</div>
-        <div class="header-item">Apellidos</div>
-        <div class="header-item">Teléfono</div>
-        <div class="header-item">DNI</div>
-        <div class="header-item">Correo electrónico</div>
-      </div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
+      <table>
+        <thead>
+          <tr class="table-header">
+            <th class="header-item">Nombre</th>
+            <th class="header-item">Apellidos</th>
+            <th class="header-item">Teléfono</th>
+            <th class="header-item">DNI</th>
+            <th class="header-item">Correo Electrónico</th>
+            <th class="header-item"></th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
     </div>
-    <div class="button-container">
-      <!-- Botón 1 -->
-      <button class="myBtn button add-button" data-modal-id="modal1">Agregar Monitor</button>
-      <!-- Botón 2 -->
-      <button class="myBtn button delete-button" data-modal-id="modal2">Eliminar Monitor</button>
+  </div>
+
+  <!--Alert personalizado-->
+  <div id="custom-alert" style="display:none;">
+    <div class="alert-content">
+      <h3>SentiKids dice:</h3>
+      <p id="alert-message"></p>
+      <button id="close-alert">Cerrar</button>
     </div>
+  </div>
+
+  <!-- Pop up: agregar monitor -->
+  <div class="button-container">  
+    <button class="myBtn button add-button" data-modal-id="modal1">Agregar Monitor</button>
+    <button class="myBtn button delete-button" data-modal-id="modal2">Eliminar Monitor</button>
+  </div>
 
   </div>
 
