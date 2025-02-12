@@ -86,6 +86,7 @@ body {
   outline: none; 
   box-sizing: border-box; 
   transition: border 0.3s ease; 
+  text-align: center;
 }
 
 .grupo-input:focus {

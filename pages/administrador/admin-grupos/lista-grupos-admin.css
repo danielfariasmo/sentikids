@@ -67,37 +67,39 @@ body {
     color: black;
 }
 
-.table-container {
-    margin-top: 20px;
-}
-
-.table-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #80C4D3;
-    padding: 10px;
-}
-
-.header-item {
-    flex: 1;
-    text-align: center;
-    color: black;
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.table-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Tabla de tutores */
+.content {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    background: white;
     padding: 20px;
-    background: #BACBCF;
-}
-
-.table-row:nth-child(even) {
-    background: #949494;
-}
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0 10px; 
+  }
+  
+  .table-header th {
+    padding: 15px;
+    background-color: #80C4D3; 
+    border-bottom: 2px solid; 
+    text-align: center; 
+    font-weight: bold; 
+  }
+  
+  tbody td {
+    padding: 10px; 
+    text-align: center; 
+    background-color: #fff; 
+    border-bottom: 1px solid #e0e0e0; 
+  }
+  
+  tbody tr:last-child td {
+    border-bottom: none; 
+  }
+  
 
 /* Botones */
 .button-container {
@@ -117,7 +119,6 @@ body {
     align-items: center;
     font-size: 20px;
     font-weight: 700;
-    color: white;
     cursor: pointer;
     border: none;
 }
@@ -137,6 +138,213 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.add-button {
+    background: #80C4D3;
+    border-color: #80C4D3;
+  }
+  
+  .add-button:hover {
+    background: #10BFFB;
+  }
+
+  /*----------------------------Inscribir niño---------------------------------*/
+body {
+    font-family: Segoe UI;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 50px; /* Ajustado para pantallas pequeñas */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Ajustado para pantallas pequeñas */
+    max-width: 600px; /* Limita el ancho máximo */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+/* The Close Button */
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 10px 16px;
+    background-color: #FFD6D0; /* Similar al color del header */
+    color: black;
+}
+
+.modal-header h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #CD4533; /* Similar al color de los títulos */
+    margin: 0;
+    text-align: center;
+}
+
+.modal-body {
+    background-color: #f9f9f9; /* Fondo suave */
+    padding: 20px;
+}
+
+/* Estilo de los campos de búsqueda y los resultados */
+#search-child {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #80C4D3;
+    border-radius: 5px;
+    background: white;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result-item input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.result-item label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Estilo del botón de agregar al grupo */
+#add-child:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    border: 2px solid #ccc;
+}
+
+#add-child {
+    background-color: #80C4D3;
+    color: white;
+    border: 2px solid #80C4D3;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#add-child:hover {
+    background-color: #10BFFB;
+    border-color: #10BFFB;
+}
+
+/* Media Queries */
+@media screen and (max-width: 600px) {
+    .modal-content {
+        width: 95%; /* Ajustado para pantallas muy pequeñas */
+        padding: 10px;
+    }
+
+    .result-item label {
+        font-size: 16px;
+    }
+
+    #add-child {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+#custom-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .alert-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .alert-content h3 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: #D0090B; 
+  }
+  
+  #close-alert {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #CD4533;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  #close-alert:hover {
+    background-color: #D0090B;
+  }
 
 /* Footer */
 .footer {
