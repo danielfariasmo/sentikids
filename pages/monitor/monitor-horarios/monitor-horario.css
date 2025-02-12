@@ -8,6 +8,7 @@ body, html {
   display: flex;
   flex-direction: column; /* Organiza los elementos en columna */
   box-sizing: border-box;
+  background: #CFCFCF;
 }
  /* Header */
 .header {
@@ -17,7 +18,7 @@ body, html {
   align-items: center;
   padding: 4px 0;
   height: 96px;
-  background: #FFD6D0;
+  background: #5D828A;
   box-sizing: border-box;
 }
 
@@ -51,9 +52,8 @@ body, html {
 
 /* Efecto hover */
 .nav a div:hover {
-  background: #FF725E;
-  color: white;
-  border-radius: 5px;
+  background-color: transparent; /* Elimina el efecto de botón */
+  color: #CD4533; /* Nuevo color de hover para contraste */
 }
 
   /* Contenedor principal */
@@ -69,9 +69,9 @@ body, html {
   .section-title {
     font-size: 30px;
     font-weight: 700;
-    color: #CD4533;
+    color: black;
     width: 100%;
-    background: #FFD6D0;
+    background: #CFCFCF;
     text-align: center;
     padding: 5px 0;
     box-sizing: border-box;

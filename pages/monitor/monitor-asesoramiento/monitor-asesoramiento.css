@@ -7,14 +7,15 @@ body {
     display: flex;
     flex-direction: column; /* Organiza el contenido en columna */
     overflow-x: hidden; /* Evita scroll horizontal */
+    
 }
 
 /* Contenedor principal */
 .container {
     flex: 1; /* Hace que el contenido crezca y el footer se quede abajo */
     width: 100%;
-    background: white;
     box-sizing: border-box;
+    background: #CFCFCF;
 }
 
 /* Header */
@@ -25,7 +26,7 @@ body {
     align-items: center;
     padding: 4px 0;
     height: 96px;
-    background: #FFD6D0;
+    background: #5D828A;
     box-sizing: border-box;
 }
 
@@ -59,21 +60,20 @@ body {
 
 /* Efecto hover */
 .nav a div:hover {
-    background: #FF725E;
-    color: white;
-    border-radius: 5px;
+    background-color: transparent; /* Elimina el efecto de botón */
+    color: #CD4533; /* Nuevo color de hover para contraste */
 }
 
 /* Título */
 .header-title {
     width: 100%;
-    background: #FFD6D0;
+    background: #CFCFCF;
     text-align: center;
-    padding: 15px 0;
+    padding: 50px 0;
 }
 
 .header-title-text {
-    color: #CD4533;
+    color: black;
     font-size: 48px;
     font-weight: 700;
 }
@@ -83,7 +83,7 @@ body {
     text-align: center;
     font-size: 36px;
     font-weight: 700;
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
 .notifications-container {
@@ -98,7 +98,7 @@ body {
 .notification-card {
     width: 280px;
     background: white;
-    border: 5px #FF725E solid;
+    border: 5px #5D828A solid;
     padding: 15px;
     border-radius: 10px;
     box-sizing: border-box;
@@ -119,10 +119,14 @@ body {
     max-width: 500px;
     margin: 40px auto;
     padding: 15px;
-    background: #CD4533;
+    background: #5D828A;
     border-radius: 32px;
     text-align: center;
     cursor: pointer;
+}
+.create-notification:hover {
+    background: #37707f93;
+    border-radius: 50px;
 }
 
 .create-notification-text {
