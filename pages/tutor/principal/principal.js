@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu = document.getElementById("menu");
     const popupOverlay = document.getElementById("popupOverlay");
 
+    function cargarNombre(nombre, apellidos){
+        const usuario = document.getElementById('nombre_tutor');
+        usuario.innerHTML = nombre +' '+ apellidos;
+        console.log("se cambia el nombre?¿")
+    }
+
+
     // Función para cargar la lista de hijos
     function loadChildren() {
         fetch('obtenerHijo.php') // Endpoint que devuelve la lista de hijos
@@ -119,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.status === "success") {
                     // Rellenar los campos del formulario con los datos del tutor
                     const tutor = data.data;
+                    cargarNombre(tutor.nombre, tutor.apellidos);
                     document.getElementById("name").value = tutor.nombre;
                     document.getElementById("lastName").value = tutor.apellidos;
                     document.getElementById("dni").value = tutor.dni;

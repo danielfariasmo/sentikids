@@ -10,68 +10,198 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     background: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-  .hidden {
-    display: none;
+.form-container {
+    width: 100%;
+    max-width: 800px; /* Ajusta el ancho máximo del contenedor */
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.error {
-    color: red;
-    font-size: 0.9rem;
+#userForm {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dos columnas con un ancho mínimo de 250px */
+    gap: 20px; /* Espacio entre los campos */
 }
 
-.success {
-    color: green;
-    font-size: 0.9rem;
+/* Hace que el h2 ocupe todas las columnas */
+#userForm h1 {
+    grid-column: 1 / -1; /* Ocupa desde la primera columna hasta la última */
+    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
 }
 
-/* Estilo place */
-
-.input-field{
-    position: relative;
-    margin-top: 20px;
+#userForm h2 {
+    grid-column: 1 / -1; /* Ocupa desde la primera columna hasta la última */
+    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
 }
 
-.input-field input{
-    width: 350px;
-    height: 60px;
+#userForm h3 {
+    grid-column: 1 / -1; /* Ocupa desde la primera columna hasta la última */
+    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
+}
+
+#userForm p {
+    grid-column: 1 / -1; 
+    margin-bottom: 10px; 
+}
+
+.input-field {
+    position: relative; /* Asegura que las etiquetas flotantes funcionen correctamente */
+    width: 100%;
+}
+
+.input-field input {
+    width: 100%;
+    height: 45px;
     border-radius: 6px;
-    font-size: 18px;
-    padding: 0px 15px;
-    border: 2px solid #000000;
+    font-size: 16px;
+    padding: 0 12px;
+    border: 2px solid var(--black);
     background: transparent;
-    color: #000000;
     outline: none;
 }
 
-.input-field label{
+.input-field input::placeholder {
+    color: transparent;
+}
+
+.input-field label {
     position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    color: #000000;
-    font-size: 19px;
+    top: 15px; /* Posición inicial del label */
+    left: 12px;
+    color: var(--black);
+    font-size: 14px;
     pointer-events: none;
-    transition: .3s;
+    transition: 0.3s;
+    background: var(--white); /* Fondo para que no se superponga con el borde */
+    padding: 0 4px; /* Espacio interno para que no toque el borde */
 }
 
-input:focus ~ label,
-input:not(:placeholder-shown) ~ label {
-    top: 0;
+.input-field input:focus ~ label,
+.input-field input:not(:placeholder-shown) ~ label {
+    top: -8px; /* Mueve el label hacia arriba */
+    font-size: 12px;
+    color: var(--black);
+    background: var(--white); /* Fondo para que no se superponga con el borde */
+}
+
+.error {
+    color: var(--error);
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.error.visible {
+    display: block;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--information);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
     font-size: 16px;
-    padding: 0 15px;
-    background: var(--background);
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-input:-webkit-autofill {
-    background-color: transparent !important; /* Transparente para mantener el diseño */
-    color: inherit !important; /* Asegura que el color del texto sea consistente */
-    box-shadow: 0 0 0 1000px var(--background) inset !important; /* Elimina el color extraño del navegador */
-    transition: background-color 5000s ease-in-out 0s; /* Elimina transiciones bruscas */
+button:hover {
+    background-color: darken(var(--information), 10%);
+}
+
+.child-block {
+    grid-column: 1 / -1; 
+    margin-bottom: 10px; 
+}
+
+#childrenContainer {
+    grid-column: 1 / -1; 
+    margin-bottom: 10px; 
+}
+
+.botoncito {
+    grid-column: 1 / -1; 
+    margin-bottom: 10px; 
+}
+
+.child-block {
+    margin-top: 20px; /* Espacio superior para separar del bloque anterior */
+}
+
+.child-block h2 {
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
+    font-size: 1.5rem; /* Tamaño de fuente para h2 */
+    color: var(--black); /* Color del texto */
+}
+
+.child-block h3 {
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
+    font-size: 1.2rem; /* Tamaño de fuente para h3 */
+    color: var(--black); /* Color del texto */
+}
+
+.child-block .input-field {
+    margin-bottom: 15px; /* Espacio entre los campos de entrada */
+}
+
+.child-block .input-field input {
+    width: 100%;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 0 12px;
+    border: 2px solid var(--black);
+    background: transparent;
+    outline: none;
+}
+
+.child-block .input-field label {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    color: var(--black);
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.3s;
+    background: var(--white);
+    padding: 0 4px;
+}
+
+.child-block .input-field input:focus ~ label,
+.child-block .input-field input:not(:placeholder-shown) ~ label {
+    top: -8px;
+    font-size: 12px;
+    color: var(--black);
+    background: var(--white);
+}
+
+.child-block .error {
+    color: var(--error);
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.child-block .error.visible {
+    display: block;
 }

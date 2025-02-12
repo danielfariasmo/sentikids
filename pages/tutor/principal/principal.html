@@ -6,16 +6,40 @@
     <title>Area Privada</title>
     <link rel="stylesheet" href="principal.css">
 </head>
+
 <body>
 
-    <!-- Menú desplegable -->
-    <div class="menu-container">
-        <button class="menu-button" id="menuBtn">Perfil ⌄</button>
-        <div class="menu" id="menu">
-            <button id="editProfileBtn">Editar perfil</button>
-            <button id="deleteAccountBtn">Borrar cuenta</button>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <!-- Logo a la izquierda -->
+        <div class="logo">
+            <img src="../../../assets/img/logo-sin-fondo.png" alt="Logo">
         </div>
-    </div>
+
+        <!-- Iconos a la derecha -->
+        <div class="icons">
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-envelope"></i>
+            <i class="fas fa-cog"></i>
+        </div>
+
+        <!-- Nombre de usuario y menú desplegable -->
+        <div class="user-menu menu-container">
+            <button class="user-button menu-button" id="menuBtn">
+                <img src="../../../assets/icon/perfil.png" alt="Logo">
+                <span id="nombre_tutor">Nombre de Usuario</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu menu" id="dropdownMenu menu">
+                <button id="editProfileBtn">Editar perfil</button>
+                <button id="deleteAccountBtn">Borrar cuenta</button>
+            </div>
+        </div>
+
+    </nav>
+
+    <button id="timeTableBtn">Horario</button>
+    <div id="timeTable"></div>
 
     <!-- Popup -->
     <div class="popup-overlay" id="popupOverlay">
@@ -33,7 +57,8 @@
                         <div class="input-field">
                             <input type="text" id="lastName" name="apellidos" placeholder="" disabled>
                             <label for="lastName">Apellidos</label>
-                            <span class="error hidden" id="lastNameError">Por favor, introduce un apellido válido.</span>
+                            <span class="error hidden" id="lastNameError">Por favor, introduce un apellido
+                                válido.</span>
                         </div>
                         <div class="input-field">
                             <input type="text" id="dni" name="dni" placeholder="" disabled>
@@ -67,12 +92,14 @@
                             <div class="input-field">
                                 <input type="password" id="lastPassword" name="lastPassword" placeholder="">
                                 <label for="lastPassword">Anterior contraseña</label>
-                                <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña anterior.</span>
+                                <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña
+                                    anterior.</span>
                             </div>
                             <div class="input-field">
                                 <input type="password" id="password" name="password" placeholder="">
                                 <label for="password">Nueva contraseña</label>
-                                <span class="error hidden" id="passwordError">Por favor, introduce una contraseña válida.</span>
+                                <span class="error hidden" id="passwordError">Por favor, introduce una contraseña
+                                    válida.</span>
                             </div>
                         </div>
                     </div>
@@ -87,7 +114,7 @@
                     <div id="trustedContainer"></div>
 
                     <span id="AjustesError" class="error hidden"></span>
-                    
+
                 </form>
                 <div class="button-group">
                     <button id="closePopupBtn">Cancelar</button>
@@ -100,4 +127,5 @@
     </div>
     <script src="principal.js"></script>
 </body>
+
 </html>
