@@ -91,8 +91,8 @@ const fields = {
   phone: false,
   dni: false,
   email: false,
-  usuario : false,
-  password : false
+  usuario: false,
+  password: false
 };
 
 // Función para validar un campo
@@ -109,6 +109,25 @@ const validateField = (expression, input, field) => {
     fields[field] = false;
   }
 };
+
+const validarPassword2 = () => {
+	const $inputPassword1 = $('#password');
+	const $inputPassword2 = $('#password2');
+
+	if ($inputPassword1.val() !== $inputPassword2.val()) {
+		$('#group__password2').addClass('form__group-incorrect').removeClass('form__group-correct');
+		$('#group__password2 img').addClass('errors').attr('src', '../../../assets/icon/boton-eliminar.png');
+		$('#group__password2 .form__input-error').addClass('form__input-error-active');
+
+		fields['password2'] = false;
+	} else {
+		$('#group__password2').removeClass('form__group-incorrect').addClass('form__group-correct');
+		$('#group__password2 img').removeClass('errors').attr('src', '../../../assets/icon/boton-correcto.png');
+		$('#group__password2 .form__input-error').removeClass('form__input-error-active');
+
+		fields['password2'] = true;
+	}
+}
 
 // Validar formulario al escribir o salir del campo
 $('.form__input').on('keyup blur', function (e) {
@@ -128,38 +147,53 @@ $('.form__input').on('keyup blur', function (e) {
     case "phone":
       validateField(expressions.phone, e.target, 'phone');
       break;
+    case "usuario":
+      validateField(expressions.usuario, e.target, 'usuario');
+      break;
+    case "password":
+      validateField(expressions.password, e.target, 'password');
+      validarPassword2();
+      break;
+    case "password2":
+      validarPassword2();
+      break;
   }
 });
 
+// Manejo del envío del formulario
 // Manejo del envío del formulario
 $(".popup_body").on("submit", function (e) {
   e.preventDefault();
   let formId = $(this).attr("id");
   let errorMessageId = formId === "form-add" ? "#form__message-add" : "#form__message-delete";
   let successMessageId = formId === "form-add" ? "#form__success-message-add" : "#form__success-message-delete";
+  const formElement = this;  // Guardar el contexto del formulario
 
   if (Object.values(fields).every(Boolean)) {
-    // Si todos los campos son correctos, realizamos la solicitud AJAX
-    const formData = new FormData(this); // Obtiene todos los datos del formulario
+    const formData = new FormData(formElement); // Obtener datos del formulario
 
     $.ajax({
-      url: 'agregar-monitor-admin.php', // Ruta al archivo PHP que procesará la solicitud
+      url: 'agregar-monitor-admin.php',
       type: 'POST',
       data: formData,
-      processData: false, // No procesar los datos
-      contentType: false, // No establecer tipo de contenido, ya que estamos enviando un FormData
+      processData: false,
+      contentType: false,
       success: function (response) {
         console.log(response); // Para verificar la respuesta del servidor
         if (response.includes('Error')) {
           $(errorMessageId).addClass("form__message-active");
         } else {
-          $(this).trigger("reset"); // Reinicia el formulario
+          formElement.reset(); // Limpiar el formulario
+          $(".form__group-correct").removeClass("form__group-correct"); // Limpiar los estilos de éxito
+
           $(successMessageId).addClass("form__success-message-active");
           setTimeout(() => {
             $(successMessageId).removeClass("form__success-message-active");
           }, 5000);
-          $(".form__group-correct").removeClass("form__group-correct");
+
           $(errorMessageId).removeClass("form__message-active");
+
+          fetchMonitor(); // Actualizar la tabla después de agregar el monitor
         }
       },
       error: function () {
@@ -171,41 +205,11 @@ $(".popup_body").on("submit", function (e) {
   }
 });
 
+
 /**Relleno de tabla con AJAX*/
 $(document).ready(function () {
   const searchInput = $('#search-input');
   fetchMonitor();
-
-  // Relleno de tabla
-  function fetchMonitor() {
-    $.ajax({
-      url: 'monitores-admin.php',
-      type: 'GET',
-      success: function (response) {
-        let monitores = JSON.parse(response);
-        let template = '';
-
-        monitores.forEach(monitor => {
-          template += `
-              <tr tutorId="${monitor.id_monitor}">
-                  <td class="nombre">${monitor.nombre}</td>
-                  <td class="apellidos">${monitor.apellidos}</td>
-                  <td>${monitor.telefono}</td>
-                  <td>${monitor.dni}</td>
-                  <td>${monitor.correo_electronico}</td>
-                  <td>
-                    <img src="../../../assets/icon/papelera1.png" alt="Eliminar" class="delete-monitor" 
-                        data-id="${monitor.id_monitor}"
-                        onmouseover="changeImage(this)" onmouseout="resetImage(this)">
-                  </td>
-                </tr>
-          `;
-        });
-
-        $('#table-body').html(template);
-      }
-    });
-  }
 
   /*Función para filtrar la tabla*/
   searchInput.on('input', function () {
@@ -234,12 +238,12 @@ $(document).ready(function () {
     img.src = '../../../assets/icon/papelera1.png';
   }
 
-// Eliminar monitor al hacer clic en la imagen
-$(document).on('click', '.delete-monitor', function () {
-  const monitorId = $(this).data('id');
+  // Eliminar monitor al hacer clic en la imagen
+  $(document).on('click', '.delete-monitor', function () {
+    const monitorId = $(this).data('id');
 
-  // Confirmar antes de eliminar
-  showDeleteConfirm("¿Estás seguro de que deseas eliminar este monitor?", function () {
+    // Confirmar antes de eliminar
+    showDeleteConfirm("¿Estás seguro de que deseas eliminar este monitor?", function () {
       $.ajax({
         url: 'eliminar-monitor-admin.php',
         type: 'POST',
@@ -251,7 +255,7 @@ $(document).on('click', '.delete-monitor', function () {
             showCustomAlert('Hubo un error al eliminar el monitor. ' + response);
           } else {
             showCustomAlert('Monitor eliminado con éxito');
-            fetchMonitor();  
+            fetchMonitor();
           }
         },
         error: function () {
@@ -259,10 +263,40 @@ $(document).on('click', '.delete-monitor', function () {
         }
       });
     }
-  );
-});
+    );
+  });
 
   // Cargar los monitores inicialmente
   fetchMonitor();
 });
 
+// Relleno de tabla
+function fetchMonitor() {
+  $.ajax({
+    url: 'monitores-admin.php',
+    type: 'GET',
+    success: function (response) {
+      let monitores = JSON.parse(response);
+      let template = '';
+
+      monitores.forEach(monitor => {
+        template += `
+            <tr tutorId="${monitor.id_monitor}">
+                <td class="nombre">${monitor.nombre}</td>
+                <td class="apellidos">${monitor.apellidos}</td>
+                <td>${monitor.telefono}</td>
+                <td>${monitor.dni}</td>
+                <td>${monitor.correo_electronico}</td>
+                <td>
+                  <img src="../../../assets/icon/papelera1.png" alt="Eliminar" class="delete-monitor" 
+                      data-id="${monitor.id_monitor}"
+                      onmouseover="changeImage(this)" onmouseout="resetImage(this)">
+                </td>
+              </tr>
+        `;
+      });
+
+      $('#table-body').html(template);
+    }
+  });
+}
