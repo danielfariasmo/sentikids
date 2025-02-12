@@ -14,14 +14,14 @@ html, body {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: white;
+    background: #CFCFCF;
 }
 
 .container {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    background: white;
+    background: #CFCFCF;
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -34,7 +34,7 @@ body {
     align-items: center;
     padding: 4px 0;
     height: 96px;
-    background: #FFD6D0;
+    background: #5D828A;
     box-sizing: border-box;
 }
 
@@ -66,15 +66,14 @@ body {
     color: black;
     font-size: 18px;
     font-weight: 400;
-    text-decoration: none; /* Elimina el subrayado */
-    padding: 8px 16px; /* Espaciado para mejorar accesibilidad */
-    border-radius: 8px; /* Bordes redondeados */
-    transition: all 0.3s ease-in-out; /* Animación suave */
+    text-decoration: none;
+    padding: 8px 16px; /* Mantiene el espaciado */
+    transition: color 0.3s ease-in-out; /* Solo cambia el color del texto */
 }
 
 .nav a:hover {
-    background-color: #FF725E; /* Color de fondo al hacer hover */
-    color: white; /* Texto en blanco */
+    background-color: transparent; /* Elimina el efecto de botón */
+    color: #CD4533; /* Nuevo color de hover para contraste */
 }
 
 /* Título */
@@ -163,7 +162,17 @@ body {
     font-weight: 400;
     line-height: 1.5;
 }
-
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.card-link:visited, 
+.card-link:link {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
 /* Footer */
 .footer {
     width: 100%;
