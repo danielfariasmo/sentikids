@@ -80,6 +80,8 @@ const expressions = {
   phone: /^\d{9}$/, // Teléfono de 9 dígitos.
   dni: /^[0-9]{8}[A-Za-z]$/,
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Formato de correo.
+  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+  password: /^.{4,12}$/ // 4 a 12 digitos.
 };
 
 // Campos del formulario
@@ -88,7 +90,9 @@ const fields = {
   surname: false,
   phone: false,
   dni: false,
-  email: false
+  email: false,
+  usuario : false,
+  password : false
 };
 
 // Función para validar un campo

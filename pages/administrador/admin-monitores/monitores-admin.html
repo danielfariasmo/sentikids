@@ -144,7 +144,6 @@
             <p class="form__input-error">El dni solo puede contener números y una letra.</p>
           </div>
 
-
           <!--Group: email-->
           <div class="form__group" id="group__email">
             <label for="email" class="form__label">Correo Electrónico:</label>
@@ -156,6 +155,42 @@
               El correo debe contener letras, números y guiones.
             </p>
           </div>
+
+          <!--Grupo: usuario-->
+			<div class="formulario__grupo" id="grupo__usuario">
+				<label for="usuario" class="form__label">Usuario</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="form__input" name="usuario" id="usuario" placeholder="john123">
+					<img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+				</div>
+				<p class="form__input-error">
+					El usuario tiene que ser de 4 a 16 dígitos y solo puede contener números, letras y guión bajo.
+				</p>
+			</div>
+
+      <!--Grupo: contraseña-->
+			<div class="formulario__grupo" id="grupo__password">
+				<label for="password" class="form__label">Contraseña</label>
+				<div class="formulario__grupo-input">
+					<input type="password" class="form__input" name="password" id="password">
+					<img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+				</div>
+				<p class="form__input-error">
+					La contaseña tiene que ser de 4 a 12 dígitos.
+				</p>
+			</div>
+
+			<!--Grupo: contraseña 2-->
+			<div class="formulario__grupo" id="grupo__password2">
+				<label for="password2" class="form__label">Repetir contraseña</label>
+				<div class="formulario__grupo-input">
+					<input type="password" class="form__input" name="password2" id="password2">
+					<img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+				</div>
+				<p class="form__input-error">
+					Ambas contraseñas deben ser iguales.
+				</p>
+			</div>
 
           <!--Button-->
           <div class="form__message" id="form__message-add">
