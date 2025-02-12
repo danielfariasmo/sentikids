@@ -173,7 +173,7 @@ body {
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: 700;
-    color: #CD4533;
+    color: black;
 }
 
 .popup-content label {
@@ -197,7 +197,7 @@ body {
 }
 
 .send-btn {
-    background: #CD4533;
+    background: #5D828A;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -207,7 +207,7 @@ body {
 }
 
 .send-btn:hover {
-    background: #FF725E;
+    background: #37707f93;
 }
 
 /* Mensaje de éxito */
