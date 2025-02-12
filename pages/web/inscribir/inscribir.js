@@ -83,44 +83,40 @@ document.addEventListener('DOMContentLoaded', () => {
     function validarElemento(elemento) {
         const valor = elemento.value.trim();
         let esValido = true;
-
+    
         switch (true) {
             case ["name", "lastName", `childName${childCount}`, `childLastName${childCount}`].includes(elemento.id):
                 esValido = /^[a-zA-ZÀ-ÿ\s]{2,40}$/.test(valor);
                 break;
-
             case elemento.id === "dni":
                 esValido = /^[0-9]{8}[A-Za-z]$/.test(valor) && validarLetraDNI(valor);
                 break;
-
             case elemento.id === "email":
                 esValido = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(valor);
                 break;
-
             case elemento.id === "tel":
                 esValido = /^(\+34|0034|34)?[6-9]\d{8}$/.test(valor);
                 break;
-
             case elemento.id === "population":
                 esValido = /^[a-zA-ZÀ-ÿ0-9\s]{2,40}$/.test(valor);
                 break;
-
             case elemento.id === `childAge${childCount}`:
                 esValido = validarEdadAlumno(elemento);
                 break;
-
             default:
                 console.warn(`No hay reglas de validación para el campo con id "${elemento.id}"`);
                 break;
         }
-
+    
         const errorSpan = document.getElementById(elemento.id + "Error");
         if (errorSpan) {
-            errorSpan.classList.toggle('hidden', esValido);
+            // Si es inválido, se añade "visible"; si es válido, se remueve.
+            errorSpan.classList.toggle('visible', !esValido);
         }
-
+    
         return esValido;
     }
+    
 
     // Validar letra del DNI
     function validarLetraDNI(dni) {

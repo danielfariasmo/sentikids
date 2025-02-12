@@ -223,6 +223,68 @@ body {
     font-size: 0.9rem;
 }
 
+/* Estilos para la barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #5D828A;
+    border-bottom: 1px solid #ddd;
+}
 
+.logo img {
+    height: 40px;
+}
 
+.icons {
+    display: flex;
+    gap: 15px;
+}
 
+.icons i {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+}
+
+.user-menu {
+    position: relative;
+}
+
+.user-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f8f9fa;
+}
+
+.user-menu:hover .dropdown-menu {
+    display: block;
+}
