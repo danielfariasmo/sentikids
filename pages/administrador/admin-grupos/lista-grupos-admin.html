@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Select y Tabla</title>
+    <title>Información Adicional</title>
     <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
     <link rel="stylesheet" href="lista-grupos-admin.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -17,53 +18,59 @@
             <a href="../home/home-admin.html">
                 <img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo">
             </a>
-            <h1 class="section-title">Listado de Grupos</h1>
+            <h1 class="section-title" id="titulo-datos"></h1>
         </header>
 
-        <!-- Contenedor del contenido -->
-        <div class="container">
-            <!-- Select y Tabla -->
-            <div class="content">
-                <div class="select-container">
-                    <label for="grupo">Selecciona al grupo:</label>
-                    <p></p>
-                    <select id="grupo" name="grupo">
-                        <option value="grupo1">Grupo 1</option>
-                        <option value="grupo2">Grupo 2</option>
-                        <option value="grupo3">Grupo 3</option>
-                    </select>
-                </div>
-
-                <!-- Tabla -->
-                <div class="table-container">
-                    <div class="table-header">
-                        <div class="header-item">Lista de niños/as:</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="header-item">Juan Pérez</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="header-item">Ana Gómez</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="header-item">Carlos Ruiz</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="header-item">Marta Díaz</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="header-item">Luis Martínez</div>
-                    </div>
-                    <!-- Más filas se pueden agregar dinámicamente con JS/PHP -->
-                </div>
-
-                <!-- Botón Volver a Grupos -->
-                <div class="button-container">
-                    <button class="button sin-button"><a href="grupos-admin.html">Volver a Grupos</a></button>
-                </div>
+        <!--Alert personalizado-->
+        <div id="custom-alert" style="display:none;">
+            <div class="alert-content">
+                <h3>SentiKids dice:</h3>
+                <p id="alert-message"></p>
+                <button id="close-alert">Cerrar</button>
             </div>
         </div>
-    </div> <!-- Cierre del main-wrapper -->
+
+        <div class="container">
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr class="table-header">
+                            <th class="header-item">Nombre y Apellidos</th>
+                            <th class="header-item">Dieta // Alergias</th>
+                            <th class="header-item">Tutor Principal</th>
+                            <th class="header-item">Teléfono</th>
+                            <th class="header-item">Otro Tutor</th>
+                            <th class="header-item">Teléfono</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body2"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="button sin-button"><a href="grupos-admin.html">Volver a Grupos</a></button>
+            <button class="myBtn button add-button" data-modal-id="modal1">Agregar Niño/a a Grupo</button>
+        </div>
+    </div>
+
+    <!-- Formulario -->
+    <!-- Modal para agregar niño al grupo -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-modal-id="modal1">&times;</span>
+                <h2>Agregar Niño/a a Grupo</h2>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="search-child" placeholder="Buscar niño/a" />
+                <div id="search-results"></div>
+                <button id="add-child" disabled>Agregar al Grupo</button>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -72,6 +79,8 @@
             <p class="footer-text">Copyright © 2025. All Right Reserved.</p>
         </div>
     </footer>
+
+    <script src="grupos-admin.js"></script>
 </body>
 
 </html>

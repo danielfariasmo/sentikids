@@ -282,6 +282,7 @@ function fetchMonitor() {
       monitores.forEach(monitor => {
         template += `
             <tr tutorId="${monitor.id_monitor}">
+                <td>${monitor.id_monitor}</td>
                 <td class="nombre">${monitor.nombre}</td>
                 <td class="apellidos">${monitor.apellidos}</td>
                 <td>${monitor.telefono}</td>
