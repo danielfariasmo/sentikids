@@ -288,3 +288,81 @@ body {
 .user-menu:hover .dropdown-menu {
     display: block;
 }
+
+.nombre_tutor{
+    color: white;
+}
+
+
+
+
+
+
+
+
+/* Estilos para los contenedores principales */
+.main-container {
+    display: flex;
+    gap: 20px; /* Espacio entre los contenedores */
+    padding: 20px;
+}
+
+.left-container {
+    width: 250px; /* Ancho fijo para el contenedor izquierdo */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0; /* Eliminamos el padding para que no haya huecos */
+    display: flex;
+    flex-direction: column;
+}
+
+.left-container .menu-button {
+    width: 100%;
+    padding: 15px;
+    background-color: transparent; /* Sin color de fondo */
+    color: #333; /* Color del texto */
+    border: none;
+    border-radius: 0; /* Sin bordes redondeados */
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    transition: all 0.3s ease; /* Transición suave */
+    border-left: 3px solid transparent; /* Borde izquierdo transparente */
+}
+
+/* Borde verde al pasar el ratón */
+.left-container .menu-button:hover {
+    border-left: 3px solid var(--success); /* Borde izquierdo verde */
+}
+
+/* Fondo verde clarito y borde verde al hacer clic */
+.left-container .menu-button:active,
+.left-container .menu-button.active {
+    border-left: 3px solid var(--success); /* Borde izquierdo verde */
+    background-color: rgba(80, 129, 42, 0.1); /* Fondo verde clarito */
+}
+
+/* Eliminar el espacio entre los botones */
+.left-container .menu-button:not(:last-child) {
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre botones */
+}
+
+.right-container {
+    flex: 1; /* Ocupa el espacio restante */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+

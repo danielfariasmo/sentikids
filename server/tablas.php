@@ -79,46 +79,39 @@ mysqli_query($connection, $insertOtherTutor) or die("ERROR: no se puede insertar
 /** NOTIFICACIONES*/
 $notification = "CREATE TABLE IF NOT EXISTS notificacion (
     id_notificacion INT AUTO_INCREMENT PRIMARY KEY,
-    id_tutor INT NOT NULL, 
+    id_monitor INT NOT NULL,
+    id_tutor INT NOT NULL,
+    titulo VARCHAR(200) NOT NULL,
     mensaje VARCHAR(1000) NOT NULL,
-    fecha DATE NOT NULL,
+    fecha DATE,
+    FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor),
     FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor));";
 mysqli_query($connection, $notification) or die("ERROR: no se puede crear la tabla Notificaciones: " . mysqli_error($connection));
 
-/** HORARIOS */
-$schedule = "CREATE TABLE IF NOT EXISTS horario (
-    id_horario INT AUTO_INCREMENT PRIMARY KEY, 
-    nombre VARCHAR(255) NOT NULL,  /** Nombre del horario */
-    url VARCHAR(255) NULL /** Columna para almacenar la URL de la foto */
-);";
-mysqli_query($connection, $schedule) or die("ERROR: no se puede crear la tabla Horarios: " . mysqli_error($connection));
-
-/** Insertar datos en la tabla horario */
-$insertSchedule = "INSERT INTO horario (nombre, url) VALUES
-                     ('Horario1', '/sentikids/assets/img/horario1.png'),
-                     ('Horario2', '/sentikids/assets/img/horario2.png'),
-                     ('Horario3', '/sentikids/assets/img/horario3.png'),
-                     ('Horario4', '/sentikids/assets/img/horario4.png'),
-                     ('Horario5', '/sentikids/assets/img/horario5.png');";
-mysqli_query($connection, $insertSchedule) or die("ERROR: no se puede insertar en la tabla horarios: " . mysqli_error($connection));
+$insertNotification = "INSERT INTO notificacion (id_notificacion, id_monitor, id_tutor, titulo, mensaje, fecha) VALUES
+                (1, 1, 1, 'Nuevas actividades temáticas', '¡Tenemos nuevas actividades temáticas para que la diversión no pare! 🎭✨ Ven a disfrutar de experiencias únicas llenas de emoción y sorpresas. ¡No te lo pierdas! 🚀🎉', '2025-02-03'),
+                (2, 1, 2, 'Nuevas actividades temáticas', '¡Tenemos nuevas actividades temáticas para que la diversión no pare! 🎭✨ Ven a disfrutar de experiencias únicas llenas de emoción y sorpresas. ¡No te lo pierdas! 🚀🎉', '2025-02-03'),
+                (3, 1, 1, 'No se cancelan las actividades por lluvias', '¡La diversión sigue llueva o truene! ☔🌞 Nuestras actividades no se cancelan por lluvia, así que ven preparado para disfrutar al máximo. 💪🎉', '2025-02-10'),
+                (4, 2, 2, 'Cambio de monitor', '⚠️ ¡Atención! Ha habido un cambio de monitor. Consulta los detalles para conocer a tu nuevo responsable. 👤✅', '2025-02-13'),
+                (5, 2, 3, 'Cambio de monitor', '⚠️ ¡Atención! Ha habido un cambio de monitor. Consulta los detalles para conocer a tu nuevo responsable. 👤✅', '2025-02-13');";
+mysqli_query($connection, $insertNotification) or die("ERROR: no se puede insertar en la tabla notificacion: " . mysqli_error($connection));
 
 /** GRUPO */
 $group = "CREATE TABLE IF NOT EXISTS grupo (
     id_grupo INT AUTO_INCREMENT PRIMARY KEY,
     id_monitor INT NOT NULL,
-    id_horario INT NOT NULL,
     nombre VARCHAR(255),
-    FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor),
-    FOREIGN KEY (id_horario) REFERENCES horario(id_horario));";
+    url VARCHAR(255) NULL, /** Columna para almacenar la URL de la foto */
+    FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor));";
 mysqli_query($connection, $group) or die("ERROR: no se puede crear la tabla Grupos: " . mysqli_error($connection));
 
 /** Insertar 5 grupos en la tabla grupo */
-$insertGroups = "INSERT INTO grupo (id_grupo, id_monitor, id_horario, nombre) VALUES
-                (1, 1, 1, 'Grupo A'),
-                (2, 2, 2, 'Grupo B'),
-                (3, 3, 3, 'Grupo C'),
-                (4, 4, 4, 'Grupo D'),
-                (5, 5, 5, 'Grupo E');";  // Todos los grupos se asignan al mismo monitor e horario (id_monitor = 1, id_horario = 1)
+$insertGroups = "INSERT INTO grupo (id_grupo, id_monitor, nombre, url) VALUES
+                (1, 1, 'Grupo A', '/sentikids/assets/img/horario1.png'),
+                (2, 2, 'Grupo B', '/sentikids/assets/img/horario2.png'),
+                (3, 3, 'Grupo C', '/sentikids/assets/img/horario3.png'),
+                (4, 4, 'Grupo D', '/sentikids/assets/img/horario4.png'),
+                (5, 5, 'Grupo E', '/sentikids/assets/img/horario5.png');";  // Todos los grupos se asignan al mismo monitor e horario (id_monitor = 1, id_horario = 1)
 mysqli_query($connection, $insertGroups) or die("ERROR: no se puede insertar en la tabla grupos: " . mysqli_error($connection));
 
 /** NIÑOS */

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area Privada</title>
     <link rel="stylesheet" href="principal.css">
+    <!-- Agrega FontAwesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
-
     <!-- Barra de navegación -->
     <nav class="navbar">
         <!-- Logo a la izquierda -->
@@ -17,11 +17,11 @@
         </div>
 
         <!-- Iconos a la derecha -->
-        <div class="icons">
+        <!-- <div class="icons">
             <i class="fas fa-bell"></i>
             <i class="fas fa-envelope"></i>
             <i class="fas fa-cog"></i>
-        </div>
+        </div> -->
 
         <!-- Nombre de usuario y menú desplegable -->
         <div class="user-menu menu-container">
@@ -35,9 +35,25 @@
                 <button id="deleteAccountBtn">Borrar cuenta</button>
             </div>
         </div>
-
     </nav>
 
+    <!-- Contenedores principales -->
+    <div class="main-container">
+        <!-- Contenedor izquierdo -->
+        <div class="left-container">
+            <button class="menu-button">General</button>
+            <button class="menu-button">Nombre Hijo</button>
+            <button class="menu-button">Añadir otro Hijo</button>
+            <button class="menu-button">Horario</button>
+        </div>
+
+        <!-- Contenedor derecho -->
+        <div class="right-container">
+            <!-- Aquí se mostrará el contenido dinámico -->
+        </div>
+    </div>
+
+    <!-- Resto del contenido -->
     <button id="timeTableBtn">Horario</button>
     <div id="timeTable"></div>
 
@@ -57,8 +73,7 @@
                         <div class="input-field">
                             <input type="text" id="lastName" name="apellidos" placeholder="" disabled>
                             <label for="lastName">Apellidos</label>
-                            <span class="error hidden" id="lastNameError">Por favor, introduce un apellido
-                                válido.</span>
+                            <span class="error hidden" id="lastNameError">Por favor, introduce un apellido válido.</span>
                         </div>
                         <div class="input-field">
                             <input type="text" id="dni" name="dni" placeholder="" disabled>
@@ -92,29 +107,23 @@
                             <div class="input-field">
                                 <input type="password" id="lastPassword" name="lastPassword" placeholder="">
                                 <label for="lastPassword">Anterior contraseña</label>
-                                <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña
-                                    anterior.</span>
+                                <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña anterior.</span>
                             </div>
                             <div class="input-field">
                                 <input type="password" id="password" name="password" placeholder="">
                                 <label for="password">Nueva contraseña</label>
-                                <span class="error hidden" id="passwordError">Por favor, introduce una contraseña
-                                    válida.</span>
+                                <span class="error hidden" id="passwordError">Por favor, introduce una contraseña válida.</span>
                             </div>
                         </div>
                     </div>
 
                     <h2>Tus hijos</h2>
-                    <!-- <div id="childrenContainer" class="hidden"></div> -->
-                    <div id="childrenContainer">
-                        <!-- La lista de hijos se cargará aquí dinámicamente -->
-                    </div>
+                    <div id="childrenContainer"></div>
 
                     <h2>Tus personas de confianza</h2>
                     <div id="trustedContainer"></div>
 
                     <span id="AjustesError" class="error hidden"></span>
-
                 </form>
                 <div class="button-group">
                     <button id="closePopupBtn">Cancelar</button>
@@ -127,5 +136,4 @@
     </div>
     <script src="principal.js"></script>
 </body>
-
 </html>
