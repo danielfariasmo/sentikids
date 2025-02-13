@@ -348,18 +348,33 @@ body {
     border-bottom: 1px solid #ddd; /* Línea divisoria entre botones */
 }
 
-.right-container {
+.notificacion {
     flex: 1; /* Ocupa el espacio restante */
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin-bottom: 20px;
+    position: relative; /* Necesario para posicionar el botón de cierre */
 }
 
+.close-button {
+    float: right; /* Alinea el botón a la derecha */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ff0000;
+}
 
+h4 {
+    margin: 0;
+    font-size: 18px;
+}
 
-
-
+p {
+    margin: 5px 0;
+}
 
 
 

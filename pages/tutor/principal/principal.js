@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu = document.getElementById("menu");
     const popupOverlay = document.getElementById("popupOverlay");
 
-    function cargarNombre(nombre, apellidos){
+    function cargarNombre(nombre, apellidos) {
         const usuario = document.getElementById('nombre_tutor');
-        usuario.innerHTML = nombre +' '+ apellidos;
+        usuario.innerHTML = nombre + ' ' + apellidos;
         console.log("se cambia el nombre?¿")
     }
 
@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cargar la lista de hijos cuando la página esté lista
     loadChildren();
-    
+
     // Función para cargar la lista de Personas de confianza
     function misPersonasC() {
-        fetch('obtenerPC.php') 
+        fetch('obtenerPC.php')
             .then(response => response.json())
             .then(data => {
                 const trustedContainer = document.getElementById('trustedContainer');
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span>${confianza.nombre}</span>
                             <!--  <button type="button" onclick="deletePConf(${confianza.id})">Eliminar</button>  -->
                         `;
-                        trustedContainer.appendChild(trustedItem);
+                    trustedContainer.appendChild(trustedItem);
                 });
             })
             .catch(error => console.error('Error cargando personas de confianza:', error));
@@ -89,12 +89,22 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
     });
 
+
+    if (menu && menuBtn) {
+        // Cerrar menú si se hace clic fuera
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && e.target !== menuBtn) {
+                menu.style.display = 'none';
+            }
+        });
+    }
+
     // Cerrar menú si se hace clic fuera
-    document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && e.target !== menuBtn) {
-            menu.style.display = 'none';
-        }
-    });
+    // document.addEventListener('click', (e) => {
+    //     if (!menu.contains(e.target) && e.target !== menuBtn) {
+    //         menu.style.display = 'none';
+    //     }
+    // });
 
     // Cerrar popup si se hace clic fuera de él
     popupOverlay.addEventListener("click", (e) => {
@@ -251,11 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newPassContainer.classList.toggle('hidden'); // Muestra y oculta
     });
 
-});
-
-
-
-
 
 
 
@@ -268,10 +273,10 @@ document.querySelectorAll('.left-container .menu-button').forEach(button => {
         // Limpia el contenido del contenedor derecho
         rightContainer.innerHTML = '';
 
-        // Añade contenido dinámico según el botón pulsado
+        // Maneja cada opción según el botón pulsado
         switch (buttonText) {
             case 'General':
-                rightContainer.innerHTML = '<h2>Contenido de General</h2>';
+                cargarNotificaciones(rightContainer);
                 break;
             case 'Nombre Hijo':
                 rightContainer.innerHTML = '<h2>Contenido de Nombre Hijo</h2>';
@@ -286,4 +291,68 @@ document.querySelectorAll('.left-container .menu-button').forEach(button => {
                 rightContainer.innerHTML = '<h2>Selecciona una opción</h2>';
         }
     });
+});
+
+// Función para obtener y mostrar las notificaciones
+function cargarNotificaciones(container) {
+    fetch('obtenerNotificaciones.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success' && Array.isArray(data.data)) {
+                const notificaciones = data.data;
+                // Limpiamos el contenedor antes de añadir las notificaciones
+                container.innerHTML = '';
+
+                notificaciones.forEach(notificacion => {
+                    const notificacionDiv = document.createElement('div');
+                    notificacionDiv.className = 'notificacion';
+
+                    // Botón para cerrar la notificación
+                    const closeButton = document.createElement('button');
+                    closeButton.textContent = 'X';
+                    closeButton.className = 'close-button';
+                    closeButton.addEventListener('click', () => {
+                        notificacionDiv.remove();
+                    });
+
+                    // Título de la notificación
+                    const titulo = document.createElement('h4');
+                    titulo.textContent = notificacion.titulo;
+
+                    // Mensaje de la notificación
+                    const mensaje = document.createElement('p');
+                    mensaje.textContent = notificacion.mensaje;
+
+                    // Fecha de la notificación
+                    const fecha = document.createElement('span');
+                    fecha.textContent = notificacion.fecha;
+                    fecha.style.fontWeight = 'bold';
+                    fecha.style.float = 'right';
+
+                    // Añade los elementos al div de la notificación
+                    notificacionDiv.appendChild(closeButton);
+                    notificacionDiv.appendChild(titulo);
+                    notificacionDiv.appendChild(mensaje);
+                    notificacionDiv.appendChild(fecha);
+
+                    // Añade la notificación al contenedor
+                    container.appendChild(notificacionDiv);
+                });
+
+                // Añadir el mensaje de "No hay más actualizaciones recientes"
+                const noMasActualizaciones = document.createElement('p');
+                noMasActualizaciones.textContent = 'No hay más actualizaciones recientes';
+                container.appendChild(noMasActualizaciones);
+
+            } else {
+                console.error('La respuesta del servidor no contiene un array de notificaciones:', data);
+                container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener las notificaciones:', error);
+            container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
+        });
+}
+
 });
