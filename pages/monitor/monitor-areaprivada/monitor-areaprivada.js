@@ -1,17 +1,19 @@
-// Función para obtener el nombre y apellidos del monitor
-function obtenerNombreMonitor() {
-    fetch('monitor-areaprivada.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                // Actualizar el texto en el HTML con el nombre y apellidos del monitor
-                document.getElementById('nombre_tutor').textContent = `${data.nombre} ${data.apellidos}`;
-            } else {
-                console.error('Error:', data.message);
-            }
-        })
-        .catch(error => console.error('Error al obtener los datos del monitor:', error));
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const menuContainer = document.querySelector(".menu-container");
+    const dropdownMenu = document.getElementById("dropdownMenu");
 
-// Ejecutar la función cuando la página cargue
-window.onload = obtenerNombreMonitor;
+    menuContainer.addEventListener("mouseenter", function () {
+        dropdownMenu.style.display = "block";
+    });
+
+    menuContainer.addEventListener("mouseleave", function () {
+        dropdownMenu.style.display = "none";
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    logoutBtn.addEventListener("click", function () {
+        window.location.href = "../../web/home/inicio.html"; 
+    });
+});

@@ -1,25 +1,3 @@
-// function openPopup() {
-//     document.getElementById("popup").style.display = "block";
-//     document.getElementById("notification-form").reset();
-//     document.getElementById("success-message").style.display = "none";
-// }
-
-// function closePopup() {
-//     document.getElementById("popup").style.display = "none";
-// }
-
-// // Manejar el envío del formulario
-// document.getElementById("notification-form").addEventListener("submit", function (event) {
-//     event.preventDefault(); // Evitar que el formulario se envíe realmente
-
-//     // Mostramos el mensaje
-//     document.getElementById("success-message").style.display = "block";
-
-//     // Cerrar el pop-up
-//     setTimeout(function () {
-//         closePopup();
-//     }, 2000); 
-// });
 function openPopup() {
     document.getElementById("popup").style.display = "block";
     document.getElementById("notification-form").reset();
@@ -68,4 +46,23 @@ document.getElementById("notification-form").addEventListener("submit", function
     setTimeout(function () {
         closePopup();
     }, 2000); 
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const menuContainer = document.querySelector(".menu-container");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+
+    menuContainer.addEventListener("mouseenter", function () {
+        dropdownMenu.style.display = "block";
+    });
+
+    menuContainer.addEventListener("mouseleave", function () {
+        dropdownMenu.style.display = "none";
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    logoutBtn.addEventListener("click", function () {
+        window.location.href = "../../web/home/inicio.html"; 
+    });
 });
