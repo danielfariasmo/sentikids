@@ -1,28 +1,42 @@
 function openPopup() {
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("notification-form").reset();
-    document.getElementById("success-message").style.display = "none";
-    
+    const popup = document.getElementById("popup");
+    const form = document.getElementById("notification-form");
+    const successMessage = document.getElementById("success-message");
+    const recipientSelect = document.getElementById("recipient");
+
+    if (popup) popup.style.display = "block";
+    if (form) form.reset();
+    if (successMessage) successMessage.style.display = "none";
+
+    // Verificar si el select existe antes de manipularlo
+    if (!recipientSelect) {
+        console.error("Elemento 'recipient' no encontrado.");
+        return;
+    }
+
     // Usamos fetch para obtener los tutores desde el archivo PHP
     fetch('monitor-asesoramiento.php')
-        .then(response => response.json()) // Parseamos la respuesta JSON
+        .then(response => {
+            if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+            return response.json();
+        })
         .then(data => {
             console.log(data);
-            const recipientSelect = document.getElementById('recipient');
             
-            // Limpiamos el select antes de agregar las opciones
+            // Limpiar el select antes de agregar opciones
             recipientSelect.innerHTML = '';
-            
-            // Creamos la opción por defecto
+
+            // Crear opción por defecto
             const defaultOption = document.createElement('option');
             defaultOption.textContent = 'Seleccionar Tutor';
+            defaultOption.value = "";
             recipientSelect.appendChild(defaultOption);
-            
-            // Agregamos cada tutor al select
+
+            // Agregar cada tutor al select
             data.forEach(tutor => {
                 const option = document.createElement('option');
-                option.value = tutor.nombre + ' ' + tutor.apellidos; // Asigna el nombre completo
-                option.textContent = tutor.nombre + ' ' + tutor.apellidos; // Muestra el nombre completo
+                option.value = `${tutor.nombre} ${tutor.apellidos}`; // Asigna el nombre completo
+                option.textContent = `${tutor.nombre} ${tutor.apellidos}`; // Muestra el nombre completo
                 recipientSelect.appendChild(option);
             });
         })
@@ -32,37 +46,45 @@ function openPopup() {
 }
 
 function closePopup() {
-    document.getElementById("popup").style.display = "none";
+    const popup = document.getElementById("popup");
+    if (popup) popup.style.display = "none";
 }
 
 // Manejar el envío del formulario
-document.getElementById("notification-form").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evitar que el formulario se envíe realmente
-
-    // Mostramos el mensaje
-    document.getElementById("success-message").style.display = "block";
-
-    // Cerrar el pop-up
-    setTimeout(function () {
-        closePopup();
-    }, 2000); 
-});
 document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("notification-form");
+
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Evitar el envío real del formulario
+
+            const successMessage = document.getElementById("success-message");
+            if (successMessage) successMessage.style.display = "block";
+
+            // Cerrar el pop-up después de 2 segundos
+            setTimeout(closePopup, 2000);
+        });
+    }
+
+    // Manejo del menú desplegable
     const menuContainer = document.querySelector(".menu-container");
     const dropdownMenu = document.getElementById("dropdownMenu");
 
-    menuContainer.addEventListener("mouseenter", function () {
-        dropdownMenu.style.display = "block";
-    });
+    if (menuContainer && dropdownMenu) {
+        menuContainer.addEventListener("mouseenter", function () {
+            dropdownMenu.style.display = "block";
+        });
 
-    menuContainer.addEventListener("mouseleave", function () {
-        dropdownMenu.style.display = "none";
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
+        menuContainer.addEventListener("mouseleave", function () {
+            dropdownMenu.style.display = "none";
+        });
+    }
+
+    // Manejo del botón de cierre de sesión
     const logoutBtn = document.getElementById("logoutBtn");
-
-    logoutBtn.addEventListener("click", function () {
-        window.location.href = "../../web/home/inicio.html"; 
-    });
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", function () {
+            window.location.href = "../../web/home/inicio.html";
+        });
+    }
 });
