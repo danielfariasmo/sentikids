@@ -252,3 +252,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+
+
+
+
+
+
+// Script para manejar los botones del contenedor izquierdo
+document.querySelectorAll('.left-container .menu-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const buttonText = this.textContent;
+        const rightContainer = document.querySelector('.right-container');
+
+        // Limpia el contenido del contenedor derecho
+        rightContainer.innerHTML = '';
+
+        // Añade contenido dinámico según el botón pulsado
+        switch (buttonText) {
+            case 'General':
+                rightContainer.innerHTML = '<h2>Contenido de General</h2>';
+                break;
+            case 'Nombre Hijo':
+                rightContainer.innerHTML = '<h2>Contenido de Nombre Hijo</h2>';
+                break;
+            case 'Añadir otro Hijo':
+                rightContainer.innerHTML = '<h2>Contenido de Añadir otro Hijo</h2>';
+                break;
+            case 'Horario':
+                rightContainer.innerHTML = '<h2>Contenido de Horario</h2>';
+                break;
+            default:
+                rightContainer.innerHTML = '<h2>Selecciona una opción</h2>';
+        }
+    });
+});
