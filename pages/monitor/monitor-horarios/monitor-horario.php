@@ -27,9 +27,8 @@
     $id_monitor = $_SESSION['id_usuario'];
 
     // Consultar los horarios asociados al monitor
-    $query = "SELECT h.url FROM horario h
-            JOIN grupo g ON h.id_horario = g.id_horario
-            WHERE g.id_monitor = $id_monitor";
+    $query = "SELECT g.url FROM grupo g
+              WHERE g.id_monitor = $id_monitor";
     $result = mysqli_query($conexion, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
