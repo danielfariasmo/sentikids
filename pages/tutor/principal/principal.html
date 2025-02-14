@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <!-- Agrega FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <!-- Barra de navegación -->
     <nav class="navbar">
@@ -32,18 +34,17 @@
             </button>
             <div class="dropdown-menu menu" id="dropdownMenu menu">
                 <button id="editProfileBtn">Editar perfil</button>
-                <button id="deleteAccountBtn">Borrar cuenta</button>
+                <button id="closeAccountBtn">Cerrar sesión</button>
             </div>
         </div>
     </nav>
 
-    <!-- Contenedores principales -->
     <div class="main-container">
         <!-- Contenedor izquierdo -->
         <div class="left-container">
             <button class="menu-button">General</button>
             <button class="menu-button">Nombre Hijo</button>
-            <button class="menu-button">Añadir otro Hijo</button>
+            <button class="menu-button" id="newChildBtn">Añadir otro Hijo</button>
             <button class="menu-button">Horario</button>
         </div>
 
@@ -52,10 +53,6 @@
             <!-- Aquí se mostrará el contenido dinámico -->
         </div>
     </div>
-
-    <!-- Resto del contenido -->
-    <button id="timeTableBtn">Horario</button>
-    <div id="timeTable"></div>
 
     <!-- Popup -->
     <div class="popup-overlay" id="popupOverlay">
@@ -73,7 +70,8 @@
                         <div class="input-field">
                             <input type="text" id="lastName" name="apellidos" placeholder="" disabled>
                             <label for="lastName">Apellidos</label>
-                            <span class="error hidden" id="lastNameError">Por favor, introduce un apellido válido.</span>
+                            <span class="error hidden" id="lastNameError">Por favor, introduce un apellido
+                                válido.</span>
                         </div>
                         <div class="input-field">
                             <input type="text" id="dni" name="dni" placeholder="" disabled>
@@ -107,12 +105,14 @@
                             <div class="input-field">
                                 <input type="password" id="lastPassword" name="lastPassword" placeholder="">
                                 <label for="lastPassword">Anterior contraseña</label>
-                                <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña anterior.</span>
+                                <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña
+                                    anterior.</span>
                             </div>
                             <div class="input-field">
                                 <input type="password" id="password" name="password" placeholder="">
                                 <label for="password">Nueva contraseña</label>
-                                <span class="error hidden" id="passwordError">Por favor, introduce una contraseña válida.</span>
+                                <span class="error hidden" id="passwordError">Por favor, introduce una contraseña
+                                    válida.</span>
                             </div>
                         </div>
                     </div>
@@ -130,10 +130,66 @@
                     <form id="saveChangesForm">
                         <button type="submit">Guardar cambios</button>
                     </form>
+                    <form id="deleteAccountForm">
+                        <button type="submit" id="deleteAccountBtn">Borrar cuenta</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Popup Añadir Niño/a-->
+    <div class="popup-overlay2" id="popupOverlay2">
+        <div class="popup">
+            <h2>Añadir nuevo niño/a</h2>
+            <div class="form-container">
+                <form id="userForm2">
+                    <h2>Información Básica</h2>
+                    <div class="input-grid">
+                        <div class="input-field">
+                            <input type="text" id="name" name="nombre" placeholder="">
+                            <label for="name">Nombre*</label>
+                            <span class="error hidden" id="nameError">Por favor, introduce un nombre válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" id="lastName" name="apellidos" placeholder="">
+                            <label for="lastName">Apellidos*</label>
+                            <span class="error hidden" id="lastNameError">Por favor, introduce un apellido
+                                válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="date" id="childAge" name="childAge" placeholder=""><br>
+                            <label for="childAge" id="childAge">Fecha de Nacimiento*</label>
+                            <span class="error hidden" id="childAgeError">Por favor, introduce una fecha válida.</span>
+                        </div>
+                    </div>
+
+                    <h2>Detalles adicionales</h2>
+                    <label for="diet">Dieta</label>
+                    <select id="diet" name="diet[]">
+                        <option value="none">Sin restricciones</option>
+                        <option value="gluten-free">Sin gluten</option>
+                        <option value="dairy-free">Sin lácteos</option>
+                    </select><br>
+
+                    <label for="allergies">Alergias o condiciones médicas</label>
+                    <textarea id="allergies" name="allergies[]"></textarea><br>
+
+                    <span id="AjustesError" class="error hidden"></span>
+                </form>
+
+                <div class="button-group">
+                    <button id="closePopupBtn2">Cancelar</button>
+                    <form id="saveChangesForm">
+                        <button type="submit">Guardar cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="principal.js"></script>
 </body>
+
 </html>
