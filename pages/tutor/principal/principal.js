@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu = document.getElementById("menu");
     const popupOverlay = document.getElementById("popupOverlay");
     const popupOverlayHijo = document.getElementById("popupOverlay2");
+    const popupOverlayConf = document.getElementById("popupOverlay3");
 
     function cargarNombre(nombre, apellidos) {
         const usuario = document.getElementById('nombre_tutor');
@@ -141,6 +142,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("closePopupBtn2").addEventListener("click", function () {
         document.querySelector(".popup-overlay2").style.display = "none";
+    });
+
+    // Cerrar popup si se hace clic fuera de él
+    popupOverlayConf.addEventListener("click", (e) => {
+        if (e.target === popupOverlayConf) {
+            popupOverlayConf.style.display = "none";
+        }
+    });
+
+    document.getElementById("newTrustBtn").addEventListener("click", function () {
+        document.querySelector(".popup-overlay3").style.display = "flex";
+    });
+
+    document.getElementById("closePopupBtn3").addEventListener("click", function () {
+        document.querySelector(".popup-overlay3").style.display = "none";
     });
 
     // Función para obtener los datos del tutor
@@ -292,25 +308,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const buttonText = this.textContent;
             const rightContainer = document.querySelector('.right-container');
 
-            // Limpia el contenido del contenedor derecho
-            rightContainer.innerHTML = '';
-
             // Maneja cada opción según el botón pulsado
             switch (buttonText) {
                 case 'General':
+                    rightContainer.innerHTML = '';
                     cargarNotificaciones(rightContainer);
                     break;
                 case 'Nombre Hijo':
+                    rightContainer.innerHTML = '';
                     rightContainer.innerHTML = '<h2>Contenido de Nombre Hijo</h2>';
-                    break;
-                case 'Añadir otro Hijo':
-                    rightContainer.innerHTML = '<h2>Contenido de Añadir otro Hijo</h2>';
+                    cargarInformacionHijo(rightContainer);
                     break;
                 case 'Horario':
+                    rightContainer.innerHTML = '';
                     rightContainer.innerHTML = '<h2>Contenido de Horario</h2>';
                     break;
-                default:
-                    rightContainer.innerHTML = '<h2>Selecciona una opción</h2>';
+                /* default:
+                    rightContainer.innerHTML = '';
+                    rightContainer.innerHTML = '<h2>Selecciona una opción</h2>'; */
             }
         });
     });
@@ -379,34 +394,102 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-        // Selecciona todos los botones del menú izquierdo
-        const menuButtons = document.querySelectorAll('.left-container .menu-button');
+    function cargarInformacionHijo(container) {
+        fetch('obtenerInformacion.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const infoHijo = data.data;
 
-        // Marca el primer botón como activo al cargar la página
-        if (menuButtons.length > 0) {
-            menuButtons[0].classList.add('active');
-            // Aquí puedes añadir la lógica para cargar el contenido correspondiente
-            const rightContainer = document.querySelector('.right-container');
 
-            // Limpia el contenido del contenedor derecho
-            rightContainer.innerHTML = '';
-            cargarNotificaciones(rightContainer);
-        }
+                    // Limpiamos el contenedor antes de añadir la información
+                    container.innerHTML = '';
 
-      /*   // Añade un event listener a cada botón
-        menuButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                // Remueve la clase 'active' de todos los botones
-                menuButtons.forEach(btn => btn.classList.remove('active'));
-                // Añade la clase 'active' al botón clickeado
-                this.classList.add('active');
+                    // Crear el div principal
+                    const infoDiv = document.createElement('div');
+                    infoDiv.className = 'info-hijo';
 
-                // Aquí puedes añadir la lógica para cargar el contenido correspondiente
-                const buttonText = this.textContent;
-                const rightContainer = document.querySelector('.right-container');
-                rightContainer.innerHTML = `<h2>Contenido de ${buttonText}</h2>`;
+                    // Nombre del hijo arriba a la derecha
+                    const nombreHijo = document.createElement('h3');
+                    nombreHijo.textContent = infoHijo.nombreHijo;
+                    nombreHijo.style.textAlign = 'right';
+                    infoDiv.appendChild(nombreHijo);
+
+                    // Texto "Cosas que deberíamos saber: Alergias o otras observaciones"
+                    const textoAlergias = document.createElement('p');
+                    textoAlergias.textContent = 'Cosas que deberíamos saber: Alergias o otras observaciones';
+                    infoDiv.appendChild(textoAlergias);
+
+                    // TextArea para las alergias del niño
+                    const textAreaAlergias = document.createElement('textarea');
+                    textAreaAlergias.textContent = infoHijo.alergias;
+                    textAreaAlergias.rows = 4;
+                    textAreaAlergias.cols = 50;
+                    infoDiv.appendChild(textAreaAlergias);
+
+                    // Grupo del niño
+                    const grupo = document.createElement('p');
+                    grupo.textContent = `Grupo: ${infoHijo.grupo}`;
+                    infoDiv.appendChild(grupo);
+
+                    // Nombre y apellido del monitor con su correo
+                    const monitorInfo = document.createElement('p');
+                    monitorInfo.textContent = `Monitor: ${infoHijo.monitor.nombre} (${infoHijo.monitor.correo})`;
+                    infoDiv.appendChild(monitorInfo);
+
+                    // URL de las fotos del grupo
+                    const fotosGrupo = document.createElement('a');
+                    fotosGrupo.href = infoHijo.fotosGrupoUrl;
+                    fotosGrupo.textContent = 'Ver fotos del grupo';
+                    fotosGrupo.target = '_blank';
+                    infoDiv.appendChild(fotosGrupo);
+
+                    // Imagen del horario del grupo
+                    const horarioImg = document.createElement('img');
+                    horarioImg.src = infoHijo.horarioUrl;
+                    horarioImg.alt = 'Horario del grupo';
+                    horarioImg.style.width = '400px';
+                    horarioImg.style.marginTop = '10px';
+                    infoDiv.appendChild(horarioImg);
+
+                    // Añadir el div al contenedor
+                    container.appendChild(infoDiv);
+
+                } else {
+                    console.error('Error:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener la información del hijo:', error);
             });
-        }); */
-    
+
+    }
+
+    // Selecciona todos los botones del menú izquierdo
+    const menuButtons = document.querySelectorAll('.left-container-top .menu-button');
+
+    // Marca el primer botón como activo al cargar la página
+    if (menuButtons.length > 0) {
+        menuButtons[0].classList.add('active');
+        // Aquí puedes añadir la lógica para cargar el contenido correspondiente
+        const rightContainer = document.querySelector('.right-container');
+
+        cargarNotificaciones(rightContainer);
+    }
+
+    // Añade un event listener a cada botón
+    menuButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Remueve la clase 'active' de todos los botones
+            menuButtons.forEach(btn => btn.classList.remove('active'));
+            // Añade la clase 'active' al botón clickeado
+            this.classList.add('active');
+
+            // Aquí puedes añadir la lógica para cargar el contenido correspondiente
+            const buttonText = this.textContent;
+            const rightContainer = document.querySelector('.right-container');
+        });
+    });
+
 
 });

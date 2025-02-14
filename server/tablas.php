@@ -101,17 +101,19 @@ $group = "CREATE TABLE IF NOT EXISTS grupo (
     id_grupo INT AUTO_INCREMENT PRIMARY KEY,
     id_monitor INT NOT NULL,
     nombre VARCHAR(255),
-    url VARCHAR(255) NULL, /** Columna para almacenar la URL de la foto */
-    FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor));";
+    horario_url VARCHAR(255) NULL, /** Columna para la URL del horario */
+    fotos_url VARCHAR(255) NULL, /** Columna para la URL de las fotos */
+    FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor)
+);";
 mysqli_query($connection, $group) or die("ERROR: no se puede crear la tabla Grupos: " . mysqli_error($connection));
 
 /** Insertar 5 grupos en la tabla grupo */
-$insertGroups = "INSERT INTO grupo (id_grupo, id_monitor, nombre, url) VALUES
-                (1, 1, 'Grupo A', '/sentikids/assets/img/horario1.png'),
-                (2, 2, 'Grupo B', '/sentikids/assets/img/horario2.png'),
-                (3, 3, 'Grupo C', '/sentikids/assets/img/horario3.png'),
-                (4, 4, 'Grupo D', '/sentikids/assets/img/horario4.png'),
-                (5, 5, 'Grupo E', '/sentikids/assets/img/horario5.png');";  // Todos los grupos se asignan al mismo monitor e horario (id_monitor = 1, id_horario = 1)
+$insertGroups = "INSERT INTO grupo (id_grupo, id_monitor, nombre, horario_url, fotos_url) VALUES
+                (1, 1, 'Grupo A', '/sentikids/assets/img/horario1.png', 'https://photos.app.goo.gl/QVjuRxLqkkSU4QfL8'),
+                (2, 2, 'Grupo B', '/sentikids/assets/img/horario2.png', 'https://photos.app.goo.gl/Lfgxp9aoYAjCa5DW8'),
+                (3, 3, 'Grupo C', '/sentikids/assets/img/horario3.png', 'https://photos.app.goo.gl/4ZtkHEBxU7rSvcGt6'),
+                (4, 4, 'Grupo D', '/sentikids/assets/img/horario4.png', 'https://photos.app.goo.gl/4mSmEPHWhUgJvh8W7'),
+                (5, 5, 'Grupo E', '/sentikids/assets/img/horario5.png', 'https://photos.app.goo.gl/PeVkrjBMcqFdfQdz8');";  
 mysqli_query($connection, $insertGroups) or die("ERROR: no se puede insertar en la tabla grupos: " . mysqli_error($connection));
 
 /** NIÑOS */
@@ -143,24 +145,6 @@ $insertKid = "INSERT INTO hijo (id_tutor, id_grupo, nombre, apellidos, fecha_nac
                 (5, 1, 'Dora', 'Negrillo de la Rosa', '2016-11-01', 'sin restricciones', 'ninguna');";
 mysqli_query($connection, $insertKid) or die("ERROR: no se puede insertar en la tabla niños: " . mysqli_error($connection));
 
-/** MULTIMEDIA*/
-$multimedia = "CREATE TABLE IF NOT EXISTS multimedia (
-    id_multimedia INT AUTO_INCREMENT PRIMARY KEY,
-    id_grupo INT NOT NULL,
-
-    
-    url VARCHAR(255),
-    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo));";
-mysqli_query($connection, $multimedia) or die("ERROR: no se puede crear la tabla Multimedia: " . mysqli_error($connection));
-
-//Insertar datos multimedia
-$insertMultimedia = "INSERT INTO multimedia (id_grupo, url) VALUES 
-                        (1, 'https://photos.app.goo.gl/QVjuRxLqkkSU4QfL8'),
-                        (2, 'https://photos.app.goo.gl/Lfgxp9aoYAjCa5DW8'),
-                        (3, 'https://photos.app.goo.gl/4ZtkHEBxU7rSvcGt6'),
-                        (4, 'https://photos.app.goo.gl/4mSmEPHWhUgJvh8W7'),
-                        (5, 'https://photos.app.goo.gl/PeVkrjBMcqFdfQdz8');";
-mysqli_query($connection, $insertMultimedia) or die("ERROR: no se puede insertar en la tabla multimedia: " . mysqli_error($connection));
 
 /** ACTIVIDADES*/
 $activity = "CREATE TABLE IF NOT EXISTS actividad (

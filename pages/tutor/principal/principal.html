@@ -25,6 +25,8 @@
             <i class="fas fa-cog"></i>
         </div> -->
 
+        <img src="../../../assets/img/sol.png" class="solImg" alt="Logo">
+        
         <!-- Nombre de usuario y menú desplegable -->
         <div class="user-menu menu-container">
             <button class="user-button menu-button" id="menuBtn">
@@ -42,10 +44,18 @@
     <div class="main-container">
         <!-- Contenedor izquierdo -->
         <div class="left-container">
-            <button class="menu-button">General</button>
-            <button class="menu-button">Nombre Hijo</button>
-            <button class="menu-button" id="newChildBtn">Añadir otro Hijo</button>
-            <button class="menu-button">Horario</button>
+            <div class="left-container-top">
+                <button class="menu-button first">General</button>
+                <button class="menu-button nombre_hijo">Nombre Hijo</button>
+                <button class="menu-button last">Mis Personas de Confianza</button>
+            </div>
+
+            <div class="left-container-botton">
+                <button class="menu-button first" id="newChildBtn">+ Añadir otro Niño/a</button>
+                <button class="menu-button last" id="newTrustBtn">+ Añadir Persona de Confianza</button>
+                <!-- <button class="menu-button">Horario</button> -->
+            </div>
+            
         </div>
 
         <!-- Contenedor derecho -->
@@ -143,7 +153,7 @@
         <div class="popup">
             <h2>Añadir nuevo niño/a</h2>
             <div class="form-container">
-                <form id="userForm2">
+                <form id="userForm_hijo">
                     <h2>Información Básica</h2>
                     <div class="input-grid">
                         <div class="input-field">
@@ -188,6 +198,49 @@
         </div>
     </div>
 
+    <!-- Popup Añadir Persona de Confianza-->
+    <div class="popup-overlay3" id="popupOverlay3">
+        <div class="popup">
+            <h2>Añadir nueva Persona de Confianza</h2>
+            <div class="form-container">
+                <form id="userForm_pc">
+                    <h2>Información Básica</h2>
+                    <div class="input-grid">
+                        <div class="input-field">
+                            <input type="text" id="name2" name="nombre2" placeholder=""><br>
+                            <label for="name2">Nombre</label>
+                            <span class="error hidden" id="name2Error">Por favor, introduce un nombre válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" id="lastName2" name="apellidos2" placeholder=""><br>
+                            <label for="lastName2">Apellidos</label>
+                            <span class="error hidden" id="lastName2Error">Por favor, introduce un apellido
+                                válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" id="dni2" name="dni2" placeholder=""><br>
+                            <label for="dni2">DNI</label>
+                            <span class="error hidden" id="dni2Error">Por favor, introduce un dni válido.</span>
+                        </div>
+                        <div class="input-field">
+                            <input type="tel2" id="tel2" name="telefono2" placeholder=""><br>
+                            <label for="tel2">Telefono</label>
+                            <span class="error hidden" id="tel2Error">Por favor, introduce un telefono válido.</span>
+                        </div>
+                    </div>
+
+                    <span id="AjustesError" class="error hidden"></span>
+                </form>
+
+                <div class="button-group">
+                    <button id="closePopupBtn3">Cancelar</button>
+                    <form id="saveChangesForm">
+                        <button type="submit">Guardar cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="principal.js"></script>
 </body>

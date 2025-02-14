@@ -40,7 +40,7 @@ body {
     left: 0;
     background: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 12px;
     padding: 8px 0;
     min-width: 150px;
     z-index: 10;
@@ -87,10 +87,23 @@ body {
     z-index: 100;
 }
 
+.popup-overlay3 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
 .popup {
     background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 9px;
     width: 90%;
     max-width: 800px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
@@ -115,7 +128,7 @@ body {
 .popup {
     background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 9px;
     min-width: 300px;
     max-height: 580px;
     overflow-y: auto;
@@ -131,12 +144,12 @@ body {
 
 .popup::-webkit-scrollbar-track {
     background: #f1f1f1; /* Color de fondo de la pista del scrollbar */
-    border-radius: 5px; /* Bordes redondeados */
+    border-radius: 19px; /* Bordes redondeados */
 }
 
 .popup::-webkit-scrollbar-thumb {
     background: #888; /* Color del scrollbar */
-    border-radius: 5px; /* Bordes redondeados */
+    border-radius: 19px; /* Bordes redondeados */
 }
 
 .popup::-webkit-scrollbar-thumb:hover {
@@ -309,16 +322,53 @@ body {
 /* Estilos para los contenedores principales */
 .main-container {
     display: flex;
-    gap: 20px; /* Espacio entre los contenedores */
-    padding: 20px;
+    gap: 100px; /* Espacio entre los contenedores */
+    padding: 100px;
 }
 
-.left-container {
-    width: 250px; /* Ancho fijo para el contenedor izquierdo */
+/* .left-container {
+    width: 250px; /* Ancho fijo para el contenedor izquierdo 
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0; /* Eliminamos el padding para que no haya huecos 
+    display: flex;
+    flex-direction: column;
+} */
+.right-container {
+    max-height: 400px; /* Altura máxima del contenedor */
+    width: 1400px;
+    overflow-y: auto; /* Habilita el scroll vertical */
+    padding: 10px; /* Espacio interno */
+    /*border: 1px solid #ccc; /* Borde opcional */
+    border-radius: 19px; /* Bordes redondeados */
+    background-color: none; /* Fondo opcional */
+}
+
+.left-container {
+    min-width: none;
+    width: 400px;
+    padding-top: 10px; /* Eliminamos el padding para que no haya huecos */
+    display: flex;
+    flex-direction: column;
+}
+
+.left-container-top {
+    background-color: #fff;
+    border-radius: 19px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 0; /* Eliminamos el padding para que no haya huecos */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-container-botton {
+    background-color: #fff;
+    border-radius: 19px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0; /* Eliminamos el padding para que no haya huecos */
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -338,15 +388,40 @@ body {
     border-left: 3px solid transparent; /* Borde izquierdo transparente */
 }
 
-/* Borde verde al pasar el ratón */
-.left-container .menu-button:hover {
-    background-color: rgba(80, 129, 42, 0.1); /* Fondo verde clarito */
+/* Estilos para el primer boton */
+.left-container .first {
+    border-top-left-radius: 19px; /*bordes redondeados */
+    border-top-right-radius: 19px;
 }
 
-/* Estilo para el botón activo */
+/* Estilos para el ultimo boton */
+.left-container .last {
+    border-bottom-right-radius: 19px; /* bordes redondeados */
+    border-bottom-left-radius: 19px;
+}
+
+/* Borde verde al pasar el ratón */
+.left-container .menu-button:hover {
+    background-color: #bacbcf7a; /* Fondo verde clarito */
+    border-radius: 0;
+}
+
+/* Borde redondito primero */
+.left-container .first:hover {
+    border-top-left-radius: 19px; /*bordes redondeados */
+    border-top-right-radius: 19px;
+}
+
+/* Borde redondito segundo */
+.left-container .last:hover {
+    border-bottom-right-radius: 19px; /* bordes redondeados */
+    border-bottom-left-radius: 19px;
+}
+
+/* Estilo para el botón activo QUE LIO JJJ*/
 .left-container .menu-button.active {
-    border: 2px solid var(--success); /* Borde completo verde */
-    background-color: rgba(80, 129, 42, 0.1); /* Fondo verde clarito */
+    border: 2px solid #5D828A; /* Borde completo verde */
+    background-color: #bacbcf7a; /* Fondo verde clarito */
 }
 
 /* Eliminar el espacio entre los botones */
@@ -360,7 +435,7 @@ body {
     overflow-y: auto; /* Habilita el scroll vertical */
     padding: 10px; /* Espacio interno */
     /*border: 1px solid #ccc; /* Borde opcional */
-    border-radius: 10px; /* Bordes redondeados */
+    border-radius: 19px; /* Bordes redondeados */
     background-color: none; /* Fondo opcional */
 }
 
@@ -389,7 +464,7 @@ body {
 .notificacion {
     flex: 1; /* Ocupa el espacio restante */
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
@@ -421,5 +496,12 @@ span {
     color: #474747;
 }
 
-
-
+.solImg {
+    width: 300px;
+    height: 200px;
+    padding: 0 12px;
+    position: fixed; /* Se mantiene en la misma posición aunque hagas scroll */
+    bottom: 40px; /* Ajusta la distancia desde abajo */
+    left: 30px; /* Ajusta la distancia desde la izquierda */
+    cursor: grab;
+}
