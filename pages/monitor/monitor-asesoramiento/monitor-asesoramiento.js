@@ -66,25 +66,58 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Manejo del menú desplegable
+    
+});
+
+function cargarNombreMonitor() {
+    const nombreUsuarioElement = document.getElementById("nombre_usuario");
+
+    fetch("obtener_nombre_monitor.php")
+        .then(response => {
+            console.log('Respuesta del servidor:', response);
+            if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Datos recibidos:', data);
+            if (data.status === 'success') {
+                if (nombreUsuarioElement) {
+                    nombreUsuarioElement.textContent = `${data.nombre} ${data.apellidos}`;
+                }
+            } else {
+                console.error('Error al cargar el nombre del monitor:', data.message || 'Mensaje no disponible');
+            }
+        })
+        .catch(error => {
+            console.error('Error en la solicitud fetch:', error);
+        });
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
     const menuContainer = document.querySelector(".menu-container");
     const dropdownMenu = document.getElementById("dropdownMenu");
-
-    if (menuContainer && dropdownMenu) {
-        menuContainer.addEventListener("mouseenter", function () {
-            dropdownMenu.style.display = "block";
-        });
-
-        menuContainer.addEventListener("mouseleave", function () {
-            dropdownMenu.style.display = "none";
-        });
-    }
-
-    // Manejo del botón de cierre de sesión
     const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", function () {
-            window.location.href = "../../web/home/inicio.html";
-        });
-    }
+   
+
+    // Cargar el nombre del monitor al iniciar la página
+    cargarNombreMonitor();
+
+    // Mostrar y ocultar el menú desplegable
+    menuContainer?.addEventListener("mouseenter", () => {
+        dropdownMenu.style.display = "block";
+    });
+
+    menuContainer?.addEventListener("mouseleave", () => {
+        dropdownMenu.style.display = "none";
+    });
+
+    // Redirección al hacer clic en el botón de logout
+    logoutBtn?.addEventListener("click", () => {
+        window.location.href = "../../web/home/inicio.html";
+    });
+
+   
 });
+
