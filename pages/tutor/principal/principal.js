@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById("menuBtn");
     const menu = document.getElementById("menu");
     const popupOverlay = document.getElementById("popupOverlay");
+    const popupOverlayHijo = document.getElementById("popupOverlay2");
 
     function cargarNombre(nombre, apellidos) {
         const usuario = document.getElementById('nombre_tutor');
@@ -85,6 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Manejar el clic del botón "Borrar cuenta"
+    document.getElementById('closeAccountBtn').addEventListener('click', function (event) {
+        event.preventDefault(); // Evitar cualquier comportamiento por defecto
+        window.location.href = '../../web/home/logIn.html'; // Te lleva al iniciar sesión
+    });
+
     menuBtn.addEventListener('click', () => {
         menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
     });
@@ -119,6 +126,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("closePopupBtn").addEventListener("click", function () {
         document.querySelector(".popup-overlay").style.display = "none";
+    });
+
+    // Cerrar popup si se hace clic fuera de él
+    popupOverlayHijo.addEventListener("click", (e) => {
+        if (e.target === popupOverlayHijo) {
+            popupOverlayHijo.style.display = "none";
+        }
+    });
+
+    document.getElementById("newChildBtn").addEventListener("click", function () {
+        document.querySelector(".popup-overlay2").style.display = "flex";
+    });
+
+    document.getElementById("closePopupBtn2").addEventListener("click", function () {
+        document.querySelector(".popup-overlay2").style.display = "none";
     });
 
     // Función para obtener los datos del tutor
@@ -264,95 +286,127 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Script para manejar los botones del contenedor izquierdo
-document.querySelectorAll('.left-container .menu-button').forEach(button => {
-    button.addEventListener('click', function () {
-        const buttonText = this.textContent;
-        const rightContainer = document.querySelector('.right-container');
+    // Script para manejar los botones del contenedor izquierdo
+    document.querySelectorAll('.left-container .menu-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const buttonText = this.textContent;
+            const rightContainer = document.querySelector('.right-container');
 
-        // Limpia el contenido del contenedor derecho
-        rightContainer.innerHTML = '';
+            // Limpia el contenido del contenedor derecho
+            rightContainer.innerHTML = '';
 
-        // Maneja cada opción según el botón pulsado
-        switch (buttonText) {
-            case 'General':
-                cargarNotificaciones(rightContainer);
-                break;
-            case 'Nombre Hijo':
-                rightContainer.innerHTML = '<h2>Contenido de Nombre Hijo</h2>';
-                break;
-            case 'Añadir otro Hijo':
-                rightContainer.innerHTML = '<h2>Contenido de Añadir otro Hijo</h2>';
-                break;
-            case 'Horario':
-                rightContainer.innerHTML = '<h2>Contenido de Horario</h2>';
-                break;
-            default:
-                rightContainer.innerHTML = '<h2>Selecciona una opción</h2>';
-        }
+            // Maneja cada opción según el botón pulsado
+            switch (buttonText) {
+                case 'General':
+                    cargarNotificaciones(rightContainer);
+                    break;
+                case 'Nombre Hijo':
+                    rightContainer.innerHTML = '<h2>Contenido de Nombre Hijo</h2>';
+                    break;
+                case 'Añadir otro Hijo':
+                    rightContainer.innerHTML = '<h2>Contenido de Añadir otro Hijo</h2>';
+                    break;
+                case 'Horario':
+                    rightContainer.innerHTML = '<h2>Contenido de Horario</h2>';
+                    break;
+                default:
+                    rightContainer.innerHTML = '<h2>Selecciona una opción</h2>';
+            }
+        });
     });
-});
 
-// Función para obtener y mostrar las notificaciones
-function cargarNotificaciones(container) {
-    fetch('obtenerNotificaciones.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success' && Array.isArray(data.data)) {
-                const notificaciones = data.data;
-                // Limpiamos el contenedor antes de añadir las notificaciones
-                container.innerHTML = '';
+    function cargarNotificaciones(container) {
+        fetch('obtenerNotificaciones.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success' && Array.isArray(data.data)) {
+                    const notificaciones = data.data;
+                    // Limpiamos el contenedor antes de añadir las notificaciones
+                    container.innerHTML = '';
 
-                notificaciones.forEach(notificacion => {
-                    const notificacionDiv = document.createElement('div');
-                    notificacionDiv.className = 'notificacion';
+                    // Añadir la clase para el scroll
+                    container.classList.add('notificaciones-container');
 
-                    // Botón para cerrar la notificación
-                    const closeButton = document.createElement('button');
-                    closeButton.textContent = 'X';
-                    closeButton.className = 'close-button';
-                    closeButton.addEventListener('click', () => {
-                        notificacionDiv.remove();
+                    notificaciones.forEach(notificacion => {
+                        const notificacionDiv = document.createElement('div');
+                        notificacionDiv.className = 'notificacion';
+
+                        // Botón para cerrar la notificación
+                        const closeButton = document.createElement('button');
+                        closeButton.textContent = 'x';
+                        closeButton.className = 'close-button';
+                        closeButton.addEventListener('click', () => {
+                            notificacionDiv.remove();
+                        });
+
+                        // Título de la notificación
+                        const titulo = document.createElement('h4');
+                        titulo.textContent = notificacion.titulo;
+
+                        // Mensaje de la notificación
+                        const mensaje = document.createElement('p');
+                        mensaje.textContent = notificacion.mensaje;
+
+                        // Fecha de la notificación
+                        const fecha = document.createElement('span');
+                        fecha.textContent = notificacion.fecha;
+                        fecha.style.fontWeight = 'bold';
+                        fecha.style.float = 'right';
+
+                        // Añade los elementos al div de la notificación
+                        notificacionDiv.appendChild(closeButton);
+                        notificacionDiv.appendChild(titulo);
+                        notificacionDiv.appendChild(mensaje);
+                        notificacionDiv.appendChild(fecha);
+
+                        // Añade la notificación al contenedor
+                        container.appendChild(notificacionDiv);
                     });
 
-                    // Título de la notificación
-                    const titulo = document.createElement('h4');
-                    titulo.textContent = notificacion.titulo;
+                    // Añadir el mensaje de "No hay más actualizaciones recientes"
+                    const noMasActualizaciones = document.createElement('p');
+                    noMasActualizaciones.textContent = 'No hay más actualizaciones recientes';
+                    container.appendChild(noMasActualizaciones);
 
-                    // Mensaje de la notificación
-                    const mensaje = document.createElement('p');
-                    mensaje.textContent = notificacion.mensaje;
-
-                    // Fecha de la notificación
-                    const fecha = document.createElement('span');
-                    fecha.textContent = notificacion.fecha;
-                    fecha.style.fontWeight = 'bold';
-                    fecha.style.float = 'right';
-
-                    // Añade los elementos al div de la notificación
-                    notificacionDiv.appendChild(closeButton);
-                    notificacionDiv.appendChild(titulo);
-                    notificacionDiv.appendChild(mensaje);
-                    notificacionDiv.appendChild(fecha);
-
-                    // Añade la notificación al contenedor
-                    container.appendChild(notificacionDiv);
-                });
-
-                // Añadir el mensaje de "No hay más actualizaciones recientes"
-                const noMasActualizaciones = document.createElement('p');
-                noMasActualizaciones.textContent = 'No hay más actualizaciones recientes';
-                container.appendChild(noMasActualizaciones);
-
-            } else {
-                console.error('La respuesta del servidor no contiene un array de notificaciones:', data);
+                } else {
+                    console.error('La respuesta del servidor no contiene un array de notificaciones:', data);
+                    container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener las notificaciones:', error);
                 container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
-            }
-        })
-        .catch(error => {
-            console.error('Error al obtener las notificaciones:', error);
-            container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
-        });
-}
+            });
+    }
+
+        // Selecciona todos los botones del menú izquierdo
+        const menuButtons = document.querySelectorAll('.left-container .menu-button');
+
+        // Marca el primer botón como activo al cargar la página
+        if (menuButtons.length > 0) {
+            menuButtons[0].classList.add('active');
+            // Aquí puedes añadir la lógica para cargar el contenido correspondiente
+            const rightContainer = document.querySelector('.right-container');
+
+            // Limpia el contenido del contenedor derecho
+            rightContainer.innerHTML = '';
+            cargarNotificaciones(rightContainer);
+        }
+
+      /*   // Añade un event listener a cada botón
+        menuButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Remueve la clase 'active' de todos los botones
+                menuButtons.forEach(btn => btn.classList.remove('active'));
+                // Añade la clase 'active' al botón clickeado
+                this.classList.add('active');
+
+                // Aquí puedes añadir la lógica para cargar el contenido correspondiente
+                const buttonText = this.textContent;
+                const rightContainer = document.querySelector('.right-container');
+                rightContainer.innerHTML = `<h2>Contenido de ${buttonText}</h2>`;
+            });
+        }); */
+    
 
 });
