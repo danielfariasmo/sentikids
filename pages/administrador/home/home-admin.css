@@ -1,7 +1,8 @@
 :root {
-  --blanco: #fff;
+  --blanco: #fefefe;
   --negro: #000;
   --fuente: 'Poppins', sans-serif;
+  --sombra: rgba(255, 255, 255, 0.6);
 }
 
 @font-face {
@@ -14,34 +15,57 @@
   src: url(../../../assets/fonts/Poppins-Bold.ttf);
 }
 
+/*----------------------------------------
+GENERAL
+-----------------------------------------*/
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins-regular';
-  background: white;
-  color: black;
+  background: var(--blanco);
+  color: var(--negro);
   overflow-x: hidden;
+}
+
+h1,h2,h3 {
+  font-family: 'Poppins-bold';
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 /*----------------------------------------
 HEADER
 -----------------------------------------*/
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4px 62px;
   height: 96px;
-  background: #FFD6D0;
+  background: var(--negro);
   box-sizing: border-box;
+  position: fixed; 
+  top: 0;          
+  left: 0;         
+  width: 100%;     
+  z-index: 1000;   
 }
 
 .logo {
-  width: 258px;
-  height: 68px;
+  width: 150px;
+  height: 40px;
 }
 
+/*----------------------------------------
+MENÚ HAMBURGUESA
+-----------------------------------------*/
 .hamburger {
   display: none;
   flex-direction: column;
@@ -55,8 +79,12 @@ HEADER
   display: block;
   width: 100%;
   height: 3px;
-  background: black;
+  background: var(--blanco);
 }
+
+/*----------------------------------------
+MENÚ
+-----------------------------------------*/
 
 .menu ul {
   display: flex;
@@ -68,14 +96,21 @@ HEADER
 
 .menu a {
   text-decoration: none;
-  color: black;
+  color: var(--blanco);
   font-size: 20px;
-  font-weight: 400;
 }
 
+.menu a:hover {
+  text-shadow: 2px 2px 5px var(--sombra);
+  font-size: 22px;
+}
+
+/*----------------------------------------
+Primera section
+-----------------------------------------*/
 .welcome-section {
   padding: 28px 0;
-  margin-top: 20px;
+  margin-top: 96px; 
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
@@ -86,7 +121,6 @@ HEADER
   font-size: 56px;
   font-weight: 700;
   line-height: 78.4px;
-  color: #CD4533;
   margin: 0;
 }
 
@@ -97,37 +131,39 @@ HEADER
   margin: 0;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
+/*----------------------------------------
+Segunda section
+-----------------------------------------*/
 .section-title {
   width: 100%;
-  background: #FFD6D0;
+  background: var(--negro);
   text-align: center;
   padding: 20px 0;
   box-sizing: border-box;
 }
 
 .section-title h2 {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 700;
-  line-height: 69px;
+  line-height: 70px;
   letter-spacing: 4.32px;
-  color: #CD4533;
+  color: var(--blanco);
   margin: 0;
 }
 
+/*----------------------------------------
+Cartas
+-----------------------------------------*/
 .content-section {
-  padding: 0 159px;
+  padding: 0 160px;
   margin-top: 20px;
+  margin-bottom: 50px;
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  gap: 39px;
+  gap: 24px;
   box-sizing: border-box;
 }
 
@@ -143,7 +179,7 @@ a {
 }
 
 .text h3 {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 69px;
   letter-spacing: 3.24px;
@@ -151,17 +187,20 @@ a {
 }
 
 .text p {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 58px;
   margin: 0;
 }
 
+/*----------------------------------------
+FOOTER
+-----------------------------------------*/
 .footer {
   width: 100%;
   max-width: 100%;
-  padding: 67px 50px 81px;
-  background: black;
+  padding: 30px 20px;
+  background: var(--negro);
   text-align: center;
   box-sizing: border-box;
 }
@@ -179,18 +218,21 @@ a {
 .footer-line {
   width: 100%;
   height: 0;
-  border: 2px solid white;
+  border: 1px solid var(--blanco);
 }
 
 .footer p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 21px;
-  color: white;
+  color: var(--blanco);
   opacity: 0.5;
   margin: 0;
 }
 
+/*----------------------------------------
+RESPONSIVE
+-----------------------------------------*/
 @media (max-width: 768px) {
   .header {
     height: auto;
@@ -211,14 +253,14 @@ a {
     padding: 20px;
   }
   .welcome-section h1 {
-    font-size: 36px;
+    font-size: 30px;
   }
   .welcome-section p {
     font-size: 18px;
-    line-height: 24px;
+    line-height: 30px;
   }
   .section-title h2 {
-    font-size: 28px;
+    font-size: 24px;
   }
   .content-section {
     padding: 0 20px;
@@ -226,16 +268,24 @@ a {
   .content-item {
     flex-direction: column;
     text-align: center;
+    border-bottom: 1px solid var(--negro);
+    padding-bottom: 15px;
   }
+  
+  .content-item:last-child {
+    border-bottom: none; 
+  }
+  
   .icon {
     margin: 0 auto;
   }
   .text h3 {
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 10px;
   }
   .text p {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 28px;
   }
-}
+}  
