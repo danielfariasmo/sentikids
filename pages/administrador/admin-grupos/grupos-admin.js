@@ -150,6 +150,7 @@ $(document).ready(function () {
         });
     });
 });
+
 /**------------------------------------
  * MAS INFORMACION
  --------------------------------------*/
@@ -199,7 +200,6 @@ function fetchListado(idGrupo) {
       },
       error: function () {
         showCustomAlert('Error al cargar los datos de los niños.');
-        console.error('Error al cargar los datos de los niños.');
       }
     });
   }
@@ -213,9 +213,6 @@ $(document).on('click', '.info-link', function (event) {
 
     const idGrupo = $(this).data('id');
     const nombreGrupo = $(this).data('nombre');
-
-    console.log('ID de grupo:', idGrupo);
-    console.log('Nombre de grupo:', nombreGrupo);
 
     sessionStorage.setItem('id_grupo', idGrupo);
     sessionStorage.setItem('nombre', nombreGrupo);
