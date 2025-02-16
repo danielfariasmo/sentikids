@@ -1,22 +1,25 @@
-/**
+/**------------------------------------
  * Utilidad de menú "hamburguesa"
- */
+ --------------------------------------*/
 function toggleMenu() {
     $('.menu ul').toggleClass('active');
 }
 
-/**Alert personalizado */
+/**------------------------------------
+ * Alert personalizado
+ --------------------------------------*/
 function showCustomAlert(message) {
     $('#alert-message').text(message);
     $('#custom-alert').fadeIn();
 }
 
-// Cerrar la alerta cuando se presione el botón
 $('#close-alert').on('click', function () {
     $('#custom-alert').fadeOut();
 });
 
-/**Relleno de tabla con AJAX*/
+/**------------------------------------
+ * Relleno de tabla con AJAX
+ --------------------------------------*/
 $(document).ready(function () {
     const searchInput = $('#search-input');
     fetchHijo();
@@ -91,6 +94,7 @@ $(document).ready(function () {
             return;
         }
 
+        // Enviar la actualización al servidor
         $.ajax({
             url: 'cambiar-grupo-ninhos.php',
             type: 'POST',
@@ -108,8 +112,10 @@ $(document).ready(function () {
     });
 });
 
-/*-------------------MAS INFORMACION-----------------*/
-/**Relleno de titulo */
+/**------------------------------------
+ * MAS INFORMACION
+ --------------------------------------*/
+//Relleno de titulo
 function obtenerParametro(nombre) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(nombre);
@@ -129,6 +135,7 @@ $(document).ready(function () {
     } 
 });
 
+// Función para cargar del tutor usando el ID del niño
 function fetchPadres(idHijo) {
     $.ajax({
         url: 'padres-admin.php',
@@ -156,7 +163,7 @@ function fetchPadres(idHijo) {
     });
 }
 
-// Función para cargar los otros tutores usando el ID del tutor
+// Función para cargar los otros tutores usando el ID del niño
 function fetchOtrosTutores(idHijo) {
     $.ajax({
         url: 'otroTutor-ninho-admin.php',
@@ -187,10 +194,12 @@ function fetchOtrosTutores(idHijo) {
     });
 }
 
-/*-------------------ALMACENAR EN SESSION STORAGE-----------------*/
+/**------------------------------------
+ * ALMACENAR EN SESSION STORAGE
+ --------------------------------------*/
 // Al hacer clic en el enlace, guardar el id_hijo y nombre en sessionStorage
 $(document).on('click', '.info-link', function (event) {
-    event.preventDefault();  // Detiene la redirección inmediata
+    event.preventDefault(); 
 
     const idHijo = $(this).data('id');
     const nombreHijo = $(this).data('nombre');

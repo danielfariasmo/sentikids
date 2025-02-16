@@ -1,27 +1,30 @@
-/**
+/**------------------------------------
  * Utilidad de menú "hamburguesa"
- */
+ --------------------------------------*/
 function toggleMenu() {
   $('.menu ul').toggleClass('active');
 }
 
-/**Alert personalizado */
+/**------------------------------------
+ * Alert personalizado
+ --------------------------------------*/
 function showCustomAlert(message) {
   $('#alert-message').text(message);
   $('#custom-alert').fadeIn();
 }
 
-// Cerrar la alerta cuando se presione el botón
 $('#close-alert').on('click', function () {
   $('#custom-alert').fadeOut();
 });
 
-/**Relleno de tabla con AJAX*/
+/**------------------------------------
+ * Relleno de tabla con AJAX
+ --------------------------------------*/
 $(document).ready(function () {
-  console.log("document ready");
   const searchInput = $('#search-input');
   fetchTutor();
 
+  // Relleno de tabla
   function fetchTutor() {
     $.ajax({
       url: 'tutores-admin.php',
@@ -79,12 +82,12 @@ $(document).ready(function () {
 
   // Capturar valor anterior por si hay un error.
   let previousValue = '';
+
   // Actualizar el valor de "Alta" cuando el usuario edite el campo
   $(document).on('change', '.pagado-input', function () {
     const idTutor = $(this).data("id");
     let pagadoValue = $(this).val().toUpperCase();
 
-    // Validación para permitir solo "SI" o "NO"
     if (pagadoValue !== "SI" && pagadoValue !== "NO") {
       showCustomAlert('Por favor, ingresa "SI" o "NO".');
       $(this).val(previousValue);
@@ -115,15 +118,16 @@ $(document).ready(function () {
 
 });
 
-/*-------------------MAS INFORMACION-----------------*/
-/**Relleno de titulo */
+/**------------------------------------
+ * MAS INFORMACION
+ --------------------------------------*/
+//Relleno de titulo
 function obtenerParametro(nombre) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(nombre);
 }
 
 $(document).ready(function () {
-  // Recuperar los datos desde sessionStorage
   const nombreTutor = sessionStorage.getItem('nombre_tutor');
   const idTutor = sessionStorage.getItem('id_tutor');
 
@@ -134,9 +138,7 @@ $(document).ready(function () {
   if (idTutor) {
     fetchNinos(idTutor);
     fetchOtrosTutores(idTutor);
-  } else {
-    console.error('No se encontró el id_tutor en sessionStorage');
-  }
+  } 
 });
 
 // Función para cargar los niños usando el ID del tutor
@@ -165,7 +167,6 @@ function fetchNinos(idTutor) {
     },
     error: function () {
       showCustomAlert('Error al cargar los datos de los niños.');
-      console.error('Error al cargar los datos de los niños.');
     }
   });
 }
@@ -177,7 +178,6 @@ function fetchOtrosTutores(idTutor) {
     type: 'POST',
     data: { id_tutor: idTutor },
     success: function (response) {
-      console.log('Datos recibidos de otros tutores:', response);  // Verifica los datos que recibes
       let otrosTutores = JSON.parse(response);
       let template = '';
 
@@ -198,18 +198,18 @@ function fetchOtrosTutores(idTutor) {
     },
     error: function () {
       showCustomAlert('Error al cargar los datos de los otros tutores.');
-      console.error('Error al cargar los datos de los otros tutores.');
     }
   });
 }
 
-/*-------------------ALMACENAR EN SESSION STORAGE-----------------*/
+/**------------------------------------
+ * ALMACENAR EN SESSION STORAGE
+ --------------------------------------*/
 // Al hacer clic en el enlace, guardar el id_tutor y nombre en sessionStorage
 $(document).on('click', '.info-link', function (event) {
   const idTutor = $(this).data('id');
   const nombreTutor = $(this).data('nombre');
 
-  // Guardar en sessionStorage
   sessionStorage.setItem('id_tutor', idTutor);
   sessionStorage.setItem('nombre_tutor', nombreTutor);
 });
