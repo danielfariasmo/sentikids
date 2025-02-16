@@ -1,46 +1,49 @@
-/** Utilidad de menú "hamburguesa" */
+/**------------------------------------
+ * Utilidad de menú "hamburguesa"
+ --------------------------------------*/
 function toggleMenu() {
   $('.menu ul').toggleClass('active');
 }
 
-/**Alert personalizado */
+/**------------------------------------
+ * Alert personalizado
+ --------------------------------------*/
 function showCustomAlert(message) {
   $('#alert-message').text(message);
   $('#custom-alert').fadeIn();
 }
 
-// Cerrar la alerta cuando se presione el botón
 $('#close-alert').on('click', function () {
   $('#custom-alert').fadeOut();
 });
 
-/** Confirmación de eliminación */
+/**------------------------------------
+ * Alert de borrar
+ --------------------------------------*/
 function showDeleteConfirm(message, onConfirm, onCancel) {
   $('#confirm-message').text(message);
   $('#delete-confirm').fadeIn();
 
   $('#confirm-delete').on('click', function () {
-    onConfirm();  // Ejecutar la acción de confirmación
-    $('#delete-confirm').fadeOut();  // Cerrar la alerta
+    onConfirm();  
+    $('#delete-confirm').fadeOut();  
   });
 
   $('#cancel-delete').on('click', function () {
-    onCancel();  // Ejecutar la acción de cancelación
-    $('#delete-confirm').fadeOut();  // Cerrar la alerta
+    onCancel();  
+    $('#delete-confirm').fadeOut();  
   });
 }
 
-// Cerrar la alerta de confirmación al hacer clic fuera
 $('#delete-confirm').on('click', function (e) {
   if (e.target === this) {
     $('#delete-confirm').fadeOut();
   }
 });
 
-
-/**
-* Funcionalidad para el pop up
-*/
+/**------------------------------------
+ * FUNCIONALIDAD PARA EL POP UP
+ --------------------------------------*/
 function openModal(modalId) {
   $('#' + modalId).css('display', 'block');
 }
@@ -69,19 +72,18 @@ $(window).on('click', function (event) {
   });
 });
 
-/** 
-* Validación de formularios 
-*/
-
+/**------------------------------------
+ * VALIDACIONES DEL FORMULARIO
+ --------------------------------------*/
 // Expresiones regulares para validación
 const expressions = {
-  name: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, // Letras, con espacios, mínimo 2 y máximo 40 (incluye hasta 4 espacios).
-  surname: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, // Letras, con espacios, mínimo 2 y máximo 40 (incluye hasta 4 espacios).
-  phone: /^\d{9}$/, // Teléfono de 9 dígitos.
+  name: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, 
+  surname: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, 
+  phone: /^\d{9}$/, 
   dni: /^[0-9]{8}[A-Za-z]$/,
-  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Formato de correo.
-  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-  password: /^.{4,12}$/ // 4 a 12 digitos.
+  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 
+  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, 
+  password: /^.{4,12}$/ 
 };
 
 // Campos del formulario
@@ -110,6 +112,7 @@ const validateField = (expression, input, field) => {
   }
 };
 
+// Función para validar repetir contraseña
 const validarPassword2 = () => {
 	const $inputPassword1 = $('#password');
 	const $inputPassword2 = $('#password2');
@@ -161,16 +164,15 @@ $('.form__input').on('keyup blur', function (e) {
 });
 
 // Manejo del envío del formulario
-// Manejo del envío del formulario
 $(".popup_body").on("submit", function (e) {
   e.preventDefault();
   let formId = $(this).attr("id");
   let errorMessageId = formId === "form-add" ? "#form__message-add" : "#form__message-delete";
   let successMessageId = formId === "form-add" ? "#form__success-message-add" : "#form__success-message-delete";
-  const formElement = this;  // Guardar el contexto del formulario
+  const formElement = this;
 
   if (Object.values(fields).every(Boolean)) {
-    const formData = new FormData(formElement); // Obtener datos del formulario
+    const formData = new FormData(formElement); 
 
     $.ajax({
       url: 'agregar-monitor-admin.php',
@@ -179,21 +181,18 @@ $(".popup_body").on("submit", function (e) {
       processData: false,
       contentType: false,
       success: function (response) {
-        console.log(response); // Para verificar la respuesta del servidor
         if (response.includes('Error')) {
           $(errorMessageId).addClass("form__message-active");
         } else {
-          formElement.reset(); // Limpiar el formulario
-          $(".form__group-correct").removeClass("form__group-correct"); // Limpiar los estilos de éxito
+          formElement.reset(); 
+          $(".form__group-correct").removeClass("form__group-correct"); 
 
           $(successMessageId).addClass("form__success-message-active");
           setTimeout(() => {
             $(successMessageId).removeClass("form__success-message-active");
           }, 5000);
-
           $(errorMessageId).removeClass("form__message-active");
-
-          fetchMonitor(); // Actualizar la tabla después de agregar el monitor
+          fetchMonitor(); 
         }
       },
       error: function () {
@@ -205,13 +204,14 @@ $(".popup_body").on("submit", function (e) {
   }
 });
 
-
-/**Relleno de tabla con AJAX*/
+/**------------------------------------
+ * Relleno de tabla con AJAX
+ --------------------------------------*/
 $(document).ready(function () {
   const searchInput = $('#search-input');
   fetchMonitor();
 
-  /*Función para filtrar la tabla*/
+  //Función para filtrar la tabla*
   searchInput.on('input', function () {
     const searchTerm = searchInput.val().toLowerCase();
 
@@ -229,7 +229,7 @@ $(document).ready(function () {
     });
   });
 
-  /**Funcion para cambiar de img "papelera" */
+  //Funcion para cambiar de img "papelera" 
   window.changeImage = function (img) {
     img.src = '../../../assets/icon/papelera2.png';
   }
@@ -266,7 +266,6 @@ $(document).ready(function () {
     );
   });
 
-  // Cargar los monitores inicialmente
   fetchMonitor();
 });
 

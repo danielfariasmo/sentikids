@@ -11,15 +11,18 @@
 </head>
 
 <body>
+  <!-- HEADER -->
   <header class="header">
     <a href="../home/home-admin.html">
-      <img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo">
+      <img src="../../../assets/img/logo_negro.png" alt="Logo" class="logo">
     </a>
     <div class="hamburger" onclick="toggleMenu()">
       <span></span>
       <span></span>
       <span></span>
     </div>
+
+    <!-- MENU -->
     <nav class="menu">
       <ul>
         <li><a href="../admin-tutores/tutores-admin.html">Tutores</a></li>
@@ -29,16 +32,18 @@
       </ul>
     </nav>
   </header>
+
+  <!-- PRIMER SECTION -->
   <div class="section-title">
     <h1>Monitores</h1>
   </div>
 
-  <!--Barra de busqueda-->
+  <!-- BARRA DE BUSQUEDA -->
   <div class="search-container">
     <input type="text" id="search-input" placeholder="Buscar por nombre y apellido..." />
   </div>
 
-  <!--Tabala-->
+  <!-- TABLA -->
   <div class="container">
     <div class="content">
       <table>
@@ -61,7 +66,7 @@
   <!--Alert personalizado-->
   <div id="custom-alert" style="display:none;">
     <div class="alert-content">
-      <h3>SentiKids dice:</h3>
+      <h2>SentiKids dice:</h2>
       <p id="alert-message"></p>
       <button id="close-alert">Cerrar</button>
     </div>
@@ -70,27 +75,20 @@
   <!-- Confirmación de eliminación personalizada -->
   <div id="delete-confirm" style="display:none;">
     <div class="confirm-content">
-      <h3>Confirmación</h3>
+      <h2>Confirmación</h2>
       <p id="confirm-message"></p>
       <button id="confirm-delete">Sí, eliminar</button>
       <button id="cancel-delete">Cancelar</button>
     </div>
   </div>
 
-  <!-- Pop up: agregar monitor -->
+  <!-- BOTON -->
   <div class="button-container">
     <button class="myBtn button add-button" data-modal-id="modal1">Agregar Monitor</button>
   </div>
 
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-line"></div>
-      <p class="footer-text">Copyright © 2025. All Right Reserved.</p>
-    </div>
-  </footer>
 
   <!-- Formulario -->
   <div id="modal1" class="modal">
@@ -101,6 +99,7 @@
       </div>
       <div class="modal-body">
         <form class="popup_body" id="form-add">
+
           <!--Group: name-->
           <div class="form__group" id="group__name">
             <label for="name" class="form__label">Nombre:</label>
@@ -157,42 +156,42 @@
           </div>
 
           <!--Grupo: usuario-->
-			<div class="form__group" id="group__usuario">
-				<label for="usuario" class="form__label">Usuario</label>
-				<div class="form__input-group">
-					<input type="text" class="form__input" name="usuario" id="usuario" placeholder="john123">
-					<img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
-				</div>
-				<p class="form__input-error">
-					El usuario tiene que ser de 4 a 16 dígitos y solo puede contener números, letras y guión bajo.
-				</p>
-			</div>
+          <div class="form__group" id="group__usuario">
+            <label for="usuario" class="form__label">Usuario</label>
+            <div class="form__input-group">
+              <input type="text" class="form__input" name="usuario" id="usuario" placeholder="john123">
+              <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+            </div>
+            <p class="form__input-error">
+              El usuario tiene que ser de 4 a 16 dígitos y solo puede contener números, letras y guión bajo.
+            </p>
+          </div>
 
-      <!--Grupo: contraseña-->
-			<div class="form__group" id="group__password">
-				<label for="password" class="form__label">Contraseña</label>
-				<div class="form__input-group">
-					<input type="password" class="form__input" name="password" id="password">
-					<img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
-				</div>
-				<p class="form__input-error">
-					La contaseña tiene que ser de 4 a 12 dígitos.
-				</p>
-			</div>
+          <!--Grupo: contraseña-->
+          <div class="form__group" id="group__password">
+            <label for="password" class="form__label">Contraseña</label>
+            <div class="form__input-group">
+              <input type="password" class="form__input" name="password" id="password">
+              <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+            </div>
+            <p class="form__input-error">
+              La contaseña tiene que ser de 4 a 12 dígitos.
+            </p>
+          </div>
 
-			<!--Grupo: contraseña 2-->
-			<div class="form__group" id="group__password2">
-				<label for="password2" class="form__label">Repetir contraseña</label>
-				<div class="form__input-group">
-					<input type="password" class="form__input" name="password2" id="password2">
-					<img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
-				</div>
-				<p class="form__input-error">
-					Ambas contraseñas deben ser iguales.
-				</p>
-			</div>
+          <!--Grupo: contraseña 2-->
+          <div class="form__group" id="group__password2">
+            <label for="password2" class="form__label">Repetir contraseña</label>
+            <div class="form__input-group">
+              <input type="password" class="form__input" name="password2" id="password2">
+              <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+            </div>
+            <p class="form__input-error">
+              Ambas contraseñas deben ser iguales.
+            </p>
+          </div>
 
-          <!--Button-->
+          <!--Boton de formlario-->
           <div class="form__message" id="form__message-add">
             <p><i class="fa-solid fa-triangle-exclamation"></i><b>Error:</b> Por favor rellene el formulario
               correctamente.</p>
@@ -207,6 +206,7 @@
     </div>
   </div>
 
+  <!-- JAVASCRIPT -->
   <script src="monitores-admin.js"></script>
 </body>
 
