@@ -1,107 +1,144 @@
-/* Estilos generales */
+:root {
+    --blanco: #fefefe;
+    --negro: #000;
+    --fuente: 'Poppins', sans-serif;
+    --sombra: rgba(255, 255, 255, 0.6);
+    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    --principal: #80C4D3;
+    --secundario: #5A9EB3;
+    --blancoSecundario: #e0e0e0;
+    --informacion: #10BFFB;
+    --sombraInformacion: rgba(16, 191, 251, 0.5);
+    --sombraOscura: rgba(0, 0, 0, 0.5);
+    --sombraOscura2: rgba(0, 0, 0, 0.2);
+    --rojoPrincipal: #CD4533;
+    --rojoSecundario: #A32F23;
+    --grisClaro: #949494;
+    --negroClaro: #333;
+}
+
+@font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+}
+
+/*----------------------------------------
+  GENERAL
+  -----------------------------------------*/
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: white;
-    color: black;
+    font-family: 'Poppins-regular';
+    background: var(--blanco);
+    color: var(--negro);
     overflow-x: hidden;
 }
 
-/* Header */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins-bold';
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/*----------------------------------------
+HEADER
+-----------------------------------------*/
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 4px 62px;
     height: 96px;
-    background: #FFD6D0;
+    background: var(--negro);
     box-sizing: border-box;
 }
 
 .logo {
-    width: 258px;
-    height: 68px;
+    width: 150px;
+    height: 40px;
 }
 
+/*----------------------------------------
+Titulo
+-----------------------------------------*/
 .section-title {
     font-size: 30px;
     font-weight: 700;
-    color: #CD4533;
+    color: var(--blancoSecundario);
     text-align: center;
 }
 
-/* Contenedor principal */
+/*----------------------------------------
+Tabla
+-----------------------------------------*/
+/**Contenedor Principal */
 .container {
-    width: 1440px;
+    width: 100%;
+    max-width: 1440px;
     margin: 0 auto;
+    margin-top: 10px;
     position: relative;
-    background: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: var(--blanco);
+    box-shadow: 0px 4px 4px var(--sombraOscura2);
+    overflow-x: auto;
 }
 
-/* Select y Tabla */
+/* Contenedor de tabla */
 .content {
-    margin-top: 10px;
-    background: white;
-    padding: 20px;
-}
-
-.select-container {
-    margin-bottom: 20px;
-}
-
-.select-container label {
-    font-size: 20px;
-    font-weight: 500;
-    color: black;
-}
-
-.select-container select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #80C4D3;
-    border-radius: 5px;
-    background: white;
-    color: black;
-}
-
-/* Tabla de tutores */
-.content {
-    margin-top: 10px;
     margin-bottom: 30px;
-    background: white;
+    background: var(--blanco);
     padding: 20px;
-  }
-  
-  table {
+}
+
+table {
     width: 100%;
-    border-collapse: separate; 
-    border-spacing: 0 10px; 
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    min-width: 600px; 
   }
   
   .table-header th {
-    padding: 15px;
-    background-color: #80C4D3; 
-    border-bottom: 2px solid; 
-    text-align: center; 
-    font-weight: bold; 
+    padding: 10px;
+    background-color: var(--principal);
+    border-bottom: 2px solid;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px; 
   }
   
   tbody td {
-    padding: 10px; 
-    text-align: center; 
-    background-color: #fff; 
-    border-bottom: 1px solid #e0e0e0; 
+    padding: 8px; 
+    text-align: center;
+    background-color: var(--blanco);
+    border-bottom: 1px solid var(--blancoSecundario);
+    font-size: 14px; 
   }
   
   tbody tr:last-child td {
-    border-bottom: none; 
+    border-bottom: none;
   }
-  
 
-/* Botones */
+/*----------------------------------------
+BOTONES
+-----------------------------------------*/
 .button-container {
     display: flex;
     justify-content: center;
@@ -117,85 +154,82 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     cursor: pointer;
     border: none;
+    font-family: 'Poppins-regular';
 }
 
+/*BTN: Volver a Grupo*/
 .sin-button {
-    background-color: white;
-    color: black;
-    border: 2px solid black;
+    background-color: var(--blanco);
+    color: var(--negro);
+    border: 2px solid var(--negro);
+    transition: all 0.3s ease;
 }
 
 .sin-button:hover {
-    background: #949494;
-    color: white;
+    background: var(--grisClaro);
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}
-
+/*BTN: Agregar Niño/a*/
 .add-button {
-    background: #80C4D3;
-    border-color: #80C4D3;
-  }
-  
-  .add-button:hover {
-    background: #10BFFB;
-  }
-
-  /*----------------------------Inscribir niño---------------------------------*/
-body {
-    font-family: Segoe UI;
+    background: var(--principal);
+    border-color: var(--principal);
+    transition: all 0.3s ease;
 }
+
+.add-button:hover {
+    background: var(--secundario);
+}
+
+/*----------------------------------------
+POP UP
+-----------------------------------------*/
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 50px; /* Ajustado para pantallas pequeñas */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 50px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--sombraOscura);
 }
 
-/* Modal Content */
 .modal-content {
     position: relative;
-    background-color: white;
+    background-color: var(--blanco);
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 90%; /* Ajustado para pantallas pequeñas */
-    max-width: 600px; /* Limita el ancho máximo */
+    border: 1px solid var(--grisClaro);
+    width: 90%;
+    max-width: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     animation-name: animatetop;
     animation-duration: 0.4s;
 }
 
-/* Add Animation */
+/* Animación */
 @keyframes animatetop {
     from {
         top: -300px;
         opacity: 0;
     }
+
     to {
         top: 0;
         opacity: 1;
     }
 }
 
-/* The Close Button */
 .close {
-    color: black;
+    color: var(--blanco);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -203,27 +237,28 @@ body {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: var(--blanco);
     text-decoration: none;
     cursor: pointer;
 }
 
 .modal-header {
     padding: 10px 16px;
-    background-color: #FFD6D0; /* Similar al color del header */
-    color: black;
+    background-color: var(--negro);
+    color: var(--blanco);
 }
 
 .modal-header h2 {
     font-size: 30px;
     font-weight: 700;
-    color: #CD4533; /* Similar al color de los títulos */
+    color: var(--blanco);
     margin: 0;
     text-align: center;
 }
 
 .modal-body {
-    background-color: #f9f9f9; /* Fondo suave */
+    background-color: var(--blancoSecundario);
+    /* Fondo suave */
     padding: 20px;
 }
 
@@ -232,11 +267,12 @@ body {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #80C4D3;
+    border: 2px solid var(--informacion);
     border-radius: 5px;
-    background: white;
-    color: black;
+    background: var(--blanco);
+    color: var(--negro);
     margin-bottom: 20px;
+    font-family: 'Poppins-regular';
 }
 
 .result-item {
@@ -246,7 +282,7 @@ body {
     padding: 10px;
     background: white;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--sombraOscura2);
 }
 
 .result-item input[type="checkbox"] {
@@ -258,7 +294,7 @@ body {
 .result-item label {
     font-size: 18px;
     font-weight: 500;
-    color: #333;
+    color: var(--negroClaro);
 }
 
 /* Estilo del botón de agregar al grupo */
@@ -270,11 +306,11 @@ body {
 }
 
 #add-child {
-    background-color: #80C4D3;
-    color: white;
-    border: 2px solid #80C4D3;
+    background-color: var(--principal);
+    color: var(--negro);
+    border: 2px solid var(--principal);
     padding: 12px 30px;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
@@ -284,34 +320,20 @@ body {
 }
 
 #add-child:hover {
-    background-color: #10BFFB;
-    border-color: #10BFFB;
+    background-color: var(--secundario);
+    border-color: var(--secundario);
 }
 
-/* Media Queries */
-@media screen and (max-width: 600px) {
-    .modal-content {
-        width: 95%; /* Ajustado para pantallas muy pequeñas */
-        padding: 10px;
-    }
-
-    .result-item label {
-        font-size: 16px;
-    }
-
-    #add-child {
-        padding: 10px;
-        font-size: 16px;
-    }
-}
-
+/*----------------------------------------
+Alerta
+-----------------------------------------*/
 #custom-alert {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--sombraOscura);
     display: none;
     align-items: center;
     justify-content: center;
@@ -319,66 +341,36 @@ body {
   }
   
   .alert-content {
-    background: #fff;
+    background: var(--blanco);
     padding: 20px;
-    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--sombraOscura2);
   }
   
-  .alert-content h3 {
+  .alert-content h2 {
     margin: 0 0 10px;
-    font-size: 1.5em;
-    color: #D0090B; 
+    color: var(--principal);
   }
   
   #close-alert {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color: #CD4533;
+    background-color: var(--principal);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-family: 'Poppins-regular';
   }
   
   #close-alert:hover {
-    background-color: #D0090B;
+    background-color: var(--secundario);
   }
 
-/* Footer */
-.footer {
-    width: 100%;
-    padding: 67px 50px 81px;
-    background: black;
-    text-align: center;
-    box-sizing: border-box;
-    margin-top: auto; /* Empuja el footer hacia abajo */
-}
-
-.footer-content {
-    max-width: 1052px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-}
-
-.footer-line {
-    width: 100%;
-    height: 0;
-    border: 2px solid white;
-}
-
-.footer-text {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 21px;
-    color: white;
-    opacity: 0.5;
-}
-/* Estilos Responsive para Tablets (768px - 1024px) */
+/*----------------------------------------
+Estilos Responsive para Tablets 
+(768px - 1024px)
+-----------------------------------------*/
 @media (min-width: 768px) and (max-width: 1024px) {
     .header {
         padding: 10px 30px;
@@ -423,68 +415,72 @@ body {
         width: 250px;
         font-size: 30px;
     }
-
-    .footer {
-        padding: 50px 20px;
-    }
-
-    .footer-text {
-        font-size: 16px;
-    }
 }
 
-/* Estilos Responsive para Móviles (hasta 768px) */
+/*----------------------------------------
+Estilos Responsive para Móviles 
+(hasta 768px)
+-----------------------------------------*/
 @media (max-width: 768px) {
     .header {
         height: auto;
         padding: 10px 20px;
     }
 
-    .container {
-        width: 100%;
-        padding: 0 20px;
-        box-sizing: border-box;
-    }
-
     .section-title {
-        font-size: 24px;
-    }
-
-    .content {
-        padding: 10px;
-    }
-
-    .table-header {
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px;
-    }
-
-    .header-item {
-        font-size: 18px;
-    }
-
-    .table-row {
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px;
-    }
-
-    .button-container {
-        flex-direction: column;
-        gap: 20px;
-    }
+        padding: 10px 0;
+      }
+      .section-title h1 {
+        font-size: 30px;
+      }
+    
+      .container {
+        padding: 0 10px; 
+      }
+    
+      .content {
+        padding: 10px; 
+      }
+    
+      table {
+        min-width: 100%; 
+      }
+    
+      .table-header th {
+        font-size: 12px; 
+        padding: 8px; 
+      }
+    
+      tbody td {
+        font-size: 12px; 
+        padding: 6px; 
+      }
 
     .button {
         width: 100%;
-        font-size: 24px;
+        font-size: 16px;
+    }
+}
+
+/*----------------------------------------
+Estilos Responsive para Pop Up
+-----------------------------------------*/
+@media screen and (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+        padding: 10px;
     }
 
-    .footer {
-        padding: 40px 20px;
+    .modal-header h2{
+        font-size: 26px;
     }
 
-    .footer-text {
+    .result-item label {
+        font-size: 16px;
+    }
+
+    #add-child {
+        padding: 10px;
         font-size: 16px;
     }
 }

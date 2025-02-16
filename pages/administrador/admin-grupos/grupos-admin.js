@@ -1,11 +1,13 @@
-/**
+/**------------------------------------
  * Utilidad de menú "hamburguesa"
- */
+ --------------------------------------*/
 function toggleMenu() {
     $('.menu ul').toggleClass('active');
 }
 
-/**Alert personalizado */
+/**------------------------------------
+ * Alert personalizado
+ --------------------------------------*/
 function showCustomAlert(message) {
     $('#alert-message').text(message);
     $('#custom-alert').fadeIn();
@@ -16,39 +18,40 @@ $('#close-alert').on('click', function () {
     $('#custom-alert').fadeOut();
 });
 
-
-/**
-* Funcionalidad para el pop up
-*/
+/**------------------------------------
+ * FUNCIONALIDAD PARA EL POP UP
+ --------------------------------------*/
 function openModal(modalId) {
-    $('#' + modalId).css('display', 'block');
-  }
-  
-  function closeModal(modalId) {
-    $('#' + modalId).css('display', 'none');
-  }
-  
-  $('.myBtn').on('click', function () {
-    var modalId = $(this).data('modal-id');
-    openModal(modalId);
-  });
-  
-  // Asignar eventos para cerrar cada modal
-  $('.close').on('click', function () {
-    var modalId = $(this).data('modal-id');
-    closeModal(modalId);
-  });
-  
-  // Cerrar modal si el usuario hace clic fuera del modal
-  $(window).on('click', function (event) {
-    $('.modal').each(function () {
-      if (event.target == this) {
-        $(this).css('display', 'none');
-      }
-    });
-  });
+  $('#' + modalId).css('display', 'block');
+}
 
-/** Relleno de tabla con AJAX */
+function closeModal(modalId) {
+  $('#' + modalId).css('display', 'none');
+}
+
+$('.myBtn').on('click', function () {
+  var modalId = $(this).data('modal-id');
+  openModal(modalId);
+});
+
+// Asignar eventos para cerrar cada modal
+$('.close').on('click', function () {
+  var modalId = $(this).data('modal-id');
+  closeModal(modalId);
+});
+
+// Cerrar modal si el usuario hace clic fuera del modal
+$(window).on('click', function (event) {
+  $('.modal').each(function () {
+    if (event.target == this) {
+      $(this).css('display', 'none');
+    }
+  });
+});
+
+/**------------------------------------
+ * Relleno de tabla con AJAX
+ --------------------------------------*/
 $(document).ready(function () {
     const searchInput = $('#search-input');
     fetchGrupo();
@@ -86,11 +89,11 @@ $(document).ready(function () {
         });
     }
 
-    /*Función para filtrar la tabla*/
+    //Función para filtrar la tabla.
     searchInput.on('input', function () {
         const searchTerm = searchInput.val().toLowerCase();
 
-        // Filtrar las filas de la tabla según el nombre y apellido
+        // Filtrar las filas de la tabla según el nombre y apellido.
         $('#table-body tr').each(function () {
             const nombre = $(this).find('.nombre').text().toLowerCase();
 
@@ -110,12 +113,12 @@ $(document).ready(function () {
 
     // Actualizar el valor de "Grupo" cuando el usuario edite el campo
     $(document).on('change', '.grupo-input', function () {
-        const idGrupo = $(this).data("id"); // Obtener el id del grupo
-        const idMonitor = $(this).val(); // Nuevo id del monitor
+        const idGrupo = $(this).data("id"); 
+        const idMonitor = $(this).val(); 
 
         // Verificar si el monitor existe en la base de datos
         $.ajax({
-            url: 'comprobar-monitor-admin.php', // PHP para verificar si el monitor existe
+            url: 'comprobar-monitor-admin.php', 
             type: 'POST',
             data: { id_monitor: idMonitor },
             success: function (response) {
@@ -128,12 +131,11 @@ $(document).ready(function () {
                         url: 'cambiar-monitor-admin.php',
                         type: 'POST',
                         data: {
-                            id_grupo: idGrupo,  // Enviar el id del grupo
-                            id_monitor: idMonitor  // Enviar el nuevo id del monitor
+                            id_grupo: idGrupo,  
+                            id_monitor: idMonitor  
                         },
                         success: function (response) {
                             showCustomAlert(response);
-                            // Actualizar la tabla después de la actualización
                             fetchGrupo();
                         },
                         error: function () {
@@ -148,9 +150,10 @@ $(document).ready(function () {
         });
     });
 });
-
-/*-------------------MAS INFORMACION-----------------*/
-/**Relleno de titulo */
+/**------------------------------------
+ * MAS INFORMACION
+ --------------------------------------*/
+//Relleno de titulo
 function obtenerParametro(nombre) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(nombre);
@@ -159,8 +162,7 @@ function obtenerParametro(nombre) {
 $(document).ready(function () {
     const nombreGrupo = sessionStorage.getItem('nombre');
     const idGrupo = sessionStorage.getItem('id_grupo');
-    
-
+  
     if (nombreGrupo) {
         $('#titulo-datos').text(nombreGrupo);
     }
@@ -168,8 +170,6 @@ $(document).ready(function () {
     if (idGrupo) {
         fetchListado(idGrupo);
     } 
-
-
 });
 
 // Función para cargar los niños usando el ID del tutor
@@ -204,10 +204,12 @@ function fetchListado(idGrupo) {
     });
   }
 
-/*-------------------ALMACENAR EN SESSION STORAGE-----------------*/
+/**------------------------------------
+ * ALMACENAR EN SESSION STORAGE
+ --------------------------------------*/
 // Al hacer clic en el enlace, guardar el id_hijo y nombre en sessionStorage
 $(document).on('click', '.info-link', function (event) {
-    event.preventDefault();  // Detiene la redirección inmediata
+    event.preventDefault();  
 
     const idGrupo = $(this).data('id');
     const nombreGrupo = $(this).data('nombre');
@@ -223,16 +225,16 @@ $(document).on('click', '.info-link', function (event) {
     }, 500); 
 });
 
-
-/**Agregar niño */
-// Buscar niños con el campo de búsqueda
+/**------------------------------------
+ * AGREGAR NIÑO/A A GRUPO
+ --------------------------------------*/
+// Buscar niños con el campo de búsqueda con AJAX
 $('#search-child').on('keyup', function () {
     let searchQuery = $(this).val();
     
     if (searchQuery.length > 0) {
-      // Realizar una petición AJAX para buscar los niños
       $.ajax({
-        url: 'buscar-nino.php',  // El archivo PHP que manejará la búsqueda
+        url: 'buscar-nino.php',  
         type: 'POST',
         data: { query: searchQuery },
         success: function (response) {
@@ -249,7 +251,6 @@ $('#search-child').on('keyup', function () {
             `;
           });
           
-          // Mostrar los resultados
           $('#search-results').html(template);
         },
         error: function () {
@@ -264,10 +265,8 @@ $('#search-child').on('keyup', function () {
   
   // Habilitar el botón "Agregar" cuando al menos un niño esté seleccionado
   $(document).on('change', '.select-child', function () {
-    // Verificar si al menos un checkbox está seleccionado
     let selectedChildren = $('.select-child:checked');
     
-    // Si hay al menos un niño seleccionado, habilitar el botón
     if (selectedChildren.length > 0) {
       $('#add-child').prop('disabled', false);
     } else {
@@ -275,9 +274,8 @@ $('#search-child').on('keyup', function () {
     }
   });
   
-  // Agregar los niños seleccionados al grupo
+// Agregar los niños seleccionados al grupo
 $('#add-child').on('click', function () {
-    // Recoger todos los niños seleccionados
     let selectedChildren = $('.select-child:checked');
     let selectedIds = [];
   
@@ -285,21 +283,21 @@ $('#add-child').on('click', function () {
         selectedIds.push($(this).data('id'));
     });
   
-    // Obtener el ID del grupo desde sessionStorage
+    // Obtener el ID del grupo 
     const groupId = sessionStorage.getItem('id_grupo');
   
-    // Realizar una petición para agregar los niños seleccionados al grupo
+    // Petición para agregar los niños seleccionados al grupo
     $.ajax({
-      url: 'agregar-al-grupo.php',  // El archivo PHP para agregar los niños
+      url: 'agregar-al-grupo.php',  
       type: 'POST',
       data: {
-        children_ids: selectedIds,  // Enviar todos los IDs seleccionados
-        group_id: groupId  // Usar el ID del grupo de sessionStorage
+        children_ids: selectedIds,  
+        group_id: groupId 
       },
       success: function (response) {
         showCustomAlert('Niños agregados al grupo correctamente');
         fetchListado(groupId);
-        $('#modal1').fadeOut();  // Cerrar el modal después de agregar
+        $('#modal1').fadeOut(); 
       },
       error: function () {
         showCustomAlert('Error al agregar los niños');
