@@ -35,9 +35,9 @@
         // Devuelve los tutores en formato JSON
         echo json_encode($tutores);
     } else {
-        echo json_encode([]); // Si no hay tutores, devuelve un arreglo vacío
+        echo json_encode([]); 
     }
 
     // Cierra la conexión
-    mysqli_close($conexion); // Se usa la variable correcta '$conexion'
+    mysqli_close($conexion); 
 ?>
