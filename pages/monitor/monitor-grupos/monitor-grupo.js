@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 data.students.forEach(student => {
                     const row = document.createElement('tr'); // Cambiar de div a tr para las filas
-                    row.className = 'row';  // Mantener la clase para el estilo
+                    row.className = 'row';  
 
                     row.innerHTML = `
                         <td>${student.nombre}</td>

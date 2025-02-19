@@ -133,7 +133,7 @@ body, html {
 
 .title-text {
     color: black;
-    font-size: 3rem; /* Ajuste para que se vea bien en pantallas grandes */
+    font-size: 3rem; 
     font-weight: 700;
     letter-spacing: 4.32px;
 }
@@ -146,18 +146,27 @@ body, html {
     width: 100%;
     margin: 20px 0;
     background: #CFCFCF;
-    flex-grow: 1; /* Permite que la tabla ocupe el espacio restante */
-    overflow: hidden; /* Evita desbordamiento */
-    width: 90%; /* Reducimos un poco el ancho */
+    flex-grow: 1; 
+    overflow: hidden; 
+    width: 90%;
     margin: 20px auto;
 }
 
-.table-header {
+thead{
     background: #80C4D3;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 20px;
 }
+tr{
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+td{
+    background-color: #85827f;
+    width: auto;
+    
+}
+
 
 .header-item {
     font-size: 1.2rem; /* Tamaño de fuente más flexible */
@@ -206,7 +215,7 @@ body, html {
 
 .popup h2 {
     font-size: 1.8rem;
-    color: #CD4533;
+    color: black;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -218,9 +227,9 @@ body, html {
 }
 
 .popup p strong {
-    color: #CD4533;
+    color: rgb(37, 37, 37);
     font-weight: 600;
-}
+}   
 
 .close-btn {
     position: absolute;
@@ -230,7 +239,7 @@ body, html {
     color: white;
     border: none;
     padding: 8px 12px;
-    border-radius: 50%;
+    border-radius: 20%;
     cursor: pointer;
     font-size: 1rem;
     transition: background 0.3s ease;
@@ -272,9 +281,7 @@ body, html {
     }
 }
 .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
     width: 100%;
     height: 6vh;
 }
@@ -300,7 +307,7 @@ body, html {
 }
 
 .more-info-text {
-    color: white;
+    color: rgb(240, 11, 11);
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 4.32px;
@@ -341,11 +348,17 @@ body, html {
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
-.close-btn {
+
+.info-btn{
+
+    background-color: #80C4D3;
+    border-radius: 15%;
+
+}
+.info-btn:hover{
+
+    background: #54504e !important; /* Color de fondo cuando se hace hover */
+    color: white; /* Color del texto al hacer hover */
     cursor: pointer;
-    background: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
