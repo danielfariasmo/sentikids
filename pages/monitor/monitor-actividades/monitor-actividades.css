@@ -1,0 +1,219 @@
+/* General */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column; /* Organiza el contenido en columna */
+    overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+/* Contenedor principal */
+.container {
+    flex: 1; /* Hace que el contenido crezca y el footer se quede abajo */
+    width: 100%;
+    box-sizing: border-box;
+    background: #CFCFCF;
+}
+
+/* Header */
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    height: 96px;
+    background: #5D828A;
+    box-sizing: border-box;
+}
+
+.logo {
+    width: 258px;
+    height: 68px;
+    margin-left: 62px;
+}
+
+/* Menú de navegación */
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding-right: 62px;
+}
+
+/* Elimina subrayado de los enlaces */
+.nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.nav a div {
+    padding: 10px 15px;
+    transition: background 0.3s ease;
+}
+
+/* Efecto hover */
+.nav a div:hover {
+    background-color: transparent;
+    color: #CD4533;
+}
+
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 8px 0;
+    min-width: 150px;
+    z-index: 10;
+}
+
+.menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu button:hover {
+    background: #f0f0f0;
+}
+
+.user-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.user-button img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Título */
+.header-title {
+    width: 100%;
+    background: #CFCFCF;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.header-title-text {
+    color: black;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+/* Actividades */
+.activities-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 30px; /* Espaciado entre tarjetas */
+    justify-items: center; /* Centra los elementos */
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.activity-card {
+    width: 280px;
+    background: white;
+    border: 5px #5D828A solid;
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.activity-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.activity-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.activity-description {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.activity-materials h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.activity-materials ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.activity-materials ul li {
+    background-color: #f4f4f4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    background: black;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.footer-text {
+    color: white;
+    opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .activities-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 tarjetas por fila */
+    }
+}
+
+@media (max-width: 600px) {
+    .activities-container {
+        grid-template-columns: repeat(1, 1fr); /* 1 tarjeta por fila */
+    }
+}
