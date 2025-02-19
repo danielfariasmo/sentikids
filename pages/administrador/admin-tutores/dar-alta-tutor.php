@@ -22,7 +22,7 @@ if (isset($_POST['id_tutor']) && isset($_POST['alta'])) {
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
-            echo json_encode(["success" => "Tutor actualizado con éxito."]);
+            echo json_encode("Tutor actualizado correctamente.");
         } else {
             echo json_encode(["error" => "No se realizaron cambios o el tutor no existe."]);
         }

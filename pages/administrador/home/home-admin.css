@@ -63,6 +63,21 @@ HEADER
   height: 40px;
 }
 
+.cerrar-sesion {
+  width: 32px;
+  height: 32px;
+}
+
+.cerrar-sesion:hover {
+  width: 36px;
+  height: 36px;
+}
+
+#btnCerrarSesion{
+  background: var(--negro);
+  border: none;
+}
+
 /*----------------------------------------
 MENÚ HAMBURGUESA
 -----------------------------------------*/
