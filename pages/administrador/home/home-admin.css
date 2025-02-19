@@ -76,6 +76,7 @@ HEADER
 #btnCerrarSesion{
   background: var(--negro);
   border: none;
+  cursor: pointer;
 }
 
 /*----------------------------------------

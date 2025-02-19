@@ -5,6 +5,48 @@ function toggleMenu() {
     $('.menu ul').toggleClass('active');
 }
 
+/*---------------------------------------------------------------
+Comprobación de sesión iniciada
+---------------------------------------------------------------*/
+$(document).ready(function () {
+  $.ajax({
+      url: "../home/administrador.php",
+      type: "POST",
+      dataType: "json",
+      success: function (response) {
+          if (response.status !== "success") {
+              window.location.href = "../../web/home/inicio.html"; 
+          }
+      },
+      error: function (xhr, status, error) {
+          console.error("Error en la verificación de sesión:", error);
+      }
+  });
+});
+
+/*---------------------------------------------------------------
+Funcionalidad de cerrar sesión
+---------------------------------------------------------------*/
+$(document).ready(function () {
+  $("#btnCerrarSesion").click(function () {
+      $.ajax({
+          url: "../home/cerrar-sesion.php",
+          type: "POST",
+          dataType: "json",
+          success: function (response) {
+              if (response.status === "success") {
+                  window.location.href = "../../web/home/inicio.html";
+              } else {
+                  console.error("Error al cerrar sesión:", response.message);
+              }
+          },
+          error: function (xhr, status, error) {
+              console.error("Error en la solicitud AJAX:", error);
+          }
+      });
+  });
+});
+
 /**------------------------------------
  * Alert personalizado
  --------------------------------------*/
