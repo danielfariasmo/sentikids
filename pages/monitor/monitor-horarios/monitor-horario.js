@@ -36,7 +36,7 @@ function cargarHorario() {
 
         // Configurar el enlace de descarga
         descargarLink.href = urlHorario;
-        descargarLink.style.display = 'block'; // Mostrar el enlace
+        descargarLink.style.display = 'block'; 
       } else {
         console.error('Error:', data.message);
       }

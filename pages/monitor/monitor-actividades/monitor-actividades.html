@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades</title>
+    <link rel="stylesheet" href="monitor-actividades.css">
+    <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <a href="../monitor-areaprivada/monitor-areaprivada.html"><img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo"></a>
+        <div class="nav">
+            <a href="../monitor-horarios/monitor-horario.html"><div>Horarios</div></a>
+            <a href="../monitor-grupos/monitor-grupo.html"><div>Lista</div></a>
+            <a href="../monitor-actividades/monitor-actividades.html"><div>Actividades</div></a>
+            <a href="../monitor-asesoramiento/monitor-asesoramiento.html"><div>Asesoramiento</div></a>
+            <!-- Iconos a la derecha -->
+            <div class="icons">
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-envelope"></i>
+                <i class="fas fa-cog"></i>
+            </div>
+            <!-- Nombre de usuario y menú desplegable -->
+            <div class="user-menu menu-container">
+                <button class="user-button menu-button" id="menuBtn">
+                    <img src="../../../assets/icon/perfil.png" alt="Logo">
+                    <span id="nombre_usuario"> </span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu menu" id="dropdownMenu">
+                    <button id="logoutBtn">Cerrar sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="header-title">
+            <div class="header-title-text">Actividades</div>
+        </div>
+
+        <!-- Actividades -->
+        <div class="activities-container">
+            <div class="activity-card">
+                <div class="activity-title">Magia y texturas</div>
+                <img src="../../../assets/img/magiaytexturas.jpg" alt="Pintura al Óleo" class="activity-image">
+                <div class="activity-description">Los niños explorarán texturas con un fuido no newtoniano y una tabla sensorial
+                    para estimular el tacto.</div>
+                <div class="activity-materials">
+                    <h3>Materiales:</h3>
+                    <ul>
+                        <li>Harina</li>
+                        <li>Agua</li>
+                        <li>Colorantes</li>
+                        <li>Recipiente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-title">Nariz de Sabueso</div>
+                <img src="../../../assets/img/olfato.jpg" alt="Cerámica" class="activity-image">
+                <div class="activity-description">Mediante frascos con diferentes olores, los niños y niñas intentarán adivinar cada
+                    aroma usando solo su sentido del olfato.</div>
+                <div class="activity-materials">
+                    <h3>Materiales:</h3>
+                    <ul>
+                        <li>Café</li>
+                        <li>Canela</li>
+                        <li>Jabón</li>
+                        <li>Esencia de menta / vainilla</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-title">Explosión de sabores</div>
+                <img src="../../../assets/img/venda.avif" alt="Fotografía" class="activity-image">
+                <div class="activity-description">Con los ojos vendados, los niños probarán distintos alimentos y deberán
+                    identifcarlos solo a través del gusto.</div>
+                <div class="activity-materials">
+                    <h3>Materiales:</h3>
+                    <ul>
+                        <li>Plátano</li>
+                        <li>Galletas saladas</li>
+                        <li>Limón</li>
+                        <li>Chocolate negro</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-title">Mentes Creativas</div>
+                <img src="../../../assets/img/construccion.avif" alt="Fotografía" class="activity-image">
+                <div class="activity-description">Un juego donde los niños observarán y luego replicarán una construcción,
+                    fomentando memoria y creatividad, donde después podrán realizar ellos mismos
+                    sus propias construcciones.</div>
+                <div class="activity-materials">
+                    <h3>Materiales:</h3>
+                    <ul>
+                        <li>Palos de madera</li>
+                        <li>Folios</li>
+                        <li>Cartón</li>
+                        <li>Pegamento</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-title">Pausa Activa</div>
+                <img src="../../../assets/img/respirar.avif" alt="Fotografía" class="activity-image">
+                <div class="activity-description">Sesión de bienestar enfocada en ejercicios de respiración profunda y estiramientos suaves, diseñados para relajar el cuerpo, 
+                    liberar tensiones acumuladas y recuperar energía. A través de técnicas de relajación.</div>
+                <div class="activity-materials">
+                    <h3>Materiales:</h3>
+                    <ul>
+                        <li>Cámara</li>
+                        <li>Trípode</li>
+                        <li>Objetivos</li>
+                        <li>Iluminación</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-title">Ritmo y Diversión</div>
+                <img src="../../../assets/img/baile.avif" alt="Fotografía" class="activity-image">
+                <div class="activity-description">Actividad de baile llena de energía y diversión, acompañada de música animada para estimular el ritmo,
+                     mejorar la coordinación y fortalecer la conexión grupal. A través de movimientos dinámicos y coreografías sencillas</div>
+                <div class="activity-materials">
+                    <h3>Materiales:</h3>
+                    <ul>
+                        <li>Cámara</li>
+                        <li>Trípode</li>
+                        <li>Objetivos</li>
+                        <li>Iluminación</li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-line"></div>
+            <div class="footer-text">Copyright © 2025. All Right Reserved.</div>
+        </div>
+    </div>
+
+    <script src="monitor-actividades.js"></script>
+
+</body>
+</html>

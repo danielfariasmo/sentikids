@@ -3,14 +3,15 @@ body, html {
   padding: 0;
   width: 100%;
   height: 100%;
-  font-family: Poppins, sans-serif; /* Establecer una fuente común */
-  min-height: 100vh; /* Ocupa toda la pantalla */
+  font-family: Poppins, sans-serif;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column; /* Organiza los elementos en columna */
+  flex-direction: column;
   box-sizing: border-box;
   background: #CFCFCF;
 }
- /* Header */
+
+/* Header */
 .header {
   width: 100%;
   display: flex;
@@ -25,7 +26,7 @@ body, html {
 .logo {
   width: 258px;
   height: 68px;
-  margin-left: 62px; /* Añade margen izquierdo para alinear el logo */
+  margin-left: 62px;
 }
 
 /* Menú de navegación */
@@ -37,10 +38,9 @@ body, html {
   padding-right: 62px;
 }
 
-/* Elimina subrayado de los enlaces */
 .nav a {
-  text-decoration: none; /* Quita el subrayado */
-  color: black; /* Color del texto */
+  text-decoration: none;
+  color: black;
   font-size: 18px;
   font-weight: 400;
 }
@@ -50,11 +50,11 @@ body, html {
   transition: background 0.3s ease;
 }
 
-/* Efecto hover */
 .nav a div:hover {
-  background-color: transparent; /* Elimina el efecto de botón */
-  color: #CD4533; /* Nuevo color de hover para contraste */
+  color: #CD4533;
 }
+
+/* Menú de usuario */
 .menu-container {
   position: relative;
   display: inline-block;
@@ -93,8 +93,8 @@ body, html {
 
 .menu button:hover {
   background: #f0f0f0;
-  display: block;
 }
+
 .user-button {
   display: flex;
   align-items: center;
@@ -107,159 +107,74 @@ body, html {
 }
 
 .user-button img {
-  width: 30px; /* Ajusta según necesites */
+  width: 30px;
   height: 30px;
   border-radius: 50%;
 }
 
-  /* Contenedor principal */
-  .container {
-    width: 1440px;
-    margin: 0 auto;
-    position: relative;
-    background: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
+/* Título */
+.section-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: black;
+  width: 100%;
+  background: #CFCFCF;
+  text-align: center;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
 
-  /* Título */
-  .section-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: black;
-    width: 100%;
-    background: #CFCFCF;
-    text-align: center;
-    padding: 5px 0;
-    box-sizing: border-box;
-  }
+/* Contenido de Horario */
+.horario {
+  width: 50%;
+  margin: 0 auto;
+}
 
-  .horario {
+.horario img {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+}
 
-    width: 50%; /* Ajusta este valor según lo pequeño que quieras que sea el contenedor */
-    margin: 0 auto; /* Centra el contenedor */
-  }
+/* Botón Descargar */
+.descarga {
+  text-align: center;
+  margin-top: 20px;
+}
 
-  .horario img {
-    margin-top: 20px;
-    width: 100%; /* La imagen ocupará el 100% del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-  }
+.boton-descarga {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #5D828A;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-/* Pie de página */
+.boton-descarga:hover {
+  background-color: #37707f93;
+  transform: scale(1.05);
+}
+
+.boton-descarga:active {
+  background-color: #37707f93;
+  transform: scale(0.98);
+}
+
+/* Footer */
 .footer {
   width: 100%;
   background: black;
   text-align: center;
   padding: 20px 0;
-  margin-top: auto; /* Empuja el footer hacia abajo */
+  margin-top: auto;
 }
 
 .footer-text {
   color: white;
   opacity: 0.5;
 }
-
-  /* Estilos Responsive para Tablets */
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .header {
-      padding: 10px 30px;
-    }
-  
-    .logo {
-      width: 200px;
-      height: auto;
-    }
-  
-    .menu ul {
-      gap: 20px;
-    }
-  
-    .menu a {
-      font-size: 18px;
-    }
-  
-    .container {
-      width: 100%;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-  
-    .section-title {
-      font-size: 26px;
-      padding: 10px 0;
-    }
-  
-    .schedule {
-      padding: 15px;
-    }
-  
-    .schedule-item {
-      font-size: 20px;
-    }
-  
-    .event-name {
-      font-size: 18px;
-    }
-  
-    .footer {
-      padding: 50px 20px;
-    }
-  
-    .footer-note {
-      font-size: 16px;
-    }
-  }
-  
-  /* Estilos Responsive para Móviles */
-  @media (max-width: 768px) {
-    .header {
-      height: auto;
-      padding: 10px 20px;
-    }
-  
-    .hamburger {
-      display: flex;
-    }
-  
-    .menu ul {
-      flex-direction: column;
-      gap: 16px;
-      display: none;
-    }
-  
-    .menu ul.active {
-      display: flex;
-    }
-  
-    .container {
-      width: 100%;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-  
-    .section-title {
-      font-size: 24px;
-      padding: 10px 0;
-    }
-  
-    .schedule {
-      padding: 10px;
-    }
-  
-    .schedule-item {
-      font-size: 18px;
-    }
-  
-    .event-name {
-      font-size: 16px;
-    }
-  
-    .footer {
-      padding: 40px 20px;
-    }
-  
-    .footer-note {
-      font-size: 16px;
-    }
-  }
-  
