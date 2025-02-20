@@ -1,46 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
+    <title>Contacto - Sentikids</title>
     <link rel="stylesheet" href="contacto.css">
 </head>
 <body>
-    <form id="formContact">
-        <h2>Contacta con nosotros</h2>
-        <label for="inputName">Nombre:</label>
-        <input type="text" id="inputName" placeholder="dani" required>
-        <div class="error" id="errorName"></div>
-
-        <label for="inputEmail">Email:</label>
-        <input type="email" id="inputEmail" placeholder="xxx@xxxx.xx" required>
-        <div class="error" id="errorEmail"></div>
-
-        <label for="inputMessage">Escribe tu mensaje:</label>
-        <textarea id="inputMessage" rows="5" placeholder="Escribe aquí" required></textarea>
-        <div class="error" id="errorMessage"></div>
-
-        <button type="submit" id="buttonSubmit" disabled>Enviar</button>
-    </form>
-
-    <form id="formFile">
-        <h2>Sube tu Curriculum!!</h2>
-        <label for="inputNameFile">Nombre:</label>
-        <input type="text" id="inputNameFile" placeholder="dani" required>
-        <div class="error" id="errorNameFile"></div>
-
-        <label for="inputEmailFile">Email:</label>
-        <input type="email" id="inputEmailFile" placeholder="xxx@xxxx.xx" required>
-        <div class="error" id="errorEmailFile"></div>
-
-        <label for="inputFile">Sube tu archivo:</label>
-        <input type="file" id="inputFile" accept=".pdf,.jpg,.png" required>
+    <div class="container">
+        <div class="header">
+            <img src="../../../assets/img/logo-sin-fondo2.png" alt="Logo">
+            <div class="header-links">
+                <div class="areaprivada">Área privada</div>
+                <div class="inscribirse-btn">Inscribirse</div>
+            </div>
+        </div>
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-links">
+                    <div>Nosotros</div>
+                    <div>Campus Expirence</div>
+                    <div>Precios</div>
+                    <div>Contacto</div>
+                </div>
+                <div class="hero-title">Contacto</div>
+                <div class="hero-breadcrumb">
+                    <div>Home</div>
+                    <div class="separator"></div>
+                    <div>Contacto</div>
+                </div>
+            </div>
+        </div>
         
-        <div class="error" id="errorFile"></div>
+        <div class="contact-form-section">
+            <img src="../../../assets/img/contacto.jpg" alt="Contact Form Image">
+            <div class="contact-form-content">
+                <div class="contact-form-title">Contáctanos</div>
+                <div class="contact-form-text">
+                    <span>¿Tienes alguna pregunta o necesitas más información?</span>
+                    <span> ¡Estamos aquí para ayudarte! Contáctanos y haremos todo lo posible por responderte lo más rápido. Tu opinión y tus dudas son importantes para nosotros.</span>
+                </div>
+            </div>
+        </div>
 
-        <button type="submit" id="buttonSubmitFile" disabled>Enviar</button>
-    </form>
+        <!-- FORMULARIO DE CONTACTO -->
+        <form class="contact-form">
+            <div class="form-group">
+                <label>¿Cómo podemos ayudarte?</label>
+                <textarea name="mensaje"></textarea>
+                <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label>Nombre y Apellidos:</label>
+                <input type="text" name="nombre">
+                <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label>Correo Electrónico:</label>
+                <input type="email" name="email">
+                <span class="error-message"></span>
+            </div>
+            <button type="submit" class="submit-btn">Enviar</button>
+        </form>
+
+        <!-- SECCIÓN DE TRABAJA CON NOSOTROS -->
+        <div class="work-with-us-section">
+            <div class="work-with-us-content">
+                <div class="work-with-us-title">¿Quieres trabajar con nosotros?</div>
+                <div class="work-with-us-text">
+                    Si eres una persona apasionada, proactiva y con ganas de crecer, en Sentikids estamos buscando talento como el tuyo. Únete a nuestro equipo y forma parte de una empresa en constante evolución.
+                </div>
+            </div>
+            <div class="cv-upload-section">
+                <img src="../../../assets/img/curriculum.jpg" alt="CV Upload Image">
+                
+                <!-- FORMULARIO PARA SUBIR CV -->
+                <form class="cv-upload-form">
+                    <div class="cv-upload-title">Sube tu CV</div>
+                    <div class="form-group">
+                        <label>Nombre y Apellidos:</label>
+                        <input type="text" name="nombre">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo electrónico:</label>
+                        <input type="email" name="email">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Adjunta tu CV:</label>
+                        <input type="file" name="cv">
+                        <span class="error-message"></span>
+                    </div>
+                    <button type="submit" class="submit-btn">Subir CV</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN SOBRE NOSOTROS -->
+    <div class="about-section">
+        <img class="background-image" src="../../../assets/img/niñosaprendiendo.avif" alt="Contact Image">
+        
+        <div class="about-content">
+            <div class="about-text">
+                <span>SentiKids, campamento </span><span class="highlight">bilingüe</span>
+                <span> con metodología </span><span class="highlight">Montessori</span><span>, </span>
+                <span class="highlight">comprometido</span><span> con ofrecer lo mejor en educación para enriquecer la vida de nuestros </span>
+                <span class="highlight">alumnos</span><span> y sus </span><span class="highlight">familias</span><span>.</span>
+            </div>
+            
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="icon"></div>
+                    <div>campamentosentikids@gmail.com</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon"></div>
+                    <div>+234 805 029 1265<br>+234 907 228 0656</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon"></div>
+                    <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d8a32f7f8f8!2sMontessori%20School!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                            style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-divider"></div>
+            <div class="footer-links">
+                <div>Nosotros</div>
+                <div>Campus Experience</div>
+                <div>Precios</div>
+                <div>Contacto</div>
+                <div>Visita Guiada</div>
+            </div>
+            <div class="social-icons">
+                <div class="icon"></div>
+                <div class="icon"></div>
+            </div>
+            <div class="copyright">Copyright © 2025. All Right Reserved.</div>
+        </div>
+    </div>
 
     <script src="contacto.js"></script>
 </body>
