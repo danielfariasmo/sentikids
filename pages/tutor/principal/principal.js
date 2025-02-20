@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const rightContainer = document.getElementById('right-container');
+    // Guarda la estructura HTML del infoChild en una variable
+    window.infoChildHTML = rightContainer.querySelector('.infoChild').outerHTML;
+
+    const infoChildHTML = rightContainer.querySelector('.infoChild').outerHTML;
 
     const menuBtn = document.getElementById("menuBtn");
     const menu = document.getElementById("menu");
@@ -6,39 +11,102 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupOverlayHijo = document.getElementById("popupOverlay2");
     const popupOverlayConf = document.getElementById("popupOverlay3");
 
+    /* function resetRightContainer() {
+        const rightContainer = document.getElementById('right-container');
+        // Limpia el contenedor y reestablece el HTML fijo
+        rightContainer.innerHTML = window.infoChildHTML;
+      } */
+
+
     function cargarNombre(nombre, apellidos) {
         const usuario = document.getElementById('nombre_tutor');
         usuario.innerHTML = nombre + ' ' + apellidos;
         console.log("se cambia el nombre?¿")
     }
 
-
-    // Función para cargar la lista de hijos
-    function loadChildren() {
-        fetch('obtenerHijo.php') // Endpoint que devuelve la lista de hijos
-            .then(response => response.json())
-            .then(data => {
-                const childrenContainer = document.getElementById('childrenContainer');
-                childrenContainer.innerHTML = ''; // Limpiar el contenedor
-
-                data.forEach(child => {
-                    const childItem = document.createElement('div');
-                    childItem.className = 'child-item';
-                    childItem.innerHTML = `
-                            <span>${child.nombre}</span>
-                            <!--  <button type="button" onclick="deleteChild(${child.id})">Eliminar</button>  -->
-                        `;
-                    childrenContainer.appendChild(childItem);
-                });
-            })
-            .catch(error => console.error('Error cargando hijos:', error));
+    // Función para restaurar la estructura fija del right-container
+function resetRightContainer() {
+    const rightContainer = document.getElementById('right-container');
+    if (rightContainer) {
+        rightContainer.innerHTML = `
+            <div class="infoChild" style="display:none;">
+                <h3 class="nombreTitulo"></h3>
+                <p class="textoAlergias"></p>
+                <textarea class="textAreaAlergias" rows="4" cols="50"></textarea>
+                <p class="grupo"></p>
+                <p class="monitorInfo"></p>
+                <a class="fotosGrupo" target="_blank"></a>
+                <img class="horarioImg" style="width:400px; margin-top:10px;" alt="Horario del grupo" />
+            </div>
+            <div class="infoTrust" style="display:none;"></div>
+        `;
     }
+}
+
+
+
+// Función para cargar la lista de hijos y crear botones
+function loadChildren() {
+    fetch('obtenerHijo.php') // Endpoint que devuelve la lista de hijos
+        .then(response => response.json())
+        .then(data => {
+            const childrenContainer = document.getElementById('childrenContainer');
+            childrenContainer.innerHTML = ''; // Limpiar el contenedor
+
+            // Crear la lista de hijos en el contenedor
+            data.forEach(child => {
+                const childItem = document.createElement('div');
+                childItem.className = 'child-item';
+                childItem.innerHTML = `
+                    <span>${child.nombre}</span>
+                    <!-- <button type="button" onclick="deleteChild(${child.id})">Eliminar</button> -->
+                `;
+                childrenContainer.appendChild(childItem);
+            });
+
+            // BOTONES
+
+            // Obtener el contenedor de botones
+            const buttonsContainer = document.querySelector(".left-container-top");
+
+            // Obtener el botón original (nombre_hijo)
+            const originalButton = document.querySelector(".menu-button.nombre_hijo");
+
+            // Si hay hijos, actualizar el botón original con el nombre del primer hijo
+            if (data.length > 0) {
+                originalButton.textContent = data[0].nombre; // Actualizar el botón original
+                originalButton.dataset.nombreHijo = data[0].nombre; // Añadir un atributo de datos
+            }
+
+            // Insertar botones adicionales para los demás hijos (si los hay)
+            for (let i = 1; i < data.length; i++) {
+                const child = data[i];
+
+                // Clonar el botón original
+                const newButton = originalButton.cloneNode(true);
+
+                // Modificar el texto del botón con el nombre del hijo
+                newButton.textContent = child.nombre;
+
+                // Añadir un atributo de datos con el nombre del hijo
+                newButton.dataset.nombreHijo = child.nombre;
+
+                // Insertar el nuevo botón justo después del botón original
+                buttonsContainer.insertBefore(newButton, originalButton.nextSibling);
+            }
+
+            // Añadir event listeners a los botones clonados
+            addButtonListeners();
+        })
+        .catch(error => console.error('Error cargando hijos:', error));
+}
+
 
     // Cargar la lista de hijos cuando la página esté lista
     loadChildren();
 
     // Función para cargar la lista de Personas de confianza
-    function misPersonasC() {
+    /* function misPersonasC() {
         fetch('obtenerPC.php')
             .then(response => response.json())
             .then(data => {
@@ -59,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Cargar la lista de hijos cuando la página esté lista
-    misPersonasC();
+    misPersonasC(); */
 
     // Manejar el clic del botón "Borrar cuenta"
     document.getElementById('deleteAccountBtn').addEventListener('click', function (event) {
@@ -306,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.left-container .menu-button').forEach(button => {
         button.addEventListener('click', function () {
             const buttonText = this.textContent;
-            const rightContainer = document.querySelector('.right-container');
+            //rightContainer = document.querySelector('.right-container');
 
             // Maneja cada opción según el botón pulsado
             switch (buttonText) {
@@ -314,18 +382,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     rightContainer.innerHTML = '';
                     cargarNotificaciones(rightContainer);
                     break;
-                case 'Nombre Hijo':
+                /* case 'Nombre Hijo':
                     rightContainer.innerHTML = '';
-                    rightContainer.innerHTML = '<h2>Contenido de Nombre Hijo</h2>';
                     cargarInformacionHijo(rightContainer);
-                    break;
+                    break; */
                 case 'Horario':
                     rightContainer.innerHTML = '';
-                    rightContainer.innerHTML = '<h2>Contenido de Horario</h2>';
+                    cargarHorarioHijo(rightContainer);
                     break;
-                /* default:
-                    rightContainer.innerHTML = '';
-                    rightContainer.innerHTML = '<h2>Selecciona una opción</h2>'; */
+                default:
+                    // Si el botón pertenece a un hijo, cargar su información
+                    if (this.classList.contains('nombre_hijo')) {
+                        rightContainer.innerHTML = '';
+                        rightContainer.innerHTML = infoChildHTML;
+                        cargarInformacionHijo(rightContainer, buttonText); // Pasar el nombre del hijo
+                    }
+                    break;
             }
         });
     });
@@ -394,76 +466,219 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    function cargarInformacionHijo(container) {
-        fetch('obtenerInformacion.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    const infoHijo = data.data;
+    // Función para añadir event listeners a los botones
+/* function addButtonListeners() {
+    document.querySelectorAll('.left-container-top .menu-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const buttonText = this.textContent;
+            const rightContainer = document.querySelector('.right-container');
 
+            // Maneja cada opción según el botón pulsado
+            switch (buttonText) {
+                case 'General':
+                    rightContainer.innerHTML = '';
+                    cargarNotificaciones(rightContainer);
+                    break;
+                case 'Horario':
+                    rightContainer.innerHTML = '';
+                    cargarHorarioHijo(rightContainer);
+                    break;
+                default:
+                    // Si el botón pertenece a un hijo, cargar su información
+                    if (this.classList.contains('nombre_hijo')) {
+                        rightContainer.innerHTML = '';
+                        cargarInformacionHijo(rightContainer, buttonText); // Pasar el nombre del hijo
+                    }
+                    break;
+            }
 
-                    // Limpiamos el contenedor antes de añadir la información
-                    container.innerHTML = '';
+            // Marcar el botón como activo
+            document.querySelectorAll('.left-container-top .menu-button').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+} */
 
-                    // Crear el div principal
-                    const infoDiv = document.createElement('div');
-                    infoDiv.className = 'info-hijo';
+    // Función para añadir event listeners a los botones
+function addButtonListeners() {
+    document.querySelectorAll('.left-container-top .menu-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const nombreHijo = this.dataset.nombreHijo; // Obtiene el nombre del hijo desde el atributo de datos
+            const rightContainer = document.querySelector('.right-container');
 
-                    // Nombre del hijo arriba a la derecha
-                    const nombreHijo = document.createElement('h3');
-                    nombreHijo.textContent = infoHijo.nombreHijo;
-                    nombreHijo.style.textAlign = 'right';
-                    infoDiv.appendChild(nombreHijo);
+            // Dependiendo del botón pulsado...
+            if (this.textContent === 'General') {
+                // Si es "General", cargar notificaciones
+                rightContainer.innerHTML = '';
+                cargarNotificaciones(rightContainer);
+            } else if (this.textContent === 'Horario') {
+                // Para "Horario", cargar el horario
+                rightContainer.innerHTML = '';
+                cargarHorarioHijo(rightContainer);
+            } else if (this.textContent === 'Mis Personas de Confianza') {
+                // Para "Mis Personas de Confianza", cargar la lista de personas de confianza
+                cargarInfoTrust();
+            } else {
+                // Para la información del hijo:
+                resetRightContainer(); // Restaurar la estructura fija
+                cargarInformacionHijo(rightContainer, nombreHijo); // Cargar la información del hijo
+            }
 
-                    // Texto "Cosas que deberíamos saber: Alergias o otras observaciones"
-                    const textoAlergias = document.createElement('p');
-                    textoAlergias.textContent = 'Cosas que deberíamos saber: Alergias o otras observaciones';
-                    infoDiv.appendChild(textoAlergias);
+            // Marcar el botón como activo
+            document.querySelectorAll('.left-container-top .menu-button').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+}
+    
 
-                    // TextArea para las alergias del niño
-                    const textAreaAlergias = document.createElement('textarea');
-                    textAreaAlergias.textContent = infoHijo.alergias;
-                    textAreaAlergias.rows = 4;
-                    textAreaAlergias.cols = 50;
-                    infoDiv.appendChild(textAreaAlergias);
+function cargarInformacionHijo(container, nombreHijo) {
+    fetch(`obtenerInformacion.php?nombre=${encodeURIComponent(nombreHijo)}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const infoHijo = data.data;
 
-                    // Grupo del niño
-                    const grupo = document.createElement('p');
-                    grupo.textContent = `Grupo: ${infoHijo.grupo}`;
-                    infoDiv.appendChild(grupo);
-
-                    // Nombre y apellido del monitor con su correo
-                    const monitorInfo = document.createElement('p');
-                    monitorInfo.textContent = `Monitor: ${infoHijo.monitor.nombre} (${infoHijo.monitor.correo})`;
-                    infoDiv.appendChild(monitorInfo);
-
-                    // URL de las fotos del grupo
-                    const fotosGrupo = document.createElement('a');
-                    fotosGrupo.href = infoHijo.fotosGrupoUrl;
-                    fotosGrupo.textContent = 'Ver fotos del grupo';
-                    fotosGrupo.target = '_blank';
-                    infoDiv.appendChild(fotosGrupo);
-
-                    // Imagen del horario del grupo
-                    const horarioImg = document.createElement('img');
-                    horarioImg.src = infoHijo.horarioUrl;
-                    horarioImg.alt = 'Horario del grupo';
-                    horarioImg.style.width = '400px';
-                    horarioImg.style.marginTop = '10px';
-                    infoDiv.appendChild(horarioImg);
-
-                    // Añadir el div al contenedor
-                    container.appendChild(infoDiv);
-
-                } else {
-                    console.error('Error:', data.message);
+                // Seleccionar el contenedor predefinido que ya está en el HTML
+                const infoChildDiv = container.querySelector('.infoChild');
+                if (!infoChildDiv) {
+                    console.error("No se encontró el contenedor .infoChild");
+                    return;
                 }
-            })
-            .catch(error => {
-                console.error('Error al obtener la información del hijo:', error);
-            });
 
+                // Mostrar el contenedor (en caso de que esté oculto)
+                infoChildDiv.style.display = 'block';
+
+                // Actualizar los elementos existentes con la información obtenida
+
+                // Nombre del hijo (h3 con clase 'nombreTitulo')
+                const nombreTitulo = infoChildDiv.querySelector('.nombreTitulo');
+                if (nombreTitulo) {
+                    nombreTitulo.textContent = infoHijo.nombreHijo;
+                    nombreTitulo.style.textAlign = 'right';
+                }
+
+                // Texto para alergias (p con clase 'textoAlergias')
+                const textoAlergias = infoChildDiv.querySelector('.textoAlergias');
+                if (textoAlergias) {
+                    textoAlergias.textContent = 'Cosas que deberíamos saber: Alergias o otras observaciones';
+                }
+
+                // TextArea para las alergias (textarea con clase 'textAreaAlergias')
+                const textAreaAlergias = infoChildDiv.querySelector('.textAreaAlergias');
+                if (textAreaAlergias) {
+                    textAreaAlergias.value = infoHijo.alergias || ''; // Asegurar que no sea undefined
+                }
+
+                // Grupo del niño (p con clase 'grupo')
+                const grupo = infoChildDiv.querySelector('.grupo');
+                if (grupo) {
+                    grupo.textContent = `Grupo: ${infoHijo.grupo || 'No especificado'}`;
+                }
+
+                // Información del monitor (p con clase 'monitorInfo')
+                const monitorInfo = infoChildDiv.querySelector('.monitorInfo');
+                if (monitorInfo) {
+                    monitorInfo.textContent = `Monitor: ${infoHijo.monitor?.nombre || 'No especificado'} (${infoHijo.monitor?.correo || 'No especificado'})`;
+                }
+
+                // Link para fotos del grupo (a con clase 'fotosGrupo')
+                const fotosGrupo = infoChildDiv.querySelector('.fotosGrupo');
+                if (fotosGrupo) {
+                    fotosGrupo.href = infoHijo.fotosGrupoUrl || '#';
+                    fotosGrupo.textContent = 'Ver fotos del grupo';
+                }
+
+                // Imagen del horario (img con clase 'horarioImg')
+                const horarioImg = infoChildDiv.querySelector('.horarioImg');
+                if (horarioImg) {
+                    horarioImg.src = infoHijo.horarioUrl || '';
+                    horarioImg.alt = 'Horario del grupo';
+                }
+            } else {
+                console.error('Error:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener la información del hijo:', error);
+        });
+}
+  
+// Función para cargar la información de las personas de confianza
+function cargarInfoTrust() {
+    const container = document.querySelector('#right-container');
+
+    // Restaurar la estructura fija del right-container
+    resetRightContainer();
+
+    // Seleccionar el contenedor .infoTrust
+    const infoTrustDiv = container.querySelector('.infoTrust');
+
+    // Ocultar .infoChild (si está visible)
+    const infoChildDiv = container.querySelector('.infoChild');
+    if (infoChildDiv) {
+        infoChildDiv.style.display = 'none';
     }
+
+    // Mostrar .infoTrust
+    infoTrustDiv.style.display = 'block';
+
+    // Obtener las personas de confianza desde el servidor
+    fetch('obtenerPC.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status !== 'success') {
+                console.error("Error en la respuesta:", data.message);
+                return;
+            }
+
+            const persons = data.data;
+            infoTrustDiv.innerHTML = ''; // Limpiar el contenedor
+
+            // Crear elementos para cada persona de confianza
+            persons.forEach(person => {
+                const personDiv = document.createElement('div');
+                personDiv.className = 'trusted-item';
+                personDiv.innerHTML = `
+                    <span>${person.nombre} ${person.apellidos} (${person.telefono})</span>
+                    <span class="delete-icon" data-id="${person.id}">🗑️</span>
+                `;
+                infoTrustDiv.appendChild(personDiv);
+
+                // Añadir evento para eliminar persona de confianza
+                personDiv.querySelector('.delete-icon').addEventListener('click', function () {
+                    eliminarPersonaConfianza(person.id);
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener las personas de confianza:', error);
+        });
+}
+  
+// Función para eliminar una persona de confianza
+function eliminarPersonaConfianza(id) {
+    if (!confirm("¿Estás seguro de eliminar a esta persona de confianza?")) return;
+
+    fetch(`eliminarPC.php?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE' // O usa POST según lo requiera tu backend
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert("Persona eliminada con éxito");
+                // Recargar la lista actualizada
+                cargarInfoTrust();
+            } else {
+                alert("Error al eliminar: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error al eliminar la persona de confianza:", error);
+        });
+}
+  
+    
 
     // Selecciona todos los botones del menú izquierdo
     const menuButtons = document.querySelectorAll('.left-container-top .menu-button');
@@ -485,11 +700,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Añade la clase 'active' al botón clickeado
             this.classList.add('active');
 
-            // Aquí puedes añadir la lógica para cargar el contenido correspondiente
             const buttonText = this.textContent;
             const rightContainer = document.querySelector('.right-container');
         });
     });
 
+    
 
 });

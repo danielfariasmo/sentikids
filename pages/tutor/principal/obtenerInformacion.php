@@ -35,7 +35,7 @@ if ($rol !== 'tutor') {
 // Obtener el ID del tutor desde la sesión
 $id_tutor = $_SESSION['id_usuario'];
 
-// Consultar la información del hijo asociado al tutor
+// Base de la consulta: obtener la información de los hijos del tutor
 $queryHijo = "
     SELECT 
         h.nombre AS nombre_hijo,
@@ -50,6 +50,12 @@ $queryHijo = "
     JOIN monitor m ON g.id_monitor = m.id_monitor
     WHERE h.id_tutor = '$id_tutor'
 ";
+
+// Si se ha pasado el parámetro 'nombre', agregarlo a la condición
+if (isset($_GET['nombre'])) {
+    $nombre = mysqli_real_escape_string($conexion, $_GET['nombre']);
+    $queryHijo .= " AND h.nombre = '$nombre'";
+}
 
 $resultHijo = mysqli_query($conexion, $queryHijo);
 
