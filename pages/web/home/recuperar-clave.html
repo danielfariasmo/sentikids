@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Clave</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
+</head>
+<body>
+    <form id="recuperarForm">
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="tipo">Selecciona tu tipo de usuario:</label>
+        <select id="tipo" name="tipo" required>
+            <option value="administrador">Administrador</option>
+            <option value="monitor">Monitor</option>
+            <option value="tutor">Padre</option>
+        </select>
+
+        <button type="submit">Recuperar</button>
+    </form>
+
+    <div id="respuesta"></div>
+
+    <script src="recuperar-clave.js"></script>
+</body>
+</html>
