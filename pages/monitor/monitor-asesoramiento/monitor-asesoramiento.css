@@ -273,6 +273,9 @@ body {
     color: green;
     margin-top: 20px;
 }
+#message{
+    width: 480px;
+}
 /* Footer */
 .footer {
     width: 100%;

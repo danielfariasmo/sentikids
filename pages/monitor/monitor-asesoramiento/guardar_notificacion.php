@@ -1,68 +1,58 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    header("Content-Type: application/json");
+header("Content-Type: application/json");
+include "../../../server/database.php"; 
 
-    include "../../../server/database.php";
+// Conexión a la base de datos
+$servidor = "localhost";
+$usuarioBD = "root";
+$password = "";
+$db = "sentikids";
 
-    $servidor = "localhost";
-    $usuarioBD = "root";
-    $password = "";
-    $db = "sentikids";
+$conexion = mysqli_connect($servidor, $usuarioBD, $password, $db);
+if (!$conexion) {
+    echo json_encode(["status" => "error", "message" => "Error de conexión"]);
+    exit;
+}
 
-    $conexion = mysqli_connect($servidor, $usuarioBD, $password, $db);
-    if (!$conexion) {
-        echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos']);
-        exit;
-    }
+// Obtener datos del JSON enviado
+$data = json_decode(file_get_contents("php://input"), false);
 
-    // Verifica si se recibieron los datos
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $recipient = trim($_POST["recipient"]);
-        $message = trim($_POST["message"]);
-        $fecha = date("Y-m-d"); // Fecha actual
+if (!$data) {
+    echo json_encode(["status" => "error", "message" => "Datos correctos"]);
+    exit;
+}
 
-        // ID del monitor (se debe obtener de la sesión del usuario logueado)
-        session_start();
-        if (!isset($_SESSION["id_usuario"])) {
-            echo json_encode(['status' => 'error', 'message' => 'Monitor no autenticado']);
-            exit;
-        }
-        $id_monitor = $_SESSION["id_usuario"];
+$recipient = $data["recipient"];
+$title = $data["title"];
+$message = $data["message"];
+$fecha = date("Y-m-d");
 
-        // Verificar que los campos no estén vacíos
-        if (empty($recipient) || empty($message)) {
-            echo json_encode(['status' => 'error', 'message' => 'Todos los campos son obligatorios']);
-            exit;
-        }
+// Buscar ID del tutor
+$queryTutor = "SELECT id_tutor FROM tutor WHERE CONCAT(nombre, ' ', apellidos) = ?";
+$stmt = mysqli_prepare($conexion, $queryTutor);
+mysqli_stmt_bind_param($stmt, "s", $recipient);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$row = mysqli_fetch_assoc($result);
 
-        // Obtener el id_tutor a partir del nombre
-        $query = "SELECT id_tutor FROM tutor WHERE CONCAT(nombre, ' ', apellidos) = ?";
-        $stmt = mysqli_prepare($conexion, $query);
-        mysqli_stmt_bind_param($stmt, "s", $recipient);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+if (!$row) {
+    echo json_encode(["status" => "error", "message" => "Tutor no encontrado"]);
+    exit;
+}
 
-        if ($row = mysqli_fetch_assoc($result)) {
-            $id_tutor = $row["id_tutor"];
+$id_tutor = $row["id_tutor"];
+$id_monitor = 1; // Cambia esto por el ID del monitor logueado
 
-            // Insertar la notificación en la base de datos
-            $insertQuery = "INSERT INTO notificacion (id_monitor, id_tutor, titulo, mensaje, fecha) VALUES (?, ?, 'Nueva Notificación', ?, ?)";
-            $stmtInsert = mysqli_prepare($conexion, $insertQuery);
-            mysqli_stmt_bind_param($stmtInsert, "iiss", $id_monitor, $id_tutor, $message, $fecha);
+// Insertar notificación en la base de datos
+$queryInsert = "INSERT INTO notificacion (id_monitor, id_tutor, titulo, mensaje, fecha) VALUES (?, ?, ?, ?, ?)";
+$stmtInsert = mysqli_prepare($conexion, $queryInsert);
+mysqli_stmt_bind_param($stmtInsert, "iisss", $id_monitor, $id_tutor, $title, $message, $fecha);
 
-            if (mysqli_stmt_execute($stmtInsert)) {
-                echo json_encode(['status' => 'success', 'message' => 'Notificación enviada correctamente']);
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'Error al guardar la notificación']);
-            }
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'Tutor no encontrado']);
-        }
+if (mysqli_stmt_execute($stmtInsert)) {
+    echo json_encode(["status" => "success", "message" => "Notificación guardada"]);
+} else {
+    echo json_encode(["status" => "error", "message" => "Error al guardar"]);
+}
 
-        mysqli_stmt_close($stmt);
-        mysqli_stmt_close($stmtInsert);
-    }
-
-    mysqli_close($conexion);
+mysqli_close($conexion);
 ?>

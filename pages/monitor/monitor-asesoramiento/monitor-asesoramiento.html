@@ -47,28 +47,28 @@
         <div class="previous-notifications-title">Notificaciones anteriores</div>
         <div class="notifications-container">
             <div class="notification-card">
-                <div class="notification-title">Luis Gómez</div>
-                <div class="notification-text">Nos complace informarles que su hijo/a ha participado de manera excelente...</div>
+                <div class="notification-title"> </div>
+                <div class="notification-text"> </div>
             </div>
             <div class="notification-card">
-                <div class="notification-title">Sara Pérez</div>
-                <div class="notification-text">Joaquín está teniendo un rendimiento espectacular en las actividades, ayudando...</div>
+                <div class="notification-title">   </div>
+                <div class="notification-text">   </div>
             </div>
             <div class="notification-card">
-                <div class="notification-title">Juan Guzman</div>
-                <div class="notification-text">Nos comentaba Raquel que el día 08 no podrá asistir al campamento...</div>
+                <div class="notification-title">  </div>
+                <div class="notification-text"> </div>
             </div>
             <div class="notification-card">
-                <div class="notification-title">Lucia Villa</div>
-                <div class="notification-text">El día de hoy, Juana no ha querido comer, hemos ido a enfermería...</div>
+                <div class="notification-title">  </div>
+                <div class="notification-text"> </div>
             </div>
             <div class="notification-card">
-                <div class="notification-title">Ana López</div>
-                <div class="notification-text">Hoy hemos tenido que ir donde el director. Matías junto a otro compañero están...</div>
+                <div class="notification-title">    </div>
+                <div class="notification-text">    </div>
             </div>
             <div class="notification-card">
-                <div class="notification-title">Todos los Padres</div>
-                <div class="notification-text">Recordad que el día 15, todos los niños deben traer en su mochila otra muda de ropa...</div>
+                <div class="notification-title"> </div>
+                <div class="notification-text">     </div>
             </div>
         </div>
 
@@ -86,11 +86,13 @@
         <h2>Crear Notificación</h2>
         <form id="notification-form">
             <label for="recipient">Seleccione el destinatario:</label>
-            <select id="recipient" name="recipient">
-   
-            </select>
+            <select id="recipient" name="recipient"> </select>
+
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+
             <label for="message">Mensaje:</label>
-            <textarea id="message" name="message" rows="4" cols="50"></textarea>
+            <textarea id="message" name="message" rows="4" cols="40"></textarea>
             <button type="submit" class="send-btn">Enviar</button>
         </form>
         <div id="success-message" class="success-message">¡Notificación enviada con éxito!</div>
