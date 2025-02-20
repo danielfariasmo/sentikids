@@ -7,12 +7,13 @@ $admin = "CREATE TABLE IF NOT EXISTS administrador (
         clave_usuario VARCHAR(255) NOT NULL,
         nombre VARCHAR(20) NOT NULL,
         apellidos VARCHAR(20) NOT NULL,
-        correo_electronico VARCHAR(50) NOT NULL
+        correo_electronico VARCHAR(50) NOT NULL,
+        codigo VARCHAR(255)
     );";
 mysqli_query($connection, $admin) or die("ERROR: no se puede crear la tabla administradores: " . mysqli_error($connection));
 
 $insertAdmin = "INSERT INTO administrador (id_administrador, nombre_usuario, clave_usuario, nombre, apellidos, correo_electronico) VALUES 
-                    (1, 'danielfarias', 'daniel', 'Daniel', 'Farias Morales', 'danielfarias@gmail.com')";
+                    (1, 'danielfarias', 'daniel', 'Daniel', 'Farias Morales', 'fariasd99@gmail.com')";
 mysqli_query($connection, $insertAdmin) or die("ERROR: no se puede insertar en la tabla administradores: " . mysqli_error($connection));
 
 /** MONITORES*/
@@ -24,7 +25,8 @@ $coach = "CREATE TABLE IF NOT EXISTS monitor (
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
     correo_electronico VARCHAR(50) NOT NULL,
-    telefono VARCHAR(9) NOT NULL
+    telefono VARCHAR(9) NOT NULL,
+    codigo VARCHAR(255)
 );";
 mysqli_query($connection, $coach) or die("ERROR: no se puede crear la tabla monitores: " . mysqli_error($connection));
 
@@ -46,7 +48,8 @@ $tutor = "CREATE TABLE IF NOT EXISTS tutor (
     apellidos VARCHAR(255) NOT NULL,
     correo_electronico VARCHAR(50) NOT NULL,
     telefono VARCHAR(9) NOT NULL,
-    alta VARCHAR(2) DEFAULT 'NO' 
+    alta VARCHAR(2) DEFAULT 'NO',
+    codigo VARCHAR(255) 
 );";
 mysqli_query($connection, $tutor) or die("ERROR: no se puede crear la tabla tutores: " . mysqli_error($connection));
 

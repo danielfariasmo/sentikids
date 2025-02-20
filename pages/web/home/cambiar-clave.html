@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Clave</title>
+    <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
+</head>
+<body>
+    <div class="container">
+        <h2>Cambiar Contraseña</h2>
+        <form id="changePasswordForm">
+            <input type="hidden" id="email" name="email">
+            <input type="hidden" id="token" name="token">
+
+            <label for="new_password">Nueva Contraseña:</label>
+            <input type="password" id="new_password" name="new_password" required>
+
+            <label for="confirm_password">Confirmar Contraseña:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <button type="submit">Cambiar Contraseña</button>
+            <p id="message"></p>
+        </form>
+    </div>
+
+    <script src="cambiar-clave.js"></script>
+</body>
+</html>
