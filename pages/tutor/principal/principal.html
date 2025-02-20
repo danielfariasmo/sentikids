@@ -26,7 +26,7 @@
         </div> -->
 
         <img src="../../../assets/img/sol.png" class="solImg" alt="Logo">
-        
+
         <!-- Nombre de usuario y menú desplegable -->
         <div class="user-menu menu-container">
             <button class="user-button menu-button" id="menuBtn">
@@ -55,13 +55,23 @@
                 <button class="menu-button last" id="newTrustBtn">+ Añadir Persona de Confianza</button>
                 <!-- <button class="menu-button">Horario</button> -->
             </div>
-            
+
         </div>
 
-        <!-- Contenedor derecho -->
-        <div class="right-container">
-            <!-- Aquí se mostrará el contenido dinámico -->
+        <div class="right-container" id="right-container">
+            <!-- Información predefinida; inicialmente oculta -->
+            <div class="infoChild" style="display:none;">
+                <h3 class="nombreTitulo"></h3>
+                <p class="textoAlergias"></p>
+                <textarea class="textAreaAlergias" rows="4" cols="50"></textarea>
+                <p class="grupo"></p>
+                <p class="monitorInfo"></p>
+                <a class="fotosGrupo" target="_blank"></a>
+                <!-- <img class="horarioImg" style="width:400px; margin-top:10px;" alt="Horario del grupo" /> -->
+            </div>
+            <div class="infoTrust" style="display:none;"></div>
         </div>
+
     </div>
 
     <!-- Popup -->

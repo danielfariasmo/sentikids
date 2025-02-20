@@ -35,10 +35,14 @@ if ($rol !== 'tutor') {
 // Obtener el ID del tutor desde la sesión
 $id_tutor = $_SESSION['id_usuario'];
 
-
-// Consulta para obtener los hijos
-$sql = "SELECT id_tutor, nombre, apellidos FROM persona_confianza WHERE id_tutor = '$id_tutor'";
+// Consulta para obtener las personas de confianza
+$sql = "SELECT id_tutor, nombre, apellidos, telefono FROM persona_confianza WHERE id_tutor = '$id_tutor'";
 $result = $conexion->query($sql);
+
+if (!$result) {
+    echo json_encode(['status' => 'error', 'message' => 'Error en la consulta SQL']);
+    exit;
+}
 
 $trusted = [];
 if ($result->num_rows > 0) {
@@ -48,5 +52,10 @@ if ($result->num_rows > 0) {
 }
 
 $conexion->close();
-echo json_encode($trusted);
+
+// Devolver la información en formato JSON
+echo json_encode([
+    'status' => 'success',
+    'data' => $trusted
+]);
 ?>
