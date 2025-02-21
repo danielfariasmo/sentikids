@@ -104,6 +104,7 @@ $(document).ready(function () {
             url: 'grupos-admin.php',
             type: 'GET',
             success: function (response) {
+            
                 let grupos = JSON.parse(response);
                 let template = '';
 
@@ -112,7 +113,6 @@ $(document).ready(function () {
                         <tr tutorId="${grupo.id_grupo}">
                             <td>${grupo.id_grupo}</td>
                             <td class="nombre">${grupo.nombre_grupo}</td>
-                            <td>${grupo.id_horario}</td>
                             <td>${grupo.nombre_monitor} ${grupo.apellidos_monitor}</td>
                             <td>
                                 <input type="text" class="grupo-input" value="${grupo.id_monitor}" data-id="${grupo.id_grupo}"/>
