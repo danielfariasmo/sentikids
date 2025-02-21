@@ -7,6 +7,7 @@
     --principal: #80C4D3;
     --secundario: #5A9EB3;
     --blancoSecundario: #e0e0e0;
+    ---blancoMenu: #ddd;
     --informacion: #10BFFB;
     --sombraInformacion: rgba(16, 191, 251, 0.5);
     --sombraOscura: rgba(0, 0, 0, 0.5);
@@ -14,6 +15,7 @@
     --rojoPrincipal: #CD4533;
     --rojoSecundario: #A32F23;
     --salmon: #FFD6D0;
+    --negroSecundario: #333;
 }
 
 @font-face {
@@ -56,16 +58,127 @@ h1, h2, h3 {
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--blanco);
+    font-size: 18px;
+}
+
+button {
+    font-family: 'Poppins-bold';
+    font-size: 16px;
 }
 
 /*----------------------------------------
 MENU
 -----------------------------------------*/
+/* Menú principal */
+.menu-principal {
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: var(--salmon);
+    border-bottom: 1px solid var(---blancoMenu);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    font-family: 'Poppins-bold';
+    font-size: 18px;
+}
+
+/* Menú fijo */
+.menu-fijo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.781);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    transition: top 0.3s ease;
+    z-index: 1000;
+}
+
+.menu-fijo.visible {
+    top: 0;
+}
+
+.opciones {
+    display: flex;
+    gap: 20px;
+}
+
+.opciones a {
+    text-decoration: none;
+    color: var(--negroSecundario);
+    transition: color 0.3s;
+    font-family: 'Poppins-bold';
+}
+
+.opciones a:hover {
+    color: #FF725E;
+}
+
+/* Estilos para los botones dentro de .menu-principal */
+.menu-principal button {
+    background: none; 
+    border: none;
+    color: var(--black); 
+    padding: 10px 20px;
+    padding-left: 100px;
+    cursor: pointer;
+    transition: color 0.3s ease; 
+}
+
+/* Hover para los botones normales */
+.menu-principal button:hover {
+    color: #FF725E; /* Rojo al pasar el mouse */
+}
+
+/* Estilos para "Inscribirse" */
+.menu-principal .btn-inscribirse {
+    background-color: #CD4533; /* Fondo rojo */
+    color: var(--white); /* Texto blanco */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 20px;
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Hover para el botón "Inscribirse" */
+.menu-principal .btn-inscribirse:hover {
+    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
+    color: var(--white); /* Texto blanco */
+}
+
+.logo {
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+.logo img {
+    height: 50px;
+}
+
 
 /*----------------------------------------
 HEADER
 -----------------------------------------*/
+.hero {
+    background-image: url(../../../assets/img/laboratorio_sensorial.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--blanco);
+    text-align: center;
+    position: relative;
+}
 
 /*----------------------------------------
 TITULO
@@ -73,7 +186,7 @@ TITULO
 .main h1 {
     font-size: 56px;
     text-align: center;
-    color: var(--rojoSecundario);
+    color: var(--rojoPrincipal);
 }
 
 /*----------------------------------------
@@ -83,6 +196,10 @@ img {
     height: fit-content;
     max-width: 100%;
     vertical-align: middle;
+}
+
+.img1 {
+    height: 222px;
 }
 
 .cards {
@@ -125,7 +242,7 @@ img {
 
 .card_title {
     color: var(--blanco);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     letter-spacing: 1px;
     margin: 0px;
@@ -133,7 +250,7 @@ img {
 
 .card_text {
     color: var(--blanco);
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 1.25rem;
 }
