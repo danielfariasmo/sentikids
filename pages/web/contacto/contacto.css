@@ -398,7 +398,7 @@ input.error, textarea.error {
     background-color: #ffe6e6;
 }
 
-/* Responsive Styles */
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -475,6 +475,8 @@ input.error, textarea.error {
         margin-top: 20px;
     }
 }
+
+/* MÒVIL RESPONSIVE */
 
 @media (max-width: 480px) {
     .header {
@@ -556,6 +558,6 @@ input.error, textarea.error {
     }
 
     .social-icons {
-        flex-direction: column;
+        flex-direction: row;
     }
 }
