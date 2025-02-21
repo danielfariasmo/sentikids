@@ -1,78 +1,60 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --success: #50812A;
+    --information: #6291E8;
+    --warning: #ffcd2b;
+    --error: #F66060;
+    --background: #ffffff;
+}
+
 /* Estilos generales */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
     line-height: 1.6;
 }
 
-/* Primer menú */
+
+/******* MENÚ **********/
+
+/* Menú principal */
 .menu-principal {
+    height: 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f9fa;
+    padding: 0 20px;
+    background-color: #FFD6D0;
     border-bottom: 1px solid #ddd;
     position: relative;
-    /* Asegura que el menú esté en el flujo normal */
     z-index: 1;
-    /* Evita que el menú fijo lo cubra */
     overflow: hidden;
 }
 
-.logo img {
-    height: 50px;
-    /* Ajusta el tamaño del logo */
-}
-
-.botones {
-    display: flex;
-    gap: 10px;
-}
-
-.botones button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.botones button:hover {
-    background-color: #0056b3;
-}
-
-/* Segundo menú fijo */
+/* Menú fijo */
 .menu-fijo {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    /* Fondo transparente */
+    background-color: rgba(255, 255, 255, 0.781);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px;
-    transition: top 10s ease;
-    /* Animación suave */
-    background-color: white;
-    /* Fondo para que no se mezcle con el contenido */
+    transition: top 0.3s ease;
     z-index: 1000;
-    /* Asegura que esté por encima de otros elementos */
 }
-
 
 .menu-fijo.visible {
     top: 0;
-    /* Muestra el menú fijo en la parte superior */
 }
 
 .opciones {
@@ -88,28 +70,89 @@ body {
 }
 
 .opciones a:hover {
-    color: #007bff;
+    color: #FF725E;
 }
 
-.menu-fijo.visible {
-    top: 0;
-}
-
-.form-container {
-    padding: 20px;
-}
-
-#menuFijo {
-    transition: margin-top 10s ease;
-}
-
-.btn-area-privada {
-    color: pink;
-    /* Color de la letra */
-    background: transparent;
-    /* Sin fondo */
+/* Estilos para los botones dentro de .menu-principal */
+.menu-principal button {
+    font-weight: 600; /* Semi-bold */
+    background: none; /* Sin fondo */
     border: none;
-    /* Opcional: elimina el borde si lo hay */
+    color: var(--black); /* Color del texto */
+    padding: 10px 20px;
+    padding-left: 100px;
     cursor: pointer;
-    /* Opcional: cambia el cursor al pasar el mouse */
+    transition: color 0.3s ease; /* Transición suave para el hover */
 }
+
+/* Hover para los botones normales */
+.menu-principal button:hover {
+    color: #FF725E; /* Rojo al pasar el mouse */
+}
+
+/* Estilos para "Inscribirse" */
+.menu-principal .btn-inscribirse {
+    background-color: #CD4533; /* Fondo rojo */
+    color: var(--white); /* Texto blanco */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 20px;
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Hover para el botón "Inscribirse" */
+.menu-principal .btn-inscribirse:hover {
+    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
+    color: var(--white); /* Texto blanco */
+}
+
+.logo {
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+.logo img {
+    height: 50px;
+}
+
+/* Hero section */
+.hero {
+    background-image: url(../../../assets/img/inscripcion3.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    top: 20px;
+    font-size: 14px;
+    color: #000000;
+}
+
+.breadcrumb a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Título del hero */
+.hero-title {
+    color: #3a3a3a;
+    font-size: 48px;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+/** fin HERO */

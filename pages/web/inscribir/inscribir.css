@@ -21,80 +21,6 @@ body {
     line-height: 1.6;
 }
 
-/* Menú principal */
-.menu-principal {
-    height: 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-    background-color: #FFD6D0;
-    border-bottom: 1px solid #ddd;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.logo{
-    height: 50px;
-    padding: 0px;
-    margin: 0;
-}
-
-.botones {
-    display: flex;
-    gap: 10px;
-}
-
-.botones button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.botones button:hover {
-    background-color: #0056b3;
-}
-
-/* Menú fijo */
-.menu-fijo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 20px;
-    transition: top 0.3s ease;
-    z-index: 1000;
-}
-
-.menu-fijo.visible {
-    top: 0;
-}
-
-.opciones {
-    display: flex;
-    gap: 20px;
-}
-
-.opciones a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.opciones a:hover {
-    color: #007bff;
-}
-
 /* Contenedor del formulario */
 .form-wrapper {
     display: flex;
@@ -102,17 +28,8 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    margin-top: 60px; /* Espacio para el menú principal */
+    margin-top: 60px;
 }
-
-/* .form-container {
-    width: 100%;
-    max-width: 800px;
-    background: var(--white);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
 
 .form-container {
     width: 100%;
@@ -121,74 +38,25 @@ body {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 2.5px solid #FFD6D0; /* Borde rosa agregado */
+    border: 2.5px solid #FFD6D0;
 }
-
-/* Resto del CSS (formulario, campos, etc.) */
-/* :root {
-    --white: #fff;
-    --black: #000;
-    --success: #50812A;
-    --information: #6291E8;
-    --warning: #ffcd2b;
-    --error: #F66060;
-    --background: #E5E5E5;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--background);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-} */
-
-/* .form-container {
-    width: 100%;
-    max-width: 800px; /* Ajusta el ancho máximo del contenedor 
-    background: var(--white);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
 
 #userForm {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dos columnas con un ancho mínimo de 250px */
-    gap: 20px; /* Espacio entre los campos */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
-/* Hace que el h2 ocupe todas las columnas */
-#userForm h1 {
-    grid-column: 1 / -1; /* Ocupa desde la primera columna hasta la última */
-    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
-}
-
-#userForm h2 {
-    grid-column: 1 / -1; /* Ocupa desde la primera columna hasta la última */
-    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
-}
-
-#userForm h3 {
-    grid-column: 1 / -1; /* Ocupa desde la primera columna hasta la última */
-    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
-}
-
+#userForm h1,
+#userForm h2,
+#userForm h3,
 #userForm p {
-    grid-column: 1 / -1; 
-    margin-bottom: 10px; 
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
 }
 
 .input-field {
-    position: relative; /* Asegura que las etiquetas flotantes funcionen correctamente */
+    position: relative;
     width: 100%;
 }
 
@@ -209,22 +77,22 @@ body {
 
 .input-field label {
     position: absolute;
-    top: 15px; /* Posición inicial del label */
+    top: 15px;
     left: 12px;
     color: var(--black);
     font-size: 14px;
     pointer-events: none;
     transition: 0.3s;
-    background: var(--white); /* Fondo para que no se superponga con el borde */
-    padding: 0 4px; /* Espacio interno para que no toque el borde */
+    background: var(--white);
+    padding: 0 4px;
 }
 
 .input-field input:focus ~ label,
 .input-field input:not(:placeholder-shown) ~ label {
-    top: -8px; /* Mueve el label hacia arriba */
+    top: -8px;
     font-size: 12px;
     color: var(--black);
-    background: var(--white); /* Fondo para que no se superponga con el borde */
+    background: var(--white);
 }
 
 .error {
@@ -238,7 +106,7 @@ body {
     display: block;
 }
 
-button {
+.form-container button {
     width: 100%;
     padding: 12px;
     background-color: var(--information);
@@ -250,45 +118,45 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+.form-container button:hover {
     background-color: darken(var(--information), 10%);
 }
 
 .child-block {
-    grid-column: 1 / -1; 
-    margin-bottom: 10px; 
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
 }
 
 #childrenContainer {
-    grid-column: 1 / -1; 
-    margin-bottom: 10px; 
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
 }
 
 .botoncito {
-    grid-column: 1 / -1; 
-    margin-bottom: 10px; 
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
 }
 
 .child-block {
-    margin-top: 20px; /* Espacio superior para separar del bloque anterior */
+    margin-top: 20px;
 }
 
 .child-block h2 {
-    grid-column: 1 / -1; /* Ocupa todas las columnas */
-    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
-    font-size: 1.5rem; /* Tamaño de fuente para h2 */
-    color: var(--black); /* Color del texto */
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: var(--black);
 }
 
 .child-block h3 {
-    grid-column: 1 / -1; /* Ocupa todas las columnas */
-    margin-bottom: 10px; /* Espacio inferior para separarlo de los campos */
-    font-size: 1.2rem; /* Tamaño de fuente para h3 */
-    color: var(--black); /* Color del texto */
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--black);
 }
 
 .child-block .input-field {
-    margin-bottom: 15px; /* Espacio entre los campos de entrada */
+    margin-bottom: 15px;
 }
 
 .child-block .input-field input {
@@ -333,167 +201,39 @@ button:hover {
     display: block;
 }
 
+/******* MENÚ **********/
 
-
-/* MENÚ */
-/* Estilos generales */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Primer menú */
-/* .menu-principal {
+/* Menú principal */
+.menu-principal {
+    height: 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f9fa;
+    padding: 0 20px;
+    background-color: #FFD6D0;
     border-bottom: 1px solid #ddd;
-    position: relative; /* Asegura que el menú esté en el flujo normal 
-    z-index: 1; /* Evita que el menú fijo lo cubra 
+    position: relative;
+    z-index: 1;
     overflow: hidden;
-} */
-
-/* .logo img {
-    height: 50px; /* Ajusta el tamaño del logo 
-} */
-
-/* .botones {
-    display: flex;
-    gap: 10px;
 }
 
-.botones button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.botones button:hover {
-    background-color: #0056b3;
-} */
-
-/* Segundo menú fijo */
-/* .menu-fijo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo transparente 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 20px;
-    transition: top 10s ease; /* Animación suave 
-    background-color: white; /* Fondo para que no se mezcle con el contenido 
-    z-index: 1000; /* Asegura que esté por encima de otros elementos 
-}
-
-
-.menu-fijo.visible {
-    top: 0; /* Muestra el menú fijo en la parte superior 
-} */
-
-.opciones {
-    display: flex;
-    gap: 20px;
-}
-
-/* .opciones a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.opciones a:hover {
-    color: #007bff;
-} */
-/* 
-.menu-fijo.visible {
-    top: 0;
-} */
-
-.form-container {
-    padding: 20px;
-}
-
-#menuFijo {
-    transition: margin-top 10s ease;
-  }
-
-
-  /* Estilos generales */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Primer menú */
-/* .menu-principal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #ddd;
-    position: relative; /* Asegura que el menú esté en el flujo normal 
-    z-index: 1; /* Evita que el menú fijo lo cubra 
-    overflow: hidden;
-} */
-
-.logo img {
-    height: 50px; /* Ajusta el tamaño del logo */
-}
-
-/* .botones {
-    display: flex;
-    gap: 10px;
-}
-
-.botones button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.botones button:hover {
-    background-color: #0056b3;
-} */
-
-/* Segundo menú fijo */
+/* Menú fijo */
 .menu-fijo {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo transparente */
+    background-color: rgba(255, 255, 255, 0.781);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px;
-    transition: top 10s ease; /* Animación suave */
-    /*background-color: white;  Fondo para que no se mezcle con el contenido */
-    background: rgba(255, 255, 255, 0.23);
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    padding: 15px;
-    padding-right: 100px;
+    transition: top 0.3s ease;
+    z-index: 1000;
 }
 
-
 .menu-fijo.visible {
-    top: 0; /* Muestra el menú fijo en la parte superior */
+    top: 0;
 }
 
 .opciones {
@@ -501,7 +241,7 @@ button:hover {
     gap: 20px;
 }
 
-/* .opciones a {
+.opciones a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
@@ -509,58 +249,57 @@ button:hover {
 }
 
 .opciones a:hover {
-    color: #007bff;
-} */
-
-.menu-fijo.visible {
-    top: 0;
+    color: #FF725E;
 }
 
-.form-container {
-    padding: 20px;
-}
-
-#menuFijo {
-    transition: margin-top 10s ease;
-  }
-
-.botonesMenu {
-    width: 25%;
-    margin: 0px;
-    display: flex;
-    gap: 10px;
-}
-
-.botonesMenu button {
-    padding: 10px 20px;
+/* Estilos para los botones dentro de .menu-principal */
+.menu-principal button {
+    font-weight: 600; /* Semi-bold */
+    background: none; /* Sin fondo */
     border: none;
-    border-radius: 5px;
-    background-color: #CD4533;
-    color: white;
+    color: var(--black); /* Color del texto */
+    padding: 10px 20px;
+    padding-left: 100px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: color 0.3s ease; /* Transición suave para el hover */
 }
 
-.botonesMenu button:hover {
-    background-color: #0056b3;
+/* Hover para los botones normales */
+.menu-principal button:hover {
+    color: #FF725E; /* Rojo al pasar el mouse */
 }
 
-.botonesMenu .btn-area-privada {
-    color: black;          /* Color de la letra */
-    background: transparent; /* Sin fondo */
-    border: none;         /* Opcional: elimina el borde si lo hay */
-    cursor: pointer;      /* Opcional: cambia el cursor al pasar el mouse */
+/* Estilos para "Inscribirse" */
+.menu-principal .btn-inscribirse {
+    background-color: #CD4533; /* Fondo rojo */
+    color: var(--white); /* Texto blanco */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 20px;
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
 }
 
+/* Hover para el botón "Inscribirse" */
+.menu-principal .btn-inscribirse:hover {
+    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
+    color: var(--white); /* Texto blanco */
+}
 
-/* HERO */
+.logo {
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+.logo img {
+    height: 50px;
+}
 
 /* Hero section */
 .hero {
-    background-image: url(../../../assets/img/inscripcion3.jpg); /* Cambia la URL por tu imagen */
+    background-image: url(../../../assets/img/inscripcion3.jpg);
     background-size: cover;
     background-position: center;
-    height: 300px; /* Ajusta la altura según necesites */
+    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -593,3 +332,6 @@ button:hover {
     margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+
+/** fin HERO */
