@@ -1,9 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+  }
+  
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: Poppins, sans-serif;
+    font-family: 'Poppins-regular';
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -38,7 +54,8 @@ body, html {
     gap: 20px;
     font-size: 18px;
 }
-.areaprivada{
+
+.areaprivada {
     margin-top: 10px;
 }
 
@@ -272,7 +289,7 @@ textarea {
     position: relative;
     padding: 40px 30px;
     text-align: left;
-    background: rgb(67, 67, 67);
+    background: black;
     color: white;
     display: flex;
     align-items: center;
@@ -381,6 +398,7 @@ input.error, textarea.error {
     background-color: #ffe6e6;
 }
 
+/* Responsive Styles */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -392,13 +410,29 @@ input.error, textarea.error {
         width: 150px;
     }
 
+    .header-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
     .hero-links {
         flex-direction: column;
         gap: 10px;
     }
 
     .contact-form-section {
+        flex-direction: column;
         padding: 20px;
+    }
+
+    .contact-form-section img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .contact-form-content {
+        margin-left: 0;
     }
 
     .contact-form {
@@ -439,5 +473,89 @@ input.error, textarea.error {
 
     .contact-info {
         margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+    }
+
+    .header img {
+        width: 120px;
+    }
+
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-title {
+        font-size: 24px;
+    }
+
+    .hero-breadcrumb {
+        font-size: 14px;
+    }
+    
+    .contact-form-section {
+        padding: 10px;
+    }
+
+    .contact-form {
+        padding: 10px;
+        width: 350px;
+        text-align: center;
+    }
+    .contact-form-title{
+        text-align: center;
+    }
+    .contact-form-text{
+        /* text-align: justify; */
+        margin-bottom: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .submit-btn{
+       align-items: center;   
+    }
+
+    .work-with-us-section {
+        padding: 10px;
+    }
+
+    .work-with-us-title {
+        font-size: 30px;
+    }
+
+    .work-with-us-text {
+        font-size: 18px;
+        padding-top: 10px;
+    }
+
+    .cv-upload-title {
+        font-size: 20px;
+    }
+    .cv-upload-section img{
+        padding-top: -15px;
+    }
+    .about-text {
+        font-size: 20px;
+    }
+
+    .contact-info {
+        font-size: 14px;
+    }
+    .footer{
+        width: 100%;
+        align-items: center;
+    }
+
+    .footer-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .social-icons {
+        flex-direction: column;
     }
 }

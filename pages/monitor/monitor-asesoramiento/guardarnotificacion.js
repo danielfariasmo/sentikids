@@ -17,8 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Enviar datos al PHP
             fetch("guardar_notificacion.php", {
                 method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `recipient=${encodeURIComponent(recipient)}&message=${encodeURIComponent(message)}`
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    recipient: recipient,
+                    message: message
+                })
             })
             .then(response => response.json())
             .then(data => {
@@ -30,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert("Error: " + data.message);
                 }
             })
-            .catch(error => console.error("Error en la solicitud:", error));
+            // .catch(error => console.error("Error en la solicitud:", error));
         });
     }
 });
