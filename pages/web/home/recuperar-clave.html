@@ -6,23 +6,46 @@
     <title>Recuperar Clave</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
+    <link rel="stylesheet" href="recuperar-clave.css">
 </head>
 <body>
-    <form id="recuperarForm">
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="tipo">Selecciona tu tipo de usuario:</label>
-        <select id="tipo" name="tipo" required>
-            <option value="administrador">Administrador</option>
-            <option value="monitor">Monitor</option>
-            <option value="tutor">Padre</option>
-        </select>
-
-        <button type="submit">Recuperar</button>
-    </form>
-
-    <div id="respuesta"></div>
+    <div class="container">
+        <div class="background">
+            <div class="red-section"></div>
+            <div class="white-section"></div>
+        </div>
+        <div class="content">
+            <img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo">
+            <h1>Restablecer Contraseña</h1>
+            <form id="recuperarForm">
+                <div id="group__email" class="form__group">
+                  <label for="email" class="form__label">Correo Electrónico:</label>
+                  <div class="form__input-group">
+                    <input type="email" id="email" name="email" class="form__input" >
+                    <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+                  </div>
+                  <p class="form__input-error">El correo electrónico no es válido.</p>
+                </div>
+              
+                <div id="group__tipo" class="form__group">
+                  <label for="tipo" class="form__label">Selecciona tu tipo de usuario:</label>
+                  <div class="form__select-wrapper">
+                    <select id="tipo" name="tipo" class="form__select" >
+                      <option value="" selected disabled>Selecciona una opción</option>
+                      <option value="administrador">Administrador</option>
+                      <option value="monitor">Monitor</option>
+                      <option value="tutor">Padre</option>
+                    </select>
+                    <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+                  </div>
+                  <p class="form__input-error">Debes seleccionar un tipo de usuario.</p>
+                </div>
+              
+                <button type="submit">Recuperar</button>
+                <div id="respuesta"></div>
+              </form>
+        </div>
+    </div>
 
     <script src="recuperar-clave.js"></script>
 </body>

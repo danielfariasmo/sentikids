@@ -334,7 +334,7 @@ $('#add-child').on('click', function () {
         group_id: groupId 
       },
       success: function (response) {
-        showCustomAlert('Niños agregados al grupo correctamente');
+        showCustomAlert(response);
         fetchListado(groupId);
         $('#modal1').fadeOut(); 
       },
