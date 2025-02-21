@@ -15,10 +15,10 @@ if (!$conexion) {
 }
 
 // Obtener datos del JSON enviado
-$data = json_decode(file_get_contents("php://input"), false);
+$data = json_decode(file_get_contents("php://input"), true);
 
 if (!$data) {
-    echo json_encode(["status" => "error", "message" => "Datos correctos"]);
+    json_encode(["status" => "error", "message" => "Datos correctos"]);
     exit;
 }
 
