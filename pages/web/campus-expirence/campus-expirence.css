@@ -305,7 +305,7 @@ Estilos Responsive para Móviles
     }
 
     .social-icons {
-        flex-direction: column;
+        flex-direction: row;
     }
 }
 
