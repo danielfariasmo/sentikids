@@ -16,6 +16,9 @@
     --rojoSecundario: #A32F23;
     --salmon: #FFD6D0;
     --negroSecundario: #333;
+    --c-ribbon: #CD4533;
+    --c-ribbon-shadow: #666;
+    --c-ribbon-text: #fff;
 }
 
 @font-face {
@@ -58,14 +61,11 @@ h1, h2, h3 {
 
 h2 {
     color: #FF725E;
-text-align: center;
-/* Titulos/Titulo M */
-font-family: Poppins;
-font-size: 48px;
-font-style: normal;
-font-weight: 700;
-line-height: 69px; /* 143.75% */
-letter-spacing: 4.32px;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 69px;
+    letter-spacing: 4.32px;
 }
 
 a {
@@ -186,7 +186,7 @@ MENU
 HEADER
 -----------------------------------------*/
 .hero {
-    background:black;
+    background: black;
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -199,41 +199,47 @@ HEADER
     position: relative;
 }
 
+
+/*----------------------------------------
+FECHA
+-----------------------------------------*/
 .date-range {
-  color: #68AEBE;
-  font-family: Poppins;
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 69px;
-  letter-spacing: 4.32px;
-  text-align: center;
-  margin-top: 20px
+    color: #68AEBE;
+    font-family: 'Poppins-bold';
+    font-size: 54px;
+    line-height: 69px;
+    letter-spacing: 4.32px;
+    text-align: center;
+    margin-top: 20px
 }
 
+/*----------------------------------------
+TITULOS
+-----------------------------------------*/
 .tarifa, .descuentos, .opciones-comida, .preguntas-frecuentes {
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  border: 2px solid red;
-  height: 80px;
-  margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--rojoSecundario);
+    height: 80px;
+    margin-top: 40px;
 }
 
 .opciones-comida, .preguntas-frecuentes {
-  background: blue;
+    background: var(--salmon);
+    border: none;
 }
 
-/* Contenedor principal de la tabla */
-/* Contenedor para centrar la tabla */
+/*----------------------------------------
+TABLAS
+-----------------------------------------*/
 .table-container {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    align-items: center;
     margin-top: 3em;
 }
 
-/* Estilos de la tabla */
 .table {
     display: table;
     width: 50%;
@@ -250,151 +256,164 @@ HEADER
 .row-item {
     display: table-cell;
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--principal);
     text-align: center;
+    font-size: 20px;
 }
 
 .table-header {
-    background-color: #f2f2f2;
+    background-color: var(--principal);
     font-weight: bold;
+    font-size: 24px;
 }
 
-.table-row:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.table-row:hover {
-    background-color: #f1f1f1;
-}
-
+/*----------------------------------------
+TARIFAS
+-----------------------------------------*/
 .info {
-  display: flex;
-min-width: 240px;
-padding: var(--sds-size-space-800);
-flex-direction: column;
-align-items: center;
-gap: 20px;
-flex: 1 0 0;
-  margin-top: 1em;
+    display: flex;
+    min-width: 240px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex: 1 0 0;
+    margin-top: 2em;
+    font-size: 24px;
 }
 
 .download-button {
-  display: flex;
-width: 294px;
-padding: var(--sds-size-space-300);
-justify-content: center;
-align-items: center;
-gap: var(--sds-size-space-200);
-  border-radius: var(--sds-size-radius-200);
-background: #CD4533;
+    display: flex;
+    width: 15em;
+    justify-content: center;
+    align-items: center;
+    background: var(--rojoPrincipal);
+    color: var(--blanco);
+    border-radius: 0.3em;
+    height: 2.5em;
+    margin: 1em;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
 }
 
-/*comidas*/
-:root {
-  --c-ribbon: #2f2f2f;
-  --c-ribbon-shadow: #666;
-  --c-ribbon-text: #efefef;
-  --c-title: #2f2f2f;
+.download-button:hover{
+    background-color: var(--rojoSecundario);
 }
+
+/*----------------------------------------
+OPCIONES DE COMIDA
+-----------------------------------------*/
 .price-table {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  background: green;
-  margin-top: 2em;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    height: auto;
 }
 
 .price-card {
-  color: #555;
-  background-color: #fff;
-  width: 25%;
-  min-width: 12rem;
-  max-width: 15rem;
-  text-align: center;
-  margin: 0 2rem;
-  padding: 0.5rem 0 1rem;
+    color: var(--negro);
+    background-color: var(--blanco);
+    width: 25%;
+    min-width: 12rem;
+    max-width: 15rem;
+    text-align: center;
+    margin: 0 2rem;
+    padding: 0.5rem 0 1rem;
+    border: 1px solid var(--borde); 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px var(--sombraOscura2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 12px 24px var(--sombraOscura); 
 }
 
 .price-card__ribbon {
-  position: relative;
-  padding: 2rem 1rem;
-  margin: 0 -0.8rem 2rem;
-  background-color: var(--c-ribbon);
-  transform: skew(0, -10deg);
-  border-radius: 3px 0;
-  box-shadow: 0 2rem 1.2rem -2rem var(--c-ribbon-shadow);
-}
-
-.price-card__ribbon:before,
-.price-card__ribbon:after {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  content: "";
-  position: absolute;
-}
-
-.price-card__ribbon:before {
-  border-width: 0 0.8rem 0.8rem 0;
-  border-color: transparent var(--c-ribbon-shadow) transparent transparent;
-  left: 0;
-  bottom: 0;
-  transform: translateY(100%);
-}
-
-.price-card__ribbon:after {
-  border-width: 0.8rem 0 0 0.8rem;
-  border-color: transparent transparent transparent var(--c-ribbon-shadow);
-  right: 0;
-  top: 0;
-  transform: translateY(-100%);
+    position: relative;
+    padding: 2rem 1rem;
+    margin: 0 -0.8rem 2rem;
+    background-color: var(--c-ribbon);
+    transform: skew(0, -10deg);
+    border-radius: 3px 0;
+    box-shadow: 0 2rem 1.2rem -2rem var(--c-ribbon-shadow);
 }
 
 .price-card__ribbon-text {
-  color: var(--c-ribbon-text);
-  font-size: 2rem;
-  line-height: 1.4;
-  font-weight: 700;
-  display: block;
-  transform: skew(0, 10deg);
+    color: var(--c-ribbon-text);
+    font-size: 2rem;
+    line-height: 1.4;
+    font-weight: 700;
+    display: block;
+    transform: skew(0, 10deg);
 }
 
 .price-card__title {
-  color: var(--c-title);
+    color: var(--negro);
+    font-size: 24px;
 }
 
 .price-card--highlight {
-  --c-ribbon: #f94289;
-  --c-ribbon-text: #fff;
-  --c-ribbon-shadow: #ff619b;
-  --c-title: #f94289;
-
-  box-shadow: 0 0 3rem -1.5rem rgba(0, 0, 0, 0.5);
+    --c-ribbon: #80C4D3;
+    --c-ribbon-text: #fff;
+    --c-ribbon-shadow: #5A9EB3;
+    --c-title: #80C4D3;
+    --principal: #80C4D3;
+    --secundario: #5A9EB3;
 }
 
-/*descuentos*/
-.container-descuentos{
-  display: flex;
-
-align-items: center;
-justify-content: center;
-gap: 3em;
-align-self: stretch;
-flex-wrap: wrap;
-  margin-top: 2em;
+/*----------------------------------------
+OPCIONES DE COMIDA
+-----------------------------------------*/
+.container-descuentos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
-/*preguntas*/
+.table-descuentos {
+    width: 100%; 
+    max-width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 10px;
+}
+
+.discounts-description {
+    width: 100%; 
+    padding: 1.5rem;
+}
+
+.discounts-description ul {
+    list-style-type: disc; 
+    padding-left: 1.5rem; 
+    margin: 0;
+}
+
+.discounts-description li {
+    margin-bottom: 0.75rem; 
+    line-height: 1.5; 
+    font-size: 20px;
+}
+
+/*----------------------------------------
+Preguntas Frecuentes
+-----------------------------------------*/
 .faq-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins-regular';
+    font-size: 20px;
 }
 
 .faq-item {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(---blancoMenu);
     margin-bottom: 10px;
 }
 
@@ -404,13 +423,13 @@ flex-wrap: wrap;
     align-items: center;
     padding: 15px;
     cursor: pointer;
-    background-color: #f9f9f9;
+    background-color: var(--principal);
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .faq-question:hover {
-    background-color: #f1f1f1;
+    background-color: var(--secundario);
 }
 
 .faq-icon {
@@ -424,7 +443,7 @@ flex-wrap: wrap;
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
     padding: 0 15px;
-    background-color: #fff;
+    background-color: var(--blanco);
 }
 
 .faq-answer p {
@@ -432,21 +451,14 @@ flex-wrap: wrap;
     padding: 15px 0;
 }
 
-/* Estilo cuando la pregunta está activa (desplegada) */
 .faq-item.active .faq-icon {
     transform: rotate(45deg);
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px; /* Ajusta según el contenido */
+    max-height: 200px;
     padding: 15px;
 }
-
-
-
-
-
-
 
 /*----------------------------------------
 FOOTER
@@ -569,12 +581,15 @@ Estilos Responsive para Tablets
     .about-section {
         padding: 20px;
     }
+
     .footer {
         padding: 20px;
     }
+
     .about-content {
         flex-direction: column;
     }
+
     .about-text, .contact-info {
         width: 100%;
     }
@@ -593,12 +608,12 @@ Estilos Responsive para Móviles
         font-size: 14px;
         margin-top: 20px;
     }
-    
+
     .about-text {
         font-size: 20px;
     }
-    
-    .footer{
+
+    .footer {
         width: 100%;
         align-items: center;
     }
@@ -612,4 +627,3 @@ Estilos Responsive para Móviles
         flex-direction: row;
     }
 }
-
