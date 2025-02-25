@@ -28,7 +28,7 @@ var swiper = new Swiper(".slide-content", {
 //MENÚ
 const menuFijo = document.querySelector(".menu-fijo");
 menuFijo.style.marginTop = "48px";
-const MARGEN_INICIAL = 0;
+const MARGEN_INICIAL = 48;
 
 window.addEventListener("scroll", function () {
     const scrollActual = window.scrollY;
@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var swiperEmpresas = new Swiper(".empresas-swiper", {
         loop: true,
         autoplay: {
-            delay: 2000, // Cambia la imagen cada 2s
+            delay: 4000, // Cambia la imagen cada 4s
             disableOnInteraction: false,
         },
         slidesPerView: "auto", // Ajusta automáticamente según el tamaño
-        spaceBetween: 20, // Espacio entre imágenes
+        spaceBetween: 20,
         centeredSlides: true, // Centra las imágenes en el carrusel
     });
 });
