@@ -17,8 +17,6 @@ body {
 
 .main-content {
     flex: 1;
-    margin-top: 48px;
-    /* Ajusta según la altura del menú principal */
 }
 
 h1 {
@@ -45,53 +43,15 @@ h1 {
     padding: 0 20px;
     background-color: #FFD6D0;
     border-bottom: 1px solid #ddd;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-.menu-principal .logo {
-    height: 40px;
-}
-
-.menu-principal .botonesMenu {
-    display: flex;
-    gap: 10px;
-}
-
-.menu-principal button {
-    font-weight: 600;
-    background: none;
-    border: none;
-    color: #333;
-    padding: 5px 15px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.menu-principal button:hover {
-    color: #FF725E;
-}
-
-.menu-principal .btn-inscribirse {
-    background-color: #CD4533;
-    color: white;
-    border-radius: 5px;
-    padding: 5px 20px;
-    transition: background-color 0.3s ease;
-}
-
-.menu-principal .btn-inscribirse:hover {
-    background-color: #FF725E;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
 
 /* Menú fijo */
 .menu-fijo {
     position: fixed;
-    top: 48px;
-    /* Ajusta según la altura del menú principal */
+    top: 0;
     left: 0;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.781);
@@ -99,27 +59,71 @@ h1 {
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px;
-    z-index: 999;
-    overflow: hidden;
-    /* Evita desbordamiento */
+    transition: top 0.3s ease;
+    z-index: 1000;
 }
 
-.menu-fijo .opciones {
+.menu-fijo.visible {
+    top: 0;
+}
+
+.opciones {
     display: flex;
     gap: 20px;
 }
 
-.menu-fijo .opciones a {
+.opciones a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
     transition: color 0.3s;
 }
 
-.menu-fijo .opciones a:hover {
+.opciones a:hover {
     color: #FF725E;
 }
 
+/* Estilos para los botones dentro de .menu-principal */
+.menu-principal button {
+    font-weight: 600; /* Semi-bold */
+    background: none; /* Sin fondo */
+    border: none;
+    color: var(--black); /* Color del texto */
+    padding: 10px 20px;
+    padding-left: 100px;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Hover para los botones normales */
+.menu-principal button:hover {
+    color: #FF725E; /* Rojo al pasar el mouse */
+}
+
+/* Estilos para "Inscribirse" */
+.menu-principal .btn-inscribirse {
+    background-color: #CD4533; /* Fondo rojo */
+    color: var(--white); /* Texto blanco */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 20px;
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Hover para el botón "Inscribirse" */
+.menu-principal .btn-inscribirse:hover {
+    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
+    color: var(--white); /* Texto blanco */
+}
+
+.logo {
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+.logo img {
+    height: 50px;
+}
 /* Hero section */
 .hero {
     background-image: url(../../../assets/img/inscripcion3.jpg);
@@ -141,6 +145,7 @@ h1 {
     margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 
 .breadcrumb {
     font-size: 14px;
@@ -191,11 +196,13 @@ h1 {
     flex: 1;
     text-align: right;
 }
-
+.quienes-somos {
+    margin-top: 100px; 
+}
 .quienes-somos-imagen img {
-    max-width: 100%;
-    width: 700px;
-    height: auto;
+    width: 480px; 
+    height: 480px; 
+    object-fit: cover; 
     border-radius: 10px;
 }
 
