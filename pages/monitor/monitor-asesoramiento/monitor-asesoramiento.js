@@ -26,7 +26,7 @@ function openPopup() {
 
             // Opción por defecto
             const defaultOption = document.createElement('option');
-            defaultOption.textContent = 'Seleccionar Tutor';
+            defaultOption.textContent = 'Todos los padres';
             defaultOption.value = "";
             recipientSelect.appendChild(defaultOption);
 
