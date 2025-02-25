@@ -119,7 +119,6 @@ body {
 
 /* Hero para Home */
 .hero-home {
-    background-image: url('https://via.placeholder.com/1200x600'); /* Imagen inicial */
     background-size: cover;
     background-position: center;
     height: 100vh; /* Ocupa toda la altura de la pantalla */
@@ -203,7 +202,6 @@ body {
     position: relative; /* Necesario para posicionar las waves */
     width: 100%;
     height: 90vh; /* Altura del hero */
-    background-image: url('../../../assets/img/home.png'); /* Imagen de fondo del hero */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -283,50 +281,53 @@ body {
     }
 }
 
+/* Introducción */
+.introduction {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* O usa 'flex-start' si quieres que estén más pegados */
+    gap: 20px; /* Reduce el espacio entre los elementos */
+    padding: 30px; /* Reduce el padding si también quieres menos margen interno */
+    background: white;
+}
 
 
+.introduction-content {
+    max-width: 600px; /* Ancho máximo del texto */
+}
 
-/* Contenedor de las ondas */
-/* .waves {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.introduction-title {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.introduction-text {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.introduction-image img {
     width: 100%;
-    height: 150px; /* Altura de las ondas 
-    overflow: hidden;
+    max-width: 300px; /* Puedes ajustar este valor según el diseño */
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10px; /* Bordes redondeados */
 }
 
-/* Estilos para cada onda 
-.wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    animation: wave-animation 10s infinite linear;
-}
-
-.wave:nth-child(1) {
-    animation-duration: 10s;
-    opacity: 0.7;
-}
-
-.wave:nth-child(2) {
-    animation-duration: 8s;
-    opacity: 0.5;
-}
-
-.wave:nth-child(3) {
-    animation-duration: 6s;
-    opacity: 0.3;
-}
-
-/* Animación para las ondas 
-@keyframes wave-animation {
-    0% {
-        transform: translateX(0);
+/* Responsive */
+@media (max-width: 768px) {
+    .introduction {
+        flex-direction: column;
+        text-align: center;
     }
-    100% {
-        transform: translateX(-100%);
+
+    .introduction-content {
+        margin-bottom: 30px;
     }
-} */
+
+    .introduction-image img {
+        width: 100%;
+    }
+}
