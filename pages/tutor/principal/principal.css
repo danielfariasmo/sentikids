@@ -223,6 +223,32 @@ body {
     background: var(--white); /* Fondo para que no se superponga con el borde */
 }
 
+
+/* Estilos para inputs, textareas y selects */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid var(--black);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    background: var(--white);
+}
+
+textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 100px; /* Altura mínima */
+}
+
+select {
+    appearance: none; /* Elimina el estilo por defecto del select */
+    background: var(--white);
+    cursor: pointer;
+}
+
 /* Botón de cerrar */
 .close-btn {
     position: absolute;
@@ -504,4 +530,22 @@ span {
     bottom: 40px; /* Ajusta la distancia desde abajo */
     left: 30px; /* Ajusta la distancia desde la izquierda */
     cursor: grab;
+}
+
+/* Info niño/a */
+
+.infoChild {
+    max-height: 400px; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    padding: 40px; /* Espacio interno */
+    padding-top: 20px;
+    border-radius: 19px; /* Bordes redondeados */
+    background-color: white; /* Fondo opcional */
+}
+
+
+
+.horarioImg {
+    width:500px; 
+    margin-top:10px;
 }
