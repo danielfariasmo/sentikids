@@ -28,16 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                 onclick="selectStudent(
                                     '${student.nombre}',
                                     '${student.apellidos}',
-                                    '${student.edad || 'No disponible'}',
-                                    '${student.dieta || 'No especificado'}',
+                                 
                                     '${student.alergias || 'No tiene'}',
                                     '${student.nombre_tutor}',
                                     '${student.telefono}',
                                     '${student.dni || 'No disponible'}',
-                                    '${student.otroTutor || 'No registrado'}',
-                                    '${student.telefonoOtro || 'No disponible'}',
-                                    '${student.dniOtro || 'No disponible'}',
-                                    '${student.relacion || 'No especificado'}'
+                                    
                                 )">
                                 Más info
                             </button>
@@ -57,16 +53,14 @@ function showPopup() {
     if (Object.keys(selectedStudent).length > 0) {
         document.getElementById('nombre').textContent = selectedStudent.nombre;
         document.getElementById('apellidos').textContent = selectedStudent.apellidos;
-        document.getElementById('edad').textContent = selectedStudent.edad;
         document.getElementById('dieta').textContent = selectedStudent.dieta;
-        document.getElementById('alergias').textContent = selectedStudent.alergias;
+       
+       
+        document.getElementById('alergias').textContent = selectedStudent.alergias; 
         document.getElementById('tutor').textContent = selectedStudent.tutor;
-        document.getElementById('telefono').textContent = selectedStudent.telefono;
-        document.getElementById('dni').textContent = selectedStudent.dni;
-        document.getElementById('otroTutor').textContent = selectedStudent.otroTutor;
-        document.getElementById('telefonoOtro').textContent = selectedStudent.telefonoOtro;
-        document.getElementById('dniOtro').textContent = selectedStudent.dniOtro;
-        document.getElementById('relacion').textContent = selectedStudent.relacion;
+       
+        
+        // document.getElementById('otroTutor').textContent = selectedStudent.otroTutor;
 
         document.getElementById('overlay').style.display = 'block';
         document.getElementById('popup').style.display = 'block';

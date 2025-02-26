@@ -26,7 +26,7 @@ body, html {
 .logo {
   width: 258px;
   height: 68px;
-  margin-left: 62px;
+  margin-left: 62px; /* Añade margen izquierdo para alinear el logo */
 }
 
 /* Menú de navegación */
@@ -38,9 +38,10 @@ body, html {
   padding-right: 62px;
 }
 
+/* Elimina subrayado de los enlaces */
 .nav a {
-  text-decoration: none;
-  color: black;
+  text-decoration: none; /* Quita el subrayado */
+  color: black; /* Color del texto */
   font-size: 18px;
   font-weight: 400;
 }
@@ -50,11 +51,11 @@ body, html {
   transition: background 0.3s ease;
 }
 
+/* Efecto hover */
 .nav a div:hover {
-  color: #CD4533;
+  background-color: transparent; /* Elimina el efecto de botón */
+  color: #CD4533; /* Nuevo color de hover para contraste */
 }
-
-/* Menú de usuario */
 .menu-container {
   position: relative;
   display: inline-block;
@@ -93,8 +94,8 @@ body, html {
 
 .menu button:hover {
   background: #f0f0f0;
+  display: block;
 }
-
 .user-button {
   display: flex;
   align-items: center;
@@ -107,7 +108,7 @@ body, html {
 }
 
 .user-button img {
-  width: 30px;
+  width: 30px; /* Ajusta según necesites */
   height: 30px;
   border-radius: 50%;
 }
