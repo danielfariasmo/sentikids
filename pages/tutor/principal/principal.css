@@ -534,7 +534,87 @@ span {
 
 /* Info niño/a */
 
+/* Contenedor de información del niño */
 .infoChild {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 19px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del nombre del niño */
+.infoChild .nombreTitulo {
+    font-size: 24px;
+    color: #22343D;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+/* Subtítulos (Grupo, Monitor, etc.) */
+.infoChild h4 {
+    font-size: 18px;
+    color: #22343D;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* Texto del grupo y monitor */
+.infoChild .grupo,
+.infoChild .monitorInfo {
+    font-size: 16px;
+    color: #22343D;
+    margin-bottom: 10px;
+}
+
+/* Textarea para alergias */
+.infoChild .textAreaAlergias {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    resize: vertical; /* Permite redimensionar verticalmente */
+    margin-bottom: 15px;
+}
+
+/* Enlace de fotos del grupo */
+.infoChild .fotosGrupo {
+    padding: 10px 15px;
+    color: #22343D;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .infoChild .nombreTitulo {
+        font-size: 20px;
+    }
+
+    .infoChild h4 {
+        font-size: 16px;
+    }
+
+    .infoChild .grupo,
+    .infoChild .monitorInfo {
+        font-size: 14px;
+    }
+
+    .infoChild .textoAlergias {
+        font-size: 14px;
+    }
+
+}
+
+
+
+
+
+
+
+.horarioContainer {
     max-height: 400px; /* Altura máxima del contenedor */
     overflow-y: auto; /* Habilita el scroll vertical */
     padding: 40px; /* Espacio interno */
@@ -543,9 +623,52 @@ span {
     background-color: white; /* Fondo opcional */
 }
 
-
+.fotosGrupo {
+    float: right;
+}
 
 .horarioImg {
     width:500px; 
     margin-top:10px;
+    border-radius: 15px;
+}
+
+
+.delete-icon {
+    width: 20px; /* Ajusta el tamaño según necesites */
+    height: 20px;
+    cursor: pointer;
+    background-image: url('../../../assets/icon/papelera1.png'); /* Imagen por defecto */
+    background-size: cover;
+    display: inline-block;
+    float: right;
+}
+
+.delete-icon:hover {
+    background-image: url('../../../assets/icon/papelera2.png'); /* Imagen al pasar el cursor */
+}
+
+button {
+    background-color: #ff8c79; /* Azul por defecto */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    padding: 10px 20px; /* Espaciado */
+    font-size: 16px; /* Tamaño del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a "pointer" */
+    transition: background 0.3s ease; /* Efecto suave */
+}
+
+button:hover {
+    background-color: #FF725E; /* Azul más oscuro al pasar el ratón */
+}
+
+.trusted-item {
+    flex: 1; /* Ocupa el espacio restante */
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative; /* Necesario para posicionar el botón de cierre */
 }

@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const rightContainer = document.getElementById('right-container');
         if (rightContainer) {
             rightContainer.innerHTML = `
-            <div class="infoChild" style="display:none;">
+            <div class="infoChild">
                 <h3 class="nombreTitulo"></h3>
                 <h4>Grupo:</h4>
                 <p class="grupo"></p>
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a class="fotosGrupo" target="_blank"></a>
                 <button class="horarioButton" id="horarioButton">Horario</button>
             </div>
-            <div class="infoTrust" style="display:none;"></div>
+            <div class="infoTrust"></div>
         `;
         }
     }
@@ -628,11 +628,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const personDiv = document.createElement('div');
                     personDiv.className = 'trusted-item';
                     personDiv.innerHTML = `
-                    <span>${person.nombre} ${person.apellidos} (${person.telefono})</span>
-                    <span class="delete-icon" data-id="${person.id}">🗑️</span>
-                `;
+                        <span>${person.nombre} ${person.apellidos} (${person.telefono})</span>
+                        <span class="delete-icon" data-id="${person.id}"></span>
+                    `;
                     infoTrustDiv.appendChild(personDiv);
-
+                
                     // Añadir evento para eliminar persona de confianza
                     personDiv.querySelector('.delete-icon').addEventListener('click', function () {
                         eliminarPersonaConfianza(person.id);
