@@ -44,8 +44,8 @@ h1 {
     background-color: #FFD6D0;
     border-bottom: 1px solid #ddd;
     position: relative;
-    z-index: 1;
-    overflow: hidden;
+    z-index: 10;
+    
 }
 
 /* Menú fijo */
@@ -85,34 +85,34 @@ h1 {
 
 /* Estilos para los botones dentro de .menu-principal */
 .menu-principal button {
-    font-weight: 600; /* Semi-bold */
-    background: none; /* Sin fondo */
+    font-weight: 600; 
+    background: none; 
     border: none;
-    color: var(--black); /* Color del texto */
+    color: var(--black); 
     padding: 10px 20px;
     padding-left: 100px;
     cursor: pointer;
-    transition: color 0.3s ease; /* Transición suave para el hover */
+    transition: color 0.3s ease; 
 }
 
 /* Hover para los botones normales */
 .menu-principal button:hover {
-    color: #FF725E; /* Rojo al pasar el mouse */
+    color: #FF725E; 
 }
 
 /* Estilos para "Inscribirse" */
 .menu-principal .btn-inscribirse {
-    background-color: #CD4533; /* Fondo rojo */
-    color: var(--white); /* Texto blanco */
-    border-radius: 5px; /* Bordes redondeados */
+    background-color: #CD4533; 
+    color: var(--white); 
+    border-radius: 5px; 
     padding: 5px 20px;
-    transition: background-color 0.3s ease; /* Transición suave para el hover */
+    transition: background-color 0.3s ease; 
 }
 
 /* Hover para el botón "Inscribirse" */
 .menu-principal .btn-inscribirse:hover {
-    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
-    color: var(--white); /* Texto blanco */
+    background-color: #FF725E; 
+    color: var(--white); 
 }
 
 .logo {
@@ -123,6 +123,88 @@ h1 {
 
 .logo img {
     height: 50px;
+}
+/* Estilos para el botón de menú hamburguesa */
+.hamburguesa {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-left: 250px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000; /* Asegurar que está encima */
+    position: relative;
+}
+
+.hamburguesa-linea {
+    width: 30px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+}
+/* <!-- Menú móvil --> */
+.menu-movil {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Oculto por defecto */
+    width: 80%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding-top: 60px;
+}
+
+.menu-movil.visible {
+    left: 0; /* Mostrar menú */
+}
+
+.opciones-movil {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.opciones-movil a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.opciones-movil a:hover {
+    color: #FF725E;
+}
+
+/*RESPONISVE DEL MENÚ*/
+@media (max-width: 768px) {
+    .hamburguesa {
+        display: flex; /* Mostrar botón hamburguesa en móviles */
+    }
+
+    .botonesMenu {
+        /* display: none; */
+        padding-right: 50px;
+    }
+
+    .menu-fijo {
+        display: none; /* Ocultar menú fijo en móviles */
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-movil {
+        visibility: hidden;
+        opacity: 0;
+        left: -100%;
+        transition: opacity 0.3s ease, left 0.3s ease;
+    }
+    .hamburguesa{
+        display: none;
+    }
 }
 /* Hero section */
 .hero {
