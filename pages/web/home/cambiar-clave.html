@@ -1,27 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambiar Clave</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
+    <link rel="stylesheet" href="cambiar-clave.css">
 </head>
 <body>
     <div class="container">
-        <h2>Cambiar Contraseña</h2>
-        <form id="changePasswordForm">
-            <input type="hidden" id="email" name="email">
-            <input type="hidden" id="token" name="token">
+        <div class="background">
+            <div class="red-section"></div>
+            <div class="white-section"></div>
+        </div>
+        <div class="content">
+            <img src="../../../assets/img/logo-sin-fondo.png" alt="Logo" class="logo">
+            <h1>Cambiar Contraseña</h1>
+            <form id="changePasswordForm">
+                <input type="hidden" id="email" name="email">
+                <input type="hidden" id="token" name="token">
 
-            <label for="new_password">Nueva Contraseña:</label>
-            <input type="password" id="new_password" name="new_password" required>
+                <div id="group__new_password" class="form__group">
+                    <label for="new_password" class="form__label">Nueva Contraseña:</label>
+                    <div class="form__input-group">
+                        <input type="password" id="new_password" name="new_password" class="form__input" required>
+                        <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+                    </div>
+                    <p class="form__input-error">La contraseña no es válida.</p>
+                </div>
 
-            <label for="confirm_password">Confirmar Contraseña:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
+                <div id="group__confirm_password" class="form__group">
+                    <label for="confirm_password" class="form__label">Confirmar Contraseña:</label>
+                    <div class="form__input-group">
+                        <input type="password" id="confirm_password" name="confirm_password" class="form__input" required>
+                        <img src="../../../assets/icon/boton-eliminar.png" class="form__validation-status">
+                    </div>
+                    <p class="form__input-error">Las contraseñas no coinciden.</p>
+                </div>
 
-            <button type="submit">Cambiar Contraseña</button>
-            <p id="message"></p>
-        </form>
+                <button type="submit">Cambiar Contraseña</button>
+                <div id="message"></div>
+            </form>
+        </div>
     </div>
 
     <script src="cambiar-clave.js"></script>
