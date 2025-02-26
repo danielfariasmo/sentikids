@@ -39,6 +39,7 @@ $id_tutor = $_SESSION['id_usuario'];
 $queryHijo = "
     SELECT 
         h.nombre AS nombre_hijo,
+        h.apellidos AS apellidos_hijo,
         h.alergias,
         g.nombre AS grupo,
         m.nombre AS nombre_monitor,
@@ -77,6 +78,7 @@ echo json_encode([
     'status' => 'success',
     'data' => [
         'nombreHijo' => $hijo['nombre_hijo'],
+        'apellidos' => $hijo['apellidos_hijo'],
         'alergias' => $hijo['alergias'],
         'grupo' => $hijo['grupo'],
         'monitor' => [
