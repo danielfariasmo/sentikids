@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+</head>
+
+<body>
+    <!-- Primer menú -->
+    <div class="menu-principal">
+        <a href="../home/index.html"><img class="logo" src="../../../assets/img/logo-sin-fondo.png" alt="Logo"></a>
+        <div class="botonesMenu">
+            <button class="btn-area-privada"><a href="../home/logIn.html" target="_blank">Área privada</a></button>
+            <button class="btn-inscribirse"><a href="../inscribir/inscribir.html">Inscribirse</a></button>
+        </div>
+    </div>
+
+    <!-- Segundo menú fijo -->
+    <div class="menu-fijo">
+        <div class="opciones">
+            <a href="../nosotros/nosotros.html">Nosotros</a>
+            <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
+            <a href="../precios/precios.html">Precios</a>
+            <a href="../contacto/contacto.html">Contacto</a>
+        </div>
+    </div>
+
+    <div class="hero-home">
+        <!-- Contenido del cuadro -->
+        <div class="hero-content">
+            <h1 class="hero-title" id="hero-title">Bienvenido a nuestra plataforma</h1>
+            <h2 class="hero-subtitle" id="hero-subtitle">Innovación y tecnología</h2>
+            <p class="hero-text" id="hero-text">Descubre cómo podemos ayudarte a alcanzar tus objetivos con nuestras
+                soluciones avanzadas.</p>
+            <button class="hero-button">Descubre mucho más -></button>
+        </div>
+
+        <!-- Botones circulares -->
+        <div class="hero-buttons">
+            <button class="circle-button active" data-index="0"></button>
+            <button class="circle-button" data-index="1"></button>
+            <button class="circle-button" data-index="2"></button>
+        </div>
+
+    </div>
+    <!-- Las Waves -->
+    <section>
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+        <div class="wave wave4"></div>
+    </section>
+
+    <!-- Introducción -->
+    <section class="introduction">
+        <div class="introduction-content">
+            <h2 class="introduction-title">Bienvenido a SentiKids!</h2>
+            <p class="introduction-text">
+                Nos alegramos de verte aquí. SentiKids, con un enfoque Montessori, es un espacio donde tus hijos
+                explorarán con actividades que estimulan su curiosidad y creatividad.
+                Juegos creativos, experiencias prácticas y mucha diversión les esperan para aprender y pasarlo genial.
+            </p>
+        </div>
+        <div class="introduction-image">
+            <img src="../../../assets/img/intro.jpg" alt="Niños jugando y aprendiendo">
+        </div>
+    </section>
+
+    <!-- Actividades -->
+    <!-- CARTAS -->
+    <div class="main">
+        <h1>Nuestras Actividades</h1>
+
+        <ul class="cards">
+            <!-- Carta 1 -->
+            <li class="cards_item">
+                <div class="card">
+                    <div class="card_image"><img class="img1" src="../../../assets/img/laboratorio_sensorial.jpg"></div>
+                    <div class="card_content">
+                        <h2 class="card_title">Laboratorio Sensorial</h2>
+                        <p class="card_text">Los niños explorarán texturas con un fluido no newtoniano y una tabla
+                            sensorial
+                            para estimular el tacto.</p>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Carta 2 -->
+            <li class="cards_item">
+                <div class="card">
+                    <div class="card_image"><img src="../../../assets/img/olfato.jpg"></div>
+                    <div class="card_content">
+                        <h2 class="card_title">Nariz de Sabueso</h2>
+                        <p class="card_text">Mediante frascos con diferentes olores, los niños y niñas intentarán
+                            adivinar cada
+                            aroma usando solo su sentido del olfato.</p>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Carta 3 -->
+            <li class="cards_item">
+                <div class="card">
+                    <div class="card_image"><img src="../../../assets/img/explosion_sabores.jpg"></div>
+                    <div class="card_content">
+                        <h2 class="card_title">Explosión de Sabores</h2>
+                        <p class="card_text">Con los ojos vendados, los niños probarán distintos alimentos y deberán
+                            identificarlos solo a través del gusto.</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Galeria de imagenes -->
+    <div class="wrapper">
+        <h1>GALERÍA DE IMÁGENES</h1>
+        <div class="masonry boxes">
+            <div class="item" data-category="paisajes">
+                <a href="#"> <img src="https://unsplash.it/200/300/?random" alt=""></a>
+            </div>
+            <div class="item" data-category="abstracto"><a href="#"><img src="https://unsplash.it/200/200/?random"
+                        alt="" /></a></div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/300/200/?random" alt="" /></a>
+            </div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/200/400/?random" alt=""></a>
+            </div>
+            <div class="item" data-category="blancoynegro">
+                <a href="#"><img src="https://unsplash.it/200/100/?random" alt="" /></a>
+            </div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/400/200/?random" alt="" /></a>
+            </div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/200/300/?random" alt=""></a>
+            </div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/200/200/?random" alt="" /></a>
+            </div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/300/200/?random" alt="" /></a>
+            </div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/200/400/?random" alt=""></a>
+            </div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/200/100/?random" alt="" /></a>
+            </div>
+            <div class="item" data-category="paisajes">
+                <a href="#"><img src="https://unsplash.it/600/200/?random" alt="" /></a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Colabora con nosotros -->
+    <div class="projcard-container">
+        <h1>Colabora</h1>
+        <div class="projcard projcard-blue">
+            <div class="projcard-innerbox">
+                <img class="projcard-img" src="https://picsum.photos/800/600?image=1041" />
+                <div class="projcard-textbox">
+                    <div class="projcard-title">Card Title</div>
+                    <div class="projcard-subtitle">This explains the card in more detail</div>
+                    <div class="projcard-bar"></div>
+                    <div class="projcard-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                    <div class="projcard-tagbox">
+                        <span class="projcard-tag">HTML</span>
+                        <span class="projcard-tag">CSS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="projcard projcard-green">
+            <div class="projcard-innerbox">
+                <img class="projcard-img" src="https://picsum.photos/800/600?image=1039" />
+                <div class="projcard-textbox">
+                    <div class="projcard-title">And a Third Card</div>
+                    <div class="projcard-subtitle">You know what this is by now</div>
+                    <div class="projcard-bar"></div>
+                    <div class="projcard-description">Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</div>
+                    <div class="projcard-tagbox">
+                        <span class="projcard-tag">Excel</span>
+                        <span class="projcard-tag">VBA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Inscripciones -->
+    <div class="wrapper">
+        <div class="typing-demo">
+          Incripciones abiertas
+        </div>
+    </div>
+
+
+    <!--Reviws-->
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="customers-testimonials" class="owl-carousel">
+
+                        <!--TESTIMONIAL 1 -->
+                        <div class="item">
+                            <div class="shadow-effect">
+                                <img class="img-circle"
+                                    src="http://themes.audemedia.com/html/goodgrowth/images/testimonial3.jpg" alt="">
+                                <p>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                                    Completely synergize resource taxing relationships via premier niche markets.
+                                    Professionally cultivate.</p>
+                            </div>
+                            <div class="testimonial-name">EMILIANO AQUILANI</div>
+                        </div>
+                        <!--END OF TESTIMONIAL 1 -->
+                        <!--TESTIMONIAL 2 -->
+                        <div class="item">
+                            <div class="shadow-effect">
+                                <img class="img-circle"
+                                    src="http://themes.audemedia.com/html/goodgrowth/images/testimonial3.jpg" alt="">
+                                <p>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                                    Completely synergize resource taxing relationships via premier niche markets.
+                                    Professionally cultivate.</p>
+                            </div>
+                            <div class="testimonial-name">ANNA ITURBE</div>
+                        </div>
+                        <!--END OF TESTIMONIAL 2 -->
+                        <!--TESTIMONIAL 3 -->
+                        <div class="item">
+                            <div class="shadow-effect">
+                                <img class="img-circle"
+                                    src="http://themes.audemedia.com/html/goodgrowth/images/testimonial3.jpg" alt="">
+                                <p>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                                    Completely synergize resource taxing relationships via premier niche markets.
+                                    Professionally cultivate.</p>
+                            </div>
+                            <div class="testimonial-name">LARA ATKINSON</div>
+                        </div>
+                        <!--END OF TESTIMONIAL 3 -->
+                        <!--TESTIMONIAL 4 -->
+                        <div class="item">
+                            <div class="shadow-effect">
+                                <img class="img-circle"
+                                    src="http://themes.audemedia.com/html/goodgrowth/images/testimonial3.jpg" alt="">
+                                <p>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                                    Completely synergize resource taxing relationships via premier niche markets.
+                                    Professionally cultivate.</p>
+                            </div>
+                            <div class="testimonial-name">IAN OWEN</div>
+                        </div>
+                        <!--END OF TESTIMONIAL 4 -->
+                        <!--TESTIMONIAL 5 -->
+                        <div class="item">
+                            <div class="shadow-effect">
+                                <img class="img-circle"
+                                    src="http://themes.audemedia.com/html/goodgrowth/images/testimonial3.jpg" alt="">
+                                <p>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                                    Completely synergize resource taxing relationships via premier niche markets.
+                                    Professionally cultivate.</p>
+                            </div>
+                            <div class="testimonial-name">MICHAEL TEDDY</div>
+                        </div>
+                        <!--END OF TESTIMONIAL 5 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END OF TESTIMONIALS -->
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <div class="faq-section">
+        <div class="section-header">
+            <div class="preguntas-frecuentes">
+                <h2>Preguntas frecuentes</h2>
+            </div>
+        </div>
+        <div class="faq-container">
+            <!-- Pregunta 1 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Hay descuentos disponibles?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, ofrecemos descuentos para familias numerosas y hermanos. Consulta nuestra sección de
+                        descuentos para más detalles.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Qué incluye el precio?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>El precio incluye todas las actividades, comidas y materiales necesarios para el campamento.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Puedo pagar a plazos?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, ofrecemos opciones de pago a plazos. Contáctanos para más información.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Qué sucede si mi hijo no puede asistir algunos días?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Si tu hijo no puede asistir, contáctanos para reprogramar o ajustar el pago.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Cuándo se cierra el plazo de inscripción?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>El plazo de inscripción cierra el 15 de septiembre. ¡No te quedes fuera!</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Puedo cambiar el menú de mi hijo una vez inscrito?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, puedes cambiar el menú contactando a nuestro equipo antes del inicio del campamento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER 1 -->
+    <div class="about-section">
+        <img class="background-image" src="../../../assets/img/niñosaprendiendo.avif" alt="Contact Image">
+
+        <div class="about-content">
+            <div class="about-text">
+                <span>SentiKids, campamento </span><span class="highlight">bilingüe</span>
+                <span> con metodología </span><span class="highlight">Montessori</span><span>, </span>
+                <span class="highlight">comprometido</span><span> con ofrecer lo mejor en educación para enriquecer la
+                    vida de nuestros </span>
+                <span class="highlight">alumnos</span><span> y sus </span><span
+                    class="highlight">familias</span><span>.</span>
+            </div>
+
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="icon" style="margin-top: 10px;"> <img src="../../../assets/icon/carta.png" alt="carta">
+                    </div>
+                    <div>campamentosentikids@gmail.com</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon" style="margin-top: 10px;"><img src="../../../assets/icon/telefono.png" alt="">
+                    </div>
+                    <div>+34 805 029 126</div>
+                </div>
+                <div class="info-item">
+                    <div>
+                        <div class="icon"><img src="../../../assets/icon/ubicacion.png" alt="ubicación"> Madrid</div>
+                        <br>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d8a32f7f8f8!2sMontessori%20School!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus"
+                            style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER 2 -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-divider"></div>
+            <div class="footer-links">
+                <div>Nosotros</div>
+                <div>Campus Experience</div>
+                <div>Precios</div>
+                <div>Contacto</div>
+            </div>
+            <div class="social-icons">
+                <div class="icon">
+                    <a href="https://www.tiktok.com/@senti.kids?_t=ZN-8u4XvLYP9d8&_r=1" target="_blank">
+                        <img src="../../../assets/icon/tik-tok.png" alt="TikTok">
+                    </a>
+                </div>
+                <div class="icon">
+                    <a href="https://www.instagram.com/senti.kids?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                        target="_blank">
+                        <img src="../../../assets/icon/logotipo-de-instagram.png" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">Copyright © 2025. All Right Reserved.</div>
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>
