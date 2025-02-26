@@ -1,0 +1,183 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 1420px;
+    height: 692px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: #FF725E;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    padding: 42px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 31px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 500px; /* Ancho fijo para el formulario */
+    min-height: 500px; /* Altura mínima para evitar que crezca */
+    overflow: hidden; /* Evita que el contenido se desborde */
+}
+
+.logo {
+    width: 432px;
+    height: 140px;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 50.40px;
+    margin: 0;
+}
+
+/* Estilos del formulario */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form__group {
+    margin-bottom: 20px;
+}
+
+.form__label {
+    display: block;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 28px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.form__input-group {
+    position: relative;
+}
+
+.form__input {
+    width: 93%;
+    height: auto;
+    padding: 10px 16px;
+    border-radius: 6px;
+    border: 1px solid black;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 28px;
+    color: black;
+    outline: none;
+    background-color: white;
+}
+
+.form__input:focus {
+    border: 2px solid blue;
+    box-shadow: 0px 0px 10px rgba(163, 163, 163, 0.4);
+}
+
+.form__validation-status {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.form__input-error {
+    font-size: 14px;
+    color: red;
+    margin-top: 5px;
+    display: none;
+    position: absolute;
+    margin-left: 3px;
+    left: 0;
+    width: 100%;
+}
+
+.form__input-error-active {
+    display: block;
+}
+
+/* Estilos para los estados de validación */
+.form__group-correct .form__validation-status {
+    opacity: 1;
+    z-index: 1000;
+}
+
+.form__group-incorrect .form__input {
+    border: 2px solid red;
+}
+
+.form__group-incorrect .form__validation-status {
+    opacity: 1;
+}
+
+/* Estilos del botón */
+button[type="submit"] {
+    height: 45px;
+    padding: 20px 30px;
+    background: #CD4533;
+    border-radius: 5px;
+    border: 1px solid #CD4533;
+    color: white;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 21px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background: #b03a2a;
+}
+
+/* Estilos para el mensaje de respuesta */
+#message {
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: black;
+    margin-top: 20px;
+}
+
+#message.success {
+    color: green;
+}
+
+#message.error {
+    color: red;
+}
