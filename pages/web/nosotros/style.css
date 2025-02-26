@@ -495,7 +495,7 @@ h1 {
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: #f44040;
+    background-color: #80C4D3;
     border-radius: 25px 25px 0 25px;
 }
 
@@ -507,7 +507,7 @@ h1 {
     bottom: -40px;
     height: 40px;
     width: 40px;
-    background-color: #4070F4;
+    background-color: #80C4D3;
 }
 
 .overlay::after {
