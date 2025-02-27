@@ -36,7 +36,7 @@ if ($rol !== 'tutor') {
 $id_tutor = $_SESSION['id_usuario'];
 
 // Consulta para obtener las personas de confianza
-$sql = "SELECT id_tutor, nombre, apellidos, telefono FROM persona_confianza WHERE id_tutor = '$id_tutor'";
+$sql = "SELECT id_otro_tutor, nombre, apellidos, telefono FROM persona_confianza WHERE id_tutor = '$id_tutor'";
 $result = $conexion->query($sql);
 
 if (!$result) {

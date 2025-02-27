@@ -44,7 +44,7 @@ $id_tutor = $_SESSION['id_usuario'];
 // }
 
 // Consulta para obtener los hijos
-$sql = "SELECT id_tutor, nombre, apellidos FROM hijo WHERE id_tutor = '$id_tutor'";
+$sql = "SELECT id_hijo, nombre, apellidos FROM hijo WHERE id_tutor = '$id_tutor'";
 $result = $conexion->query($sql);
 
 $children = [];

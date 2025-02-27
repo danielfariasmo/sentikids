@@ -74,6 +74,12 @@ body {
     z-index: 100;
 }
 
+.popup {
+    max-height: 80vh;  /* Limita la altura para que no llene la pantalla */
+    overflow-y: auto;  /* Activa el scroll si el contenido es largo */
+}
+
+
 .popup-overlay2 {
     display: none;
     position: fixed;
@@ -115,6 +121,7 @@ body {
 
 .popup h2 {
     width: 100%;
+    padding-bottom: 0;
     margin-bottom: 20px;
     font-size: 24px;
     text-align: left;
@@ -165,7 +172,7 @@ body {
 
 .form-container h2 {
     font-size: 20px;
-    margin-bottom: 15px;
+    margin-bottom: -5px;
     text-align: left;
 }
 
@@ -348,7 +355,7 @@ select {
 /* Estilos para los contenedores principales */
 .main-container {
     display: flex;
-    gap: 100px; /* Espacio entre los contenedores */
+    gap: 50px; /* Espacio entre los contenedores */
     padding: 100px;
 }
 
@@ -539,7 +546,7 @@ span {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 19px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -614,54 +621,62 @@ span {
 
 
 
-.horarioContainer {
-    max-height: 400px; /* Altura máxima del contenedor */
-    overflow-y: auto; /* Habilita el scroll vertical */
-    padding: 40px; /* Espacio interno */
-    padding-top: 20px;
-    border-radius: 19px; /* Bordes redondeados */
-    background-color: white; /* Fondo opcional */
-}
+
 
 .fotosGrupo {
     float: right;
 }
 
-.horarioImg {
-    width:500px; 
-    margin-top:10px;
-    border-radius: 15px;
+.trusted-item {
+    display: flex;
+    justify-content: space-between; /* Separa texto e icono */
+    align-items: center; /* Alinea verticalmente */
 }
 
-
 .delete-icon {
-    width: 20px; /* Ajusta el tamaño según necesites */
+    width: 20px;
     height: 20px;
     cursor: pointer;
-    background-image: url('../../../assets/icon/papelera1.png'); /* Imagen por defecto */
+    background-image: url('../../../assets/icon/papelera1.png');
     background-size: cover;
     display: inline-block;
-    float: right;
 }
 
 .delete-icon:hover {
     background-image: url('../../../assets/icon/papelera2.png'); /* Imagen al pasar el cursor */
 }
 
-button {
-    background-color: #ff8c79; /* Azul por defecto */
-    color: white; /* Texto blanco */
-    border: none; /* Sin bordes */
-    padding: 10px 20px; /* Espaciado */
-    font-size: 16px; /* Tamaño del texto */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor a "pointer" */
-    transition: background 0.3s ease; /* Efecto suave */
+button.default {
+    background-color: #ff8c79;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-button:hover {
-    background-color: #FF725E; /* Azul más oscuro al pasar el ratón */
+.cambiarContra {
+    background-color: white;
+    color: #22343D;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    transform: translateY(-40px); /* Mueve el botón hacia arriba */
+    border: 3px solid #68AEBE; /* Grosor, estilo y color del borde */
 }
+
+button.cambiarContra:hover {
+    background-color: #68aebe41;
+}
+
+button.default:hover {
+    background-color: #FF725E;
+}
+
 
 .trusted-item {
     flex: 1; /* Ocupa el espacio restante */
@@ -671,4 +686,146 @@ button:hover {
     padding: 20px;
     margin-bottom: 20px;
     position: relative; /* Necesario para posicionar el botón de cierre */
+}
+
+
+/* Contenedor del horario */
+/* .horarioContainer {
+    position: relative; /* Para posicionar el botón de manera absoluta dentro de este contenedor 
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.horarioContainer {
+    background-color: #f9f9f9;
+    padding: 5px;
+    padding-left: 100px; /* Ajusta según sea necesario */
+    border-radius: 19px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Necesario para posicionar el botón "Atrás" */
+    overflow: hidden; /* Evita que la imagen se desborde del contenedor */
+    width: 100%; /* Asegura que el contenedor ocupe el ancho disponible */
+    max-width: 800px; /* Ajusta según sea necesario */
+    margin: 0 auto; /* Centra el contenedor */
+}
+
+/* Imagen del horario */
+.horarioImg {
+    width: 100%; /* Ocupa el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 19px;
+    display: block; /* Elimina espacios no deseados debajo de la imagen */
+    object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
+}
+
+/* Botón "Atrás" */
+.backButton {
+    position: absolute; /* Posicionamiento absoluto */
+    top: 10px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde la izquierda */
+    padding: 8px 16px;
+    background-color: #6291E8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 10; /* Asegura que el botón esté por encima de la imagen */
+    transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+    background-color: #5078C1; /* Cambio de color al pasar el mouse */
+}
+
+.child-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espacia nombre y papelera */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Línea separadora opcional */
+}
+
+.child-name {
+    font-size: 16px;
+    font-weight: 500;
+    flex-grow: 1; /* Hace que el nombre ocupe todo el espacio posible */
+}
+
+/* BOTONES EDITAR PERFIL */
+.button-group {
+    padding-top: 30px;
+    border: #000000;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#deleteAccountForm {
+    margin-right: auto; /* Empuja los otros botones hacia la derecha */
+}
+
+#deleteAccountBtn {
+    background-color: #CD4533; /* Rojo */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#deleteAccountBtn:hover {
+    background-color: #c43e2c; /* Rojo más oscuro al pasar el ratón */
+}
+
+#closePopupBtn {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+#closePopupBtn2 {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+#closePopupBtn3 {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+#saveChangesForm {
+    display: flex;
+}
+
+#saveChangesForm button {
+    background-color: #68AEBE; /* Azul */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: 10px; /* Pequeño espacio entre "Cancelar" y "Guardar cambios" */
+}
+
+#saveChangesForm button:hover {
+    background-color: #5495a3; /* Azul más oscuro al pasar el ratón */
 }

@@ -90,7 +90,7 @@ if (!empty($lastPassword) && !empty($newPassword)) {
     }
 }
 
-echo json_encode(['status' => 'success', 'message' => 'Datos actualizados correctamente']);
+echo json_encode(['status' => 'success']);
 
 // Cerrar la conexión
 mysqli_close($conexion);

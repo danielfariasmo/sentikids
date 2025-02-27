@@ -1,14 +1,13 @@
 <?php
 include "../../../server/database.php";
 
-//conf base de datos
+// Configuración de la base de datos
 $servidor = "localhost";
 $usuarioBD = "root";
 $password = "";
 $db = "sentikids";
 
 session_start();
-
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['rol'])) {
@@ -38,26 +37,41 @@ if (isset($data['action'])) {
     }
 
     if ($action === 'delete') {
-        $conn = new mysqli($servidor, $usuarioBD, $password, $db);
+        // Iniciar una transacción para asegurar la atomicidad
+        $conn->begin_transaction();
 
-        if ($conn->connect_error) {
-            die(json_encode(['success' => false, 'message' => 'Error de conexión a la base de datos.']));
-        }
+        try {
+            // 1. Borrar las notificaciones relacionadas con el tutor
+            $sql_delete_notificaciones = "DELETE FROM notificacion WHERE id_tutor = $id_tutor";
+            if (!$conn->query($sql_delete_notificaciones)) {
+                throw new Exception("Error al borrar notificaciones: " . $conn->error);
+            }
 
-        //borrar los hijos del tutor
-        $sql_delete_hijos = "DELETE FROM hijo WHERE id_tutor = $id_tutor";
-        $conn->query($sql_delete_hijos);
+            // 2. Borrar los hijos del tutor
+            $sql_delete_hijos = "DELETE FROM hijo WHERE id_tutor = $id_tutor";
+            if (!$conn->query($sql_delete_hijos)) {
+                throw new Exception("Error al borrar hijos: " . $conn->error);
+            }
 
-        //borrar las personas de confianza
-        $sql_delete_pc = "DELETE FROM persona_confianza WHERE id_tutor = $id_tutor";
-        $conn->query($sql_delete_pc);
+            // 3. Borrar las personas de confianza
+            $sql_delete_pc = "DELETE FROM persona_confianza WHERE id_tutor = $id_tutor";
+            if (!$conn->query($sql_delete_pc)) {
+                throw new Exception("Error al borrar personas de confianza: " . $conn->error);
+            }
 
-        //borrar el tutor
-        $sql_delete_tutor = "DELETE FROM tutor WHERE id_tutor = $id_tutor";
-        if ($conn->query($sql_delete_tutor) === TRUE) {
-            echo json_encode(['success' => true, 'message' => 'Cuenta borrada correctamente.']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Error al borrar la cuenta.']);
+            // 4. Borrar el tutor
+            $sql_delete_tutor = "DELETE FROM tutor WHERE id_tutor = $id_tutor";
+            if (!$conn->query($sql_delete_tutor)) {
+                throw new Exception("Error al borrar tutor: " . $conn->error);
+            }
+
+            // Confirmar la transacción si todo está bien
+            $conn->commit();
+            echo json_encode(['success' => true]);
+        } catch (Exception $e) {
+            // Revertir la transacción en caso de error
+            $conn->rollback();
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
         }
     }
     $conn->close();
