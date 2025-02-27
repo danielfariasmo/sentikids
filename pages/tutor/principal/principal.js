@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function cargarNombre(nombre, apellidos) {
         const usuario = document.getElementById('nombre_tutor');
         usuario.innerHTML = nombre + ' ' + apellidos;
-        console.log("se cambia el nombre?¿")
     }
 
     // Función para restaurar la estructura fija del right-container
@@ -63,10 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
 
-
-
                 // BOTONES
-
                 // Obtener el contenedor de botones
                 const buttonsContainer = document.querySelector(".left-container-top");
 
@@ -244,39 +240,59 @@ document.addEventListener('DOMContentLoaded', () => {
     obtenerDatosTutor();
 
 
-    // Mensajes de validación
-    function mostrarMensaje(mensaje, esError) {
-        const errorSpan = document.getElementById("AjustesError");
-        errorSpan.textContent = mensaje;
-        if (esError) {
-            errorSpan.classList.remove("hidden", "success");
-            errorSpan.classList.add("error");
+    // Mostrar mensaje de validación
+    function mostrarMensaje(mensaje, esError, mensajeId) {
+        const errorSpan = document.getElementById(mensajeId);
+        if (errorSpan) {
+            errorSpan.textContent = mensaje;
+            if (esError) {
+                errorSpan.classList.remove("hidden", "success");
+                errorSpan.classList.add("error");
+            } else {
+                errorSpan.classList.remove("hidden", "error");
+                errorSpan.classList.add("success");
+            }
         } else {
-            errorSpan.classList.remove("hidden", "error");
-            errorSpan.classList.add("success");
+            console.error("El contenedor de mensajes no existe:", mensajeId);
         }
     }
 
-    function borrarMensaje() {
-        const errorSpan = document.getElementById("AjustesError");
-        errorSpan.textContent = ''; // Vaciar el contenido
-        errorSpan.classList.add("hidden"); // Ocultar el mensaje
-        errorSpan.classList.remove("error", "success"); // Quitar estilos previos
+    // Borrar mensaje de validación
+    function borrarMensaje(mensajeId) {
+        const errorSpan = document.getElementById(mensajeId);
+        if (errorSpan) {
+            errorSpan.textContent = ''; // Vaciar el contenido
+            errorSpan.classList.add("hidden"); // Ocultar el mensaje
+            errorSpan.classList.remove("error", "success"); // Quitar estilos previos
+        } else {
+            console.error("El contenedor de mensajes no existe:", mensajeId);
+        }
     }
 
 
-    // Formulario
+    // Formularios
     const form = document.getElementById('userForm');
+    const formHijo = document.getElementById('userForm_hijo');
+    const formPC = document.getElementById('userForm_pc');
 
     // Validación al cambiar de elemento
     form.addEventListener('focusout', (event) => {
         validarElemento(event.target);
     });
 
-    // Envío del formulario
+    formHijo.addEventListener('focusout', (event) => {
+        validarElemento(event.target);
+    });
+
+    formPC.addEventListener('focusout', (event) => {
+        validarElemento(event.target);
+    });
+
     document.getElementById('saveChangesForm').addEventListener('submit', function (event) {
         event.preventDefault();
+        const form = document.getElementById('userForm'); // Asegúrate de que este es el ID correcto
         const esValido = [...form.querySelectorAll("input, select")].every(validarElemento);
+
         if (esValido) {
             const formData = new FormData(form);
             formData.append("funcion", "ajustes");
@@ -288,20 +304,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === "success") {
-                        borrarMensaje();
+                        borrarMensaje("AjustesError"); // Borrar mensaje específico para este formulario
                         popupOverlay.style.display = "none";
                     } else {
-                        mostrarMensaje(data.message, true);
+                        mostrarMensaje(data.message, true, "AjustesError"); // Mostrar mensaje de error
                     }
                 })
                 .catch(error => {
                     console.error("Error en la solicitud:", error);
-                    mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true);
+                    mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true, "AjustesError");
                 });
         } else {
-            mostrarMensaje("Por favor, corrige los errores antes de continuar.", true);
+            mostrarMensaje("Por favor, corrige los errores antes de continuar.", true, "AjustesError");
         }
+    });
 
+    // Envío del formulario Añadir Hijos
+    document.getElementById('saveChangesForm2').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const esValido = [...formHijo.querySelectorAll("input, select")].every(validarElemento);
+        if (esValido) {
+            const formData = new FormData(formHijo);
+            formData.append("funcion", "nuevoHijoPC");
+
+            fetch("nuevoHijoPC.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        borrarMensaje("AjustesError2"); // Borrar mensaje específico para este formulario
+                        popupOverlay2.style.display = "none";
+                    } else {
+                        mostrarMensaje(data.message, true, "AjustesError2"); // Mostrar mensaje de error
+                    }
+                })
+                .catch(error => {
+                    console.error("Error en la solicitud:", error);
+                    mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true, "AjustesError2");
+                });
+        } else {
+            mostrarMensaje("Por favor, corrige los errores antes de continuar.", true, "AjustesError2");
+        }
+    });
+
+    // Envío del formulario Añadir Persona De Confianza
+    document.getElementById('saveChangesForm3').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const esValido = [...formPC.querySelectorAll("input, select")].every(validarElemento);
+        if (esValido) {
+            const formData = new FormData(formPC);
+            formData.append("funcion", "nuevoHijoPC");
+
+            fetch("nuevoHijoPC.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        borrarMensaje("AjustesError3"); // Borrar mensaje específico para este formulario
+                        popupOverlay3.style.display = "none";
+                    } else {
+                        mostrarMensaje(data.message, true, "AjustesError3"); // Mostrar mensaje de error
+                    }
+                })
+                .catch(error => {
+                    console.error("Error en la solicitud:", error);
+                    mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true, "AjustesError3");
+                });
+        } else {
+            mostrarMensaje("Por favor, corrige los errores antes de continuar.", true, "AjustesError3");
+        }
     });
 
     // Validación de campos
@@ -310,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let esValido = true;
 
         switch (true) {
-            case ["name", "lastName"].includes(elemento.id):
+            case ["name", "name2", "lastName", "lastName2"].includes(elemento.id):
                 esValido = /^[a-zA-ZÀ-ÿ\s]{2,40}$/.test(valor);
                 break;
 
@@ -326,6 +401,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 esValido = /^(\+34|0034|34)?[6-9]\d{8}$/.test(valor);
                 break;
 
+            case elemento.id === "childAge":
+                esValido = validarEdadAlumno(elemento);
+                break;
+
             default:
                 console.warn(`No hay reglas de validación para el campo con id "${elemento.id}"`);
                 break;
@@ -335,7 +414,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (errorSpan) {
             errorSpan.classList.toggle('hidden', esValido);
         }
+        return esValido;
+    }
 
+    // Validar edad del alumno
+    function validarEdadAlumno(elemento) {
+        const fechaNacimiento = new Date(elemento.value.trim());
+        if (isNaN(fechaNacimiento)) return false;
+
+        const hoy = new Date();
+        let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+        if (
+            hoy.getMonth() < fechaNacimiento.getMonth() ||
+            (hoy.getMonth() === fechaNacimiento.getMonth() && hoy.getDate() < fechaNacimiento.getDate())
+        ) {
+            edad--;
+        }
+
+        const esValido = edad >= 5 && edad <= 12;
+        document.getElementById(elemento.id + "Error")?.classList.toggle('hidden', esValido);
         return esValido;
     }
 
@@ -352,71 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newPassContainer.classList.toggle('hidden'); // Muestra y oculta
     });
 
-    /* function cargarNotificaciones(container) {
-        fetch('obtenerNotificaciones.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success' && Array.isArray(data.data)) {
-                    const notificaciones = data.data;
-                    // Limpiamos el contenedor antes de añadir las notificaciones
-                    container.innerHTML = '';
-
-                    // Añadir la clase para el scroll
-                    container.classList.add('notificaciones-container');
-
-                    notificaciones.forEach(notificacion => {
-                        const notificacionDiv = document.createElement('div');
-                        notificacionDiv.className = 'notificacion';
-
-                        // Botón para cerrar la notificación
-                        const closeButton = document.createElement('button');
-                        closeButton.textContent = 'x';
-                        closeButton.className = 'close-button';
-                        closeButton.addEventListener('click', () => {
-                            notificacionDiv.remove();
-                            borrarNotificación();
-                        });
-
-                        // Título de la notificación
-                        const titulo = document.createElement('h4');
-                        titulo.textContent = notificacion.titulo;
-
-                        // Mensaje de la notificación
-                        const mensaje = document.createElement('p');
-                        mensaje.textContent = notificacion.mensaje;
-
-                        // Fecha de la notificación
-                        const fecha = document.createElement('span');
-                        fecha.textContent = notificacion.fecha;
-                        fecha.style.fontWeight = 'bold';
-                        fecha.style.float = 'right';
-
-                        // Añade los elementos al div de la notificación
-                        notificacionDiv.appendChild(closeButton);
-                        notificacionDiv.appendChild(titulo);
-                        notificacionDiv.appendChild(mensaje);
-                        notificacionDiv.appendChild(fecha);
-
-                        // Añade la notificación al contenedor
-                        container.appendChild(notificacionDiv);
-                    });
-
-                    // Añadir el mensaje de "No hay más actualizaciones recientes"
-                    const noMasActualizaciones = document.createElement('p');
-                    noMasActualizaciones.textContent = 'No hay más actualizaciones recientes';
-                    container.appendChild(noMasActualizaciones);
-
-                } else {
-                    console.error('La respuesta del servidor no contiene un array de notificaciones:', data);
-                    container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
-                }
-            })
-            .catch(error => {
-                console.error('Error al obtener las notificaciones:', error);
-                container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
-            });
-    } */
-
     function cargarNotificaciones(container) {
         fetch('obtenerNotificaciones.php')
             .then(response => response.json())
@@ -425,15 +458,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     const notificaciones = data.data;
                     // Limpiamos el contenedor antes de añadir las notificaciones
                     container.innerHTML = '';
-    
+
                     // Añadir la clase para el scroll
                     container.classList.add('notificaciones-container');
-    
+
                     notificaciones.forEach(notificacion => {
                         const notificacionDiv = document.createElement('div');
                         notificacionDiv.className = 'notificacion';
                         notificacionDiv.id = `notificacion-${notificacion.id_notificacion}`; // Asignar un ID único
-    
+
                         // Botón para cerrar la notificación
                         const closeButton = document.createElement('button');
                         closeButton.textContent = 'x';
@@ -444,36 +477,36 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Eliminar la notificación de la base de datos
                             borrarNotificacion(notificacion.id_notificacion);
                         });
-    
+
                         // Título de la notificación
                         const titulo = document.createElement('h4');
                         titulo.textContent = notificacion.titulo;
-    
+
                         // Mensaje de la notificación
                         const mensaje = document.createElement('p');
                         mensaje.textContent = notificacion.mensaje;
-    
+
                         // Fecha de la notificación
                         const fecha = document.createElement('span');
                         fecha.textContent = notificacion.fecha;
                         fecha.style.fontWeight = 'bold';
                         fecha.style.float = 'right';
-    
+
                         // Añade los elementos al div de la notificación
                         notificacionDiv.appendChild(closeButton);
                         notificacionDiv.appendChild(titulo);
                         notificacionDiv.appendChild(mensaje);
                         notificacionDiv.appendChild(fecha);
-    
+
                         // Añade la notificación al contenedor
                         container.appendChild(notificacionDiv);
                     });
-    
+
                     // Añadir el mensaje de "No hay más actualizaciones recientes"
                     const noMasActualizaciones = document.createElement('p');
                     noMasActualizaciones.textContent = 'No hay más actualizaciones recientes';
                     container.appendChild(noMasActualizaciones);
-    
+
                 } else {
                     console.error('La respuesta del servidor no contiene un array de notificaciones:', data);
                     container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
@@ -484,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
             });
     }
-    
+
     // Función para borrar una notificación de la base de datos
     function borrarNotificacion(id_notificacion) {
         fetch('borrarNotificacion.php', {
@@ -497,7 +530,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    console.log('Notificación eliminada correctamente.');
                 } else {
                     console.error('Error al eliminar la notificación:', data.message);
                 }
@@ -534,7 +566,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById("abrirHorario").addEventListener("click", function () {
-        console.log("se le da al boton");
         const rightContainer = document.querySelector('.right-container');
         rightContainer.innerHTML = '';
         cargarHorario(rightContainer, nombreHijo);
@@ -591,12 +622,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         fotosGrupo.href = infoHijo.fotosGrupoUrl || '#';
                         fotosGrupo.textContent = 'Ver fotos del grupo';
                     }
-                    console.log("por aqui si");
 
                     // Botón para cargar el horario
                     const horarioButton = infoChildDiv.querySelector('.horarioButton');
                     if (horarioButton) {
-                        console.log("boton?");
                         horarioButton.style.display = 'block';
                         horarioButton.onclick = () => cargarHorario(container, infoHijo.horarioUrl, infoHijo.nombreHijo);
                     }
@@ -698,7 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!confirm("¿Estás seguro de eliminar a esta persona de confianza?")) return;
 
         fetch(`borrarPC.php?id=${encodeURIComponent(id)}`, {
-            method: 'DELETE' 
+            method: 'DELETE'
         })
             .then(response => response.json())
             .then(data => {
@@ -719,7 +748,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!confirm("¿Estás seguro de eliminar a este niño/a?")) return;
 
         fetch(`borrarHijo.php?id=${encodeURIComponent(id)}`, {
-            method: 'DELETE' 
+            method: 'DELETE'
         })
             .then(response => response.json())
             .then(data => {

@@ -357,17 +357,9 @@ select {
     display: flex;
     gap: 50px; /* Espacio entre los contenedores */
     padding: 100px;
+    padding-top: 50px;
 }
 
-/* .left-container {
-    width: 250px; /* Ancho fijo para el contenedor izquierdo 
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 0; /* Eliminamos el padding para que no haya huecos 
-    display: flex;
-    flex-direction: column;
-} */
 .right-container {
     max-height: 400px; /* Altura máxima del contenedor */
     width: 1400px;
@@ -464,7 +456,7 @@ select {
 
 /* Estilos para el contenedor de notificaciones */
 .notificaciones-container {
-    max-height: 400px; /* Altura máxima del contenedor */
+    max-height: 500px; /* Altura máxima del contenedor */
     overflow-y: auto; /* Habilita el scroll vertical */
     padding: 10px; /* Espacio interno */
     /*border: 1px solid #ccc; /* Borde opcional */
@@ -537,7 +529,9 @@ span {
     bottom: 40px; /* Ajusta la distancia desde abajo */
     left: 30px; /* Ajusta la distancia desde la izquierda */
     cursor: grab;
+    z-index: -1; /* La coloca detrás de otros elementos */
 }
+
 
 /* Info niño/a */
 
@@ -615,14 +609,6 @@ span {
 
 }
 
-
-
-
-
-
-
-
-
 .fotosGrupo {
     float: right;
 }
@@ -687,17 +673,6 @@ button.default:hover {
     margin-bottom: 20px;
     position: relative; /* Necesario para posicionar el botón de cierre */
 }
-
-
-/* Contenedor del horario */
-/* .horarioContainer {
-    position: relative; /* Para posicionar el botón de manera absoluta dentro de este contenedor 
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
 
 .horarioContainer {
     background-color: #f9f9f9;
@@ -810,11 +785,11 @@ button.default:hover {
     padding: 10px 20px;
 }
 
-#saveChangesForm {
+.saveChangesForm {
     display: flex;
 }
 
-#saveChangesForm button {
+.saveChangesForm button {
     background-color: #68AEBE; /* Azul */
     color: white;
     border: none;
@@ -826,6 +801,6 @@ button.default:hover {
     margin-left: 10px; /* Pequeño espacio entre "Cancelar" y "Guardar cambios" */
 }
 
-#saveChangesForm button:hover {
+.saveChangesForm button:hover {
     background-color: #5495a3; /* Azul más oscuro al pasar el ratón */
 }
