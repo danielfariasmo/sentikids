@@ -8,13 +8,11 @@ function openPopup() {
     if (form) form.reset();
     if (successMessage) successMessage.style.display = "none";
 
-    // Verificar si el select existe antes de manipularlo
     if (!recipientSelect) {
         console.error("Elemento 'recipient' no encontrado.");
         return;
     }
 
-    // Cargar los tutores desde el archivo PHP
     fetch('monitor-asesoramiento.php')
         .then(response => {
             if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
@@ -22,15 +20,13 @@ function openPopup() {
         })
         .then(data => {
             console.log("Tutores cargados:", data);
-            recipientSelect.innerHTML = ''; // Limpiar select antes de agregar opciones
+            recipientSelect.innerHTML = '';
 
-            // Opción por defecto
             const defaultOption = document.createElement('option');
             defaultOption.textContent = 'Todos los padres';
             defaultOption.value = "";
             recipientSelect.appendChild(defaultOption);
 
-            // Agregar cada tutor al select
             data.forEach(tutor => {
                 const option = document.createElement('option');
                 option.value = `${tutor.nombre} ${tutor.apellidos}`;
@@ -46,13 +42,12 @@ function closePopup() {
     if (popup) popup.style.display = "none";
 }
 
-// Manejar el envío del formulario
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("notification-form");
 
     if (form) {
         form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Evita el envío normal del formulario
+            event.preventDefault();
 
             const recipient = document.getElementById("recipient").value;
             const title = document.getElementById("title").value;
@@ -76,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(response => response.json()) 
             .then(data => {
-                console.log("Respuesta en JSON:", data); // ✅ Verificar respuesta en consola
+                console.log("Respuesta en JSON:", data);
                 if (data.status === "success") {
                     alert("¡Notificación enviada con éxito!");
                     cargarNotificaciones();
@@ -89,12 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => {
                 console.error("Error en fetch:", error);
             });
-            
         });
     }
 });
 
-// Cargar el nombre del monitor al iniciar la página
 function cargarNombreMonitor() {
     const nombreUsuarioElement = document.getElementById("nombre_usuario");
 
@@ -104,24 +97,20 @@ function cargarNombreMonitor() {
             return response.json();
         })
         .then(data => {
-            if (data.status === 'success') {
-                if (nombreUsuarioElement) {
-                    nombreUsuarioElement.textContent = `${data.nombre} ${data.apellidos}`;
-                }
-            } else {
-                console.error('Error al cargar el nombre del monitor:', data.message || 'Mensaje no disponible');
+            if (data.status === 'success' && nombreUsuarioElement) {
+                nombreUsuarioElement.textContent = `${data.nombre} ${data.apellidos}`;
             }
         })
         .catch(error => console.error('Error en la solicitud fetch:', error));
 }
 
-// Manejo del menú desplegable y logout
 document.addEventListener("DOMContentLoaded", function () {
     const menuContainer = document.querySelector(".menu-container");
     const dropdownMenu = document.getElementById("dropdownMenu");
     const logoutBtn = document.getElementById("logoutBtn");
 
     cargarNombreMonitor();
+    cargarNotificaciones();
 
     menuContainer?.addEventListener("mouseenter", () => {
         dropdownMenu.style.display = "block";
@@ -131,12 +120,34 @@ document.addEventListener("DOMContentLoaded", function () {
         dropdownMenu.style.display = "none";
     });
 
-    logoutBtn?.addEventListener("click", () => {
-        window.location.href = "../../web/home/inicio.html";
+    logoutBtn?.addEventListener("click", function () {
+        sessionStorage.removeItem("usuario"); 
+        localStorage.removeItem("usuario"); 
+        sessionStorage.setItem("cerrado", "true");
+        window.history.replaceState(null, "", "../../web/home/login.html");
+        window.location.href = "../../web/home/login.html";
     });
+
+    if (sessionStorage.getItem("cerrado") === "true" && 
+        !sessionStorage.getItem("usuario") && 
+        !localStorage.getItem("usuario")) {
+        
+        sessionStorage.removeItem("cerrado");
+        window.history.replaceState(null, "", "../../web/home/login.html");
+        window.location.replace("../../web/home/login.html");
+    }
+
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+        if (!sessionStorage.getItem("usuario") && !localStorage.getItem("usuario")) {
+            window.history.replaceState(null, "", "../../web/home/login.html");
+            window.location.replace("../../web/home/login.html");
+        } else {
+            window.history.pushState(null, "", window.location.href);
+        }
+    };
 });
 
-// Cargar notificaciones desde la base de datos
 function cargarNotificaciones() {
     fetch("cargar_notificaciones.php")
         .then(response => response.json())
@@ -148,23 +159,18 @@ function cargarNotificaciones() {
                 return;
             }
 
-            container.innerHTML = ""; // Limpiar contenedor antes de agregar nuevas notificaciones
+            container.innerHTML = "";
 
             data.forEach(notif => {
                 const notificationCard = document.createElement("div");
                 notificationCard.classList.add("notification-card");
-
                 notificationCard.innerHTML = `
                     <div class="notification-title">${notif.titulo}</div>
                     <div class="notification-text">${notif.mensaje}</div>
                     <div class="notification-date">${notif.fecha}</div>
                 `;
-
                 container.appendChild(notificationCard);
             });
         })
         .catch(error => console.error("Error al cargar notificaciones:"));
 }
-
-// Cargar notificaciones al cargar la página
-document.addEventListener("DOMContentLoaded", cargarNotificaciones);
