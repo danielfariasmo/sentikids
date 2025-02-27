@@ -360,15 +360,6 @@ select {
     padding-top: 50px;
 }
 
-/* .left-container {
-    width: 250px; /* Ancho fijo para el contenedor izquierdo 
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 0; /* Eliminamos el padding para que no haya huecos 
-    display: flex;
-    flex-direction: column;
-} */
 .right-container {
     max-height: 400px; /* Altura máxima del contenedor */
     width: 1400px;
@@ -682,17 +673,6 @@ button.default:hover {
     margin-bottom: 20px;
     position: relative; /* Necesario para posicionar el botón de cierre */
 }
-
-
-/* Contenedor del horario */
-/* .horarioContainer {
-    position: relative; /* Para posicionar el botón de manera absoluta dentro de este contenedor 
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
 
 .horarioContainer {
     background-color: #f9f9f9;
