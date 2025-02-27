@@ -11,13 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupOverlayHijo = document.getElementById("popupOverlay2");
     const popupOverlayConf = document.getElementById("popupOverlay3");
 
-    /* function resetRightContainer() {
-        const rightContainer = document.getElementById('right-container');
-        // Limpia el contenedor y reestablece el HTML fijo
-        rightContainer.innerHTML = window.infoChildHTML;
-      } */
-
-
     function cargarNombre(nombre, apellidos) {
         const usuario = document.getElementById('nombre_tutor');
         usuario.innerHTML = nombre + ' ' + apellidos;
@@ -36,18 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Monitor:</h4>
                 <p class="monitorInfo"></p>
                 <h4>¿Quieres ajustar algo? Edita la información cuando quieras</h4>
-                <p class="textoAlergias"></p>
+                <p class="textoAlergias">Alergias o otras condiciones que quieres que sepamos</p>
                 <textarea class="textAreaAlergias" rows="4" cols="50"></textarea>
                 <a class="fotosGrupo" target="_blank"></a>
-                <button class="horarioButton" id="horarioButton">Horario</button>
+                <button class="horarioButton default" id="horarioButton">Horario</button>
             </div>
             <div class="infoTrust"></div>
         `;
         }
     }
-
-    // <img class="horarioImg" style="width:400px; margin-top:10px;" alt="Horario del grupo" />
-
 
     // Función para cargar la lista de hijos y crear botones
     function loadChildren() {
@@ -62,11 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     const childItem = document.createElement('div');
                     childItem.className = 'child-item';
                     childItem.innerHTML = `
-                    <span>${child.nombre}</span>
-                    <!-- <button type="button" onclick="deleteChild(${child.id})">Eliminar</button> -->
-                `;
+        <span class="child-name">${child.nombre}</span>
+        <span class="delete-icon" data-id="${child.id_hijo}"></span>
+    `;
                     childrenContainer.appendChild(childItem);
+
+                    // Añadir evento para eliminar hijo
+                    childItem.querySelector('.delete-icon').addEventListener('click', function () {
+                        eliminarHijo(child.id_hijo);
+                    });
                 });
+
+
 
                 // BOTONES
 
@@ -123,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert(data.message);
                         // Redirigir al usuario después de borrar la cuenta
                         window.location.href = '../../web/home/logIn.html'; // Te lleva al iniciar sesión
                     } else {
@@ -133,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(error => console.error('Error:', error));
         }
     });
+
+
 
     // Manejar el clic del botón "Borrar cuenta"
     document.getElementById('closeAccountBtn').addEventListener('click', function (event) {
@@ -161,7 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function reiniciarPopup() {
+        const popup = document.getElementById("popup");
+        if (popup) {
+            setTimeout(() => {
+                popup.scrollTop = 0;
+            }, 10); // Espera 10ms para asegurarte de que se ha renderizado bien
+        }
+    }
+
     document.getElementById("editProfileBtn").addEventListener("click", function () {
+        reiniciarPopup();
         document.querySelector(".popup-overlay").style.display = "flex";
     });
 
@@ -177,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById("newChildBtn").addEventListener("click", function () {
+        reiniciarPopup();
         document.querySelector(".popup-overlay2").style.display = "flex";
     });
 
@@ -248,6 +257,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function borrarMensaje() {
+        const errorSpan = document.getElementById("AjustesError");
+        errorSpan.textContent = ''; // Vaciar el contenido
+        errorSpan.classList.add("hidden"); // Ocultar el mensaje
+        errorSpan.classList.remove("error", "success"); // Quitar estilos previos
+    }
+
+
     // Formulario
     const form = document.getElementById('userForm');
 
@@ -271,8 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === "success") {
-                        mostrarMensaje(data.message, false);
-                        // Redirigir o realizar otras acciones
+                        borrarMensaje();
+                        popupOverlay.style.display = "none";
                     } else {
                         mostrarMensaje(data.message, true);
                     }
@@ -335,39 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newPassContainer.classList.toggle('hidden'); // Muestra y oculta
     });
 
-    /* // Script para manejar los botones del contenedor izquierdo
-    document.querySelectorAll('.left-container .menu-button').forEach(button => {
-        button.addEventListener('click', function () {
-            const buttonText = this.textContent;
-            //rightContainer = document.querySelector('.right-container');
-
-            // Maneja cada opción según el botón pulsado
-            switch (buttonText) {
-                case 'General':
-                    rightContainer.innerHTML = '';
-                    cargarNotificaciones(rightContainer);
-                    break;
-                /* case 'Nombre Hijo':
-                    rightContainer.innerHTML = '';
-                    cargarInformacionHijo(rightContainer);
-                    break; 
-                case 'Horario':
-                    rightContainer.innerHTML = '';
-                    cargarHorarioHijo(rightContainer);
-                    break;
-                default:
-                    // Si el botón pertenece a un hijo, cargar su información
-                    if (this.classList.contains('nombre_hijo')) {
-                        rightContainer.innerHTML = '';
-                        rightContainer.innerHTML = infoChildHTML;
-                        cargarInformacionHijo(rightContainer, buttonText); // Pasar el nombre del hijo
-                    }
-                    break;
-            }
-        });
-    }); */
-
-    function cargarNotificaciones(container) {
+    /* function cargarNotificaciones(container) {
         fetch('obtenerNotificaciones.php')
             .then(response => response.json())
             .then(data => {
@@ -389,6 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         closeButton.className = 'close-button';
                         closeButton.addEventListener('click', () => {
                             notificacionDiv.remove();
+                            borrarNotificación();
                         });
 
                         // Título de la notificación
@@ -429,6 +415,94 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error al obtener las notificaciones:', error);
                 container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
             });
+    } */
+
+    function cargarNotificaciones(container) {
+        fetch('obtenerNotificaciones.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success' && Array.isArray(data.data)) {
+                    const notificaciones = data.data;
+                    // Limpiamos el contenedor antes de añadir las notificaciones
+                    container.innerHTML = '';
+    
+                    // Añadir la clase para el scroll
+                    container.classList.add('notificaciones-container');
+    
+                    notificaciones.forEach(notificacion => {
+                        const notificacionDiv = document.createElement('div');
+                        notificacionDiv.className = 'notificacion';
+                        notificacionDiv.id = `notificacion-${notificacion.id_notificacion}`; // Asignar un ID único
+    
+                        // Botón para cerrar la notificación
+                        const closeButton = document.createElement('button');
+                        closeButton.textContent = 'x';
+                        closeButton.className = 'close-button';
+                        closeButton.addEventListener('click', () => {
+                            // Eliminar la notificación del DOM
+                            notificacionDiv.remove();
+                            // Eliminar la notificación de la base de datos
+                            borrarNotificacion(notificacion.id_notificacion);
+                        });
+    
+                        // Título de la notificación
+                        const titulo = document.createElement('h4');
+                        titulo.textContent = notificacion.titulo;
+    
+                        // Mensaje de la notificación
+                        const mensaje = document.createElement('p');
+                        mensaje.textContent = notificacion.mensaje;
+    
+                        // Fecha de la notificación
+                        const fecha = document.createElement('span');
+                        fecha.textContent = notificacion.fecha;
+                        fecha.style.fontWeight = 'bold';
+                        fecha.style.float = 'right';
+    
+                        // Añade los elementos al div de la notificación
+                        notificacionDiv.appendChild(closeButton);
+                        notificacionDiv.appendChild(titulo);
+                        notificacionDiv.appendChild(mensaje);
+                        notificacionDiv.appendChild(fecha);
+    
+                        // Añade la notificación al contenedor
+                        container.appendChild(notificacionDiv);
+                    });
+    
+                    // Añadir el mensaje de "No hay más actualizaciones recientes"
+                    const noMasActualizaciones = document.createElement('p');
+                    noMasActualizaciones.textContent = 'No hay más actualizaciones recientes';
+                    container.appendChild(noMasActualizaciones);
+    
+                } else {
+                    console.error('La respuesta del servidor no contiene un array de notificaciones:', data);
+                    container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener las notificaciones:', error);
+                container.innerHTML = '<h2>Error al cargar las notificaciones</h2>';
+            });
+    }
+    
+    // Función para borrar una notificación de la base de datos
+    function borrarNotificacion(id_notificacion) {
+        fetch('borrarNotificacion.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ action: 'delete_notificacion', id_notificacion: id_notificacion })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Notificación eliminada correctamente.');
+                } else {
+                    console.error('Error al eliminar la notificación:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     // Función para añadir event listeners a los botones
@@ -459,13 +533,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.getElementById("abrirHorario").addEventListener("click", function() {
+    document.getElementById("abrirHorario").addEventListener("click", function () {
         console.log("se le da al boton");
         const rightContainer = document.querySelector('.right-container');
         rightContainer.innerHTML = '';
         cargarHorario(rightContainer, nombreHijo);
     });
-    
+
 
     function cargarInformacionHijo(container, nombreHijo) {
         fetch(`obtenerInformacion.php?nombre=${encodeURIComponent(nombreHijo)}`)
@@ -473,44 +547,44 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 if (data.status === 'success') {
                     const infoHijo = data.data;
-    
+
                     // Seleccionar el contenedor predefinido que ya está en el HTML
                     const infoChildDiv = container.querySelector('.infoChild');
                     if (!infoChildDiv) {
                         console.error("No se encontró el contenedor .infoChild");
                         return;
                     }
-    
+
                     // Mostrar el contenedor (en caso de que esté oculto)
                     infoChildDiv.style.display = 'block';
-    
+
                     // Actualizar los elementos existentes con la información obtenida
-    
+
                     // Nombre del hijo (h3 con clase 'nombreTitulo')
                     const nombreTitulo = infoChildDiv.querySelector('.nombreTitulo');
                     if (nombreTitulo) {
                         nombreTitulo.textContent = infoHijo.nombreHijo + " " + infoHijo.apellidos;
                         nombreTitulo.style.textAlign = 'right';
                     }
-    
+
                     // TextArea para las alergias (textarea con clase 'textAreaAlergias')
                     const textAreaAlergias = infoChildDiv.querySelector('.textAreaAlergias');
                     if (textAreaAlergias) {
                         textAreaAlergias.value = infoHijo.alergias || ''; // Asegurar que no sea undefined
                     }
-    
+
                     // Grupo del niño (p con clase 'grupo')
                     const grupo = infoChildDiv.querySelector('.grupo');
                     if (grupo) {
                         grupo.textContent = `${infoHijo.grupo || 'No especificado'}`;
                     }
-    
+
                     // Información del monitor (p con clase 'monitorInfo')
                     const monitorInfo = infoChildDiv.querySelector('.monitorInfo');
                     if (monitorInfo) {
                         monitorInfo.textContent = `${infoHijo.monitor?.nombre || 'No especificado'} (${infoHijo.monitor?.correo || 'No especificado'})`;
                     }
-    
+
                     // Link para fotos del grupo (a con clase 'fotosGrupo')
                     const fotosGrupo = infoChildDiv.querySelector('.fotosGrupo');
                     if (fotosGrupo) {
@@ -518,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         fotosGrupo.textContent = 'Ver fotos del grupo';
                     }
                     console.log("por aqui si");
-    
+
                     // Botón para cargar el horario
                     const horarioButton = infoChildDiv.querySelector('.horarioButton');
                     if (horarioButton) {
@@ -534,15 +608,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error al obtener la información del hijo:', error);
             });
     }
-    
+
     function cargarHorario(container, horarioUrl, nombreHijo) {
         // Limpiar el contenido actual del contenedor
         container.innerHTML = '';
-    
+
         // Crear un nuevo contenedor para el horario
         const horarioDiv = document.createElement('div');
         horarioDiv.className = 'horarioContainer';
-    
+
+        // Crear la imagen del horario
+        const horarioImg = document.createElement('img');
+        horarioImg.src = horarioUrl || '';
+        horarioImg.alt = 'Horario del grupo';
+        horarioImg.className = 'horarioImg';
+
         // Crear el botón "Atrás"
         const backButton = document.createElement('button');
         backButton.textContent = 'Atrás';
@@ -553,44 +633,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cargarInformacionHijo(container, nombreHijo); // Asegúrate de tener acceso a `nombreHijo`
         };
 
-        // Crear la imagen del horario
-        const horarioImg = document.createElement('img');
-        horarioImg.src = horarioUrl || '';
-        horarioImg.alt = 'Horario del grupo';
-        horarioImg.className = 'horarioImg';
-    
         // Agregar la imagen y el botón al contenedor del horario
+        horarioDiv.appendChild(backButton); // Botón primero para que esté encima de la imagen
         horarioDiv.appendChild(horarioImg);
-        horarioDiv.appendChild(backButton);
-    
+
         // Agregar el contenedor del horario al contenedor principal
         container.appendChild(horarioDiv);
     }
-
-    /* function cargarHorario(container, nombreHijo) {
-        fetch(`obtenerInformacion.php?nombre=${encodeURIComponent(nombreHijo)}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    const infoHijo = data.data;
-
-                    // Seleccionar el contenedor predefinido que ya está en el HTML
-                    const infoChildDiv = container.querySelector('.infoChild');
-
-                    // Imagen del horario (img con clase 'horarioImg')
-                    const horarioImg = infoChildDiv.querySelector('.horarioImg');
-                    if (horarioImg) {
-                        horarioImg.src = infoHijo.horarioUrl || '';
-                        horarioImg.alt = 'Horario del grupo';
-                    }
-                } else {
-                    console.error('Error:', data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error al obtener la información del hijo:', error);
-            });
-    } */
 
     // Función para cargar la información de las personas de confianza
     function cargarInfoTrust() {
@@ -629,13 +678,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     personDiv.className = 'trusted-item';
                     personDiv.innerHTML = `
                         <span>${person.nombre} ${person.apellidos} (${person.telefono})</span>
-                        <span class="delete-icon" data-id="${person.id}"></span>
+                        <span class="delete-icon" data-id="${person.id_otro_tutor}"></span>
                     `;
                     infoTrustDiv.appendChild(personDiv);
-                
+
                     // Añadir evento para eliminar persona de confianza
                     personDiv.querySelector('.delete-icon').addEventListener('click', function () {
-                        eliminarPersonaConfianza(person.id);
+                        eliminarPersonaConfianza(person.id_otro_tutor);
                     });
                 });
             })
@@ -648,13 +697,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function eliminarPersonaConfianza(id) {
         if (!confirm("¿Estás seguro de eliminar a esta persona de confianza?")) return;
 
-        fetch(`eliminarPC.php?id=${encodeURIComponent(id)}`, {
-            method: 'DELETE' // O usa POST según lo requiera tu backend
+        fetch(`borrarPC.php?id=${encodeURIComponent(id)}`, {
+            method: 'DELETE' 
         })
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    alert("Persona eliminada con éxito");
                     // Recargar la lista actualizada
                     cargarInfoTrust();
                 } else {
@@ -666,7 +714,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+    // Función para eliminar una persona de confianza
+    function eliminarHijo(id) {
+        if (!confirm("¿Estás seguro de eliminar a este niño/a?")) return;
 
+        fetch(`borrarHijo.php?id=${encodeURIComponent(id)}`, {
+            method: 'DELETE' 
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Recargar la lista actualizada
+                    loadChildren();
+                } else {
+                    alert("Error al eliminar: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error al eliminar al niño/a:", error);
+            });
+    }
 
     // Selecciona todos los botones del menú izquierdo
     const menuButtons = document.querySelectorAll('.left-container-top .menu-button');
@@ -692,7 +759,5 @@ document.addEventListener('DOMContentLoaded', () => {
             const rightContainer = document.querySelector('.right-container');
         });
     });
-
-
 
 });
