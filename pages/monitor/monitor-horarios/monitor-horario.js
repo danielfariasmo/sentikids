@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const menuContainer = document.querySelector(".menu-container");
   const dropdownMenu = document.getElementById("dropdownMenu");
@@ -11,14 +10,37 @@ document.addEventListener("DOMContentLoaded", function () {
       dropdownMenu.style.display = "none";
   });
 });
+
 document.addEventListener("DOMContentLoaded", function () {
   const logoutBtn = document.getElementById("logoutBtn");
 
   logoutBtn.addEventListener("click", function () {
-      window.location.href = "../../web/home/inicio.html"; 
+      sessionStorage.removeItem("usuario"); 
+      localStorage.removeItem("usuario"); 
+      sessionStorage.setItem("cerrado", "true");
+      window.history.replaceState(null, "", "../../web/home/login.html");
+      window.location.href = "../../web/home/login.html";
   });
-});
 
+  if (sessionStorage.getItem("cerrado") === "true" && 
+      !sessionStorage.getItem("usuario") && 
+      !localStorage.getItem("usuario")) {
+      
+      sessionStorage.removeItem("cerrado");
+      window.history.replaceState(null, "", "../../web/home/login.html");
+      window.location.replace("../../web/home/login.html");
+  }
+
+  window.history.pushState(null, "", window.location.href);
+  window.onpopstate = function () {
+      if (!sessionStorage.getItem("usuario") && !localStorage.getItem("usuario")) {
+          window.history.replaceState(null, "", "../../web/home/login.html");
+          window.location.replace("../../web/home/login.html");
+      } else {
+          window.history.pushState(null, "", window.location.href);
+      }
+  };
+});
 
 // Función para cargar el horario
 function cargarHorario() {
@@ -30,11 +52,8 @@ function cargarHorario() {
         const imgElement = document.getElementById('horario-img');
         const descargarLink = document.getElementById('descargar-horario');
 
-        // Cargar la imagen
         imgElement.src = urlHorario;
         imgElement.alt = 'Horario';
-
-        // Configurar el enlace de descarga
         descargarLink.href = urlHorario;
         descargarLink.style.display = 'block'; 
       } else {

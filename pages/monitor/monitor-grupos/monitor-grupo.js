@@ -86,6 +86,9 @@ function hidePopup() {
         overlay.style.animation = '';
     }, 300);
 }
+
+// MENU DESPLEGABLE OPCIÓN CERRAR SESIÓN
+
 document.addEventListener("DOMContentLoaded", function () {
     const menuContainer = document.querySelector(".menu-container");
     const dropdownMenu = document.getElementById("dropdownMenu");
@@ -98,10 +101,49 @@ document.addEventListener("DOMContentLoaded", function () {
         dropdownMenu.style.display = "none";
     });
 });
+
+// CERRAR SESIÓN Y REDIRECCIÓN SI EL USUARIO VUELVE PARA ATRÁS
 document.addEventListener("DOMContentLoaded", function () {
     const logoutBtn = document.getElementById("logoutBtn");
 
     logoutBtn.addEventListener("click", function () {
-        window.location.href = "../../web/home/inicio.html"; 
+        // Eliminar la sesión
+        sessionStorage.removeItem("usuario"); 
+        localStorage.removeItem("usuario"); 
+
+        // Marcar que el usuario cerró sesión
+        sessionStorage.setItem("cerrado", "true");
+
+        // Reemplazar el historial para que no pueda volver atrás
+        window.history.replaceState(null, "", "../../web/home/login.html");
+
+        // Redirigir instantáneamente
+        window.location.href = "../../web/home/login.html";
     });
+
+    // Si el usuario cerró sesión, evitar que vuelva atrás instantáneamente
+    if (sessionStorage.getItem("cerrado") === "true" && 
+        !sessionStorage.getItem("usuario") && 
+        !localStorage.getItem("usuario")) {
+        
+        sessionStorage.removeItem("cerrado"); // Evitar bucles infinitos
+
+        // Reemplazar la entrada actual en el historial para bloquear el "Atrás"
+        window.history.replaceState(null, "", "../../web/home/login.html");
+
+        // Redirigir instantáneamente sin recargar
+        window.location.replace("../../web/home/login.html");
+    }
+
+    // Evitar que el usuario vuelva atrás sin recargar
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+        if (!sessionStorage.getItem("usuario") && !localStorage.getItem("usuario")) {
+            window.history.replaceState(null, "", "../../web/home/login.html");
+            window.location.replace("../../web/home/login.html");
+        } else {
+            window.history.pushState(null, "", window.location.href);
+        }
+    };
 });
+
