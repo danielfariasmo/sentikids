@@ -16,7 +16,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (response) {
             if (response.status !== "success") {
-                window.location.href = "../../web/home/inicio.html"; 
+                window.location.href = "../../web/home/index.html"; 
             }
         },
         error: function (xhr, status, error) {
@@ -36,7 +36,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 if (response.status === "success") {
-                    window.location.href = "../../web/home/inicio.html";
+                    window.location.href = "../../web/home/index.html";
                 } else {
                     console.error("Error al cerrar sesión:", response.message);
                 }

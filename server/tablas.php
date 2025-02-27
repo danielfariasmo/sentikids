@@ -13,7 +13,8 @@ $admin = "CREATE TABLE IF NOT EXISTS administrador (
 mysqli_query($connection, $admin) or die("ERROR: no se puede crear la tabla administradores: " . mysqli_error($connection));
 
 $insertAdmin = "INSERT INTO administrador (id_administrador, nombre_usuario, clave_usuario, nombre, apellidos, correo_electronico) VALUES 
-                    (1, 'danielfarias', 'daniel', 'Daniel', 'Farias Morales', 'fariasd99@gmail.com')";
+                    (1, 'danielfarias', 'daniel', 'Daniel', 'Farias Morales', 'fariasd99@gmail.com'),
+                    (2, 'juliana', 'juliana', 'Juliana', 'Gonzalez Olivares', 'juliana@correo.com')";
 mysqli_query($connection, $insertAdmin) or die("ERROR: no se puede insertar en la tabla administradores: " . mysqli_error($connection));
 
 /** MONITORES*/
@@ -148,12 +149,24 @@ $insertKid = "INSERT INTO hijo (id_tutor, id_grupo, nombre, apellidos, fecha_nac
                 (5, 1, 'Dora', 'Negrillo de la Rosa', '2016-11-01', 'sin restricciones', 'ninguna');";
 mysqli_query($connection, $insertKid) or die("ERROR: no se puede insertar en la tabla niños: " . mysqli_error($connection));
 
-
 /** ACTIVIDADES*/
 $activity = "CREATE TABLE IF NOT EXISTS actividad (
     id_actividad INT AUTO_INCREMENT PRIMARY KEY, 
     nombre VARCHAR(255) NOT NULL,
     descripcion VARCHAR(255) NOT NULL);";
 mysqli_query($connection, $activity) or die("ERROR: no se puede crear la tabla Actividades: " . mysqli_error($connection));
+
+/** CHAT */
+$chat = "CREATE TABLE mensajes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    mensaje TEXT NOT NULL,
+    id_destinatario INT NOT NULL,
+    rol_destinatario ENUM('administrador', 'monitor', 'tutor') NOT NULL,
+    id_remitente INT NOT NULL,
+    rol_remitente ENUM('administrador', 'monitor', 'tutor') NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);";
+mysqli_query($connection, $chat) or die("ERROR: no se puede crear la tabla Chat: " . mysqli_error($connection));
+
 
 

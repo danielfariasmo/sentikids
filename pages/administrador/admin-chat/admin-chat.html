@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat en Tiempo Real</title>
+    <link rel="stylesheet" href="admin-chat.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <!-- HEADER -->
+  <header class="header">
+    <a href="home-admin.html">
+      <img src="../../../assets/img/logo_negro.png" alt="Logo" class="logo">
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- MENU -->
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="../admin-tutores/tutores-admin.html">Tutores</a></li>
+        <li><a href="../admin-monitores/monitores-admin.html">Monitores</a></li>
+        <li><a href="../admin-inscribir-ninho/ninhos-admin.html">Niños/as</a></li>
+        <li><a href="../admin-grupos/grupos-admin.html">Grupos</a></li>
+        <li><a href="../admin-chat/admin-chat.html">chats</a></li>
+        <li><button id="btnCerrarSesion"><img class="cerrar-sesion" src="../../../assets/icon/cerrar-sesion.png" alt="Cerrar sesión"></button></li>
+      </ul>
+    </nav>
+  </header>
+  
+<div class="chat-container">
+    <!-- Panel izquierdo: lista de chats -->
+    <div class="chat-sidebar">
+        <button id="newChatBtn">Nuevo Chat</button>
+        <input type="text" id="searchUser" placeholder="Buscar usuario...">
+        <ul id="chatList"></ul>
+    </div>
+
+    <!-- Panel derecho: conversación activa -->
+    <div class="chat-box">
+        <div class="chat-header">
+            <span id="chatUserName">Selecciona un chat</span>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Escribe un mensaje...">
+            <button id="sendMessage">Enviar</button>
+        </div>
+    </div>
+</div>
+
+<script src="admin-chat.js"></script>
+</body>
+</html>
