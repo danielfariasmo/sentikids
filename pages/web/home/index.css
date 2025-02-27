@@ -430,7 +430,7 @@ img {
 
 .card_content {
     padding: 1rem;
-    background: linear-gradient(to bottom right, red 70%, black 100%);
+    background: linear-gradient(to bottom right, #68AEBE 70%, black 100%);
     flex-grow: 1; /* Hace que el contenido ocupe el espacio restante */
     display: flex;
     flex-direction: column;
@@ -585,11 +585,12 @@ img {
 /**INSCRIPCIONES ABIERTAS*/
 .wrapper {
     width: 90%; /* Usamos porcentaje para que sea flexible */
-    max-width: 1200px; /* Limitamos el ancho máximo */
+    /* max-width: 1200px; Limitamos el ancho máximo */
+    height: 500px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    height: auto; /* Altura automática para que se ajuste al contenido */
+    /* height: auto; Altura automática para que se ajuste al contenido */
     border: 15px solid #68AEBE;
 }
 
@@ -628,6 +629,7 @@ img {
     background: #FF725E;
     box-sizing: border-box;
     height: auto; /* Altura automática para que se ajuste al contenido */
+    margin-top: -160px;
 }
 
 .testimonialh1 {
@@ -643,7 +645,7 @@ img {
 }
 
 .shadow-effect {
-    background: #b700ff;
+    background: #68AEBE;
     padding: 20px;
     border-radius: 4px;
     text-align: center;
@@ -663,7 +665,7 @@ img {
     margin: -17px auto 0;
     display: table;
     width: auto;
-    background: #3190E7;
+    background: #6884b1;
     padding: 9px 35px;
     border-radius: 12px;
     text-align: center;
@@ -730,9 +732,14 @@ img {
     .wrapper .btn-inscribirse {
         padding: 8px 16px;
     }
+    .wrapper{
+        padding-top: 10px;
+    }
 
     .container {
-        padding: 10px;
+        padding-top: 40px;
+        height: auto;
+        width: 400px;
     }
 
     .shadow-effect {
@@ -756,9 +763,19 @@ img {
     .wrapper .btn-inscribirse {
         padding: 6px 12px;
     }
-
+    /* .shadow-effect{
+        width: 350px;
+        height: 350px;
+    }
+    .item{
+        width: 350px;
+        height: 350px;
+    } */
     .container {
-        padding: 5px;
+        /* padding: 5px; */
+        margin-top: -50px;
+        width: 300px;
+        height: 400px;
     }
 
     .shadow-effect {
@@ -768,6 +785,18 @@ img {
     #customers-testimonials .item {
         padding: 10px;
     }
+    .preguntasfrecuentesh1{
+       font-size: 20px;
+       margin-top: 250px !important;
+    }
+
+    .owl-dots{
+        display: none;
+    }
+    .card_content{
+        font-size: 10px;
+    }
+   
 }
 
 /**Colabora con nosotros*/
