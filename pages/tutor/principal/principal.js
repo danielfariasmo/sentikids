@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function cargarNombre(nombre, apellidos) {
         const usuario = document.getElementById('nombre_tutor');
         usuario.innerHTML = nombre + ' ' + apellidos;
-        console.log("se cambia el nombre?¿")
     }
 
     // Función para restaurar la estructura fija del right-container
@@ -247,11 +246,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (errorSpan) {
             errorSpan.textContent = mensaje;
             if (esError) {
-                console.log(mensaje);
                 errorSpan.classList.remove("hidden", "success");
                 errorSpan.classList.add("error");
             } else {
-                console.log(mensaje);
                 errorSpan.classList.remove("hidden", "error");
                 errorSpan.classList.add("success");
             }
@@ -325,7 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Envío del formulario Añadir Hijos
     document.getElementById('saveChangesForm2').addEventListener('submit', function (event) {
         event.preventDefault();
-        console.log("form2");
         const esValido = [...formHijo.querySelectorAll("input, select")].every(validarElemento);
         if (esValido) {
             const formData = new FormData(formHijo);
@@ -356,7 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Envío del formulario Añadir Persona De Confianza
     document.getElementById('saveChangesForm3').addEventListener('submit', function (event) {
         event.preventDefault();
-        console.log("form3");
         const esValido = [...formPC.querySelectorAll("input, select")].every(validarElemento);
         if (esValido) {
             const formData = new FormData(formPC);
@@ -388,7 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function validarElemento(elemento) {
         const valor = elemento.value.trim();
         let esValido = true;
-        console.log(elemento.value.trim());
 
         switch (true) {
             case ["name", "name2", "lastName", "lastName2"].includes(elemento.id):
@@ -416,12 +410,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
         }
 
-        console.log("elemento.id: " + elemento.id);
         const errorSpan = document.getElementById(elemento.id + "Error");
         if (errorSpan) {
             errorSpan.classList.toggle('hidden', esValido);
         }
-        console.log("es valido? " + esValido);
         return esValido;
     }
 
@@ -538,7 +530,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    console.log('Notificación eliminada correctamente.');
                 } else {
                     console.error('Error al eliminar la notificación:', data.message);
                 }
@@ -575,7 +566,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById("abrirHorario").addEventListener("click", function () {
-        console.log("se le da al boton");
         const rightContainer = document.querySelector('.right-container');
         rightContainer.innerHTML = '';
         cargarHorario(rightContainer, nombreHijo);
@@ -632,12 +622,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         fotosGrupo.href = infoHijo.fotosGrupoUrl || '#';
                         fotosGrupo.textContent = 'Ver fotos del grupo';
                     }
-                    console.log("por aqui si");
 
                     // Botón para cargar el horario
                     const horarioButton = infoChildDiv.querySelector('.horarioButton');
                     if (horarioButton) {
-                        console.log("boton?");
                         horarioButton.style.display = 'block';
                         horarioButton.onclick = () => cargarHorario(container, infoHijo.horarioUrl, infoHijo.nombreHijo);
                     }
