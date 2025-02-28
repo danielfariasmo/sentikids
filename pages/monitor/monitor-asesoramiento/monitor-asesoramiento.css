@@ -1,3 +1,30 @@
+:root {
+    --blanco: #fefefe;
+    --negro: #000;
+    --fuente: 'Poppins', sans-serif;
+    --sombra: rgba(255, 255, 255, 0.6);
+    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    --principal: #80C4D3;
+    --secundario: #5A9EB3;
+    --blancoSecundario: #e0e0e0;
+    --informacion: #10BFFB;
+    --sombraInformacion: rgba(16, 191, 251, 0.5);
+    --sombraOscura: rgba(0, 0, 0, 0.5);
+    --sombraOscura2: rgba(0, 0, 0, 0.3);
+    --rojoPrincipal: #CD4533;
+    --rojoSecundario: #A32F23;
+  }
+  
+  @font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+  }
+
 /* General */
 body {
     margin: 0;
@@ -118,6 +145,65 @@ body {
     width: 30px; /* Ajusta según necesites */
     height: 30px;
     border-radius: 50%;
+}
+/* --------------------------------- */
+/* <!-- MENU HAMBURGUESA --> */
+/* --------------------------------- */
+/* Menú Hamburguesa (solo para móvil) */
+/* Menú Hamburguesa (solo para móvil) */
+.hamburger {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 4px 0;
+}
+
+/* Menú desplegable */
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding-right: 62px;
+}
+
+.nav.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 96px; /* Ajusta según la altura del header */
+    right: 0;
+    background: #5D828A;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    z-index: 999; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Media Queries para Responsive Design */
+@media (max-width: 767px) {
+    .hamburger {
+        display: flex; /* Mostrar el ícono de hamburguesa */
+        padding-left: 360px;
+        margin-top: -30px;
+    }
+
+    .nav {
+        display: none; /* Ocultar el menú normal */
+    }
+
+    .nav.active {
+        display: flex; /* Mostrar el menú cuando está activo */
+    }
 }
 /* Título */
 .header-title {

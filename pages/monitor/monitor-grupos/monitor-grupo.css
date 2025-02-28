@@ -1,26 +1,56 @@
-/* Estilo base para el body */
-body, html {
+:root {
+    --blanco: #fefefe;
+    --negro: #000;
+    --fuente: 'Poppins', sans-serif;
+    --sombra: rgba(255, 255, 255, 0.6);
+    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    --principal: #80C4D3;
+    --secundario: #5A9EB3;
+    --blancoSecundario: #e0e0e0;
+    --informacion: #10BFFB;
+    --sombraInformacion: rgba(16, 191, 251, 0.5);
+    --sombraOscura: rgba(0, 0, 0, 0.5);
+    --sombraOscura2: rgba(0, 0, 0, 0.3);
+    --rojoPrincipal: #CD4533;
+    --rojoSecundario: #A32F23;
+  }
+  
+  @font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+  }
+  
+  /* Estilos base */
+  * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
     width: 100%;
     height: 100%;
-    font-family: Poppins, sans-serif; /* Establecer una fuente común */
-    
-}
-
-/* El contenedor principal ocupa toda la pantalla */
-.container {
+    font-family: 'Poppins-regular', sans-serif;
+  }
+  
+  /* Contenedor principal */
+  .container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
+    min-height: 100vh;
     background: #CFCFCF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    overflow: hidden; /* Evita el desbordamiento */
-}
-
-/* Header */
-.header {
+    box-shadow: var(--sombraTabla);
+    overflow: hidden;
+  }
+  
+  /* Header */
+  .header {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -28,69 +58,66 @@ body, html {
     padding: 4px 0;
     height: 96px;
     background: #5D828A;
-    box-sizing: border-box;
-}
-
-.logo {
+  }
+  
+  .logo {
     width: 258px;
     height: 68px;
-    margin-left: 62px; /* Añade margen izquierdo para alinear el logo */
-}
-
-/* Menú de navegación */
-.nav {
+    margin-left: 62px;
+  }
+  
+  /* Menú de navegación */
+  .nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 20px;
     padding-right: 62px;
-}
-
-/* Elimina subrayado de los enlaces */
-.nav a {
-    text-decoration: none; /* Quita el subrayado */
-    color: black; /* Color del texto */
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: var(--negro);
     font-size: 18px;
     font-weight: 400;
-}
-
-.nav a div {
+  }
+  
+  .nav a div {
     padding: 10px 15px;
     transition: background 0.3s ease;
-}
-
-/* Efecto hover */
-.nav a div:hover {
-    background-color: transparent; /* Elimina el efecto de botón */
-    color: #CD4533; /* Nuevo color de hover para contraste */
-}
-.menu-container {
+  }
+  
+  .nav a div:hover {
+    color: var(--rojoPrincipal);
+  }
+  
+  .menu-container {
     position: relative;
     display: inline-block;
-}
-
-.menu-button {
+  }
+  
+  .menu-button {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 16px;
     padding: 10px;
-}
-
-.menu {
+  }
+  
+  .menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
+    background: var(--blanco);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 8px 0;
     min-width: 150px;
     z-index: 10;
-}
-
-.menu button {
+  }
+  
+  .menu button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -98,13 +125,13 @@ body, html {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-.menu button:hover {
-    background: #f0f0f0;
-    display: block;
-}
-.user-button {
+  }
+  
+  .menu button:hover {
+    background: var(--blancoSecundario);
+  }
+  
+  .user-button {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -113,86 +140,96 @@ body, html {
     cursor: pointer;
     font-size: 16px;
     padding: 10px;
-}
-
-.user-button img {
-    width: 30px; /* Ajusta según necesites */
+  }
+  
+  .user-button img {
+    width: 30px;
     height: 30px;
     border-radius: 50%;
-}
-
-/* Título principal */
-.header-title {
+  }
+  
+  /* Título principal */
+  .header-title {
     width: 100%;
-    height: 10vh; /* Usa un 10% de la altura de la pantalla */
+    height: 10vh;
     background: #CFCFCF;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.title-text {
-    color: black;
-    font-size: 3rem; 
+  }
+  
+  .title-text {
+    color: var(--negro);
+    font-size: 3rem;
     font-weight: 700;
     letter-spacing: 4.32px;
-}
-
-/* Estilo para la tabla */
-.table {
+  }
+  
+  /* Estilo para la tabla */
+  .table {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
-    margin: 20px 0;
-    background: #CFCFCF;
-    flex-grow: 1; 
-    overflow: hidden; 
     width: 90%;
     margin: 20px auto;
-}
-
-thead{
-    background: #80C4D3;
-}
-tr{
+    background: #CFCFCF;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+  
+  thead {
+    background: var(--principal);
+  }
+  
+  tr {
     gap: 0;
     justify-content: center;
     align-items: center;
-}
-
-td{
+  }
+  
+  td {
     background-color: #8c8a87;
     width: auto;
-    
-}
-
-
-.header-item {
-    font-size: 1.2rem; /* Tamaño de fuente más flexible */
-    color: black;
+  }
+  
+  .header-item {
+    font-size: 1.2rem;
+    color: var(--negro);
     font-weight: 700;
     text-align: center;
     width: 18%;
-}
-/* Resaltar fila al pasar el mouse */
-.row:hover {
-    background: #54504e !important; /* Color de fondo cuando se hace hover */
-    color: white; /* Color del texto al hacer hover */
+  }
+  
+  /* Resaltar fila al pasar el mouse */
+  .row:hover {
+    background: #54504e !important;
+    color: var(--blanco);
     cursor: pointer;
     transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-
-/* Agrandar el popup */
-/* Estilos mejorados para el pop-up */
-.popup {
+  }
+  
+  .row {
+    text-align: center;
+    width: 100%;
+    height: 6vh;
+  }
+  
+  .row:nth-child(odd) {
+    background: #BACBCF;
+  }
+  
+  .row:nth-child(even) {
+    background: #949494;
+  }
+  
+  /* Popup */
+  .popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
+    background: var(--blanco);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
@@ -200,57 +237,53 @@ td{
     width: 90%;
     max-width: 600px;
     animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
+  }
+  
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
+      opacity: 0;
+      transform: translate(-50%, -60%);
     }
     to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+      opacity: 1;
+      transform: translate(-50%, -50%);
     }
-}
-
-.popup h2 {
+  }
+  
+  .popup h2 {
     font-size: 1.8rem;
-    color: black;
+    color: var(--negro);
     margin-bottom: 20px;
     text-align: center;
-}
-
-.popup p {
+  }
+  
+  .popup p {
     font-size: 1.1rem;
     margin: 10px 0;
     color: #333;
-}
-
-.popup p strong {
+  }
+  
+  .popup p strong {
     color: rgb(37, 37, 37);
     font-weight: 600;
-}   
-
-.close-btn {
+  }
+  
+  .close-btn {
     position: absolute;
     top: 15px;
     right: 15px;
     background: none;
-    color: black;
+    color: var(--negro);
     border: none;
     padding: 8px 12px;
     border-radius: 20%;
     cursor: pointer;
     font-size: 2rem;
     transition: background 0.3s ease;
-}
-
-/* HOVER DE LA X  */
-/* .close-btn:hover {
-    background: #FF725E;
-} */
-
-.overlay {
+  }
+  
+  /* Overlay */
+  .overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -260,106 +293,170 @@ td{
     background: rgba(0, 0, 0, 0.6);
     z-index: 999;
     animation: fadeInOverlay 0.3s ease-in-out;
-}
-
-@keyframes fadeOut {
+  }
+  
+  @keyframes fadeOut {
     from {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+      opacity: 1;
+      transform: translate(-50%, -50%);
     }
     to {
-        opacity: 0;
-        transform: translate(-50%, -60%);
+      opacity: 0;
+      transform: translate(-50%, -60%);
     }
-}
-
-@keyframes fadeOutOverlay {
+  }
+  
+  @keyframes fadeOutOverlay {
     from {
-        opacity: 1;
+      opacity: 1;
     }
     to {
-        opacity: 0;
+      opacity: 0;
     }
-}
-.row {
-    text-align: center;
-    width: 100%;
-    height: 6vh;
-}
-
-.row:nth-child(odd) {
-    background: #BACBCF;
-}
-
-.row:nth-child(even) {
-    background: #949494;
-}
-
-/* Estilo para la sección de más información */
-.more-info {
+  }
+  
+  /* Estilo para la sección de más información */
+  .more-info {
     width: 25vw;
     margin: 15px auto;
     padding: 15px;
-    background: #CD4533;
+    background: var(--rojoPrincipal);
     border-radius: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.more-info-text {
+  }
+  
+  .more-info-text {
     color: rgb(240, 11, 11);
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 4.32px;
-}
-
-/* Pie de página */
-.footer {
+  }
+  
+  /* Pie de página */
+  .footer {
     width: 100%;
-    background: black;
+    background: var(--negro);
     text-align: center;
     padding: 20px 0;
-    margin-top: auto; /* Empuja el footer hacia abajo */
-}
-
-.footer-text {
-    color: white;
+    margin-top: auto;
+  }
+  
+  .footer-text {
+    color: var(--blanco);
     opacity: 0.5;
-}
-.popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-.info-btn{
-
-    background-color: #80C4D3;
+  }
+  
+  /* Botón de información */
+  .info-btn {
+    background-color: var(--principal);
     border-radius: 15%;
-
-}
-.info-btn:hover{
-
-    background: #54504e !important; /* Color de fondo cuando se hace hover */
-    color: white; /* Color del texto al hacer hover */
+  }
+  
+  .info-btn:hover {
+    background: #54504e !important;
+    color: var(--blanco);
     cursor: pointer;
     transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  /* --------------------------------- */
+/* <!-- MENU HAMBURGUESA --> */
+/* --------------------------------- */
+/* Menú Hamburguesa (solo para móvil) */
+.hamburger {
+  display: none; /* Oculto por defecto */
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 4px 0;
+}
+
+/* Menú desplegable */
+.nav.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 96px; /* Ajusta según la altura del header */
+  right: 0;
+  background: #5D828A;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+/* Media Queries para Responsive Design */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+  .hamburger {
+      display: flex; /* Mostrar el ícono de hamburguesa */
+  }
+
+  .nav {
+      display: none; /* Ocultar el menú normal */
+  }
+
+  .nav.active {
+      display: flex; /* Mostrar el menú cuando está activo */
+  }
+
+  .logo {
+      margin-left: 10px; /* Margen reducido */
+  }
+}
+
+/* Pantallas medianas (tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header {
+      height: 80px; /* Altura reducida */
+  }
+
+  .logo {
+      margin-left: 30px; /* Margen ajustado */
+  }
+
+  .nav {
+      padding-right: 30px; /* Padding ajustado */
+      gap: 15px; /* Espacio entre elementos ajustado */
+  }
+
+  .nav a {
+      font-size: 16px; /* Tamaño de fuente ajustado */
+  }
+
+  .nav a div {
+      padding: 8px 12px; /* Padding ajustado */
+  }
+}
+
+/* Pantallas grandes (escritorio) */
+@media (min-width: 1024px) {
+  .header {
+      height: 96px; /* Altura original */
+  }
+
+  .logo {
+      margin-left: 62px; /* Margen original */
+  }
+
+  .nav {
+      padding-right: 62px; /* Padding original */
+      gap: 20px; /* Espacio entre elementos original */
+  }
+
+  .nav a {
+      font-size: 18px; /* Tamaño de fuente original */
+  }
+
+  .nav a div {
+      padding: 10px 15px; /* Padding original */
+  }
 }
