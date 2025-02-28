@@ -46,7 +46,7 @@
                         <th class="header-item">Identificador</th>
                         <th class="header-item">Nombre</th>
                         <th class="header-item">Monitor</th>
-                        <th class="header-item">ID Monitor</th>
+                        <th class="header-item">Nº Niños/as</th>
                         <th class="header-item"></th>
                     </tr>
                 </thead>
@@ -62,6 +62,21 @@
             <h2>SentiKids dice:</h2>
             <p id="alert-message"></p>
             <button id="close-alert">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- CAMBIAR MONITOR -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-modal-id="modal2">&times;</span>
+                <h2>Cambiar Monitor</h2>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="search-coach" placeholder="Buscar Monitor" />
+                <div id="search-results-coach"></div>
+                <button id="add-coach" disabled>Realizar Cambio</button>
+            </div>
         </div>
     </div>
 

@@ -1,15 +1,18 @@
 <?php
 
-// Variables para conectar.
+/*---------------------------------------------------------------
+Variables de conexión
+---------------------------------------------------------------*/
 $server = "localhost";
 $user = "root";
 $password = "";
 
-// Conectamos con la base de datos
+// Petición de para la conexión
 $connection = mysqli_connect($server, $user, $password);
 
-/**CREACION DE BD */
-
+/*---------------------------------------------------------------
+BASE DE DATOS
+---------------------------------------------------------------*/
 $sql = "SHOW DATABASES LIKE 'sentikids'";
 $query = mysqli_query($connection, $sql) or die("ERROR: no se crea la Base de Datos");
 if (mysqli_fetch_array($query) <= 0) {

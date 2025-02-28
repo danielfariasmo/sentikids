@@ -15,7 +15,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
           if (response.status !== "success") {
-              window.location.href = "../../web/home/inicio.html"; 
+              window.location.href = "../../web/home/index.html"; 
           }
       },
       error: function (xhr, status, error) {
@@ -35,7 +35,7 @@ $(document).ready(function () {
           dataType: "json",
           success: function (response) {
               if (response.status === "success") {
-                  window.location.href = "../../web/home/inicio.html";
+                  window.location.href = "../../web/home/index.html";
               } else {
                   console.error("Error al cerrar sesión:", response.message);
               }
@@ -76,6 +76,7 @@ $(document).ready(function () {
         let template = '';
 
         tutores.forEach(tutor => {
+          const isChecked = tutor.alta.toUpperCase() === "SI" ? 'checked' : '';
           const isDisabled = tutor.alta.toUpperCase() === "SI" ? 'disabled' : '';
 
           template += `
@@ -86,7 +87,7 @@ $(document).ready(function () {
               <td>${tutor.telefono}</td>
               <td>${tutor.correo_electronico}</td>
               <td>
-                <input type="text" class="pagado-input" value="${tutor.alta}" data-id="${tutor.id_tutor}" style="text-transform: uppercase;" ${isDisabled} />
+                <input type="checkbox" class="alta-checkbox" data-id="${tutor.id_tutor}" ${isChecked} ${isDisabled} />
               </td>
               <td>
                 <button class="information">
@@ -107,47 +108,29 @@ $(document).ready(function () {
   // Función para filtrar la tabla
   searchInput.on('input', function () {
     const searchTerm = searchInput.val().toLowerCase();
-
-    // Filtrar las filas de la tabla según el nombre y apellido
     $('#table-body tr').each(function () {
       const nombre = $(this).find('.nombre').text().toLowerCase();
       const apellidos = $(this).find('.apellidos').text().toLowerCase();
       const fullName = nombre + ' ' + apellidos;
 
-      if (fullName.indexOf(searchTerm) !== -1) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
+      $(this).toggle(fullName.includes(searchTerm));
     });
   });
 
-  // Capturar valor anterior por si hay un error.
-  let previousValue = '';
-
-  // Actualizar el valor de "Alta" cuando el usuario edite el campo
-  $(document).on('change', '.pagado-input', function () {
+  $(document).on('change', '.alta-checkbox', function () {
     const idTutor = $(this).data("id");
-    let pagadoValue = $(this).val().toUpperCase();
+    const altaValue = $(this).prop("checked") ? "SI" : "NO";
 
-    if (pagadoValue !== "SI" && pagadoValue !== "NO") {
-      showCustomAlert('Por favor, ingresa "SI" o "NO".');
-      $(this).val(previousValue);
-      return;
-    }
-
-    // Si el valor es "SI", deshabilitamos el campo después de la actualización
-    if (pagadoValue === "SI") {
+    if (altaValue === "SI") {
       $(this).prop('disabled', true);
     }
 
-    // Enviar la actualización al servidor
     $.ajax({
       url: 'dar-alta-tutor.php',
       type: 'POST',
       data: {
         id_tutor: idTutor,
-        alta: pagadoValue
+        alta: altaValue
       },
       success: function (response) {
         showCustomAlert(response);

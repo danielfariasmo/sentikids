@@ -202,11 +202,15 @@ Tabla
   overflow-x: auto;
 }
 
-/* Contenedor de tabla */
 .content {
   margin-bottom: 30px;
   background: var(--blanco);
   padding: 10px;
+}
+
+.table-container {
+  max-height: 400px; 
+  overflow-y: auto;  
 }
 
 table {

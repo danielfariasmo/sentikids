@@ -234,24 +234,47 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 
-.pagado-input {
-  width: 100%; 
-  max-width: 150px; 
-  height: 45px;
-  padding: 0 10px; 
-  font-size: 14px; 
-  border: 2px solid var(--principal);
-  border-radius: 5px;
-  outline: none;
-  box-sizing: border-box;
-  transition: border 0.3s ease;
-  text-align: center;
-  font-family: 'Poppins-regular';
+/*Check Box*/
+.alta-checkbox {
+  appearance: none; 
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--secundario);
+  border-radius: 4px;
+  background-color: var(--blanco);
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.pagado-input:focus {
-  border-color: var(--informacion);
-  box-shadow: 0 0 5px var(--sombraInformacion);
+.alta-checkbox:checked {
+  background-color: var(--principal); 
+  border-color: var(--principal); 
+}
+
+.alta-checkbox:checked::after {
+  content: "✔"; 
+  font-size: 20px;
+  color: var(--negro); 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.alta-checkbox:disabled {
+  background-color: var(--blancoSecundario); 
+  border-color: var(--secundario); 
+  cursor: not-allowed; 
+}
+
+.alta-checkbox:disabled:checked {
+  background-color: var(--principal); 
+  opacity: 0.7; 
+}
+
+.alta-checkbox:not(:disabled):hover {
+  border-color: var(--principal); 
 }
 
 /** Boton +info*/

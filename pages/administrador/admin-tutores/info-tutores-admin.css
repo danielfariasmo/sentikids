@@ -89,16 +89,44 @@ Titulo
 /*----------------------------------------
 Cartas
 -----------------------------------------*/
-/* Contenedor principal */
 .container {
     width: 100%;
     max-width: 1440px;
-    margin: 0 auto;
-    margin-top: 10px;
+    margin: 20px auto;
     position: relative;
     background: var(--blanco);
-    box-shadow: 0px 4px 4px var(--sombraOscura2);
-    overflow-x: auto;
+    box-shadow: 0px 4px 8px var(--sombraOscura2);
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.card {
+    background: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px var(--sombraOscura2);
+    padding: 20px;
+    margin-top: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px var(--sombraOscura);
+}
+
+.hijos-container, .otros-tutores-container {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.hijos-container p, .otros-tutores-container p {
+    margin: 10px 0;
+}
+
+.hijos-container strong, .otros-tutores-container strong {
+    color: var(--negro);
+    font-family: 'Poppins-bold';
 }
 
 /*----------------------------------------
