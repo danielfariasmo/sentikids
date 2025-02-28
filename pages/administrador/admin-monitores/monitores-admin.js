@@ -319,6 +319,13 @@ function fetchMonitor() {
     success: function (response) {
       let monitores = JSON.parse(response);
       let template = '';
+      
+      // Verificar si hay más de 10 monitores y agregar scroll
+      if (monitores.length > 10) {
+        $('.table-container').addClass('scrollable'); 
+      } else {
+        $('.table-container').removeClass('scrollable');
+      }
 
       monitores.forEach(monitor => {
         template += `

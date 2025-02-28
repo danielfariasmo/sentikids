@@ -1,11 +1,14 @@
 <?php
 include '../../../server/database.php';
 
-// Sentencia SQL preparada
+// Sentencia SQL modificada para contar los niños por cada grupo
 $query = "SELECT grupo.id_grupo, grupo.id_monitor, grupo.nombre AS nombre_grupo, 
-                 monitor.nombre AS nombre_monitor, monitor.apellidos AS apellidos_monitor
+                 monitor.nombre AS nombre_monitor, monitor.apellidos AS apellidos_monitor,
+                 COUNT(hijo.id_hijo) AS numero_ninos
           FROM grupo
-          INNER JOIN monitor ON grupo.id_monitor = monitor.id_monitor";
+          INNER JOIN monitor ON grupo.id_monitor = monitor.id_monitor
+          LEFT JOIN hijo ON grupo.id_grupo = hijo.id_grupo
+          GROUP BY grupo.id_grupo";
 
 if ($stmt = $connection->prepare($query)) {
     // Ejecutar la consulta
@@ -20,7 +23,8 @@ if ($stmt = $connection->prepare($query)) {
             'id_monitor' => $row['id_monitor'],
             'nombre_grupo' => $row['nombre_grupo'],
             'nombre_monitor' => $row['nombre_monitor'],
-            'apellidos_monitor' => $row['apellidos_monitor']
+            'apellidos_monitor' => $row['apellidos_monitor'],
+            'numero_ninos' => $row['numero_ninos'] // Agregar el número de niños
         );
     }
 
