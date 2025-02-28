@@ -7,38 +7,61 @@
     <link rel="stylesheet" href="contacto.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="../../../assets/img/logo-sin-fondo2.png" alt="Logo">
-            <div class="header-links">
-                <div class="areaprivada">Área privada</div>
-                <div class="inscribirse-btn">Inscribirse</div>
-            </div>
+
+      <!-- Primer menú -->
+      <div class="menu-principal">
+        <img class="logo" src="../../../assets/img/logo-sin-fondo.png" alt="Logo">
+        <div class="botonesMenu">
+            <button class="btn-area-privada">Área privada</button>
+            <button class="btn-inscribirse">Inscribirse</button>
         </div>
-        <div class="hero-section">
-            <div class="hero-content">
-                <div class="hero-links">
-                    <div>Nosotros</div>
-                    <div>Campus Expirence</div>
-                    <div>Precios</div>
-                    <div>Contacto</div>
-                </div>
-                <div class="hero-title">Contacto</div>
-                <div class="hero-breadcrumb">
-                    <div>Home</div>
-                    <div class="separator"></div>
-                    <div>Contacto</div>
-                </div>
-            </div>
+        <!-- Botón de menú hamburguesa -->
+        <button class="hamburguesa" aria-label="Abrir menú">
+            <span class="hamburguesa-linea"></span>
+            <span class="hamburguesa-linea"></span>
+            <span class="hamburguesa-linea"></span>
+        </button>
+    </div>
+
+<!-- Segundo menú fijo -->
+<div class="menu-fijo">
+    <div class="opciones">
+        <a href="#nosotros">Nosotros</a>
+        <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
+        <a href="../precios/precios.html">Precios</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+</div>
+
+<!-- Menú móvil -->
+<div class="menu-movil">
+    <div class="opciones-movil">
+        <a href="#nosotros">Nosotros</a>
+        <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
+        <a href="../precios/precios.html">Precios</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+</div>
+
+
+     <!-- Sección Hero -->
+     <div class="hero">
+        <h1 class="hero-title">Contacto</h1>
+        <div class="breadcrumb">
+            <a href="../home/inicio.html">Inicio</a> &raquo; <a href="#">Contacto</a>
         </div>
-        
+    </div>
+    
         <div class="contact-form-section">
-            <img src="../../../assets/img/contacto.jpg" alt="Contact Form Image">
+            <img src="../../../assets/img/contacto.jpg" alt="Contact Form Image" class="imgcontacto">
             <div class="contact-form-content">
                 <div class="contact-form-title">Contáctanos</div>
                 <div class="contact-form-text">
-                    <span>¿Tienes alguna pregunta o necesitas más información?</span>
-                    <span> ¡Estamos aquí para ayudarte! Contáctanos y haremos todo lo posible por responderte lo más rápido. Tu opinión y tus dudas son importantes para nosotros.</span>
+                    <p class="parrafocontacto">¿Tienes alguna pregunta o necesitas más información?
+                        ¡Estamos aquí para ayudarte! Contáctanos y haremos todo lo posible por responderte 
+                        lo más rápido. Tu opinión y tus dudas son importantes para nosotros.
+                    </p>
+                   
                 </div>
             </div>
         </div>
@@ -89,7 +112,7 @@
                     </div>
                     <div class="form-group">
                         <label>Adjunta tu CV:</label>
-                        <input type="file" name="cv">
+                        <input type="file" name="cv" id="botoncv">
                         <span class="error-message"></span>
                     </div>
                     <button type="submit" class="submit-btn">Subir CV</button>

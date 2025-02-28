@@ -1,3 +1,35 @@
+:root {
+    --blanco: #fefefe;
+    --negro: #000;
+    --fuente: 'Poppins', sans-serif;
+    --sombra: rgba(255, 255, 255, 0.6);
+    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    --principal: #80C4D3;
+    --secundario: #5A9EB3;
+    --blancoSecundario: #e0e0e0;
+    --informacion: #10BFFB;
+    --sombraInformacion: rgba(16, 191, 251, 0.5);
+    --sombraOscura: rgba(0, 0, 0, 0.5);
+    --sombraOscura2: rgba(0, 0, 0, 0.3);
+    --rojoPrincipal: #CD4533;
+    --rojoSecundario: #A32F23;
+  }
+  
+  @font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+  }
+  
+
+
+
+
+
 /* Reset básico */
 html, body {
     margin: 0;
@@ -13,7 +45,7 @@ html, body {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins-regular';
     background: #CFCFCF;
 }
 
@@ -131,7 +163,106 @@ body {
     height: 30px;
     border-radius: 50%;
 }
+/* --------------------------------- */
+/* <!-- MENU HAMBURGUESA --> */
+/* --------------------------------- */
+/* Menú Hamburguesa (solo para móvil) */
+.hamburger {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+}
 
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 4px 0;
+}
+
+/* Menú desplegable */
+.nav.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 96px; /* Ajusta según la altura del header */
+    right: 0;
+    background: #5D828A;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+/* Media Queries para Responsive Design */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .hamburger {
+        display: flex; /* Mostrar el ícono de hamburguesa */
+    }
+
+    .nav {
+        display: none; /* Ocultar el menú normal */
+    }
+
+    .nav.active {
+        display: flex; /* Mostrar el menú cuando está activo */
+    }
+
+    .logo {
+        margin-left: 10px; /* Margen reducido */
+    }
+}
+
+/* Pantallas medianas (tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .header {
+        height: 80px; /* Altura reducida */
+    }
+
+    .logo {
+        margin-left: 30px; /* Margen ajustado */
+    }
+
+    .nav {
+        padding-right: 30px; /* Padding ajustado */
+        gap: 15px; /* Espacio entre elementos ajustado */
+    }
+
+    .nav a {
+        font-size: 16px; /* Tamaño de fuente ajustado */
+    }
+
+    .nav a div {
+        padding: 8px 12px; /* Padding ajustado */
+    }
+}
+
+/* Pantallas grandes (escritorio) */
+@media (min-width: 1024px) {
+    .header {
+        height: 96px; /* Altura original */
+    }
+
+    .logo {
+        margin-left: 62px; /* Margen original */
+    }
+
+    .nav {
+        padding-right: 62px; /* Padding original */
+        gap: 20px; /* Espacio entre elementos original */
+    }
+
+    .nav a {
+        font-size: 18px; /* Tamaño de fuente original */
+    }
+
+    .nav a div {
+        padding: 10px 15px; /* Padding original */
+    }
+}
 /* Título */
 .title {
     width: 100%;
