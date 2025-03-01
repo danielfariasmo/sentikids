@@ -28,15 +28,16 @@ $apellidos = mysqli_real_escape_string($conexion, $_POST['apellidos']);
 $dni = mysqli_real_escape_string($conexion, $_POST['dni']);
 $email = mysqli_real_escape_string($conexion, $_POST['email']);
 $telefono = mysqli_real_escape_string($conexion, $_POST['telefono']);
-//$poblacion = mysqli_real_escape_string($conexion, $_POST['poblacion']);
 $nombre2 = mysqli_real_escape_string($conexion, $_POST['nombre2'] ?? '');
 $apellidos2 = mysqli_real_escape_string($conexion, $_POST['apellidos2'] ?? '');
 $dni2 = mysqli_real_escape_string($conexion, $_POST['dni2'] ?? '');
 $telefono2 = mysqli_real_escape_string($conexion, $_POST['telefono2'] ?? '');
+$usuario = mysqli_real_escape_string($conexion, $_POST['usuario'] ?? '');
+$contra = mysqli_real_escape_string($conexion, $_POST['contra'] ?? '');
 
 // Insertar el tutor
-$queryTutor = "INSERT INTO tutor (nombre, apellidos, dni, correo_electronico, telefono) 
-               VALUES ('$nombre', '$apellidos', '$dni', '$email', '$telefono')";
+$queryTutor = "INSERT INTO tutor (nombre, apellidos, dni, correo_electronico, telefono, nombre_usuario, clave_usuario) 
+               VALUES ('$nombre', '$apellidos', '$dni', '$email', '$telefono', '$usuario', '$contra')";
 if (mysqli_query($conexion, $queryTutor)) {
     $tutorId = mysqli_insert_id($conexion);
 
@@ -64,6 +65,18 @@ if (mysqli_query($conexion, $queryTutor)) {
             echo json_encode(['status' => 'error', 'message' => 'Error al insertar el hijo: ' . mysqli_error($conexion)]);
             exit;
         }
+    }
+
+    //notificación para el tutor
+    $titulo = "Bienvenido a Sentikids";
+    $mensaje = "Gracias por registrarte en Sentikids. Esperamos que disfrutes de nuestros servicios.";
+    $fecha = date('Y-m-d H:i:s'); // Fecha actual
+
+    $queryNotificacion = "INSERT INTO notificacion (id_tutor, titulo, mensaje, fecha) 
+                          VALUES ('$tutorId', '$titulo', '$mensaje', '$fecha')";
+    if (!mysqli_query($conexion, $queryNotificacion)) {
+        echo json_encode(['status' => 'error', 'message' => 'Error al crear la notificación: ' . mysqli_error($conexion)]);
+        exit;
     }
 
     echo json_encode(['status' => 'success', 'message' => 'Inscripción completada con éxito']);

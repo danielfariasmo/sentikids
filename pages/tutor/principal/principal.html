@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area Privada</title>
+    <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
     <link rel="stylesheet" href="principal.css">
     <!-- Agrega FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -62,6 +63,7 @@
                 <!-- <img class="horarioImg" style="width:400px; margin-top:10px;" alt="Horario del grupo" /> -->
 
                 <button class="abrirHorario" id="abrirHorario">Horario</button>
+                <button class="abrirHorario" id="abrirHorario">Horario</button>
             </div>
             <div class="infoTrust" style="display:none;"></div>
         </div>
@@ -104,28 +106,29 @@
                     </div>
 
                     <h2>Detalles de inicio de sesión</h2>
-                    <div class="input-grid">
-                        <div class="input-field">
-                            <input type="text" id="user" name="usuario" placeholder="" disabled>
-                            <label for="user">Usuario</label>
-                            <span class="error hidden" id="userError">Por favor, introduce un usuario válido.</span>
-                        </div>
-                    </div>
-                    <button type="button" id="passwordButton" class="cambiarContra">Cambiar contraseña</button>
-
-                    <div id="newPassContainer" class="hidden">
+                    <div>
                         <div class="input-grid">
                             <div class="input-field">
-                                <input type="password" id="lastPassword" name="lastPassword" placeholder="">
-                                <label for="lastPassword">Anterior contraseña</label>
-                                <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña
-                                    anterior.</span>
+                                <input type="text" id="user" name="usuario" placeholder="" disabled>
+                                <label for="user">Usuario</label>
                             </div>
-                            <div class="input-field">
-                                <input type="password" id="password" name="password" placeholder="">
-                                <label for="password">Nueva contraseña</label>
-                                <span class="error hidden" id="passwordError">Por favor, introduce una contraseña
-                                    válida.</span>
+                        </div>
+                        <button type="button" id="passwordButton" class="cambiarContra">Cambiar contraseña</button>
+
+                        <div id="newPassContainer" class="hidden">
+                            <div class="input-grid">
+                                <div class="input-field">
+                                    <input type="password" id="lastPassword" name="lastPassword" placeholder="">
+                                    <label for="lastPassword">Anterior contraseña</label>
+                                    <span class="error hidden" id="lastPasswordError">Por favor, introduce tu contraseña
+                                        anterior.</span>
+                                </div>
+                                <div class="input-field">
+                                    <input type="password" id="password" name="password" placeholder="">
+                                    <label for="password">Nueva contraseña</label>
+                                    <span class="error hidden" id="passwordError">Por favor, introduce una contraseña
+                                        válida.</span>
+                                </div>
                             </div>
                         </div>
                     </div>

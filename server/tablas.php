@@ -93,7 +93,7 @@ NOTIFICACIONES
 ---------------------------------------------------------------*/
 $notification = "CREATE TABLE IF NOT EXISTS notificacion (
     id_notificacion INT AUTO_INCREMENT PRIMARY KEY,
-    id_monitor INT NOT NULL,
+    id_monitor INT NULL,
     id_tutor INT NOT NULL,
     titulo VARCHAR(200) NOT NULL,
     mensaje VARCHAR(1000) NOT NULL,

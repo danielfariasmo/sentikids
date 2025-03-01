@@ -1,22 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     //MENÚ
-        const menuFijo = document.querySelector(".menu-fijo");
-        menuFijo.style.marginTop = "48px";
-        const MARGEN_INICIAL = 48;
-    
-        window.addEventListener("scroll", function () {
-            const scrollActual = window.scrollY;
-    
-            // Calcula el margen superior basado en el scroll
-            let margenSuperior = MARGEN_INICIAL - scrollActual;
-    
-            // Asegura que el margen no sea menor que 0
-            margenSuperior = Math.max(margenSuperior, 0);
-    
-            // Aplica el margen calculado
-            menuFijo.style.marginTop = `${margenSuperior}px`;
-        });
+    const menuFijo = document.querySelector(".menu-fijo");
+    menuFijo.style.marginTop = "48px";
+    const MARGEN_INICIAL = 48;
+
+    window.addEventListener("scroll", function () {
+        const scrollActual = window.scrollY;
+
+        // Calcula el margen superior basado en el scroll
+        let margenSuperior = MARGEN_INICIAL - scrollActual;
+
+        // Asegura que el margen no sea menor que 0
+        margenSuperior = Math.max(margenSuperior, 0);
+
+        // Aplica el margen calculado
+        menuFijo.style.marginTop = `${margenSuperior}px`;
+    });
 
     //FIN MENÚ
 
@@ -82,19 +82,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: "POST",
                 body: formData
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    mostrarMensaje(data.message, false);
-                    // Redirigir o realizar otras acciones
-                } else {
-                    mostrarMensaje(data.message, true);
-                }
-            })
-            .catch(error => {
-                console.error("Error en la solicitud:", error);
-                mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        mostrarMensaje(data.message, false);
+                        // Redirigir o realizar otras acciones
+                    } else {
+                        mostrarMensaje(data.message, true);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error en la solicitud:", error);
+                    mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true);
+                });
         } else {
             mostrarMensaje("Por favor, corrige los errores antes de continuar.", true);
         }
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function validarElemento(elemento) {
         const valor = elemento.value.trim();
         let esValido = true;
-    
+
         switch (true) {
             case ["name", "lastName", `childName${childCount}`, `childLastName${childCount}`].includes(elemento.id):
                 esValido = /^[a-zA-ZÀ-ÿ\s]{2,40}$/.test(valor);
@@ -124,20 +124,26 @@ document.addEventListener('DOMContentLoaded', () => {
             case elemento.id === `childAge${childCount}`:
                 esValido = validarEdadAlumno(elemento);
                 break;
+            case elemento.id === "user":
+                esValido = /^[a-zA-ZÀ-ÿ\s]{2,40}$/.test(valor); // Letras y espacios, pueden llevar acentos
+                break;
+            case elemento.id === "password":
+                esValido = valor !== "";
+                break;
             default:
                 console.warn(`No hay reglas de validación para el campo con id "${elemento.id}"`);
                 break;
         }
-    
+
         const errorSpan = document.getElementById(elemento.id + "Error");
         if (errorSpan) {
             // Si es inválido, se añade "visible"; si es válido, se remueve.
             errorSpan.classList.toggle('visible', !esValido);
         }
-    
+
         return esValido;
     }
-    
+
 
     // Validar letra del DNI
     function validarLetraDNI(dni) {
