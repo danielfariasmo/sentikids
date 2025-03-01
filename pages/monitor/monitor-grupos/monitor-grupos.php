@@ -37,10 +37,17 @@ if ($resultGrupo->num_rows > 0) {
     $rowGrupo = $resultGrupo->fetch_assoc();
     $id_grupo = $rowGrupo['id_grupo'];
 
-    // Consultar los datos de los niños del grupo
-    $query = "SELECT h.nombre, h.apellidos, t.nombre AS nombre_tutor, t.telefono, t.correo_electronico 
+    // Consultar los datos de los niños del grupo, incluyendo la persona de confianza
+    $query = "SELECT h.nombre, h.apellidos, 
+                     COALESCE(t.nombre, 'No disponible') AS nombre_tutor, 
+                     COALESCE(t.telefono, 'No disponible') AS telefono, 
+                     COALESCE(t.correo_electronico, 'No disponible') AS correo_electronico,
+                     COALESCE(pc.nombre, 'No disponible') AS nombre_persona_confianza,
+                     COALESCE(pc.telefono, 'No disponible') AS telefono_persona_confianza,
+                     COALESCE(pc.dni, 'No disponible') AS dni_persona_confianza
               FROM hijo h 
-              JOIN tutor t ON h.id_tutor = t.id_tutor 
+              LEFT JOIN tutor t ON h.id_tutor = t.id_tutor 
+              LEFT JOIN persona_confianza pc ON t.id_tutor = pc.id_tutor
               WHERE h.id_grupo = ?";
     
     $stmt = $conexion->prepare($query);

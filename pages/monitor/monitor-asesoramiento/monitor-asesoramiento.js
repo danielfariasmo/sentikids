@@ -167,14 +167,14 @@ function cargarNotificaciones() {
                 notificationCard.innerHTML = `
                     <div class="notification-title">${notif.titulo}</div>
                     <div class="notification-text">${notif.mensaje}</div>
-                    <div class="notification-date">${notif.fecha}</div>
+                    <div class="notification-tutor">Enviado a: ${notif.tutor}</div>
+                    <div class="notification-date">Día: ${notif.fecha}</div>
                 `;
                 container.appendChild(notificationCard);
             });
         })
-        .catch(error => console.error("Error al cargar notificaciones:"));
+        .catch(error => console.error("Error al cargar notificaciones:", error));
 }
-
 
 //  <!-- MENU HAMBURGUESA -->
 

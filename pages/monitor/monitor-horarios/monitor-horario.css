@@ -34,7 +34,7 @@
 body, html {
   width: 100%;
   height: 100%;
-  font-family: 'Poppins-regular', sans-serif;
+  font-family: 'Poppins-regular';
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@ body, html {
 .nav a {
   text-decoration: none;
   color: var(--negro);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
 }
 
@@ -241,7 +241,7 @@ body, html {
 }
 /* Título */
 .section-title {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--negro);
   width: 100%;
@@ -292,16 +292,3 @@ body, html {
   transform: scale(0.98);
 }
 
-/* Footer */
-.footer {
-  width: 100%;
-  background: var(--negro);
-  text-align: center;
-  padding: 20px 0;
-  margin-top: auto;
-}
-
-.footer-text {
-  color: var(--blanco);
-  opacity: 0.5;
-}

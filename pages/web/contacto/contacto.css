@@ -41,9 +41,8 @@ body, html {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    background: white;
+    background-color: #f3f3f3;
 }
-
 .container {
     flex: 1;
 }
@@ -63,8 +62,8 @@ body, html {
 }
 
 /* Menú fijo */
-.menu-fijo {
-    position: fixed;
+.menu-fijo  {
+    position : fixed ;
     top: 0;
     left: 0;
     width: 100%;
@@ -180,6 +179,9 @@ body, html {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    width: 300px;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .opciones-movil a {
@@ -267,14 +269,14 @@ body, html {
 
 .hero-title {
     color: #3a3a3a;
-    font-size: 2.5rem; /* Tamaño de fuente relativo */
+    font-size: 40px; /* Tamaño de fuente relativo */
     margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     padding: 0 20px; /* Añadido padding para mejor espaciado */
 }
 
 .breadcrumb {
-    font-size: 14px;
+    font-size: 16px;
     color: #000000;
     margin-top: 10px;
 }
@@ -302,26 +304,31 @@ body, html {
 }
 
 .contact-form-section img {
-    width: 40%;
+    width: 100%; /* O usa max-width para controlar el tamaño */
+    max-width: 790px;
+    height: 480px; /* Para mantener la proporción */
+    margin: 150px auto 0 auto; /* Centra horizontalmente */
+    display: block; /* Necesario para usar margin auto */
     border-radius: 10px;
 }
-
 .contact-form-content {
     margin-left: 40px;
 }
 
 .contact-form-title {
-    font-size: 42px;
+    font-size: 40px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 100px;
+    margin-bottom: 50px;
     font-weight: 700;
     color: #CD4533;
 }
 .parrafocontacto{
-    font-size: 25px;
+    font-size: 18px;
     color: black;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 50px;
+   text-align: center;
 }
 
 .contact-form-text {
@@ -337,7 +344,14 @@ body, html {
     margin: 0 auto;
     border-radius: 10px;
 }
-
+.txtcontacto{
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;   
+    margin-bottom: 50px;
+    font-weight: 700;
+    color: #CD4533;
+}
 .form-group {
     margin-bottom: 20px;
 }
@@ -362,8 +376,9 @@ textarea {
 .submit-btn {
     padding: 15px 40px;
     background: #CD4533;
+    font-family: 'Poppins-regular';
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     border-radius: 5px;
     cursor: pointer;
@@ -383,14 +398,14 @@ textarea {
 }
 
 .work-with-us-title {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 700;
     color: #CD4533;
     margin-top: 50px;
 }
 
 .work-with-us-text {
-    font-size: 25px;
+    font-size: 18px;
     color: black;
     max-width: 800px;
     margin: 0 auto;
@@ -417,7 +432,7 @@ textarea {
 }
 
 .cv-upload-title {
-    font-size: 24px;
+    font-size: 40px;
     font-weight: 700;
     color: #CD4533;
     margin-bottom: 20px;
@@ -429,7 +444,7 @@ textarea {
 
 .cv-upload-form .form-group label {
     display: block;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
 }
@@ -452,6 +467,9 @@ textarea {
     border: none;
     width: auto;
     margin-top: 20px;
+}
+.cv-upload-section img{
+    width: 35%;
 }
 #botoncv{
    font-family: 'Poppins-regular';
@@ -678,9 +696,6 @@ input.error, textarea.error {
         font-size: 15px;
         text-align: center;
     }
-    .imgcontacto{
-        height: 250px;
-    }
     .submit-btn{
        align-items: center;   
     }
@@ -707,7 +722,13 @@ input.error, textarea.error {
     .about-text {
         font-size: 20px;
     }
-
+    .imgcontacto {
+        width: 80%; /* Ajusta el ancho de la imagen */
+        height: auto; /* Mantiene la proporción */
+        max-width: 250px; /* Limita el tamaño máximo */
+        margin-bottom: 15px; /* Espaciado inferior */
+        margin-left: -130px;
+    }
     .contact-info {
         font-size: 14px;
     }
@@ -723,5 +744,71 @@ input.error, textarea.error {
 
     .social-icons {
         flex-direction: row;
+    }
+    body,html{
+        overflow-x: hidden;
+    }
+}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    /* Otras reglas existentes... */
+
+    .contact-form-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .imgcontacto {
+        width: 180%; /* Ajusta el ancho de la imagen */
+        height: auto; /* Mantiene la proporción */
+        max-width: 350px; /* Limita el tamaño máximo */
+        margin-bottom: 15px; /* Espaciado inferior */
+    }
+
+    .contact-form-content {
+        width: 100%;
+    }
+
+    .contact-form-title {
+        font-size: 40px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .contact-form-text {
+        font-size: 16px;
+        text-align: justify;
+    }
+}
+
+/* MÒVIL RESPONSIVE */
+@media (max-width: 480px) {
+    /* Otras reglas existentes... */
+
+    .contact-form-section {
+        padding: 10px;
+    }
+    .imgcontacto {
+        height: 50px; /* Ajusta la altura para móviles */
+        margin-left: -130px;
+    }
+
+    .contact-form-title {
+        font-size: 40px;
+        text-align: center;
+        margin-top: 70px;
+    }
+
+    
+
+    .parrafocontacto {
+        font-size: 18px;
+        margin-bottom: 10px;
+        padding: 0px;
+        text-align: center;
+        margin-left: -5px;
+        margin-right: 25px;
     }
 }
