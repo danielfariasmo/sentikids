@@ -230,6 +230,11 @@ body {
     background: var(--white); /* Fondo para que no se superponga con el borde */
 }
 
+/*DISABLED*/
+.input-field input:disabled {
+    border-color: rgba(118, 118, 118, 0.3);
+}
+
 
 /* Estilos para inputs, textareas y selects */
 input,
@@ -588,6 +593,52 @@ span {
     transition: background-color 0.3s ease;
 }
 
+
+
+
+
+
+
+
+.infoChild {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los textos y otros elementos a la izquierda */
+}
+
+.botones-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Distribuye los botones */
+    width: 100%; /* Para que ocupen todo el ancho disponible */
+    margin-top: 10px; /* Espacio respecto al textarea */
+}
+
+.actualizarN {
+    margin-right: auto; /* Empuja los otros elementos a la derecha */
+}
+
+.multimedia {
+    display: flex;
+    flex-direction: row;
+}
+
+.horarioButton,
+.fotosGrupo {
+    margin-left: 10px; /* Espacio entre los botones */
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .infoChild .nombreTitulo {
@@ -643,24 +694,43 @@ button.default {
     transition: background 0.3s ease;
 }
 
-.cambiarContra {
-    background-color: white;
-    color: #22343D;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    transform: translateY(-40px); /* Mueve el botón hacia arriba */
-    border: 3px solid #68AEBE; /* Grosor, estilo y color del borde */
-}
-
-button.cambiarContra:hover {
-    background-color: #68aebe41;
-}
-
 button.default:hover {
     background-color: #FF725E;
+}
+
+.horarioButton {
+    background-color: #5D828A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.horarioButton:hover {
+    background-color: #4c6e76;
+}
+
+.cambiarContra {
+    width: 200px;
+    background-color: #5D828A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    transition: background 0.3s ease;
+    transform: translateY(-20px); /* Mueve el botón hacia arriba */
+}
+
+
+
+button.cambiarContra:hover {
+    background-color: #4c6e76;
 }
 
 
@@ -677,7 +747,6 @@ button.default:hover {
 .horarioContainer {
     background-color: #f9f9f9;
     padding: 5px;
-    padding-left: 100px; /* Ajusta según sea necesario */
     border-radius: 19px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative; /* Necesario para posicionar el botón "Atrás" */

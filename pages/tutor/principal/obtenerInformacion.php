@@ -47,8 +47,8 @@ $queryHijo = "
         g.fotos_url AS fotos_grupo_url,
         g.horario_url AS horario_grupo_url
     FROM hijo h
-    JOIN grupo g ON h.id_grupo = g.id_grupo
-    JOIN monitor m ON g.id_monitor = m.id_monitor
+    LEFT JOIN grupo g ON h.id_grupo = g.id_grupo
+    LEFT JOIN monitor m ON g.id_monitor = m.id_monitor
     WHERE h.id_tutor = '$id_tutor'
 ";
 
@@ -73,6 +73,13 @@ if (!$hijo) {
     exit;
 }
 
+// Verificar si los campos relacionados con el grupo están vacíos y asignar "no asignado" en su lugar
+$grupo = empty($hijo['grupo']) ? 'no asignado' : $hijo['grupo'];
+$nombre_monitor = empty($hijo['nombre_monitor']) ? 'no asignado' : $hijo['nombre_monitor'];
+$correo_monitor = empty($hijo['correo_monitor']) ? 'no asignado' : $hijo['correo_monitor'];
+$fotos_grupo_url = empty($hijo['fotos_grupo_url']) ? 'no asignado' : $hijo['fotos_grupo_url'];
+$horario_grupo_url = empty($hijo['horario_grupo_url']) ? 'no asignado' : $hijo['horario_grupo_url'];
+
 // Devolver la información del hijo en formato JSON
 echo json_encode([
     'status' => 'success',
@@ -80,13 +87,13 @@ echo json_encode([
         'nombreHijo' => $hijo['nombre_hijo'],
         'apellidos' => $hijo['apellidos_hijo'],
         'alergias' => $hijo['alergias'],
-        'grupo' => $hijo['grupo'],
+        'grupo' => $grupo,
         'monitor' => [
-            'nombre' => $hijo['nombre_monitor'],
-            'correo' => $hijo['correo_monitor']
+            'nombre' => $nombre_monitor,
+            'correo' => $correo_monitor
         ],
-        'fotosGrupoUrl' => $hijo['fotos_grupo_url'],
-        'horarioUrl' => $hijo['horario_grupo_url']
+        'fotosGrupoUrl' => $fotos_grupo_url,
+        'horarioUrl' => $horario_grupo_url
     ]
 ]);
 

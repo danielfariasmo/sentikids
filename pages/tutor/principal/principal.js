@@ -30,10 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>¿Quieres ajustar algo? Edita la información cuando quieras</h4>
                 <p class="textoAlergias">Alergias o otras condiciones que quieres que sepamos</p>
                 <textarea class="textAreaAlergias" rows="4" cols="50"></textarea>
-                <a class="fotosGrupo" target="_blank"></a>
-                <button class="horarioButton default" id="horarioButton">Horario</button>
-            </div>
-            <div class="infoTrust"></div>
+
+    <div class="botones-container">
+        <button class="actualizarN default" id="actualizarN">Actualizar</button>
+        <span class="feedback hidden" id="actualizado">Información actualizada correctamente.</span>
+        <div class="multimedia">
+            <button class="horarioButton" id="horarioButton">Horario</button>
+            <a class="fotosGrupo" target="_blank"></a>
+        </div>
+    </div>
+</div>
+<div class="infoTrust" style="display:none;"></div>
         `;
         }
     }
@@ -550,6 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     rightContainer.innerHTML = '';
                     cargarNotificaciones(rightContainer);
                 } else if (this.textContent === 'Mis Personas de Confianza') {
+                    console.log("pilla el boton")
                     // Para "Mis Personas de Confianza", cargar la lista de personas de confianza
                     cargarInfoTrust();
                 } else {
@@ -619,8 +627,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Link para fotos del grupo (a con clase 'fotosGrupo')
                     const fotosGrupo = infoChildDiv.querySelector('.fotosGrupo');
                     if (fotosGrupo) {
-                        fotosGrupo.href = infoHijo.fotosGrupoUrl || '#';
-                        fotosGrupo.textContent = 'Ver fotos del grupo';
+                        if (infoHijo.fotosGrupoUrl !== 'no asignado') {
+                            // Si no es "no asignado", establece el enlace y el texto
+                            fotosGrupo.href = infoHijo.fotosGrupoUrl; // Asigna la URL de las fotos
+                            fotosGrupo.textContent = 'Ver fotos del grupo'; // Establece el texto del enlace
+                        }
                     }
 
                     // Botón para cargar el horario
@@ -652,18 +663,8 @@ document.addEventListener('DOMContentLoaded', () => {
         horarioImg.alt = 'Horario del grupo';
         horarioImg.className = 'horarioImg';
 
-        // Crear el botón "Atrás"
-        const backButton = document.createElement('button');
-        backButton.textContent = 'Atrás';
-        backButton.className = 'backButton';
-        backButton.onclick = () => {
-            // Volver a cargar la información del hijo
-            resetRightContainer();
-            cargarInformacionHijo(container, nombreHijo); // Asegúrate de tener acceso a `nombreHijo`
-        };
 
         // Agregar la imagen y el botón al contenedor del horario
-        horarioDiv.appendChild(backButton); // Botón primero para que esté encima de la imagen
         horarioDiv.appendChild(horarioImg);
 
         // Agregar el contenedor del horario al contenedor principal
@@ -673,6 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para cargar la información de las personas de confianza
     function cargarInfoTrust() {
         const container = document.querySelector('#right-container');
+        console.log("carga pc")
 
         // Restaurar la estructura fija del right-container
         resetRightContainer();
@@ -680,15 +682,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Seleccionar el contenedor .infoTrust
         const infoTrustDiv = container.querySelector('.infoTrust');
 
+        console.log("carga pc2")
         // Ocultar .infoChild (si está visible)
         const infoChildDiv = container.querySelector('.infoChild');
         if (infoChildDiv) {
             infoChildDiv.style.display = 'none';
         }
-
+        console.log("carga pc3")
         // Mostrar .infoTrust
         infoTrustDiv.style.display = 'block';
 
+        console.log("carga pc4")
         // Obtener las personas de confianza desde el servidor
         fetch('obtenerPC.php')
             .then(response => response.json())
