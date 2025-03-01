@@ -1,21 +1,28 @@
 let selectedStudent = {};
 
-function selectStudent(nombre, apellidos, edad, dieta, alergias, tutor, telefono, dni, otroTutor, telefonoOtro, dniOtro, relacion) {
-    selectedStudent = { nombre, apellidos, edad, dieta, alergias, tutor, telefono, dni, otroTutor, telefonoOtro, dniOtro, relacion };
+function selectStudent(nombre, apellidos, nombre_tutor, telefono, correo_electronico, nombre_persona_confianza, telefono_persona_confianza, dni_persona_confianza) {
+    selectedStudent = { 
+        nombre, 
+        apellidos, 
+        nombre_tutor, 
+        telefono, 
+        correo_electronico, 
+        nombre_persona_confianza, 
+        telefono_persona_confianza, 
+        dni_persona_confianza 
+    };
     showPopup();
 }
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Realizar una solicitud AJAX para obtener los datos de los niños del grupo
     fetch('monitor-grupos.php')
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                const tableBody = document.querySelector('.table-body'); // Cambiar al contenedor correcto
+                const tableBody = document.querySelector('.table-body');
 
                 data.students.forEach(student => {
-                    const row = document.createElement('tr'); // Cambiar de div a tr para las filas
-                    row.className = 'row';  
+                    const row = document.createElement('tr');
+                    row.className = 'row';
 
                     row.innerHTML = `
                         <td>${student.nombre}</td>
@@ -28,18 +35,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                 onclick="selectStudent(
                                     '${student.nombre}',
                                     '${student.apellidos}',
-                                 
-                                    '${student.alergias || 'No tiene'}',
                                     '${student.nombre_tutor}',
                                     '${student.telefono}',
-                                    '${student.dni || 'No disponible'}',
-                                    
+                                    '${student.correo_electronico}',
+                                    '${student.nombre_persona_confianza}',
+                                    '${student.telefono_persona_confianza}',
+                                    '${student.dni_persona_confianza}'
                                 )">
                                 Más info
                             </button>
                         </td>
                     `;
-                    tableBody.appendChild(row); // Añadir la fila al contenedor de la tabla
+                    tableBody.appendChild(row);
                 });
             } else {
                 alert(data.message);
@@ -53,14 +60,14 @@ function showPopup() {
     if (Object.keys(selectedStudent).length > 0) {
         document.getElementById('nombre').textContent = selectedStudent.nombre;
         document.getElementById('apellidos').textContent = selectedStudent.apellidos;
-        document.getElementById('dieta').textContent = selectedStudent.dieta;
-       
-       
-        document.getElementById('alergias').textContent = selectedStudent.alergias; 
-        document.getElementById('tutor').textContent = selectedStudent.tutor;
-       
-        
-        // document.getElementById('otroTutor').textContent = selectedStudent.otroTutor;
+        document.getElementById('dieta').textContent = selectedStudent.nombre_tutor; // Corregido: Mostrar el nombre del tutor
+        document.getElementById('alergias').textContent = selectedStudent.telefono; // Corregido: Mostrar el teléfono del tutor
+        document.getElementById('tutor').textContent = selectedStudent.correo_electronico; // Corregido: Mostrar el correo del tutor
+
+        // Mostrar información de la persona de confianza
+        document.getElementById('nombre-persona-confianza').textContent = selectedStudent.nombre_persona_confianza;
+        document.getElementById('telefono-persona-confianza').textContent = selectedStudent.telefono_persona_confianza;
+        document.getElementById('dni-persona-confianza').textContent = selectedStudent.dni_persona_confianza;
 
         document.getElementById('overlay').style.display = 'block';
         document.getElementById('popup').style.display = 'block';

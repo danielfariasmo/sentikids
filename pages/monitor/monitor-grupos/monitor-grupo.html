@@ -23,7 +23,7 @@
             <a href="../monitor-horarios/monitor-horario.html"><div>Horarios</div></a>
             <a href="../monitor-grupos/monitor-grupo.html"><div>Lista</div></a>
             <a href="../monitor-actividades/monitor-actividades.html"><div>Actividades</div></a>
-            <a href="../monitor-asesoramiento/monitor-asesoramiento.html"><div>Asesoramiento</div></a>
+            <a href="../monitor-asesoramiento/monitor-asesoramiento.html"><div>Notificaciones</div></a>
 
               <!-- Iconos a la derecha -->
               <div class="icons">
@@ -69,33 +69,22 @@
         </section>
     </div>
 
-    <div class="overlay" id="overlay" onclick="hidePopup()"></div>
-    <div class="popup" id="popup">
-        <button class="close-btn" onclick="hidePopup()">&times;</button>
-        <h2>Información del Alumno</h2>
-        <div class="popup-content">
-            <p><strong>Nombre Niño/a:</strong> <span id="nombre"></span></p>
-            <p><strong>Apellidos:</strong> <span id="apellidos"></span></p>
-           
-            <p><strong>Nombre del tutor:</strong> <span id="dieta"></span></p>
-          
-          
-          
-            <p><strong>Teléfono del tutor:</strong> <span id="alergias"></span></p>
-            <p><strong>Otro tutor:</strong> <span id="tutor"></span></p>
-
-           
-            
-        </div>
+   <div class="overlay" id="overlay" onclick="hidePopup()"></div>
+<div class="popup" id="popup">
+    <button class="close-btn" onclick="hidePopup()">&times;</button>
+    <h2>Información del Alumno</h2>
+    <div class="popup-content">
+        <p><strong>Nombre Niño/a:</strong> <span id="nombre"></span></p>
+        <p><strong>Apellidos:</strong> <span id="apellidos"></span></p>
+        <p><strong>Nombre del tutor:</strong> <span id="dieta"></span></p>
+        <p><strong>Teléfono del tutor:</strong> <span id="alergias"></span></p>
+        <p><strong>Correo del tutor:</strong> <span id="tutor"></span></p>
+        <h3>Persona de Confianza</h3>
+        <p><strong>Nombre:</strong> <span id="nombre-persona-confianza"></span></p>
+        <p><strong>Teléfono:</strong> <span id="telefono-persona-confianza"></span></p>
+        <p><strong>DNI:</strong> <span id="dni-persona-confianza"></span></p>
     </div>
-
-        <!-- Pie de página -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-line"></div>
-                <p class="footer-text">Copyright © 2025. All Right Reserved.</p>
-            </div>
-        </footer>
+</div>
 
     </div>
 

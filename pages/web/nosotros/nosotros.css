@@ -10,7 +10,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #EFEFEF;
+    background-color: #f3f3f3;
     overflow-x: hidden;
     /* Evita la barra de scroll horizontal */
 }
@@ -223,14 +223,14 @@ h1 {
 
 .hero-title {
     color: #3a3a3a;
-    font-size: 48px;
+    font-size: 40px;
     margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 
 .breadcrumb {
-    font-size: 14px;
+    font-size: 16px;
     color: #000000;
     margin-top: 10px;
 }
@@ -263,7 +263,7 @@ h1 {
 
 .quienes-somos-texto h1 {
     margin-bottom: 40px;
-    font-size: 36px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -448,6 +448,7 @@ h1 {
     text-align: center;
     margin-top: 90px;
     margin-bottom: 20px;
+    font-size: 40px;
 }
 
 /* Swiper Cartas Monitores */
@@ -539,7 +540,7 @@ h1 {
 }
 
 .description {
-    font-size: 14px;
+    font-size: 16px;
     color: #707070;
     text-align: center;
 }
@@ -580,6 +581,7 @@ h1 {
     margin-top: 70px;
     margin-bottom: 20px;
     text-align: center;
+    font-size: 40px;
 }
 
 .empresas-swiper {
@@ -618,7 +620,7 @@ h1 {
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.6);
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     padding: 5px 10px;
     width: 100%;
     border-radius: 5px;

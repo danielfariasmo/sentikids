@@ -78,7 +78,7 @@ body {
 .nav a {
     text-decoration: none;
     color: black;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
 }
 
@@ -260,47 +260,54 @@ body {
 
 .header-title-text {
     color: black;
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 700;
 }
 
 /* Actividades */
 .activities-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    display: flex;
+    flex-direction: column; /* Organiza las tarjetas en columna */
     gap: 30px; /* Espaciado entre tarjetas */
-    justify-items: center; /* Centra los elementos */
     padding: 40px;
-    max-width: 900px;
+    max-width: 1200px; /* Ajusta el ancho máximo */
     margin: auto;
 }
 
 .activity-card {
-    width: 280px;
     background: white;
     border: 5px #5D828A solid;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
     box-sizing: border-box;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 900px; /* Ajusta el ancho máximo de la tarjeta */
+    margin: auto; /* Centra la tarjeta */
 }
 
 .activity-title {
     font-size: 24px;
     font-weight: 700;
-    text-align: center;
-    margin-bottom: 10px;
+    text-align: center; /* Centra el título */
+    margin-bottom: 20px; /* Espacio debajo del título */
 }
 
 .activity-image {
-    width: 100%;
+    width: 100%; /* Ocupa el 100% del ancho de la tarjeta */
+    height: 200px; /* Altura fija para la imagen */
     border-radius: 8px;
-    margin-bottom: 10px;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    margin-bottom: 20px; /* Espacio debajo de la imagen */
 }
 
 .activity-description {
     font-size: 18px;
     font-weight: 400;
-    margin-bottom: 10px;
+    margin-bottom: 20px; /* Espacio debajo de la descripción */
+}
+
+.activity-materials {
+    width: 100%; /* Ocupa todo el ancho */
 }
 
 .activity-materials h3 {
@@ -321,18 +328,33 @@ body {
     border-radius: 4px;
 }
 
-/* Footer */
-.footer {
-    width: 100%;
-    background: black;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .activities-container {
+        padding: 20px; /* Reduce el padding en pantallas pequeñas */
+    }
+
+    .activity-card {
+        padding: 15px; /* Reduce el padding en pantallas pequeñas */
+    }
+
+    .activity-title {
+        font-size: 20px; /* Reduce el tamaño del título */
+    }
+
+    .activity-description {
+        font-size: 16px; /* Reduce el tamaño de la descripción */
+    }
+
+    .activity-materials h3 {
+        font-size: 18px; /* Reduce el tamaño del subtítulo */
+    }
 }
 
-.footer-text {
-    color: white;
-    opacity: 0.5;
+@media (max-width: 600px) {
+    .activity-image {
+        height: 150px; /* Reduce la altura de la imagen en móviles */
+    }
 }
 
 /* RESPONSIVE */
