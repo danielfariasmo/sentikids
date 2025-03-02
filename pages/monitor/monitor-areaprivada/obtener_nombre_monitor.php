@@ -21,19 +21,35 @@ if (!$conexion) {
 if (isset($_SESSION['id_usuario']) && $_SESSION['rol'] === 'monitor') {
     $id_monitor = intval($_SESSION['id_usuario']); // Validar que sea un número entero
 
-    // Consulta para obtener el nombre y apellidos del monitor
-    $query = "SELECT nombre, apellidos FROM monitor WHERE id_monitor = $id_monitor";
-    $result = mysqli_query($conexion, $query);
+    // Consulta preparada para obtener el nombre y apellidos del monitor
+    $query = "SELECT nombre, apellidos FROM monitor WHERE id_monitor = ?";
+    $stmt = mysqli_prepare($conexion, $query);
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        echo json_encode([
-            'status' => 'success', 
-            'nombre' => $row['nombre'], 
-            'apellidos' => $row['apellidos']
-        ]);
+    if ($stmt) {
+        // Vincular el parámetro
+        mysqli_stmt_bind_param($stmt, "i", $id_monitor);
+
+        // Ejecutar la consulta
+        mysqli_stmt_execute($stmt);
+
+        // Vincular los resultados a variables
+        mysqli_stmt_bind_result($stmt, $nombre, $apellidos);
+
+        // Obtener los resultados
+        if (mysqli_stmt_fetch($stmt)) {
+            echo json_encode([
+                'status' => 'success', 
+                'nombre' => $nombre, 
+                'apellidos' => $apellidos
+            ]);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'No se encontró el monitor']);
+        }
+
+        // Cerrar la declaración
+        mysqli_stmt_close($stmt);
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'No se encontró el monitor']);
+        echo json_encode(['status' => 'error', 'message' => 'Error en la preparación de la consulta']);
     }
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Sesión no válida o usuario no es monitor']);

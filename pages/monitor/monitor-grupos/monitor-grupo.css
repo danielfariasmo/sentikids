@@ -1,16 +1,19 @@
 :root {
     --blanco: #fefefe;
     --negro: #000;
-    --fuente: 'Poppins', sans-serif;
-    --sombra: rgba(255, 255, 255, 0.6);
-    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /*TIPO DE LETRA*/
+    --fuente: 'Poppins-regular';
+    /*COLORES*/
     --principal: #80C4D3;
     --secundario: #5A9EB3;
     --blancoSecundario: #e0e0e0;
     --informacion: #10BFFB;
+    /*SOMBRAS*/
     --sombraInformacion: rgba(16, 191, 251, 0.5);
     --sombraOscura: rgba(0, 0, 0, 0.5);
     --sombraOscura2: rgba(0, 0, 0, 0.3);
+    --sombra: rgba(255, 255, 255, 0.6);
+    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
     --rojoPrincipal: #CD4533;
     --rojoSecundario: #A32F23;
   }
@@ -88,7 +91,7 @@
   }
   
   .nav a div:hover {
-    color: var(--rojoPrincipal);
+    color: #80C4D3;
   }
   
   .menu-container {
@@ -163,6 +166,8 @@
     font-size: 40px;
     font-weight: 700;
     letter-spacing: 4.32px;
+    margin-top: 110px;
+    font-family: 'Poppins-bold';
   }
   
   /* Estilo para la tabla */
@@ -172,7 +177,8 @@
     justify-content: center;
     width: 90%;
     margin: 20px auto;
-    background: #CFCFCF;
+    margin-top: -20px;
+    background: none;
     flex-grow: 1;
     overflow: hidden;
   }
@@ -198,16 +204,7 @@
     font-weight: 700;
     text-align: center;
     width: 18%;
-  }
-  
-  /* Resaltar fila al pasar el mouse */
-  /* .row:hover {
-    background: #54504e !important;
-    color: rgb(87, 87, 206);
-    cursor: pointer;
-    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-  } */
-  
+  }  
   .row {
     text-align: center;
     width: 100%;
@@ -337,14 +334,18 @@
   /* Botón de información */
   .info-btn {
     background-color: var(--principal);
-    border-radius: 15%;
+    border-radius: 20%;
+    width: 80px;
+    font-family: 'Poppins-regular';
+    border: none;
   }
   
   .info-btn:hover {
-    background: #54504e !important;
+    background-color: #37707f93 !important;
     color: var(--blanco);
     cursor: pointer;
     transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    border: none;
   }
   /* --------------------------------- */
 /* <!-- MENU HAMBURGUESA --> */

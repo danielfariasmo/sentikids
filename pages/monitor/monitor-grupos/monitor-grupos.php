@@ -20,18 +20,26 @@ if ($conexion->connect_error) {
 // Verificar si el usuario está logueado y es un monitor
 if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'monitor') {
     echo json_encode(['status' => 'error', 'message' => 'Acceso no autorizado']);
+    $conexion->close();
     exit;
 }
 
 // Obtener el ID del monitor desde la sesión
-$id_monitor = $_SESSION['id_usuario'];
+$id_monitor = intval($_SESSION['id_usuario']); // Validar que sea un número entero
 
 // Obtener el grupo del monitor
 $queryGrupo = "SELECT id_grupo FROM grupo WHERE id_monitor = ?";
-$stmt = $conexion->prepare($queryGrupo);
-$stmt->bind_param("i", $id_monitor);
-$stmt->execute();
-$resultGrupo = $stmt->get_result();
+$stmtGrupo = $conexion->prepare($queryGrupo);
+
+if (!$stmtGrupo) {
+    echo json_encode(['status' => 'error', 'message' => 'Error en la preparación de la consulta']);
+    $conexion->close();
+    exit;
+}
+
+$stmtGrupo->bind_param("i", $id_monitor);
+$stmtGrupo->execute();
+$resultGrupo = $stmtGrupo->get_result();
 
 if ($resultGrupo->num_rows > 0) {
     $rowGrupo = $resultGrupo->fetch_assoc();
@@ -51,6 +59,14 @@ if ($resultGrupo->num_rows > 0) {
               WHERE h.id_grupo = ?";
     
     $stmt = $conexion->prepare($query);
+
+    if (!$stmt) {
+        echo json_encode(['status' => 'error', 'message' => 'Error en la preparación de la consulta']);
+        $stmtGrupo->close();
+        $conexion->close();
+        exit;
+    }
+
     $stmt->bind_param("i", $id_grupo);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -64,10 +80,14 @@ if ($resultGrupo->num_rows > 0) {
     } else {
         echo json_encode(['status' => 'error', 'message' => 'No se encontraron alumnos en este grupo']);
     }
+
+    // Cerrar la declaración
+    $stmt->close();
 } else {
     echo json_encode(['status' => 'error', 'message' => 'No se encontró un grupo asignado al monitor']);
 }
 
-$stmt->close();
+// Cerrar la declaración y la conexión
+$stmtGrupo->close();
 $conexion->close();
 ?>

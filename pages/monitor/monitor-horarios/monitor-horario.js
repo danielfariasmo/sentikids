@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
       sessionStorage.removeItem("usuario"); 
       localStorage.removeItem("usuario"); 
       sessionStorage.setItem("cerrado", "true");
-      window.history.replaceState(null, "", "../../web/home/login.html");
-      window.location.href = "../../web/home/login.html";
+      window.history.replaceState(null, "", "../../web/home/index.html");
+      window.location.href = "../../web/home/index.html";
   });
 
   if (sessionStorage.getItem("cerrado") === "true" && 
@@ -27,15 +27,15 @@ document.addEventListener("DOMContentLoaded", function () {
       !localStorage.getItem("usuario")) {
       
       sessionStorage.removeItem("cerrado");
-      window.history.replaceState(null, "", "../../web/home/login.html");
-      window.location.replace("../../web/home/login.html");
+      window.history.replaceState(null, "", "../../web/home/index.html");
+      window.location.replace("../../web/home/index.html");
   }
 
   window.history.pushState(null, "", window.location.href);
   window.onpopstate = function () {
       if (!sessionStorage.getItem("usuario") && !localStorage.getItem("usuario")) {
-          window.history.replaceState(null, "", "../../web/home/login.html");
-          window.location.replace("../../web/home/login.html");
+          window.history.replaceState(null, "", "../../web/home/index.html");
+          window.location.replace("../../web/home/index.html");
       } else {
           window.history.pushState(null, "", window.location.href);
       }
