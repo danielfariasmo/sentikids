@@ -537,9 +537,7 @@ span {
     z-index: -1; /* La coloca detrás de otros elementos */
 }
 
-
 /* Info niño/a */
-
 /* Contenedor de información del niño */
 .infoChild {
     background-color: #f9f9f9;
@@ -593,13 +591,6 @@ span {
     transition: background-color 0.3s ease;
 }
 
-
-
-
-
-
-
-
 .infoChild {
     display: flex;
     flex-direction: column;
@@ -627,17 +618,6 @@ span {
 .fotosGrupo {
     margin-left: 10px; /* Espacio entre los botones */
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
@@ -726,8 +706,6 @@ button.default:hover {
     transition: background 0.3s ease;
     transform: translateY(-20px); /* Mueve el botón hacia arriba */
 }
-
-
 
 button.cambiarContra:hover {
     background-color: #4c6e76;
@@ -872,4 +850,32 @@ button.cambiarContra:hover {
 
 .saveChangesForm button:hover {
     background-color: #5495a3; /* Azul más oscuro al pasar el ratón */
+}
+
+/*RESPONSIVE*/
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Convierte las columnas en una sola */
+        padding-left: 10px;
+    }
+
+    .left-container, .right-container {
+        width: 100%; /* Ocupar todo el ancho en móviles */
+    }
+}
+
+@media (max-width: 600px) {
+    .menu-button {
+        font-size: 14px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 600px) {
+    .user-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
