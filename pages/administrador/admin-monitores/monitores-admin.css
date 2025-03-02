@@ -1,23 +1,41 @@
 :root {
-  --blanco: #fefefe;
+  /*TAMAÑO TEXTO*/
+  --titulo: 2.5rem;
+  --titulo2: 2rem;
+  --texto: 1.25rem;
+  --texto2: 1rem;
+  --texto3: 0.85rem;
+  --menu: 1.25rem;
+  --menu2: 1.5rem;
+
+  /*TIPO DE LETRA*/
+  --regular: 'Poppins-regular';
+  --bold: 'Poppins-bold';
+
+  /*COLORES*/
+  --blanco: #f3f3f3;
+  --blanco2: #e0e0e0;
   --negro: #000;
-  --fuente: 'Poppins', sans-serif;
-  --sombra: rgba(255, 255, 255, 0.6);
-  --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  --principal: #80C4D3;
-  --secundario: #5A9EB3;
-  --blancoSecundario: #e0e0e0;
-  --informacion: #10BFFB;
-  --sombraInformacion: rgba(16, 191, 251, 0.5);
-  --sombraOscura: rgba(0, 0, 0, 0.5);
-  --sombraOscura2: rgba(0, 0, 0, 0.3);
-  --rojoPrincipal: #CD4533;
-  --rojoSecundario: #A32F23;
-  --grisClaro: #949494;
-  --negroClaro: #333;
+  --negro2: #333;
+  --azul: #80C4D3;
+  --azul2: #5A9EB3;
   --error: #D0090B;
-  --success: #50812A;
+  --correcto: #50812A;
+  --principal: #FF725E;
+  --secundario: #CD4533;
+  --gris: #949494;
+
+  /*SOMBRAS*/
+  --sombra: rgba(255, 255, 255, 0.6);
+  --sombraTabla: rgba(0, 0, 0, 0.25);
+  --sombra1: rgba(0, 0, 0, 0.1);
+  --sombra2: rgba(0, 0, 0, 0.2);
+  --sombra3: rgba(0, 0, 0, 0.3);
+  --sombra4: rgba(0, 0, 0, 0.4);
+  --sombra5: rgba(0, 0, 0, 0.5);
 }
+
+
 
 @font-face {
   font-family: 'Poppins-regular';
@@ -39,7 +57,7 @@ GENERAL
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
   background: var(--blanco);
   color: var(--negro);
   overflow-x: hidden;
@@ -52,12 +70,13 @@ main {
 }
 
 h1, h2, h3 {
-  font-family: 'Poppins-bold';
+  font-family: var(--bold);
+  color: var(--negro2);
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--negro2);
 }
 
 /*----------------------------------------
@@ -71,11 +90,11 @@ HEADER
   height: 96px;
   background: var(--negro);
   box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+  position: fixed; 
+  top: 0;          
+  left: 0;         
+  width: 100%;     
+  z-index: 1000;   
 }
 
 .logo {
@@ -132,12 +151,12 @@ MENÚ
 .menu a {
   text-decoration: none;
   color: var(--blanco);
-  font-size: 20px;
+  font-size: var(--menu);
 }
 
 .menu a:hover {
   text-shadow: 2px 2px 5px var(--sombra);
-  font-size: 22px;
+  font-size: var(--menu2);
 }
 
 /*----------------------------------------
@@ -153,7 +172,7 @@ Primera section
 }
 
 .section-title h1 {
-  font-size: 56px;
+  font-size: var(--titulo);
   line-height: 78.4px;
   margin: 0;
   text-align: center;
@@ -174,18 +193,47 @@ Barra de búsqueda
   width: 60%;
   height: 45px;
   padding: 0 15px;
-  font-size: 16px;
-  border: 2px solid var(--principal);
+  font-size: var(--texto);
+  border: 2px solid var(--azul);
   border-radius: 5px;
   outline: none;
   box-sizing: border-box;
   transition: border 0.3s ease;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
 }
 
 .search-container input:focus {
-  border-color: var(--informacion);
-  box-shadow: 0 0 5px var(--sombraInformacion);
+  border-color: var(--azul2);
+  box-shadow: 0 0 5px var(--sombra3);
+}
+
+/*----------------------------------------
+Barra de búsqueda
+-----------------------------------------*/
+.search-container {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+}
+
+.search-container input {
+  width: 60%;
+  height: 45px;
+  padding: 0 15px;
+  font-size: var(--texto);
+  border: 2px solid var(--azul);
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+  font-family: var(--regular);
+}
+
+.search-container input:focus {
+  border-color: var(--azul2);
+  box-shadow: 0 0 5px var(--sombra3);
 }
 
 /*----------------------------------------
@@ -198,19 +246,18 @@ Tabla
   margin: 0 auto;
   position: relative;
   background: var(--blanco);
-  box-shadow: 0px 4px 4px var(--sombraOscura2);
+  box-shadow: 0px 4px 4px var(--sombra4);
   overflow-x: auto;
 }
 
+/* Contenedor de tabla */
 .content {
   margin-bottom: 30px;
   background: var(--blanco);
   padding: 10px;
-}
-
-.table-container {
   max-height: 400px; 
-  overflow-y: auto;  
+  overflow-y: auto; 
+  overflow-x: auto; 
 }
 
 table {
@@ -222,19 +269,19 @@ table {
 
 .table-header th {
   padding: 10px;
-  background-color: var(--principal);
+  background-color: var(--azul);
   border-bottom: 2px solid;
   text-align: center;
-  font-weight: bold;
-  font-size: 14px;
+  font-family: var(--bold);
+  font-size: var(--texto2);
 }
 
 tbody td {
   padding: 8px;
   text-align: center;
   background-color: var(--blanco);
-  border-bottom: 1px solid var(--blancoSecundario);
-  font-size: 14px;
+  border-bottom: 1px solid var(--blanco2);
+  font-size: var(--texto2);
 }
 
 tbody tr:last-child td {
@@ -250,7 +297,7 @@ Alerta
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--sombraOscura);
+  background: var(--sombra5);
   display: none;
   align-items: center;
   justify-content: center;
@@ -258,26 +305,26 @@ Alerta
 }
 
 .alert-content {
-  background: var(--blanco);
+  background: var(--blanco2);
   padding: 20px;
   text-align: center;
-  box-shadow: 0 4px 8px var(--sombraOscura2);
+  box-shadow: 0 4px 8px var(--sombra3);
 }
 
 .alert-content h2 {
   margin: 0 0 10px;
-  color: var(--principal);
+  color: var(--negro2);
 }
 
 #close-alert {
   margin-top: 15px;
   padding: 10px 20px;
-  background-color: var(--principal);
+  background-color: var(--azul);
   color: var(--blanco);
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
 }
 
 #close-alert:hover {
@@ -293,7 +340,7 @@ Alerta de borrar
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--sombraOscura);
+  background: var(--sombra5);
   display: none;
   align-items: center;
   justify-content: center;
@@ -301,18 +348,18 @@ Alerta de borrar
 }
 
 .confirm-content {
-  background: var(--blanco);
+  background: var(--blanco2);
   padding: 20px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 8px var(--sombraOscura2);
+  box-shadow: 0 4px 8px var(--sombra3);
   font-family: 'Poppins-regular';
 }
 
 .confirm-content h2 {
   margin: 0 0 10px;
   font-size: 1.5em;
-  color: var(--rojoPrincipal);
+  color: var(--negro2);
 }
 
 #confirm-delete,
@@ -322,26 +369,27 @@ Alerta de borrar
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
 }
 
 #confirm-delete {
-  background-color: var(--rojoPrincipal);
-  color: var(--blanco);
+  background-color: var(--principal);
+  color: var(--negro2);
+  font-family: var(--bold);
 }
 
 #confirm-delete:hover {
-  background-color: var(--rojoSecundario);
+  background-color: var(--secundario);
 }
 
 #cancel-delete {
-  background-color: var(--blanco);
-  color: var(--negro);
-  border: 2px solid var(--negro);
+  background-color: var(--blanco2);
+  color: var(--negro2);
+  border: 2px solid var(--negro2);
 }
 
 #cancel-delete:hover {
-  background: var(--grisClaro);
+  background: var(--gris);
 }
 
 /*----------------------------------------
@@ -362,22 +410,21 @@ BOTONES
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  font-weight: 700;
   cursor: pointer;
   border: none;
-  font-family: 'Poppins-regular';
+  font-family: var(--bold);
+  font-size: var(--texto);
 }
 
 /*BTN: Agregar Monitor*/
 .add-button {
-  background: var(--principal);
-  border-color: var(--principal);
+  background: var(--azul);
+  border-color: var(--azul);
   transition: all 0.3s ease;
 }
 
 .add-button:hover {
-  background: var(--secundario);
+  background: var(--azul2);
 }
 
 /*----------------------------------------
@@ -394,18 +441,18 @@ POP UP
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: var(--sombraOscura);
+  background-color: var(--sombra5);
 }
 
 .modal-content {
   position: relative;
-  background-color: var(--blanco);
+  background-color: var(--blanco2);
   margin: auto;
   padding: 20px;
-  border: 1px solid var(--grisClaro);
+  border: 1px solid var(--gris);
   width: 90%;
   max-width: 600px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 var(--sombra2), 0 6px 20px 0 var(--sombraTabla);
   animation-name: animatetop;
   animation-duration: 0.4s;
 }
@@ -439,7 +486,7 @@ POP UP
 
 .modal-header {
   padding: 10px 16px;
-  background-color: var(--negro);
+  background-color: var(--negro2);
   color: var(--blanco);
 }
 
@@ -452,7 +499,7 @@ POP UP
 }
 
 .modal-body {
-  background-color: var(--blancoSecundario);
+  background-color: var(--blanco2);
   padding: 20px;
 }
 
@@ -464,20 +511,18 @@ Formulario
   grid-template-columns: 1fr;
   gap: 15px;
   padding: 10px;
-  font-family: 'Poppins', sans-serif;
 }
 
 .form__label {
   display: block;
-  font-weight: 700;
   padding: 10px;
   cursor: pointer;
-  font-family: 'Poppins-regular';
+  font-family: var(--bold);
 }
 
 .form__input-group {
   position: relative;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
 }
 
 .form__input {
@@ -490,19 +535,20 @@ Formulario
   padding: 0 10px;
   transition: .3s ease all;
   box-sizing: border-box;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
 }
 
 .form__input:focus {
-  border: 3px solid var(--informacion);
+  border: 3px solid var(--azul2);
   outline: none;
-  box-shadow: 3px 0px 30px var(--sombraInformacion);
+  box-shadow: 3px 0px 30px var(--sombra3);
 }
 
 .form__input-error {
-  font-size: 12px;
+  font-size: var(--texto3);
   margin-bottom: 0;
   display: none;
+  color: var(--error);
 }
 
 .form__input-error-active {
@@ -532,6 +578,7 @@ Formulario
   line-height: 45px;
   background: var(--error);
   padding: 0 15px;
+  margin-top: 1rem;
   border-radius: 3px;
   display: none;
 }
@@ -554,8 +601,7 @@ Formulario
   height: 45px;
   line-height: 45px;
   width: 100%;
-  color: var(--negro);
-  font-weight: bold;
+  color: var(--negro2);
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -563,15 +609,15 @@ Formulario
 }
 
 .form__success-message {
-  font-size: 30px;
-  color: var(--negro);
+  font-size: var(--titulo2);
+  color: var(--correcto);
   display: none;
   height: 45px;
   line-height: 45px;
-  background: var(--success);
   padding: 0 15px;
   border-radius: 3px;
   display: none;
+  text-align: center;
 }
 
 .form__success-message-active {
@@ -580,7 +626,7 @@ Formulario
 
 /* Validation*/
 .form__group-correct .form__validation-status {
-  color: var(--success);
+  color: var(--correcto);
   opacity: 1;
 }
 

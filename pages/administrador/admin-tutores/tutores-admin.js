@@ -184,6 +184,7 @@ function fetchNinos(idTutor) {
                 <p><strong>Dieta:</strong> ${hijo.dieta}</p>
                 <p><strong>Alergias:</strong> ${hijo.alergias}</p>
                 <p><strong>ID Grupo:</strong> ${hijo.id_grupo}</p>
+                <hr>
             </div>
         `;
       });
@@ -213,6 +214,7 @@ function fetchOtrosTutores(idTutor) {
                 <h3>Nombre: ${otroTutor.nombre} ${otroTutor.apellidos}</h3>
                 <p><strong>Teléfono:</strong> ${otroTutor.telefono}</p>
                 <p><strong>DNI:</strong> ${otroTutor.dni}</p>
+                <hr>
             </div>
           `;
         });

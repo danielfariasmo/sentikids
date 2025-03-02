@@ -1,18 +1,32 @@
 :root {
-  --blanco: #fefefe;
+  /*TAMAÑO TEXTO*/
+  --titulo: 2.5rem;
+  --titulo2: 2rem;
+  --texto: 1.25rem;
+  --texto2: 1rem;
+  --menu: 1.25rem;
+  --menu2: 1.5rem;
+
+  /*TIPO DE LETRA*/
+  --regular: 'Poppins-regular';
+  --bold: 'Poppins-bold';
+
+  /*COLORES*/
+  --blanco: #f3f3f3;
+  --blanco2: #e0e0e0;
   --negro: #000;
-  --fuente: 'Poppins', sans-serif;
+  --negro2: #333;
+  --azul: #80C4D3;
+  --azul2: #5A9EB3;
+
+  /*SOMBRAS*/
   --sombra: rgba(255, 255, 255, 0.6);
-  --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  --principal: #80C4D3;
-  --secundario: #5A9EB3;
-  --blancoSecundario: #e0e0e0;
-  --informacion: #10BFFB;
-  --sombraInformacion: rgba(16, 191, 251, 0.5);
-  --sombraOscura: rgba(0, 0, 0, 0.5);
-  --sombraOscura2: rgba(0, 0, 0, 0.3);
-  --rojoPrincipal: #CD4533;
-  --rojoSecundario: #A32F23;
+  --sombraTabla: rgba(0, 0, 0, 0.25);
+  --sombra1: rgba(0, 0, 0, 0.1);
+  --sombra2: rgba(0, 0, 0, 0.2);
+  --sombra3: rgba(0, 0, 0, 0.3);
+  --sombra4: rgba(0, 0, 0, 0.4);
+  --sombra5: rgba(0, 0, 0, 0.5);
 }
 
 @font-face {
@@ -35,7 +49,7 @@ GENERAL
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
   background: var(--blanco);
   color: var(--negro);
   overflow-x: hidden;
@@ -48,12 +62,13 @@ main {
 }
 
 h1, h2, h3 {
-  font-family: 'Poppins-bold';
+  font-family: var(--bold);
+  color: var(--negro2);
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--negro2);
 }
 
 /*----------------------------------------
@@ -67,11 +82,11 @@ HEADER
   height: 96px;
   background: var(--negro);
   box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+  position: fixed; 
+  top: 0;          
+  left: 0;         
+  width: 100%;     
+  z-index: 1000;   
 }
 
 .logo {
@@ -117,7 +132,6 @@ MENÚ HAMBURGUESA
 /*----------------------------------------
 MENÚ
 -----------------------------------------*/
-
 .menu ul {
   display: flex;
   gap: 32px;
@@ -129,12 +143,12 @@ MENÚ
 .menu a {
   text-decoration: none;
   color: var(--blanco);
-  font-size: 20px;
+  font-size: var(--menu);
 }
 
 .menu a:hover {
   text-shadow: 2px 2px 5px var(--sombra);
-  font-size: 22px;
+  font-size: var(--menu2);
 }
 
 /*----------------------------------------
@@ -150,7 +164,7 @@ Primera section
 }
 
 .section-title h1 {
-  font-size: 56px;
+  font-size: var(--titulo);
   line-height: 78.4px;
   margin: 0;
   text-align: center;
@@ -161,28 +175,28 @@ Barra de búsqueda
 -----------------------------------------*/
 .search-container {
   width: 100%;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   display: flex;
-  justify-content: center; 
-  padding: 10px 20px; 
+  justify-content: center;
+  padding: 10px 20px;
 }
 
 .search-container input {
-  width: 60%; 
+  width: 60%;
   height: 45px;
-  padding: 0 15px; 
-  font-size: 16px; 
-  border: 2px solid var(--principal); 
-  border-radius: 5px; 
-  outline: none; 
-  box-sizing: border-box; 
+  padding: 0 15px;
+  font-size: var(--texto);
+  border: 2px solid var(--azul);
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
   transition: border 0.3s ease;
-  font-family: 'Poppins-regular'; 
+  font-family: var(--regular);
 }
 
 .search-container input:focus {
-  border-color: var(--informacion); 
-  box-shadow: 0 0 5px var(--sombraInformacion); 
+  border-color: var(--azul2);
+  box-shadow: 0 0 5px var(--sombra3);
 }
 
 /*----------------------------------------
@@ -190,44 +204,44 @@ Tabla
 -----------------------------------------*/
 /**Contenedor Principal */
 .container {
-  width: 100%; 
-  max-width: 1440px; 
+  width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
   position: relative;
   background: var(--blanco);
-  box-shadow: 0px 4px 4px var(--sombraOscura2);
-  overflow-x: auto; 
+  box-shadow: 0px 4px 4px var(--sombra4);
+  overflow-x: auto;
 }
 
 /* Contenedor de tabla */
 .content {
   margin-bottom: 30px;
   background: var(--blanco);
-  padding: 10px; 
+  padding: 10px;
 }
 
 table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 10px;
-  min-width: 600px; 
+  min-width: 600px;
 }
 
 .table-header th {
   padding: 10px;
-  background-color: var(--principal);
+  background-color: var(--azul);
   border-bottom: 2px solid;
   text-align: center;
-  font-weight: bold;
-  font-size: 14px; 
+  font-family: var(--bold);
+  font-size: var(--texto2);
 }
 
 tbody td {
-  padding: 8px; 
+  padding: 8px;
   text-align: center;
   background-color: var(--blanco);
-  border-bottom: 1px solid var(--blancoSecundario);
-  font-size: 14px; 
+  border-bottom: 1px solid var(--blanco2);
+  font-size: var(--texto2);
 }
 
 tbody tr:last-child td {
@@ -236,10 +250,10 @@ tbody tr:last-child td {
 
 /*Check Box*/
 .alta-checkbox {
-  appearance: none; 
+  appearance: none;
   width: 30px;
   height: 30px;
-  border: 2px solid var(--secundario);
+  border: 2px solid var(--azul2);
   border-radius: 4px;
   background-color: var(--blanco);
   cursor: pointer;
@@ -248,14 +262,14 @@ tbody tr:last-child td {
 }
 
 .alta-checkbox:checked {
-  background-color: var(--principal); 
-  border-color: var(--principal); 
+  background-color: var(--azul);
+  border-color: var(--azul);
 }
 
 .alta-checkbox:checked::after {
-  content: "✔"; 
-  font-size: 20px;
-  color: var(--negro); 
+  content: "✔";
+  font-size: var(--texto2);
+  color: var(--negro);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -263,40 +277,38 @@ tbody tr:last-child td {
 }
 
 .alta-checkbox:disabled {
-  background-color: var(--blancoSecundario); 
-  border-color: var(--secundario); 
-  cursor: not-allowed; 
+  background-color: var(--blanco2);
+  border-color: var(--azul2);
+  cursor: not-allowed;
 }
 
 .alta-checkbox:disabled:checked {
-  background-color: var(--principal); 
-  opacity: 0.7; 
+  background-color: var(--azul);
+  opacity: 0.7;
 }
 
 .alta-checkbox:not(:disabled):hover {
-  border-color: var(--principal); 
+  border-color: var(--azul);
 }
 
 /** Boton +info*/
 .information {
-  width: 80px; 
-  height: 30px; 
-  color: var(--negro);
-  border-color: var(--principal);
+  width: 80px;
+  height: 30px;
+  color: var(--negro2);
   border-radius: 5px;
-  background-color: var(--principal);
+  background-color: var(--azul);
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 12px; 
-  font-weight: bold;
-  font-family: 'Poppins-regular';
+  font-size: var(--texto2);
+  font-family: var(--regular);
 }
 
 .information:hover {
-  background-color: var(--secundario);
-  border-color: var(--secundario);
+  background-color: var(--azul2);
 }
 
 /*----------------------------------------
@@ -308,7 +320,7 @@ Alerta
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--sombraOscura);
+  background: var(--sombra5);
   display: none;
   align-items: center;
   justify-content: center;
@@ -316,26 +328,26 @@ Alerta
 }
 
 .alert-content {
-  background: var(--blanco);
+  background: var(--blanco2);
   padding: 20px;
   text-align: center;
-  box-shadow: 0 4px 8px var(--sombraOscura2);
+  box-shadow: 0 4px 8px var(--sombra3);
 }
 
 .alert-content h2 {
   margin: 0 0 10px;
-  color: var(--principal);
+  color: var(--negro2);
 }
 
 #close-alert {
   margin-top: 15px;
   padding: 10px 20px;
-  background-color: var(--principal);
+  background-color: var(--azul);
   color: var(--blanco);
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
 }
 
 #close-alert:hover {
@@ -428,41 +440,42 @@ Estilos Responsive para Móviles
   .section-title {
     padding: 10px 0;
   }
+
   .section-title h1 {
     font-size: 30px;
   }
 
   .container {
-    padding: 0 10px; 
+    padding: 0 10px;
   }
 
   .content {
-    padding: 10px; 
+    padding: 10px;
   }
 
   table {
-    min-width: 100%; 
+    min-width: 100%;
   }
 
   .table-header th {
-    font-size: 12px; 
-    padding: 8px; 
+    font-size: 12px;
+    padding: 8px;
   }
 
   tbody td {
-    font-size: 12px; 
-    padding: 6px; 
+    font-size: 12px;
+    padding: 6px;
   }
 
   .grupo-input {
-    width: 100%; 
-    max-width: 120px; 
-    font-size: 12px; 
+    width: 100%;
+    max-width: 120px;
+    font-size: 12px;
   }
 
   .information {
-    width: 70px; 
-    height: 25px; 
-    font-size: 10px; 
+    width: 70px;
+    height: 25px;
+    font-size: 10px;
   }
 }

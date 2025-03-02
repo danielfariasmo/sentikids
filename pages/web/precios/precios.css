@@ -1,24 +1,36 @@
 :root {
-    --blanco: #fefefe;
-    --negro: #000;
-    --fuente: 'Poppins', sans-serif;
-    --sombra: rgba(255, 255, 255, 0.6);
-    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    --principal: #80C4D3;
-    --secundario: #5A9EB3;
-    --blancoSecundario: #e0e0e0;
-    ---blancoMenu: #ddd;
-    --informacion: #10BFFB;
-    --sombraInformacion: rgba(16, 191, 251, 0.5);
-    --sombraOscura: rgba(0, 0, 0, 0.5);
-    --sombraOscura2: rgba(0, 0, 0, 0.3);
-    --rojoPrincipal: #CD4533;
-    --rojoSecundario: #A32F23;
-    --salmon: #FFD6D0;
-    --negroSecundario: #333;
-    --c-ribbon: #CD4533;
+    /*TAMAÑO TEXTO*/
+    --titulo: 2.5rem;
+    --subtitulo: 1.5rem;
+    --texto: 1.125rem;
+    --tituloTarjeta: 1.25rem;
+    --tarjeta: 1rem;
+
+    /*TIPO DE LETRA*/
+    --regular: 'Poppins-regular';
+    --bold: 'Poppins-bold';
+
+    /*COLORES*/
+    --blanco: #f3f3f3;
+    --negro: #333;
+    --negro2: #000;
+    --principal: #FF725E;
+    --secundario: #CD4533;
+    --azul: #80C4D3;
+    --azul2: #5A9EB3;
+    --fondoMenu1: #FFD6D0;
+    --fondoMenu2: #ddd;
+    --c-ribbon: #FF725E;
     --c-ribbon-shadow: #666;
-    --c-ribbon-text: #fff;
+    --c-ribbon-text: #f3f3f3;
+
+    /*SOMBRAS*/
+    --sombra1: rgba(0, 0, 0, 0.1);
+    --sombra2: rgba(0, 0, 0, 0.2);
+    --sombra3: rgba(0, 0, 0, 0.3);
+    --sombra4: rgba(0, 0, 0, 0.4);
+    --sombra5: rgba(0, 0, 0, 0.5);
+    --sombraMenu: rgba(255, 255, 255, 0.781);
 }
 
 @font-face {
@@ -43,7 +55,7 @@ GENERAL
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins-regular';
+    font-family: var(--regular);
     background: var(--blanco);
     color: var(--negro);
     overflow-x: hidden;
@@ -57,26 +69,17 @@ body {
 
 h1, h2, h3 {
     font-family: 'Poppins-bold';
-}
-
-h2 {
-    color: #FF725E;
-    text-align: center;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 69px;
-    letter-spacing: 4.32px;
+    font-size: var(--titulo);
 }
 
 a {
     text-decoration: none;
-    color: var(--blanco);
-    font-size: 18px;
+    color: var(--negro);
 }
 
 button {
-    font-family: 'Poppins-bold';
-    font-size: 16px;
+    font-family: var(--bold);
+    font-size: var(--tarjeta);
 }
 
 /*----------------------------------------
@@ -89,13 +92,13 @@ MENU
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    background-color: var(--salmon);
-    border-bottom: 1px solid var(---blancoMenu);
+    background-color: var(--fondoMenu1);
+    border-bottom: 1px solid var(--fondoMenu2);
     position: relative;
     z-index: 1;
     overflow: hidden;
-    font-family: 'Poppins-bold';
-    font-size: 18px;
+    font-family: var(--regular);
+    font-size: var(--texto);
 }
 
 /* Menú fijo */
@@ -104,8 +107,8 @@ MENU
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.781);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--sombraMenu);
+    box-shadow: 0 2px 5px var(--sombra1);
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px;
@@ -124,20 +127,21 @@ MENU
 
 .opciones a {
     text-decoration: none;
-    color: var(--negroSecundario);
+    color: var(--negro);
     transition: color 0.3s;
-    font-family: 'Poppins-bold';
+    font-family: var(--regular);
+    font-size: var(--texto);
 }
 
 .opciones a:hover {
-    color: #FF725E;
+    color: var(--principal);
 }
 
 /* Estilos para los botones dentro de .menu-principal */
 .menu-principal button {
     background: none;
     border: none;
-    color: var(--black);
+    color: var(--negro);
     padding: 10px 20px;
     padding-left: 100px;
     cursor: pointer;
@@ -146,29 +150,21 @@ MENU
 
 /* Hover para los botones normales */
 .menu-principal button:hover {
-    color: #FF725E;
-    /* Rojo al pasar el mouse */
+    color: var(--principal);
 }
 
 /* Estilos para "Inscribirse" */
 .menu-principal .btn-inscribirse {
-    background-color: #CD4533;
-    /* Fondo rojo */
-    color: var(--white);
-    /* Texto blanco */
+    background-color: var(--secundario);
     border-radius: 5px;
-    /* Bordes redondeados */
     padding: 5px 20px;
     transition: background-color 0.3s ease;
-    /* Transición suave para el hover */
 }
 
 /* Hover para el botón "Inscribirse" */
 .menu-principal .btn-inscribirse:hover {
-    background-color: #FF725E;
-    /* Rojo más oscuro al pasar el mouse */
-    color: var(--white);
-    /* Texto blanco */
+    background-color: var(--principal);
+    color: var(--negro);
 }
 
 .logo {
@@ -181,12 +177,103 @@ MENU
     height: 50px;
 }
 
+/*----------------------------------------
+MENU PRINCIPAL - FORMATO VERTICAL EN MÓVILES
+-----------------------------------------*/
+@media screen and (max-width: 768px) {
+
+    .menu-hamburguesa {
+        display: block !important; /* FORZAR que se vea */
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--negro);
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        z-index: 1100;
+    }
+
+    .menu-principal {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .botonesMenu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu-principal button {
+        padding-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/*----------------------------------------
+MENU FIJO - MENÚ HAMBURGUESA EN MÓVILES
+-----------------------------------------*/
+@media screen and (max-width: 768px) {
+    .menu-fijo {
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        height: 50px;
+    }
+
+    .menu-hamburguesa {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--negro);
+    }
+
+    .opciones {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--sombraMenu);
+        box-shadow: 0 2px 5px var(--sombra1);
+        padding: 10px 0;
+    }
+
+    .opciones a {
+        text-align: center;
+        padding: 10px;
+        display: block;
+    }
+
+    .opciones.activo {
+        display: flex;
+    }
+}
+
+/* Estilos generales */
+.menu-hamburguesa {
+    display: none; /* Oculto en pantallas grandes */
+}
+
 
 /*----------------------------------------
 HEADER
 -----------------------------------------*/
 .hero {
-    background: black;
+    background-image: url(../../../assets/img/campus-expirence.jpg);
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -194,19 +281,24 @@ HEADER
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--blanco);
+    color: var(--negro);
     text-align: center;
     position: relative;
+    background-color: rgba(0, 0, 0, 0.4); /* Color oscuro */
+    background-blend-mode: multiply; /* Mezcla la imagen con el color de fondo */
 }
 
+.hero-title {
+    font-size: var(--titulo);
+}
 
 /*----------------------------------------
 FECHA
 -----------------------------------------*/
 .date-range {
-    color: #68AEBE;
-    font-family: 'Poppins-bold';
-    font-size: 54px;
+    color: var(--azul);
+    font-family: var(--bold);
+    font-size: var(--titulo);
     line-height: 69px;
     letter-spacing: 4.32px;
     text-align: center;
@@ -220,13 +312,14 @@ TITULOS
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid var(--rojoSecundario);
     height: 80px;
     margin-top: 40px;
+    font-size: var(--titulo);
+    border: solid 2px var(--secundario);
 }
 
 .opciones-comida, .preguntas-frecuentes {
-    background: var(--salmon);
+    background: var(--fondoMenu1);
     border: none;
 }
 
@@ -249,22 +342,22 @@ TABLAS
 .table-header,
 .table-row {
     display: table-row;
-    
+
 }
 
 .header-item,
 .row-item {
     display: table-cell;
     padding: 12px;
-    border: 1px solid var(--principal);
+    border: 1px solid var(--azul);
     text-align: center;
-    font-size: 20px;
+    font-size: var(--tarjeta);
 }
 
 .table-header {
-    background-color: var(--principal);
-    font-weight: bold;
-    font-size: 24px;
+    background-color: var(--azul);
+    font-family: var(--bold);
+    font-size: var(--tituloTarjeta);
 }
 
 /*----------------------------------------
@@ -278,7 +371,7 @@ TARIFAS
     gap: 20px;
     flex: 1 0 0;
     margin-top: 2em;
-    font-size: 24px;
+    font-size: var(--texto);
 }
 
 .download-button {
@@ -286,18 +379,18 @@ TARIFAS
     width: 15em;
     justify-content: center;
     align-items: center;
-    background: var(--rojoPrincipal);
-    color: var(--blanco);
+    background: var(--azul);
+    color: var(--negro);
     border-radius: 0.3em;
     height: 2.5em;
     margin: 1em;
-    font-size: 24px;
+    font-size: var(--texto);
     border: none;
     cursor: pointer;
 }
 
-.download-button:hover{
-    background-color: var(--rojoSecundario);
+.download-button:hover {
+    background-color: var(--azul2);
 }
 
 /*----------------------------------------
@@ -308,7 +401,8 @@ OPCIONES DE COMIDA
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-top: 2em;
+    margin-top: 4em;
+    margin-bottom: 5em;
     height: auto;
 }
 
@@ -321,15 +415,15 @@ OPCIONES DE COMIDA
     text-align: center;
     margin: 0 2rem;
     padding: 0.5rem 0 1rem;
-    border: 1px solid var(--borde); 
-    border-radius: 10px; 
-    box-shadow: 0 4px 6px var(--sombraOscura2); 
+    border: 1px solid var(--negro);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--sombra3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .price-card:hover {
-    transform: translateY(-10px); 
-    box-shadow: 0 12px 24px var(--sombraOscura); 
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px var(--sombra5);
 }
 
 .price-card__ribbon {
@@ -358,7 +452,7 @@ OPCIONES DE COMIDA
 
 .price-card--highlight {
     --c-ribbon: #80C4D3;
-    --c-ribbon-text: #fff;
+    --c-ribbon-text: #f3f3f3;
     --c-ribbon-shadow: #5A9EB3;
     --c-title: #80C4D3;
     --principal: #80C4D3;
@@ -366,17 +460,17 @@ OPCIONES DE COMIDA
 }
 
 /*----------------------------------------
-OPCIONES DE COMIDA
+DESCUENTOS
 -----------------------------------------*/
 .container-descuentos {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 4rem 10em;
 }
 
 .table-descuentos {
-    width: 100%; 
+    width: 100%;
     max-width: fit-content;
     display: flex;
     justify-content: center;
@@ -385,20 +479,14 @@ OPCIONES DE COMIDA
 }
 
 .discounts-description {
-    width: 100%; 
+    width: 100%;
     padding: 1.5rem;
 }
 
-.discounts-description ul {
-    list-style-type: disc; 
-    padding-left: 1.5rem; 
-    margin: 0;
-}
-
 .discounts-description li {
-    margin-bottom: 0.75rem; 
-    line-height: 1.5; 
-    font-size: 20px;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+    font-size: var(--texto);
 }
 
 /*----------------------------------------
@@ -406,14 +494,14 @@ Preguntas Frecuentes
 -----------------------------------------*/
 .faq-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 1em auto;
     padding: 20px;
-    font-family: 'Poppins-regular';
-    font-size: 20px;
+    font-family: var(--regular);
+    font-size: var(--texto);
 }
 
 .faq-item {
-    border-bottom: 1px solid var(---blancoMenu);
+    border-bottom: 1px solid var(--blanco);
     margin-bottom: 10px;
 }
 
@@ -423,13 +511,9 @@ Preguntas Frecuentes
     align-items: center;
     padding: 15px;
     cursor: pointer;
-    background-color: var(--principal);
+    background-color: var(--azul);
     border-radius: 5px;
     transition: background-color 0.3s ease;
-}
-
-.faq-question:hover {
-    background-color: var(--secundario);
 }
 
 .faq-icon {
@@ -460,6 +544,7 @@ Preguntas Frecuentes
     padding: 15px;
 }
 
+
 /*----------------------------------------
 FOOTER
 -----------------------------------------*/
@@ -467,8 +552,8 @@ FOOTER
     position: relative;
     padding: 40px 30px;
     text-align: left;
-    background: black;
-    color: white;
+    background: var(--negro2);
+    color: var(--blanco);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -497,8 +582,8 @@ FOOTER
 
 .about-text {
     width: 50%;
-    font-size: 25px;
-    color: white;
+    font-size: var(--subtitulo);
+    color: var(--blanco);
     margin-top: 50px;
 }
 
@@ -513,7 +598,7 @@ FOOTER
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 16px;
+    font-size: var(--tarjeta);
 }
 
 .info-item iframe {
@@ -524,13 +609,12 @@ FOOTER
 }
 
 .highlight {
-    color: #CD4533;
-    font-weight: 700;
+    color: var(--principal);
 }
 
 .footer {
     width: 100%;
-    background: black;
+    background: var(--negro2);
     text-align: center;
     padding: 20px 0;
     margin-top: auto;
@@ -538,7 +622,7 @@ FOOTER
 
 .footer-divider {
     height: 2px;
-    background: white;
+    background: var(--blanco);
     width: 50%;
     margin: 0 auto 20px;
 }
@@ -547,8 +631,12 @@ FOOTER
     display: flex;
     justify-content: center;
     gap: 20px;
-    color: white;
+    color: var(--blanco);
     font-size: 18px;
+}
+
+.footer-links a {
+    color: var(--blanco);
 }
 
 .social-icons {
@@ -559,7 +647,7 @@ FOOTER
 }
 
 .copyright {
-    color: white;
+    color: var(--blanco);
     opacity: 0.5;
     margin-top: 20px;
 }
@@ -578,6 +666,36 @@ Estilos Responsive para Tablets
 
 /* Footer */
 @media (max-width: 768px) {
+    /*DESCUENTOS*/
+    .container-descuentos {
+        flex-direction: column; 
+        padding: 3rem 5em; 
+        text-align: center; 
+    }
+
+    .table-descuentos {
+        flex-direction: column; 
+        width: 100%; 
+        margin: 10px 0; 
+    }
+
+    .discounts-description {
+        padding: 1rem; 
+    }
+
+    /*MENU*/
+    .price-table {
+        flex-wrap: wrap; 
+    }
+
+    .price-card {
+        width: 40%; 
+        min-width: 10rem;
+        max-width: none; 
+        margin: 1rem;
+    }
+
+    /*FOOTER*/
     .about-section {
         padding: 20px;
     }
@@ -603,7 +721,41 @@ Estilos Responsive para Móviles
 
 /*FOOTER*/
 @media (max-width: 480px) {
+    /*TITULOS*/
+    h1, h2 {
+        font-size: 30px;
+    }
 
+    /*DESCUENTOS*/
+    .container-descuentos {
+        padding: 2rem 1.5em; 
+    }
+
+    .table-descuentos {
+        width: 100%; 
+        margin: 5px 0; 
+    }
+
+    .discounts-description {
+        padding: 0.75rem; 
+    }
+
+    .discounts-description li {
+        font-size: calc(var(--texto) - 2px); 
+    }
+
+    /*MENU*/
+    .price-table {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .price-card {
+        width: 80%; 
+        margin: 1rem 0; 
+    }
+
+    /*FOOTER*/
     .contact-info {
         font-size: 14px;
         margin-top: 20px;
@@ -627,3 +779,5 @@ Estilos Responsive para Móviles
         flex-direction: row;
     }
 }
+
+

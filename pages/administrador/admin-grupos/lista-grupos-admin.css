@@ -1,20 +1,33 @@
 :root {
-    --blanco: #fefefe;
+    /*TAMAÑO TEXTO*/
+    --titulo: 2.5rem;
+    --subtitulo: 1.75rem;
+    --titulo2: 1.50rem;
+    --texto: 1.25rem;
+    --texto2: 1rem;
+    --menu: 1.25rem;
+    --menu2: 1.5rem;
+
+    /*TIPO DE LETRA*/
+    --regular: 'Poppins-regular';
+    --bold: 'Poppins-bold';
+
+    /*COLORES*/
+    --blanco: #f3f3f3;
+    --blanco2: #e0e0e0;
     --negro: #000;
-    --fuente: 'Poppins', sans-serif;
-    --sombra: rgba(255, 255, 255, 0.6);
-    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    --principal: #80C4D3;
-    --secundario: #5A9EB3;
-    --blancoSecundario: #e0e0e0;
-    --informacion: #10BFFB;
-    --sombraInformacion: rgba(16, 191, 251, 0.5);
-    --sombraOscura: rgba(0, 0, 0, 0.5);
-    --sombraOscura2: rgba(0, 0, 0, 0.2);
-    --rojoPrincipal: #CD4533;
-    --rojoSecundario: #A32F23;
-    --grisClaro: #949494;
-    --negroClaro: #333;
+    --negro2: #333;
+    --azul: #80C4D3;
+    --azul2: #5A9EB3;
+    --fondo: #e0e0e0;
+    --gris: #949494;
+
+    /*SOMBRAS*/
+    --sombra1: rgba(0, 0, 0, 0.1);
+    --sombra2: rgba(0, 0, 0, 0.2);
+    --sombra3: rgba(0, 0, 0, 0.3);
+    --sombra4: rgba(0, 0, 0, 0.4);
+    --sombra5: rgba(0, 0, 0, 0.5);
 }
 
 @font-face {
@@ -28,8 +41,8 @@
 }
 
 /*----------------------------------------
-  GENERAL
-  -----------------------------------------*/
+GENERAL
+-----------------------------------------*/
 * {
     box-sizing: border-box;
 }
@@ -37,7 +50,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins-regular';
+    font-family: var(--regular);
     background: var(--blanco);
     color: var(--negro);
     overflow-x: hidden;
@@ -50,12 +63,22 @@ main {
 }
 
 h1, h2, h3 {
-    font-family: 'Poppins-bold';
+    font-family: var(--bold);
+    color: var(--negro2);
 }
+
+h2 {
+    font-size: var(--subtitulo);
+}
+
+h3 {
+    font-size: var(--titulo2);
+}
+
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--negro2);
 }
 
 /*----------------------------------------
@@ -80,9 +103,9 @@ HEADER
 Titulo
 -----------------------------------------*/
 .section-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--blancoSecundario);
+    font-size: var(--titulo);
+    font-family: var(--bold);
+    color: var(--blanco);
     text-align: center;
 }
 
@@ -94,10 +117,10 @@ Tabla
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 2rem;
     position: relative;
     background: var(--blanco);
-    box-shadow: 0px 4px 4px var(--sombraOscura2);
+    box-shadow: 0px 4px 4px var(--sombra4);
     overflow-x: auto;
 }
 
@@ -105,36 +128,43 @@ Tabla
 .content {
     margin-bottom: 30px;
     background: var(--blanco);
-    padding: 20px;
+    padding: 10px;
 }
 
 table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 10px;
-    min-width: 600px; 
-  }
-  
-  .table-header th {
+    min-width: 600px;
+    table-layout: fixed;
+}
+
+.table-header th {
     padding: 10px;
-    background-color: var(--principal);
+    background-color: var(--azul);
     border-bottom: 2px solid;
     text-align: center;
-    font-weight: bold;
-    font-size: 14px; 
-  }
-  
-  tbody td {
-    padding: 8px; 
+    font-family: var(--bold);
+    font-size: var(--texto2);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+tbody td {
+    padding: 8px;
     text-align: center;
     background-color: var(--blanco);
-    border-bottom: 1px solid var(--blancoSecundario);
-    font-size: 14px; 
-  }
-  
-  tbody tr:last-child td {
+    border-bottom: 1px solid var(--blanco2);
+    font-size: var(--texto2);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+tbody tr:last-child td {
     border-bottom: none;
-  }
+}
 
 /*----------------------------------------
 BOTONES
@@ -154,34 +184,33 @@ BOTONES
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
-    font-weight: 700;
     cursor: pointer;
     border: none;
-    font-family: 'Poppins-regular';
+    font-family: var(--bold);
+    font-size: var(--texto);
+}
+
+/*BTN: Agregar Niñós/as*/
+.add-button {
+    background: var(--azul);
+    border-color: var(--azul);
+    transition: all 0.3s ease;
+}
+
+.add-button:hover {
+    background: var(--azul2);
 }
 
 /*BTN: Volver a Grupo*/
 .sin-button {
     background-color: var(--blanco);
-    color: var(--negro);
-    border: 2px solid var(--negro);
+    color: var(--negro2);
+    border: 2px solid var(--negro2);
     transition: all 0.3s ease;
 }
 
 .sin-button:hover {
-    background: var(--grisClaro);
-}
-
-/*BTN: Agregar Niño/a*/
-.add-button {
-    background: var(--principal);
-    border-color: var(--principal);
-    transition: all 0.3s ease;
-}
-
-.add-button:hover {
-    background: var(--secundario);
+    background: var(--gris);
 }
 
 /*----------------------------------------
@@ -191,30 +220,30 @@ POP UP
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 10000;
     padding-top: 50px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: var(--sombraOscura);
+    background-color: var(--sombra5);
 }
 
 .modal-content {
     position: relative;
-    background-color: var(--blanco);
+    background-color: var(--blanco2);
     margin: auto;
     padding: 20px;
-    border: 1px solid var(--grisClaro);
+    border: 1px solid var(--gris);
     width: 90%;
     max-width: 600px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 var(--sombra2), 0 6px 20px 0 var(--sombraTabla);
     animation-name: animatetop;
     animation-duration: 0.4s;
 }
 
-/* Animación */
+/* Add Animation */
 @keyframes animatetop {
     from {
         top: -300px;
@@ -243,7 +272,7 @@ POP UP
 
 .modal-header {
     padding: 10px 16px;
-    background-color: var(--negro);
+    background-color: var(--negro2);
     color: var(--blanco);
 }
 
@@ -256,8 +285,7 @@ POP UP
 }
 
 .modal-body {
-    background-color: var(--blancoSecundario);
-    /* Fondo suave */
+    background-color: var(--blanco2);
     padding: 20px;
 }
 
@@ -265,13 +293,17 @@ POP UP
 #search-child {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
-    border: 2px solid var(--informacion);
+    font-size: var(--texto2);
+    border: 2px solid var(--azul);
     border-radius: 5px;
     background: var(--blanco);
-    color: var(--negro);
+    color: var(--negro2);
     margin-bottom: 20px;
-    font-family: 'Poppins-regular';
+    font-family: var(--regular);
+}
+
+#search-child:hover {
+    border-color: var(--azul2);
 }
 
 .result-item {
@@ -279,9 +311,9 @@ POP UP
     align-items: center;
     margin-bottom: 15px;
     padding: 10px;
-    background: white;
+    background: var(--blanco2);
     border-radius: 5px;
-    box-shadow: 0 2px 4px var(--sombraOscura2);
+    box-shadow: 0 2px 4px var(--sombra3);
 }
 
 .result-item input[type="checkbox"] {
@@ -291,26 +323,26 @@ POP UP
 }
 
 .result-item label {
-    font-size: 18px;
+    font-size: var(--texto);
     font-weight: 500;
     color: var(--negroClaro);
 }
 
 /* Estilo del botón de agregar al grupo */
 #add-child:disabled {
-    background-color: #ccc;
-    color: #666;
+    background-color: var(--deshabilitado);
+    color: var(--gris);
     cursor: not-allowed;
-    border: 2px solid #ccc;
+    border: 2px solid var(--deshabilitado);
 }
 
 #add-child {
-    background-color: var(--principal);
+    background-color: var(--azul);
     color: var(--negro);
-    border: 2px solid var(--principal);
+    border: 2px solid var(--azul);
     padding: 12px 30px;
-    font-size: 24px;
-    font-weight: bold;
+    font-family: var(--bold);
+    font-size: var(--texto);
     cursor: pointer;
     border-radius: 5px;
     display: block;
@@ -319,8 +351,8 @@ POP UP
 }
 
 #add-child:hover {
-    background-color: var(--secundario);
-    border-color: var(--secundario);
+    background-color: var(--azul2);
+    border-color: var(--azul2);
 }
 
 /*----------------------------------------
@@ -332,39 +364,39 @@ Alerta
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--sombraOscura);
+    background: var(--sombra5);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-  }
-  
-  .alert-content {
-    background: var(--blanco);
+}
+
+.alert-content {
+    background: var(--blanco2);
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px var(--sombraOscura2);
-  }
-  
-  .alert-content h2 {
+    box-shadow: 0 4px 8px var(--sombra3);
+}
+
+.alert-content h2 {
     margin: 0 0 10px;
-    color: var(--principal);
-  }
-  
-  #close-alert {
+    color: var(--negro2);
+}
+
+#close-alert {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color: var(--principal);
-    color: white;
+    background-color: var(--azul);
+    color: var(--blanco);
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-family: 'Poppins-regular';
-  }
-  
-  #close-alert:hover {
+    font-family: var(--regular);
+}
+
+#close-alert:hover {
     background-color: var(--secundario);
-  }
+}
 
 /*----------------------------------------
 Estilos Responsive para Tablets 
@@ -428,32 +460,33 @@ Estilos Responsive para Móviles
 
     .section-title {
         padding: 10px 0;
-      }
-      .section-title h1 {
+    }
+
+    .section-title h1 {
         font-size: 30px;
-      }
-    
-      .container {
-        padding: 0 10px; 
-      }
-    
-      .content {
-        padding: 10px; 
-      }
-    
-      table {
-        min-width: 100%; 
-      }
-    
-      .table-header th {
-        font-size: 12px; 
-        padding: 8px; 
-      }
-    
-      tbody td {
-        font-size: 12px; 
-        padding: 6px; 
-      }
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    table {
+        min-width: 100%;
+    }
+
+    .table-header th {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    tbody td {
+        font-size: 12px;
+        padding: 6px;
+    }
 
     .button {
         width: 100%;
@@ -470,7 +503,7 @@ Estilos Responsive para Pop Up
         padding: 10px;
     }
 
-    .modal-header h2{
+    .modal-header h2 {
         font-size: 26px;
     }
 
