@@ -13,22 +13,23 @@
     --sombraOscura2: rgba(0, 0, 0, 0.3);
     --rojoPrincipal: #CD4533;
     --rojoSecundario: #A32F23;
-  }
-  
-  @font-face {
+    --grisFondo: #CFCFCF;
+    --azulHeader: #5D828A;
+    --rojoHover: #CD4533;
+    --sombraMenu: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    --fondoCardHover: #FFE5E0;
+    --fondoIcono: rgba(205, 69, 51, 0.80);
+}
+
+@font-face {
     font-family: 'Poppins-regular';
     src: url(../../../assets/fonts/Poppins-Regular.ttf);
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins-bold';
     src: url(../../../assets/fonts/Poppins-Bold.ttf);
-  }
-  
-
-
-
-
+}
 
 /* Reset básico */
 html, body {
@@ -45,15 +46,15 @@ html, body {
 }
 
 body {
-    font-family: 'Poppins-regular';
-    background: #CFCFCF;
+    font-family: 'Poppins-regular', var(--fuente);
+    background: var(--grisFondo);
 }
 
 .container {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    background: #CFCFCF;
+    background: var(--grisFondo);
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -66,7 +67,7 @@ body {
     align-items: center;
     padding: 4px 0;
     height: 96px;
-    background: #5D828A;
+    background: var(--azulHeader);
     box-sizing: border-box;
 }
 
@@ -95,18 +96,19 @@ body {
 
 .nav a {
     text-align: center;
-    color: black;
+    color: var(--negro);
     font-size: 20px;
     font-weight: 400;
     text-decoration: none;
-    padding: 8px 16px; /* Mantiene el espaciado */
-    transition: color 0.3s ease-in-out; /* Solo cambia el color del texto */
+    padding: 8px 16px;
+    transition: color 0.3s ease-in-out;
 }
 
 .nav a:hover {
-    background-color: transparent; /* Elimina el efecto de botón */
-    color: #CD4533; /* Nuevo color de hover para contraste */
+    background-color: transparent;
+    color: var(--rojoHover);
 }
+
 .menu-container {
     position: relative;
     display: inline-block;
@@ -125,8 +127,8 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    background: var(--blanco);
+    box-shadow: var(--sombraMenu);
     border-radius: 5px;
     padding: 8px 0;
     min-width: 150px;
@@ -144,9 +146,9 @@ body {
 }
 
 .menu button:hover {
-    background: #f0f0f0;
-    display: block;
+    background: var(--blancoSecundario);
 }
+
 .user-button {
     display: flex;
     align-items: center;
@@ -159,16 +161,14 @@ body {
 }
 
 .user-button img {
-    width: 30px; /* Ajusta según necesites */
+    width: 30px;
     height: 30px;
     border-radius: 50%;
 }
-/* --------------------------------- */
-/* <!-- MENU HAMBURGUESA --> */
-/* --------------------------------- */
-/* Menú Hamburguesa (solo para móvil) */
+
+/* Menú Hamburguesa */
 .hamburger {
-    display: none; /* Oculto por defecto */
+    display: none;
     flex-direction: column;
     cursor: pointer;
     padding: 10px;
@@ -177,7 +177,7 @@ body {
 .hamburger div {
     width: 25px;
     height: 3px;
-    background-color: black;
+    background-color: var(--negro);
     margin: 4px 0;
 }
 
@@ -186,9 +186,9 @@ body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 96px; /* Ajusta según la altura del header */
+    top: 96px;
     right: 0;
-    background: #5D828A;
+    background: var(--azulHeader);
     width: 100%;
     align-items: center;
     gap: 10px;
@@ -200,76 +200,69 @@ body {
 /* Pantallas pequeñas (móviles) */
 @media (max-width: 767px) {
     .hamburger {
-        display: flex; /* Mostrar el ícono de hamburguesa */
+        display: flex;
     }
 
     .nav {
-        display: none; /* Ocultar el menú normal */
+        display: none;
     }
 
     .nav.active {
-        display: flex; /* Mostrar el menú cuando está activo */
+        display: flex;
     }
 
     .logo {
-        margin-left: 10px; /* Margen reducido */
+        margin-left: 10px;
     }
 }
 
 /* Pantallas medianas (tablets) */
 @media (min-width: 768px) and (max-width: 1023px) {
     .header {
-        height: 80px; /* Altura reducida */
+        height: 80px;
     }
 
     .logo {
-        margin-left: 30px; /* Margen ajustado */
+        margin-left: 30px;
     }
 
     .nav {
-        padding-right: 30px; /* Padding ajustado */
-        gap: 15px; /* Espacio entre elementos ajustado */
+        padding-right: 30px;
+        gap: 15px;
     }
 
     .nav a {
-        font-size: 16px; /* Tamaño de fuente ajustado */
-    }
-
-    .nav a div {
-        padding: 8px 12px; /* Padding ajustado */
+        font-size: 16px;
     }
 }
 
 /* Pantallas grandes (escritorio) */
 @media (min-width: 1024px) {
     .header {
-        height: 96px; /* Altura original */
+        height: 96px;
     }
 
     .logo {
-        margin-left: 62px; /* Margen original */
+        margin-left: 62px;
     }
 
     .nav {
-        padding-right: 62px; /* Padding original */
-        gap: 20px; /* Espacio entre elementos original */
+        padding-right: 62px;
+        gap: 20px;
     }
 
     .nav a {
-        font-size: 18px; /* Tamaño de fuente original */
-    }
-
-    .nav a div {
-        padding: 10px 15px; /* Padding original */
+        font-size: 18px;
     }
 }
+
 /* Título */
 .title {
     width: 100%;
     max-width: 872px;
     margin: 40px auto 0;
-    color: black;
-    font-size: 28px;
+    color: var(--negro);
+    font-size: 40px;
     font-weight: 700;
     line-height: 1.5;
     letter-spacing: 1.5px;
@@ -300,8 +293,8 @@ body {
 }
 
 .card:hover {
-    transform: scale(1.05); /* Efecto de crecimiento */
-    background: #FFE5E0; /* Cambio de color de fondo */
+    transform: scale(1.05);
+    background: var(--fondoCardHover);
 }
 
 .card .icon {
@@ -311,13 +304,13 @@ body {
     gap: 10px;
     width: 120px;
     height: 120px;
-    background: rgba(205, 69, 51, 0.80);
+    background: var(--fondoIcono);
     border-radius: 50%;
     transition: background 0.3s ease-in-out;
 }
 
 .card:hover .icon {
-    background: #CD4533; /* Cambio de color del icono */
+    background: var(--rojoPrincipal);
 }
 
 .card img {
@@ -332,12 +325,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* gap: -30px; */
     margin-top: -20px;
 }
 
 .card h2 {
-    color: black;
+    color: var(--negro);
     font-size: 32px;
     font-weight: 700;
     line-height: 1.5;
@@ -345,44 +337,33 @@ body {
 }
 
 .card p {
-    color: black;
+    color: var(--negro);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
 }
+
 .card-link {
     text-decoration: none;
     color: inherit;
     display: block;
 }
-.card-link:visited, 
+
+.card-link:visited,
 .card-link:link {
     text-decoration: none;
     color: inherit;
     outline: none;
 }
-/* Media Queries */
+
+/* Media Queries para tarjetas */
 @media (min-width: 768px) {
-    .header {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 20px 0;
-    }
-
-    .nav {
-        gap: 20px;
-        padding-right: 40px;
-    }
-
-    .title {
-        font-size: 40px;
-    }
-
     .card {
         flex-direction: row;
         text-align: left;
     }
-    .card p{
+
+    .card p {
         margin-top: -5px;
         font-size: 18px;
     }
@@ -407,14 +388,6 @@ body {
 }
 
 @media (min-width: 1024px) {
-    .header {
-        padding: 20px 0;
-    }
-
-    .nav div {
-        font-size: 20px;
-    }
-
     .title {
         margin-top: 50px;
         margin-bottom: 80px;
@@ -422,15 +395,5 @@ body {
 
     .content {
         gap: 60px;
-    }
-
-    .card .icon {
-        width: 174px;
-        height: 174px;
-    }
-
-    .card img {
-        width: 90px;
-        height: 90px;
     }
 }

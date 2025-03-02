@@ -1,7 +1,7 @@
 :root {
     --blanco: #fefefe;
     --negro: #000;
-    --fuente: 'Poppins', sans-serif;
+    --fuente: 'Poppins-regular';
     --sombra: rgba(255, 255, 255, 0.6);
     --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
     --principal: #80C4D3;
@@ -13,36 +13,46 @@
     --sombraOscura2: rgba(0, 0, 0, 0.3);
     --rojoPrincipal: #CD4533;
     --rojoSecundario: #A32F23;
-  }
-  
-  @font-face {
+    --grisFondo: #CFCFCF;
+    --azulHeader: #5D828A;
+    --sombraMenu: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    --fondoCard: white;
+    --bordeCard: #5D828A;
+    --fondoMateriales: #f4f4f4;
+    --fondoPopup: rgba(0, 0, 0, 0.5);
+    --sombraPopup: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --fondoBoton: #5D828A;
+    --fondoBotonHover: #37707f93;
+}
+
+@font-face {
     font-family: 'Poppins-regular';
     src: url(../../../assets/fonts/Poppins-Regular.ttf);
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins-bold';
     src: url(../../../assets/fonts/Poppins-Bold.ttf);
-  }
+}
 
 /* General */
 body {
     margin: 0;
     padding: 0;
-    font-family: "Poppins", sans-serif;
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    font-family: var(--fuente);
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Organiza el contenido en columna */
-    overflow-x: hidden; /* Evita scroll horizontal */
-    
+    flex-direction: column;
+    overflow-x: hidden;
+    background: var(--grisFondo);
 }
 
 /* Contenedor principal */
 .container {
-    flex: 1; /* Hace que el contenido crezca y el footer se quede abajo */
+    flex: 1;
     width: 100%;
     box-sizing: border-box;
-    background: #CFCFCF;
+    background: var(--grisFondo);
 }
 
 /* Header */
@@ -53,14 +63,14 @@ body {
     align-items: center;
     padding: 4px 0;
     height: 96px;
-    background: #5D828A;
+    background: var(--azulHeader);
     box-sizing: border-box;
 }
 
 .logo {
     width: 258px;
     height: 68px;
-    margin-left: 62px; /* Añade margen izquierdo para alinear el logo */
+    margin-left: 62px;
 }
 
 /* Menú de navegación */
@@ -72,11 +82,10 @@ body {
     padding-right: 62px;
 }
 
-/* Elimina subrayado de los enlaces */
 .nav a {
-    text-decoration: none; /* Quita el subrayado */
-    color: black; /* Color del texto */
-    font-size: 20px;
+    text-decoration: none;
+    color: var(--negro);
+    font-size: 18px;
     font-weight: 400;
 }
 
@@ -84,16 +93,18 @@ body {
     padding: 10px 15px;
     transition: background 0.3s ease;
 }
+
+.nav a div:hover {
+    background-color: transparent;
+    color: var(--rojoPrincipal);
+}
+
 .notification-tutor {
     font-weight: bold;
-    color: #000000;
+    color: var(--negro);
     margin-top: 5px;
 }
-/* Efecto hover */
-.nav a div:hover {
-    background-color: transparent; /* Elimina el efecto de botón */
-    color: #CD4533; /* Nuevo color de hover para contraste */
-}
+
 .menu-container {
     position: relative;
     display: inline-block;
@@ -112,8 +123,8 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    background: var(--blanco);
+    box-shadow: var(--sombraMenu);
     border-radius: 5px;
     padding: 8px 0;
     min-width: 150px;
@@ -131,9 +142,9 @@ body {
 }
 
 .menu button:hover {
-    background: #f0f0f0;
-    display: block;
+    background: var(--blancoSecundario);
 }
+
 .user-button {
     display: flex;
     align-items: center;
@@ -146,79 +157,68 @@ body {
 }
 
 .user-button img {
-    width: 30px; /* Ajusta según necesites */
+    width: 30px;
     height: 30px;
     border-radius: 50%;
 }
-/* --------------------------------- */
-/* <!-- MENU HAMBURGUESA --> */
-/* --------------------------------- */
-/* Menú Hamburguesa (solo para móvil) */
-/* Menú Hamburguesa (solo para móvil) */
+
+/* Menú Hamburguesa */
 .hamburger {
-    display: none; /* Oculto por defecto */
+    display: none;
     flex-direction: column;
     cursor: pointer;
     padding: 10px;
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    z-index: 1000;
 }
 
 .hamburger div {
     width: 25px;
     height: 3px;
-    background-color: black;
+    background-color: var(--negro);
     margin: 4px 0;
-}
-
-/* Menú desplegable */
-.nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 20px;
-    padding-right: 62px;
 }
 
 .nav.active {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 96px; /* Ajusta según la altura del header */
+    top: 96px;
     right: 0;
-    background: #5D828A;
+    background: var(--azulHeader);
     width: 100%;
     align-items: center;
     gap: 10px;
     padding: 20px 0;
-    z-index: 999; /* Asegura que esté por encima de otros elementos */
+    z-index: 999;
 }
 
 /* Media Queries para Responsive Design */
 @media (max-width: 767px) {
     .hamburger {
-        display: flex; /* Mostrar el ícono de hamburguesa */
+        display: flex;
         padding-left: 360px;
         margin-top: -30px;
     }
 
     .nav {
-        display: none; /* Ocultar el menú normal */
+        display: none;
     }
 
     .nav.active {
-        display: flex; /* Mostrar el menú cuando está activo */
+        display: flex;
     }
 }
+
 /* Título */
 .header-title {
     width: 100%;
-    background: #CFCFCF;
+    background: var(--grisFondo);
     text-align: center;
     padding: 50px 0;
 }
 
 .header-title-text {
-    color: black;
+    color: var(--negro);
     font-size: 40px;
     font-weight: 700;
 }
@@ -242,8 +242,8 @@ body {
 
 .notification-card {
     width: 280px;
-    background: white;
-    border: 5px #5D828A solid;
+    background: var(--fondoCard);
+    border: 5px solid var(--bordeCard);
     padding: 15px;
     border-radius: 10px;
     box-sizing: border-box;
@@ -264,42 +264,44 @@ body {
     max-width: 500px;
     margin: 40px auto;
     padding: 15px;
-    background: #5D828A;
+    background: var(--fondoBoton);
     border-radius: 32px;
     text-align: center;
     cursor: pointer;
 }
+
 .create-notification:hover {
-    background: #37707f93;
+    background: var(--fondoBotonHover);
     border-radius: 50px;
 }
 
 .create-notification-text {
-    color: white;
+    color: var(--blanco);
     font-size: 24px;
     font-weight: 700;
 }
+
 /* Pop-up */
 .popup {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+    background-color: var(--fondoPopup);
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    z-index: 1000;
 }
 
 .popup-content {
-    background: white;
+    background: var(--blanco);
     padding: 20px;
     border-radius: 10px;
     width: 90%;
     max-width: 500px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--sombraPopup);
     position: relative;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -318,7 +320,7 @@ body {
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: 700;
-    color: black;
+    color: var(--negro);
 }
 
 .popup-content label {
@@ -328,7 +330,8 @@ body {
     font-weight: 500;
 }
 
-.popup-content select, .popup-content textarea {
+.popup-content select,
+.popup-content textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -342,8 +345,8 @@ body {
 }
 
 .send-btn {
-    background: #5D828A;
-    color: white;
+    background: var(--fondoBoton);
+    color: var(--blanco);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -352,7 +355,7 @@ body {
 }
 
 .send-btn:hover {
-    background: #37707f93;
+    background: var(--fondoBotonHover);
 }
 
 /* Mensaje de éxito */
@@ -363,7 +366,8 @@ body {
     color: green;
     margin-top: 20px;
 }
-#message{
+
+#message {
     width: 480px;
 }
 
