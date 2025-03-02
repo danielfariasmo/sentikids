@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,68 +8,68 @@
     <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
     <link rel="stylesheet" href="contacto.css">
 </head>
+
 <body>
 
-      <!-- Primer menú -->
-      <div class="menu-principal">
-        <img class="logo" src="../../../assets/img/logo-sin-fondo.png" alt="Logo">
+    <!-- Primer menú -->
+    <div class="menu-principal">
+        <a href="../home/index.html">
+            <img class="logo" src="../../../assets/img/logo-sin-fondo.png" alt="Logo">
+        </a>
         <div class="botonesMenu">
-            <button class="btn-area-privada">Área privada</button>
-            <button class="btn-inscribirse">Inscribirse</button>
+            <button class="btn-area-privada">
+                <a href="../home/logIn.html" target="_blank">Área privada</a>
+            </button>
+            <button class="btn-inscribirse">
+                <a href="../inscribir/inscribir.html">Inscribirse</a>
+            </button>
         </div>
-        <!-- Botón de menú hamburguesa -->
-        <button class="hamburguesa" aria-label="Abrir menú">
-            <span class="hamburguesa-linea"></span>
-            <span class="hamburguesa-linea"></span>
-            <span class="hamburguesa-linea"></span>
-        </button>
     </div>
 
-<!-- Segundo menú fijo -->
-<div class="menu-fijo">
-    <div class="opciones">
-        <a href="#nosotros">Nosotros</a>
-        <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
-        <a href="../precios/precios.html">Precios</a>
-        <a href="#contacto">Contacto</a>
+    <!-- Segundo menú fijo con menú hamburguesa -->
+    <div class="menu-fijo">
+        <button class="menu-hamburguesa">☰</button>
+        <div class="opciones">
+            <a href="../nosotros/nosotros.html">Nosotros</a>
+            <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
+            <a href="../precios/precios.html">Precios</a>
+            <a href="../contacto/contacto.html">Contacto</a>
+        </div>
     </div>
-</div>
 
-<!-- Menú móvil -->
-<div class="menu-movil">
-    <div class="opciones-movil">
-        <a href="#nosotros">Nosotros</a>
-        <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
-        <a href="../precios/precios.html">Precios</a>
-        <a href="#contacto">Contacto</a>
-    </div>
-</div>
-
-
-     <!-- Sección Hero -->
-     <div class="hero">
-        <h1 class="hero-title">Contacto</h1>
+    <!-- HEADER -->
+    <div class="hero">
+        <h1 class="hero-title">CONTACTO</h1>
         <div class="breadcrumb">
             <a href="../home/inicio.html">Inicio</a> &raquo; <a href="#">Contacto</a>
         </div>
     </div>
-    
-        <div class="contact-form-section">
-            <img src="../../../assets/img/contacto1.jfif" alt="Contact Form Image" class="imgcontacto">
-            <div class="contact-form-content">
-                <div class="contact-form-title">CONTÁCTANOS</div>
-                <div class="contact-form-text">
-                    <p class="parrafocontacto">¿Tienes alguna pregunta o necesitas más información? ¡Estamos aquí para ayudarte! Contáctanos y
-                         haremos todo lo posible por responderte lo más rápido. <br> Tu opinión y tus dudas son importantes para nosotros.
-                        <br> Además, si requieres asesoría personalizada o más detalles sobre nuestros servicios, no dudes en escribirnos. 
-                        Estamos comprometidos en brindarte la mejor atención y asegurarnos de que encuentres exactamente lo que buscas. ¡Esperamos tu mensaje!
-                    </p>
-                   
-                </div>
+
+    <!-- CONTENIDO -->
+
+    <!-- CONTACTANOS
+    <div class="contact-form-section">
+        <img src="../../../assets/img/contacto1.jfif" alt="Contact Form Image" class="imgcontacto">
+        <div class="contact-form-content">
+            <div class="contact-form-title">CONTÁCTANOS</div>
+            <div class="contact-form-text">
+                <p class="parrafocontacto">¿Tienes alguna pregunta o necesitas más información? ¡Estamos aquí para
+                    ayudarte! Contáctanos y
+                    haremos todo lo posible por responderte lo más rápido. <br> Tu opinión y tus dudas son importantes
+                    para nosotros.
+                    <br> Además, si requieres asesoría personalizada o más detalles sobre nuestros servicios, no dudes
+                    en escribirnos.
+                    Estamos comprometidos en brindarte la mejor atención y asegurarnos de que encuentres exactamente lo
+                    que buscas. ¡Esperamos tu mensaje!
+                </p>
+
             </div>
         </div>
-        <h1 class="txtcontacto">CONTÁCTANOS Y RECIBE UNA RESPUESTA RÁPIDA</h1>
-        <!-- FORMULARIO DE CONTACTO -->
+    </div> -->
+
+    <!-- FORMULARIO DE CONTACTO -->
+    <div class="contacto">
+        <h1 class="txtcontacto">CONTÁCTANOS</h1>
         <form class="contact-form">
             <div class="form-group">
                 <label>¿Cómo podemos ayudarte?</label>
@@ -87,69 +88,75 @@
             </div>
             <button type="submit" class="submit-btn">Enviar</button>
         </form>
+    </div>
 
-        <!-- SECCIÓN DE TRABAJA CON NOSOTROS -->
-        <div class="work-with-us-section">
-            <div class="work-with-us-content">
-                <div class="work-with-us-title">¿QUIERES TRABAJAR CON NOSOTROS?</div>
-                <div class="work-with-us-text">
-                    Si eres una persona apasionada, proactiva y con ganas de crecer, en Sentikids estamos buscando talento como el tuyo. Únete a nuestro equipo y forma parte de una empresa en constante evolución.
+    <!-- TRABAJA CON NOSOTROS -->
+    <div class="work-with-us-section">
+        <div class="work-with-us-content">
+            <div class="work-with-us-title">TRABAJA CON <span id="nosotros">NOSOTROS</span></div>
+            <div class="work-with-us-text">
+                Si eres una persona apasionada, proactiva y con ganas de crecer, en Sentikids estamos buscando talento
+                como el tuyo. Únete a nuestro equipo y forma parte de una empresa en constante evolución.
+            </div>
+        </div>
+        <div class="cv-upload-section">
+            <img src="../../../assets/img/trabaja_con_nosotros.jpg" alt="CV Upload Image">
+
+            <!-- FORMULARIO PARA SUBIR CV -->
+            <form class="cv-upload-form">
+                <div class="cv-upload-title">SUBE TU CV</div>
+                <div class="form-group">
+                    <label>Nombre y Apellidos:</label>
+                    <input type="text" name="nombre">
+                    <span class="error-message"></span>
                 </div>
-            </div>
-            <div class="cv-upload-section">
-                <img src="../../../assets/img/contacto2.jfif"  alt="CV Upload Image">
-                
-                <!-- FORMULARIO PARA SUBIR CV -->
-                <form class="cv-upload-form">
-                    <div class="cv-upload-title">SUBE TU CV</div>
-                    <div class="form-group">
-                        <label>Nombre y Apellidos:</label>
-                        <input type="text" name="nombre">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Correo electrónico:</label>
-                        <input type="email" name="email">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Adjunta tu CV:</label>
-                        <input type="file" name="cv" id="botoncv">
-                        <span class="error-message"></span>
-                    </div>
-                    <button type="submit" class="submit-btn">Subir CV</button>
-                </form>
-            </div>
+                <div class="form-group">
+                    <label>Correo electrónico:</label>
+                    <input type="email" name="email">
+                    <span class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label>Adjunta tu CV:</label>
+                    <input type="file" name="cv" id="botoncv">
+                    <span class="error-message"></span>
+                </div>
+                <button type="submit" class="submit-btn">Subir CV</button>
+            </form>
         </div>
     </div>
 
-    <!-- SECCIÓN SOBRE NOSOTROS -->
+
+    <!-- FOOTER -->
     <div class="about-section">
         <img class="background-image" src="../../../assets/img/niñosaprendiendo.avif" alt="Contact Image">
-        
+
         <div class="about-content">
             <div class="about-text">
                 <span>SentiKids, campamento </span><span class="highlight">bilingüe</span>
                 <span> con metodología </span><span class="highlight">Montessori</span><span>, </span>
-                <span class="highlight">comprometido</span><span> con ofrecer lo mejor en educación para enriquecer la vida de nuestros </span>
-                <span class="highlight">alumnos</span><span> y sus </span><span class="highlight">familias</span><span>.</span>
+                <span class="highlight">comprometido</span><span> con ofrecer lo mejor en educación para enriquecer la
+                    vida de nuestros </span>
+                <span class="highlight">alumnos</span><span> y sus </span><span
+                    class="highlight">familias</span><span>.</span>
             </div>
-            
+
             <div class="contact-info">
                 <div class="info-item">
-                    <div class="icon" style="margin-top: 10px;"> <img src="../../../assets/icon/carta.png" alt="carta"></div>
+                    <div class="icon" style="margin-top: 10px;"> <img src="../../../assets/icon/carta.png" alt="carta">
+                    </div>
                     <div>campamentosentikids@gmail.com</div>
                 </div>
                 <div class="info-item">
-                    <div class="icon" style="margin-top: 10px;" ><img src="../../../assets/icon/telefono.png" alt=""></div>
+                    <div class="icon" style="margin-top: 10px;"><img src="../../../assets/icon/telefono.png" alt="">
+                    </div>
                     <div>+34 805 029 126</div>
                 </div>
                 <div class="info-item">
                     <div>
                         <div class="icon"><img src="../../../assets/icon/ubicacion.png" alt="ubicación"> Madrid</div>
                         <br>
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d8a32f7f8f8!2sMontessori%20School!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d8a32f7f8f8!2sMontessori%20School!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus"
                             style="border:0;" allowfullscreen="" loading="lazy">
                         </iframe>
                     </div>
@@ -157,10 +164,8 @@
             </div>
         </div>
     </div>
-  
-    
 
-    <!-- FOOTER -->
+    <!-- FOOTER2 -->
     <div class="footer">
         <div class="footer-content">
             <div class="footer-divider"></div>
@@ -177,13 +182,13 @@
                     </a>
                 </div>
                 <div class="icon">
-                    <a href="https://www.instagram.com/senti.kids?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+                    <a href="https://www.instagram.com/senti.kids?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                        target="_blank">
                         <img src="../../../assets/icon/logotipo-de-instagram.png" alt="Instagram">
                     </a>
                 </div>
                 <div class="icon">
-                    <a href="https://www.facebook.com/share/1BSx2ZYBke/?mibextid=wwXIfr"
-                        target="_blank">
+                    <a href="https://www.facebook.com/share/1BSx2ZYBke/?mibextid=wwXIfr" target="_blank">
                         <img src="../../../assets/icon/facebook.png" alt="Facebook">
                     </a>
                 </div>
@@ -194,4 +199,5 @@
 
     <script src="contacto.js"></script>
 </body>
+
 </html>
