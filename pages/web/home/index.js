@@ -1,23 +1,60 @@
-
-//MENÚ
+/**------------------------------------
+ * MENU FIJO
+ --------------------------------------*/
 const menuFijo = document.querySelector(".menu-fijo");
-menuFijo.style.marginTop = "48px";
-const MARGEN_INICIAL = 48;
+const menuPrincipal = document.querySelector(".menu-principal");
+const MARGEN_INICIAL_ESCRITORIO = 48; // Margen inicial para escritorio
+const MARGEN_INICIAL_MOVIL = 202; // Margen inicial para móviles
 
-window.addEventListener("scroll", function () {
+// Función para ajustar el margen superior del menú fijo
+function ajustarMargenMenuFijo() {
     const scrollActual = window.scrollY;
 
+    // Determinar el margen inicial según el tamaño de la pantalla
+    const margenInicial = window.innerWidth <= 768 ? MARGEN_INICIAL_MOVIL : MARGEN_INICIAL_ESCRITORIO;
+
     // Calcula el margen superior basado en el scroll
-    let margenSuperior = MARGEN_INICIAL - scrollActual;
+    let margenSuperior = margenInicial - scrollActual;
 
     // Asegura que el margen no sea menor que 0
     margenSuperior = Math.max(margenSuperior, 0);
 
     // Aplica el margen calculado
     menuFijo.style.marginTop = `${margenSuperior}px`;
+}
+
+// Ajustar el margen inicial en móviles
+if (window.innerWidth <= 768) {
+    menuFijo.style.marginTop = `${MARGEN_INICIAL_MOVIL}px`;
+} else {
+    menuFijo.style.marginTop = `${MARGEN_INICIAL_ESCRITORIO}px`;
+}
+
+// Escuchar el evento scroll para ajustar el margen
+window.addEventListener("scroll", function () {
+    ajustarMargenMenuFijo();
 });
 
-//FIN MENÚ
+// Escuchar el evento resize para ajustar el margen inicial
+window.addEventListener("resize", function () {
+    if (window.innerWidth <= 768) {
+        menuFijo.style.marginTop = `${MARGEN_INICIAL_MOVIL}px`;
+    } else {
+        menuFijo.style.marginTop = `${MARGEN_INICIAL_ESCRITORIO}px`;
+    }
+});
+
+/**------------------------------------
+* Menu hamburguesa
+--------------------------------------*/
+document.addEventListener("DOMContentLoaded", function () {
+    const botonMenu = document.querySelector(".menu-hamburguesa");
+    const menuOpciones = document.querySelector(".opciones");
+
+    botonMenu.addEventListener("click", function () {
+        menuOpciones.classList.toggle("activo");
+    });
+});
 
 // Datos para el hero (título, subtítulo, texto e imagen)
 const heroData = [
@@ -89,7 +126,7 @@ document.querySelectorAll('.faq-question').forEach((question) => {
 
 /**reviews */
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     "use strict";
     //  TESTIMONIALS CAROUSEL HOOK
     $('#customers-testimonials').owlCarousel({
@@ -98,19 +135,19 @@ jQuery(document).ready(function($) {
         items: 3,
         margin: 0,
         autoplay: true,
-        dots:true,
+        dots: true,
         autoplayTimeout: 8500,
         smartSpeed: 450,
         responsive: {
-          0: {
-            items: 1
-          },
-          768: {
-            items: 2
-          },
-          1170: {
-            items: 3
-          }
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            1170: {
+                items: 3
+            }
         }
     });
 });

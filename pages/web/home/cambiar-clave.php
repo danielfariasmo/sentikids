@@ -59,4 +59,4 @@ if ($usuario_actualizado) {
 } else {
     echo json_encode(["success" => false, "message" => "No se pudo actualizar la contraseña. Verifica el enlace o intenta nuevamente."]);
 }
-?>
+

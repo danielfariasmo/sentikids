@@ -19,54 +19,45 @@
 
     <!-- Primer menú -->
     <div class="menu-principal">
-        <img class="logo" src="../../../assets/img/logo-sin-fondo.png" alt="Logo">
+        <a href="../home/index.html">
+            <img class="logo" src="../../../assets/img/logo-sin-fondo.png" alt="Logo">
+        </a>
         <div class="botonesMenu">
-            <button class="btn-area-privada">Área privada</button>
-            <button class="btn-inscribirse">Inscribirse</button>
+            <button class="btn-area-privada">
+                <a href="../home/logIn.html" target="_blank">Área privada</a>
+            </button>
+            <button class="btn-inscribirse">
+                <a href="../inscribir/inscribir.html">Inscribirse</a>
+            </button>
         </div>
-        <!-- Botón de menú hamburguesa -->
-        <button class="hamburguesa" aria-label="Abrir menú">
-            <span class="hamburguesa-linea"></span>
-            <span class="hamburguesa-linea"></span>
-            <span class="hamburguesa-linea"></span>
-        </button>
     </div>
 
-<!-- Segundo menú fijo -->
-<div class="menu-fijo">
-    <div class="opciones">
-        <a href="#nosotros">Nosotros</a>
-        <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
-        <a href="../precios/precios.html">Precios</a>
-        <a href="#contacto">Contacto</a>
+    <!-- Segundo menú fijo con menú hamburguesa -->
+    <div class="menu-fijo">
+        <button class="menu-hamburguesa">☰</button>
+        <div class="opciones">
+            <a href="../nosotros/nosotros.html">Nosotros</a>
+            <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
+            <a href="../precios/precios.html">Precios</a>
+            <a href="../contacto/contacto.html">Contacto</a>
+        </div>
     </div>
-</div>
 
-<!-- Menú móvil -->
-<div class="menu-movil">
-    <div class="opciones-movil">
-        <a href="#nosotros">Nosotros</a>
-        <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
-        <a href="../precios/precios.html">Precios</a>
-        <a href="#contacto">Contacto</a>
+    <!-- HEADER -->
+    <div class="hero">
+        <h1 class="hero-title">NOSOTROS</h1>
+        <div class="breadcrumb">
+            <a href="../home/inicio.html">Inicio</a> &raquo; <a href="../nosotros/nosotros.html">Precios</a>
+        </div>
     </div>
-</div>
 
     <!-- Contenido Principal -->
     <div class="main-content">
 
-        <!-- Sección Hero -->
-        <div class="hero">
-            <h1 class="hero-title">Nosotros</h1>
-            <div class="breadcrumb">
-                <a href="../home/inicio.html">Inicio</a> &raquo; <a href="#">Nosotros</a>
-            </div>
-        </div>
-
         <!-- Sección Quiénes Somos -->
         <div class="quienes-somos">
             <div class="quienes-somos-texto">
-                <h1 class="tituloquienesomos"><span class="highlight">¿QUIÉNES SOMOS?</span></h1>
+                <h1 class="tituloquienesomos">¿QUIÉNES<span id="somos"> SOMOS</span>?</h1>
                 <p>
                     Somos una organización dedicada a la educación infantil, comprometida con ofrecer un entorno de
                     aprendizaje seguro y enriquecedor. Nuestra metodología se basa en principios Montessori y fomentamos
@@ -132,7 +123,7 @@
         </div>
 
         <!-- Sección Conoce a Nuestro Equipo -->
-        <h1 class="monitores">CONOCE A NUESTRO <span class="highlight">EQUIPO</span></h1>
+        <h1 class="monitores">CONOCE A NUESTRO <span id="equipo">EQUIPO</span></h1>
         <div class="slide-container swiper">
             <div class="slide-content">
                 <div class="card-wrapper swiper-wrapper">
@@ -141,97 +132,71 @@
                         <div class="image-content">
                             <span class="overlay"></span>
                             <div class="card-image">
-                                <img src="../../../assets/img/jose.jpg"
-                                    alt="Avatar" class="card-img">
+                                <img src="../../../assets/img/Lucia.jpg" alt="Avatar" class="card-img">
                             </div>
                         </div>
                         <div class="card-content">
-                            <h2 class="name">Carlos González</h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <h2 class="name">Lucía Lázaro</h2>
+                            <p class="description">Encargada de la organización del campamento. Se asegura de que todas las actividades estén estructuradas y sean dinámicas.</p>
                         </div>
                     </div>
-
+                
                     <!-- Tarjeta 2 -->
                     <div class="card swiper-slide">
                         <div class="image-content">
                             <span class="overlay"></span>
                             <div class="card-image">
-                                <img src="../../../assets/img/Lucia.jpg"
-                                    alt="Avatar" class="card-img">
+                                <img src="../../../assets/img/mariami.jpg" alt="Avatar" class="card-img">
                             </div>
                         </div>
                         <div class="card-content">
-                            <h2 class="name">Lucía Lázaro</h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <h2 class="name">Mariami</h2>
+                            <p class="description">Responsable de diseñar y coordinar las actividades del campamento. Garantiza una experiencia educativa y divertida.</p>
                         </div>
                     </div>
-
+                
                     <!-- Tarjeta 3 -->
                     <div class="card swiper-slide">
                         <div class="image-content">
                             <span class="overlay"></span>
                             <div class="card-image">
-                                <img src="../../../assets/img/mariami.jpg"
-                                    alt="Avatar" class="card-img">
+                                <img src="../../../assets/img/candela.jpg" alt="Avatar" class="card-img">
                             </div>
                         </div>
                         <div class="card-content">
-                            <h2 class="name">Mariami</h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <h2 class="name">Candela Martínez</h2>
+                            <p class="description">Se asegura que la plataforma web del campamento funcione de manera eficiente y atractiva.</p>
                         </div>
                     </div>
-
+                
                     <!-- Tarjeta 4 -->
                     <div class="card swiper-slide">
                         <div class="image-content">
                             <span class="overlay"></span>
                             <div class="card-image">
-                                <img src="../../../assets/img/candela.jpg"
-                                    alt="Avatar" class="card-img">
+                                <img src="../../../assets/img/danielg.jpg" alt="Avatar" class="card-img">
                             </div>
                         </div>
                         <div class="card-content">
-                            <h2 class="name">Candela Martínez</h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <h2 class="name">Daniel González</h2>
+                            <p class="description">Se encarga de la programación y del diseño funcional de la plataforma para mejorar la experiencia del usuario.</p>
                         </div>
                     </div>
-
+                
                     <!-- Tarjeta 5 -->
                     <div class="card swiper-slide">
                         <div class="image-content">
                             <span class="overlay"></span>
                             <div class="card-image">
-                                <img src="../../../assets/img/danielg.jpg"
-                                    alt="Avatar" class="card-img">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h2 class="name">Daniel González</h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 6 -->
-                    <div class="card swiper-slide">
-                        <div class="image-content">
-                            <span class="overlay"></span>
-                            <div class="card-image">
-                                <img src="../../../assets/img/danielf.jpg"
-                                    alt="Avatar" class="card-img">
+                                <img src="../../../assets/img/danielf.jpg" alt="Avatar" class="card-img">
                             </div>
                         </div>
                         <div class="card-content">
                             <h2 class="name">Daniel Farias</h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <p class="description">Se especializa en la integración de funcionalidades en la plataforma web del campamento.</p>
                         </div>
                     </div>
-                </div>
+                </div>                
             </div>
             <div class="swiper-button-next swiper-navBtn"></div>
             <div class="swiper-button-prev swiper-navBtn"></div>
@@ -239,7 +204,7 @@
         </div>
 
         <!-- Sección Empresas Colaboradoras -->
-        <h1 class="empresas">EMPRESAS <span class="highlight">COLABORADORAS</span></h1>
+        <h1 class="empresas">EMPRESAS <span id="colaboradoras">COLABORADORAS</span></h1>
         <div class="swiper-container empresas-swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
