@@ -302,12 +302,23 @@ a {
     }
 }
 
+/*ESTILOS DE LOS SPAN */
+.spanazul{
+    color: #80c4d3d6;
+}
+.spanrosa{
+    color: #FF725E;
+}
+
 /*INTRODUCCIÓN */
 .introduction {
     display: flex;
     align-items: center;
-    justify-content: space-around; /* O usa 'flex-start' si quieres que estén más pegados */
-    gap: 20px; /* Reduce el espacio entre los elementos */
+    /* justify-content: space-around; O usa 'flex-start' si quieres que estén más pegados */
+    justify-content: flex-start;
+    justify-content: center;
+    margin-top: 150px;
+    gap: 90px; /* Reduce el espacio entre los elementos */
     padding: 30px; /* Reduce el padding si también quieres menos margen interno */
    
 }
@@ -331,7 +342,7 @@ a {
 
 .introduction-image img {
     width: 100%;
-    max-width: 300px; /* Puedes ajustar este valor según el diseño */
+    max-width: 350px; /* Puedes ajustar este valor según el diseño */
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 10px; /* Bordes redondeados */
@@ -363,7 +374,7 @@ CARTAS
     margin-top: 100px;
     margin-bottom: 30px;
     text-align: center;
-    color: red;
+    color: #333;
 }
 
 img {
@@ -480,7 +491,7 @@ img {
     margin-top: 100px;
     margin-bottom: 30px;
     text-align: center;
-    color: red;
+    color: #333;
 }
 
 .masonry {
@@ -599,19 +610,29 @@ img {
     margin-top: 50px;
     margin-bottom: 20px;
     text-align: center;
-    color: red;
+    color: #333;
 }
 
 .wrapper .btn-inscribirse {
     background-color: #CD4533;
     color: white;
     border-radius: 5px;
+    border: none;
     padding: 10px 20px;
-    transition: background-color 0.3s ease;
+    width: 160px;
     display: block;
     margin: 20px auto;
+    margin-bottom: -40px;
     text-align: center;
     text-decoration: none; /* Quitamos el subrayado del enlace */
+    font-family: 'Poppins-bold';
+}
+.wrapper .btn-inscribirse:hover {
+    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
+    color: var(--white); /* Texto blanco */
+}
+.textobtn{
+    color: #f3f3f3;
 }
 
 .wrapper .parrafo {
@@ -731,6 +752,7 @@ img {
 
     .wrapper .btn-inscribirse {
         padding: 8px 16px;
+        margin-top: 5px;
     }
     .wrapper{
         padding-top: 10px;
@@ -787,7 +809,7 @@ img {
     }
     .preguntasfrecuentesh1{
        font-size: 20px;
-       margin-top: 250px !important;
+       margin-top: 410px !important;
     }
 
     .owl-dots{
@@ -810,7 +832,7 @@ img {
     margin-top: 100px;
     margin-bottom: 30px;
     text-align: center;
-    color: red;
+    color: #333;
 }
 
 /* Actual Code: */
@@ -1071,11 +1093,11 @@ Preguntas Frecuentes
     font-size: 40px;
     margin-bottom: 30px;
     text-align: center;
-    color: red;
+    color: #333;
 }
 
 .faq-item {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px;
     margin-bottom: 10px;
 }
 
@@ -1085,13 +1107,13 @@ Preguntas Frecuentes
     align-items: center;
     padding: 15px;
     cursor: pointer;
-    background-color: red;
+    background-color: #80c4d3d6;
     border-radius: 5px;
     transition: background-color 0.3s ease; /* Corregido */
 }
 
 .faq-question:hover {
-    background-color: yellow;
+    background-color: #58858fd6;
 }
 
 .faq-icon {
@@ -1105,7 +1127,7 @@ Preguntas Frecuentes
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
     padding: 0 15px;
-    background-color: gray;
+    background-color: #f3f3f3;
 }
 
 .faq-answer p {
@@ -1263,7 +1285,8 @@ Estilos Responsive para Móviles
 /*CARTAS*/
 @media (min-width: 56rem) {
     .cards_item {
-        width: 33.3333%;
+        width: 490px;
+        padding: 5px;
     }
 }
 
