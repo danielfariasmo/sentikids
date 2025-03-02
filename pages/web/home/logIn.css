@@ -1,8 +1,52 @@
-/* Estilos generales */
+:root {
+    /*TAMAÑO TEXTO*/
+    --titulo: 2.5rem;
+    --subtitulo: 1.5rem;
+    --texto: 1.125rem;
+    --mensaje: 1rem;
+
+    /*TIPO DE LETRA*/
+    --regular: 'Poppins-regular';
+    --bold: 'Poppins-bold';
+
+    /*COLORES*/
+    --blanco: #f3f3f3;
+    --blanco2: #e0e0e0;
+    --blanco3: #fff;
+    --negro: #333;
+    --negro2: #000;
+    --principal: #FF725E;
+    --secundario: #CD4533;
+    --azul: #80C4D3;
+    --azul2: #5A9EB3;
+    --error: #D0090B;
+    --correcto: #50812A;
+    
+    /*SOMBRAS*/
+    --sombra1: rgba(0, 0, 0, 0.1);
+    --sombra2: rgba(0, 0, 0, 0.2);
+    --sombra3: rgba(0, 0, 0, 0.3);
+    --sombra4: rgba(0, 0, 0, 0.4);
+    --sombra5: rgba(0, 0, 0, 0.5);
+}
+
+@font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+}
+
+/*----------------------------------------
+GENERAL
+-----------------------------------------*/
 body {
     margin: 0;
-    font-family: 'Poppins-Regular', sans-serif;
-    background-color: #dbecef;
+    font-family: var(--regular);
+    background-color: var(--blanco);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,16 +58,23 @@ body {
     width: 100%;
     max-width: 1200px;
     height: 600px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--blanco);
+    box-shadow: 0 4px 10px var(--sombra3);
     position: relative;
     overflow: hidden;
 }
 
-/* Sección de la imagen */
+
+a {
+    color: var(--azul2); 
+}
+
+/*----------------------------------------
+IMAGEN
+-----------------------------------------*/
 .image-section {
     flex: 1;
-    background-color: #e0e0e0;
+    background-color: var(--blanco2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,21 +87,17 @@ body {
     object-fit: cover;
 }
 
-/* Sección del formulario */
+/*----------------------------------------
+FORMULARIO
+-----------------------------------------*/
 .form-section {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--blanco3);
     position: relative;
 }
-
-/*.form-container {
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-}*/
 
 .form-container {
     display: inline-flex;
@@ -62,8 +109,15 @@ body {
 
 .form-container h1 {
     margin-bottom: 20px;
-    font-size: 2rem;
-    color: #333;
+    font-size: var(--titulo);
+    font-family: var(--bold);
+    color: var(--negro);
+}
+
+.form-container h3 {
+    font-size: var(--subtitulo);
+    font-family: var(--bold);
+    color: var(--negro);
 }
 
 .input-field {
@@ -74,7 +128,6 @@ body {
 .input-field input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
     outline: none;
@@ -85,8 +138,7 @@ body {
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
-    color: #999;
-    font-size: 1rem;
+    font-size: var(--mensaje);
     transition: all 0.3s ease;
     pointer-events: none;
 }
@@ -94,28 +146,73 @@ body {
 .input-field input:focus+label,
 .input-field input:not(:placeholder-shown)+label {
     top: 0;
-    font-size: 0.8rem;
-    color: #333;
+    font-size: var(--mensaje);
+    color: var(--negro);
 }
 
+.input-field{
+    position: relative;
+    margin-top: 20px;
+}
+
+.input-field input{
+    width: 350px;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid var(--negro);
+    background: transparent;
+    color: var(--negro);
+    outline: none;
+}
+
+.input-field label{
+    position: absolute;
+    top: 40%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: var(--negro);
+    font-size: var(--texto);
+    pointer-events: none;
+    transition: .3s;
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    top: 0;
+    font-size: 16px;
+    padding: 0 15px;
+    background: var(--blanco3);
+}
+
+input:-webkit-autofill {
+    background-color: transparent !important; /* Transparente para mantener el diseño */
+    color: inherit !important; /* Asegura que el color del texto sea consistente */
+    box-shadow: 0 0 0 1000px var(--background) inset !important; /* Elimina el color extraño del navegador */
+    transition: background-color 5000s ease-in-out 0s; /* Elimina transiciones bruscas */
+}
 
 button {
     width: 100%;
     padding: 10px;
-    background-color: #FF725E;
-    color: #fff;
+    background-color: var(--principal);
+    color: var(--negro);
     border: none;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: var(--texto);
+    font-family: var(--bold);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #FF523A;
+    background-color: var(--secundario);
 }
 
-/* Wave divisor */
+/*----------------------------------------
+DIVISOR
+-----------------------------------------*/
 .wave {
     position: absolute;
     top: 0;
@@ -134,82 +231,101 @@ button:hover {
     width: 10000px;
     height: 700px;
     transform: translateX(-50%) rotate(0deg);
-    fill: #fff;
-    /* Color de la ola */
+    fill: var(--blanco3);
 }
 
 .wave svg {
-    pointer-events: none; /* Desactiva los clics en el SVG */
-    width: 100%; /* Ajusta el ancho */
-    height: auto; /* Ajusta la altura automáticamente */
-    max-height: 100%; /* Evita que se expanda demasiado */
+    pointer-events: none; 
+    width: 100%; 
+    height: auto; 
+    max-height: 100%; 
 }
 
 .wave {
-    pointer-events: none; /* Bloquea interacción con cualquier cosa dentro */
+    pointer-events: none; 
 }
 
-/* Estilo place */
+/*----------------------------------------
+ESTILO DE MENSAJES
+-----------------------------------------*/
 
 .hidden {
     display: none;
 }
 
 .error {
-    color: red;
-    font-size: 0.9rem;
+    color: var(--error);
+    font-size: var(--mensaje);
 }
 
 .success {
-    color: green;
-    font-size: 0.9rem;
+    color: var(--correcto);
+    font-size: var(--mensaje);
 }
 
-/* Estilo place */
-
-.input-field{
-    position: relative;
-    margin-top: 20px;
+#sentikids {
+    color: var(--principal);
 }
 
-.input-field input{
-    width: 350px;
-    height: 60px;
-    border-radius: 6px;
-    font-size: 18px;
-    padding: 0px 15px;
-    border: 2px solid #000000;
-    background: transparent;
-    color: #000000;
-    outline: none;
+/*----------------------------------------
+RESPONSIVE
+-----------------------------------------*/
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        padding: 20px;
+    }
+
+    .container {
+        flex-direction: column;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .image-section, .form-section {
+        flex: none;
+        width: 100%;
+    }
+
+    .image-section {
+        height: 300px; 
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    .input-field input {
+        width: 100%;
+    }
+
+    .wave {
+        display: none; 
+    }
+
+    .form-container h1 {
+        font-size: 2rem; 
+    }
+
+    .form-container h3 {
+        font-size: 1.25rem; 
+    }
+
+    button {
+        font-size: 1rem; 
+        padding: 8px; 
+    }
+
+    .error, .success {
+        font-size: 0.875rem; 
+    }
+
+    .wave {
+        display: none; 
+    }
 }
 
-.input-field label{
-    position: absolute;
-    top: 40%;
-    left: 15px;
-    transform: translateY(-50%);
-    color: #000000;
-    font-size: 19px;
-    pointer-events: none;
-    transition: .3s;
+@media (max-width: 768px) {
+    
 }
 
-input:focus ~ label,
-input:not(:placeholder-shown) ~ label {
-    top: 0;
-    font-size: 16px;
-    padding: 0 15px;
-    background: #ffffff;
-}
-
-input:-webkit-autofill {
-    background-color: transparent !important; /* Transparente para mantener el diseño */
-    color: inherit !important; /* Asegura que el color del texto sea consistente */
-    box-shadow: 0 0 0 1000px var(--background) inset !important; /* Elimina el color extraño del navegador */
-    transition: background-color 5000s ease-in-out 0s; /* Elimina transiciones bruscas */
-}
-
-a {
-    color: #ff6f61; 
-}

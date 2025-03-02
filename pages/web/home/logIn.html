@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso área privada</title>
+    <title>Área privada</title>
     <link rel="icon" type="image/png" href="../../../assets/img/logo_mano_sin_fondo.png">
     <link rel="stylesheet" href="logIn.css">
 </head>
@@ -21,8 +21,7 @@
         <div class="form-section">
             <div class="form-container">
                 <div>
-                    <h1>BIENVENIDO</h1>
-                    <h3>Hola! Nos alegramos de verte de nuevo :)</h3>
+                    <h1>BIENVENIDO A <span id="sentikids">SENTIKIDS</span></h1>
                 </div>
 
                 <form id="userForm">
@@ -38,7 +37,7 @@
                         <label for="password">Contraseña</label><br>
                         <span class="error hidden" id="passwordError">Debe insertar contraseña.</span><br>
                     </div>
-                    <p>No recuerdas tu contraseña? <a href="recuperar-clave.html">cambiala</a></p>
+                    <p><a href="recuperar-clave.html" target="_blank">¿Olvidaste la contraseña?</a></p>
 
 
                     <span id="loginError" class="hidden"></span><br>
@@ -46,6 +45,8 @@
                 </form>
             </div>
         </div>
+
+        <!-- JAVASCRIPT -->
         <script src="logIn.js"></script>
 
         <!-- Wave divisor -->

@@ -172,6 +172,11 @@ MENU
     height: 50px;
 }
 
+/* Estilos generales */
+.menu-hamburguesa {
+    display: none; /* Oculto en pantallas grandes */
+}
+
 /*----------------------------------------
 HEADER
 -----------------------------------------*/
@@ -451,86 +456,88 @@ Estilos Responsive para Móviles
     }
 }
 
-/*MENU MOVIL*/
-/* Estilos para el botón de menú hamburguesa */
-.hamburguesa {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    margin-left: 250px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1000000; /* Asegurar que está encima */
-    position: relative;
-}
+/*----------------------------------------
+MENU PRINCIPAL - FORMATO VERTICAL EN MÓVILES
+-----------------------------------------*/
+@media screen and (max-width: 768px) {
 
-.hamburguesa-linea {
-    width: 30px;
-    height: 4px;
-    background-color: #333;
-    border-radius: 2px;
-}
+    .menu-hamburguesa {
+        display: block !important; /* FORZAR que se vea */
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--negro);
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        z-index: 1100;
+    }
 
-.menu-movil {
-    position: fixed;
-    top: 0;
-    left: -100%; /* Oculto por defecto */
-    width: 80%;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: left 0.3s ease;
-    z-index: 1000;
-    padding-top: 60px;
-}
+    .menu-principal {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+    }
 
-.menu-movil.visible {
-    left: 0; /* Mostrar menú */
-}
-
-.opciones-movil {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-}
-
-.opciones-movil a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.opciones-movil a:hover {
-    color: #FF725E;
-}
-
-/*RESPONISVE DEL MENÚ*/
-@media (max-width: 768px) {
-    .hamburguesa {
-        display: flex; /* Mostrar botón hamburguesa en móviles */
+    .logo {
+        margin-bottom: 15px;
     }
 
     .botonesMenu {
-        /* display: none; */
-        padding-right: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 
-    .menu-fijo {
-        display: none; /* Ocultar menú fijo en móviles */
+    .menu-principal button {
+        padding-left: 0;
+        width: 100%;
+        text-align: center;
     }
 }
 
-@media (min-width: 769px) {
-    .menu-movil {
-        visibility: hidden;
-        opacity: 0;
-        left: -100%;
-        transition: opacity 0.3s ease, left 0.3s ease;
+/*----------------------------------------
+MENU FIJO - MENÚ HAMBURGUESA EN MÓVILES
+-----------------------------------------*/
+@media screen and (max-width: 768px) {
+    .menu-fijo {
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        height: 50px;
     }
-    .hamburguesa{
+
+    .menu-hamburguesa {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--negro);
+    }
+
+    .opciones {
         display: none;
+        flex-direction: column;
+        gap: 15px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--sombraMenu);
+        box-shadow: 0 2px 5px var(--sombra1);
+        padding: 10px 0;
+    }
+
+    .opciones a {
+        text-align: center;
+        padding: 10px;
+        display: block;
+    }
+
+    .opciones.activo {
+        display: flex;
     }
 }
