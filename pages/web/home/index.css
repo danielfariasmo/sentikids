@@ -478,7 +478,7 @@ ACTIVIDADES
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    
 }
 
 .card_title {
@@ -533,7 +533,7 @@ ACTIVIDADES
     }
 
     .card_text {
-        font-size: 0.9rem;
+        font-size: 18px;
     }
 }
 
@@ -923,7 +923,9 @@ INSCRIPCIONES ABIERTAS
     .wrappeerh1 {
         font-size: 1.5rem;
     }
-
+    .wave{
+        display: none;
+    }
     .testimonialh1 {
         font-size: 1.5rem;
     }
@@ -947,7 +949,7 @@ INSCRIPCIONES ABIERTAS
     }
     .preguntasfrecuentesh1{
        font-size: 20px;
-       margin-top: 410px !important;
+       margin-top: 510px !important;
     }
 
     .owl-dots{
