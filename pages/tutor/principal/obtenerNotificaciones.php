@@ -10,9 +10,9 @@ $password = "";
 $db = "sentikids";
 
 // Conexión a la base de datos
-$conexion = mysqli_connect($servidor, $usuarioBD, $password, $db);
-if (!$conexion) {
-    echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos']);
+$conexion = new mysqli($servidor, $usuarioBD, $password, $db);
+if ($conexion->connect_errno) {
+    echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos: ' . $conexion->connect_error]);
     exit;
 }
 
@@ -35,24 +35,38 @@ if ($rol !== 'tutor') {
 // Obtener el ID del tutor desde la sesión
 $id_tutor = $_SESSION['id_usuario'];
 
-// Consultar las notificaciones del tutor
-$queryNotificaciones = "SELECT id_notificacion, titulo, mensaje, fecha FROM notificacion WHERE id_tutor = '$id_tutor'";
-$resultNotificaciones = mysqli_query($conexion, $queryNotificaciones);
+// Consultar las notificaciones del tutor usando sentencias preparadas
+$queryNotificaciones = "SELECT id_notificacion, titulo, mensaje, fecha FROM notificacion WHERE id_tutor = ?";
+$stmt = $conexion->prepare($queryNotificaciones);
 
-if (!$resultNotificaciones) {
-    echo json_encode(['status' => 'error', 'message' => 'Error al consultar las notificaciones']);
+if (!$stmt) {
+    echo json_encode(['status' => 'error', 'message' => 'Error en la preparación de la consulta: ' . $conexion->error]);
     exit;
 }
 
-// Obtener las notificaciones como un array asociativo
-$notificaciones = [];
-while ($fila = mysqli_fetch_assoc($resultNotificaciones)) {
-    $notificaciones[] = $fila;
+// Vincular el parámetro (id_tutor) a la consulta
+$stmt->bind_param("i", $id_tutor); // "i" indica que el parámetro es un entero
+
+// Ejecutar la consulta
+if (!$stmt->execute()) {
+    echo json_encode(['status' => 'error', 'message' => 'Error al ejecutar la consulta: ' . $stmt->error]);
+    exit;
 }
+
+// Obtener el resultado de la consulta
+$resultNotificaciones = $stmt->get_result();
+$notificaciones = [];
+
+if ($resultNotificaciones->num_rows > 0) {
+    while ($fila = $resultNotificaciones->fetch_assoc()) {
+        $notificaciones[] = $fila;
+    }
+}
+
+// Cerrar la sentencia y la conexión
+$stmt->close();
+$conexion->close();
 
 // Devolver las notificaciones en formato JSON
 echo json_encode(['status' => 'success', 'data' => $notificaciones]);
-
-// Cerrar la conexión
-mysqli_close($conexion);
 ?>

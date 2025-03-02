@@ -133,10 +133,10 @@ body {
     display: block;
 }
 
-.formButton button {
+.formButton {
     width: 100%;
     padding: 12px;
-    background-color: var(--information);
+    background-color: #68AEBE;
     color: var(--white);
     border: none;
     border-radius: 6px;
@@ -145,7 +145,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.formButton button:hover {
+.formButton:hover {
     background-color: darken(var(--information), 10%);
 }
 
@@ -665,7 +665,7 @@ FOOTER
     margin-top: 20px;
 }
 
-.botoncito button {
+.botoncito{
     background-color: #ff8c79;
     color: white;
     border: none;
@@ -676,7 +676,7 @@ FOOTER
     transition: background 0.3s ease;
 }
 
-.botoncito button:hover {
+.botoncito:hover {
     background-color: #FF725E;
 }
 

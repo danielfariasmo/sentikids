@@ -103,5 +103,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error("Error en la solicitud:", error);
                 mostrarMensajeLogin("Error en la solicitud. Consulta la consola para más detalles.", true);
             });
-    }
+    }    
 });
