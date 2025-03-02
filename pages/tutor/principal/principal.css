@@ -858,6 +858,7 @@ button.cambiarContra:hover {
     .main-container {
         flex-direction: column; /* Convierte las columnas en una sola */
         padding-left: 10px;
+        padding-right: 10px;
     }
 
     .left-container, .right-container {
