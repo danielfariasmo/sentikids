@@ -169,15 +169,6 @@ $insertKid = "INSERT INTO hijo (id_tutor, id_grupo, nombre, apellidos, fecha_nac
                 (5, 1, 'Dora', 'Negrillo de la Rosa', '2016-11-01', 'sin restricciones', 'ninguna');";
 mysqli_query($connection, $insertKid) or die("ERROR: no se puede insertar en la tabla niños: " . mysqli_error($connection));
 
-/*---------------------------------------------------------------
-ACTIVIDADES
----------------------------------------------------------------*/
-$activity = "CREATE TABLE IF NOT EXISTS actividad (
-    id_actividad INT AUTO_INCREMENT PRIMARY KEY, 
-    nombre VARCHAR(255) NOT NULL,
-    descripcion VARCHAR(255) NOT NULL);";
-mysqli_query($connection, $activity) or die("ERROR: no se puede crear la tabla Actividades: " . mysqli_error($connection));
-
 
 
 
