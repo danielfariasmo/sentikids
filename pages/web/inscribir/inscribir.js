@@ -22,32 +22,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let childCount = 1;
 
-    // Botón para añadir más niños
-    document.getElementById("addChildButton").addEventListener("click", function () {
-        const childrenContainer = document.getElementById("childrenContainer");
-        const firstChild = document.querySelector(".child-block").cloneNode(true);
+// Botón para añadir más niños
+document.getElementById("addChildButton").addEventListener("click", function () {
+    const childrenContainer = document.getElementById("childrenContainer");
+    const firstChild = document.querySelector(".child-block").cloneNode(true);
 
-        childCount++;
+    childCount++;
 
-        // Actualiza el contenido del nuevo bloque
-        firstChild.querySelector("h2").textContent = `Información Niño/a ${childCount}`;
-        firstChild.querySelectorAll("[id], [name]").forEach((el) => {
-            if (el.id) {
-                el.id = el.id.replace(/(\d+)(Error)?$/, `${childCount}$2`);
-            }
-            if (el.name) {
-                el.name = el.name.replace(/\[\d*]/, `[${childCount}]`);
-            }
-            if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-                el.value = ""; // Limpia los campos
-            }
-        });
-
-        // Oculta los mensajes de error
-        firstChild.querySelectorAll(".error").forEach((el) => el.classList.add("hidden"));
-
-        childrenContainer.appendChild(firstChild);
+    // Actualiza el contenido del nuevo bloque
+    firstChild.querySelector("h2").textContent = `Información Niño/a ${childCount}`;
+    firstChild.querySelectorAll("[id], [name]").forEach((el) => {
+        if (el.id) {
+            el.id = el.id.replace(/(\d+)(Error)?$/, `${childCount}$2`);
+        }
+        if (el.name) {
+            el.name = el.name.replace(/\[\d*]/, `[${childCount}]`);
+        }
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+            el.value = ""; // Limpia los campos
+        }
     });
+
+    // Oculta los mensajes de error
+    firstChild.querySelectorAll(".error").forEach((el) => el.classList.add("hidden"));
+
+    // Agrega un botón de "x" para cerrar/eliminar el bloque
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "×"; // Símbolo de "x"
+    closeButton.classList.add("close-button"); // Añade la clase para estilos
+    closeButton.addEventListener("click", function () {
+        childrenContainer.removeChild(firstChild); // Elimina el bloque
+        childCount--; // Reduce el contador
+    });
+
+    firstChild.style.position = "relative"; // Para posicionar el botón de cierre
+    firstChild.appendChild(closeButton); // Añade el botón al bloque
+
+    childrenContainer.appendChild(firstChild); // Añade el nuevo bloque al contenedor
+});
 
     // Mensajes de validación
     function mostrarMensaje(mensaje, esError) {
@@ -72,33 +84,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Envío del formulario
     form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const esValido = [...form.querySelectorAll("input, select")].every(validarElemento);
-        if (esValido) {
-            const formData = new FormData(form);
-            formData.append("funcion", "inscribir");
+    event.preventDefault();
+    const esValido = [...form.querySelectorAll("input, select")].every(validarElemento);
+    if (esValido) {
+        const formData = new FormData(form);
+        formData.append("funcion", "inscribir");
 
-            fetch("inscribir.php", {
-                method: "POST",
-                body: formData
+        // Verifica que el campo "diet" esté en el FormData
+        console.log([...formData.entries()]); // Esto mostrará todos los datos que se están enviando
+
+        fetch("inscribir.php", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    mostrarMensaje(data.message, false);
+
+                    const formWrapper = document.querySelector(".form-container");
+                    formWrapper.innerHTML = `
+                    <div class="success-container">
+                        <h2>¡Inscripción exitosa!</h2>
+                        <p>Gracias por inscribirte. Hemos recibido tu información y nos pondremos en contacto contigo muy pronto.</p>
+                    </div>
+                    `;
+
+                    // Desplazar la página hacia arriba con una animación suave
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    mostrarMensaje(data.message, true);
+                }
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === "success") {
-                        mostrarMensaje(data.message, false);
-                        // Redirigir o realizar otras acciones
-                    } else {
-                        mostrarMensaje(data.message, true);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error en la solicitud:", error);
-                    mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true);
-                });
-        } else {
-            mostrarMensaje("Por favor, corrige los errores antes de continuar.", true);
-        }
-    });
+            .catch(error => {
+                console.error("Error en la solicitud:", error);
+                mostrarMensaje("Error en la solicitud. Consulta la consola para más detalles.", true);
+            });
+    } else {
+        mostrarMensaje("Por favor, corrige los errores antes de continuar.", true);
+    }
+});
 
     // Validación de campos
     function validarElemento(elemento) {
