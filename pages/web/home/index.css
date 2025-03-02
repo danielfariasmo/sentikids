@@ -226,10 +226,23 @@ HEADER
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
+    position: relative; /* Necesario para posicionar la flecha */
 }
 
 .hero-button:hover {
     background: #FF725E;
+    width: 240px;
+    text-align: left;
+}
+
+.hero-button:hover::after {
+    content: '→'; /* La flecha que aparecerá */
+    position: absolute;
+    right: 10px; /* Ajusta la distancia de la flecha respecto al borde */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px; /* Tamaño de la flecha */
+    transition: right 0.3s ease; /* Añadir animación si lo deseas */
 }
 
 /* Botones circulares */
@@ -238,6 +251,7 @@ HEADER
     flex-direction: column;
     gap: 15px;
 }
+
 
 .circle-button {
     width: 15px;
