@@ -13,39 +13,43 @@
     --sombraOscura2: rgba(0, 0, 0, 0.3);
     --rojoPrincipal: #CD4533;
     --rojoSecundario: #A32F23;
-  }
-  
-  @font-face {
+    --grisFondo: #CFCFCF;
+    --azulHeader: #5D828A;
+    --sombraMenu: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    --fondoCard: white;
+    --bordeCard: #5D828A;
+    --fondoMateriales: #f4f4f4;
+}
+
+@font-face {
     font-family: 'Poppins-regular';
     src: url(../../../assets/fonts/Poppins-Regular.ttf);
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins-bold';
     src: url(../../../assets/fonts/Poppins-Bold.ttf);
-  }
-  
-
+}
 
 /* General */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins-regular';
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    font-family: 'Poppins-regular', var(--fuente);
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Organiza el contenido en columna */
-    overflow-x: hidden; /* Evita scroll horizontal */
+    flex-direction: column;
+    overflow-x: hidden;
+    background: var(--grisFondo);
 }
 
 /* Contenedor principal */
 .container {
-    flex: 1; /* Hace que el contenido crezca y el footer se quede abajo */
+    flex: 1;
     width: 100%;
     box-sizing: border-box;
-    background: #CFCFCF;
+    background: var(--grisFondo);
 }
-
 
 /* Header */
 .header {
@@ -55,7 +59,7 @@ body {
     align-items: center;
     padding: 4px 0;
     height: 96px;
-    background: #5D828A;
+    background: var(--azulHeader);
     box-sizing: border-box;
 }
 
@@ -74,10 +78,9 @@ body {
     padding-right: 62px;
 }
 
-/* Elimina subrayado de los enlaces */
 .nav a {
     text-decoration: none;
-    color: black;
+    color: var(--negro);
     font-size: 20px;
     font-weight: 400;
 }
@@ -87,10 +90,9 @@ body {
     transition: background 0.3s ease;
 }
 
-/* Efecto hover */
 .nav a div:hover {
     background-color: transparent;
-    color: #CD4533;
+    color: var(--rojoPrincipal);
 }
 
 .menu-container {
@@ -111,8 +113,8 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    background: var(--blanco);
+    box-shadow: var(--sombraMenu);
     border-radius: 5px;
     padding: 8px 0;
     min-width: 150px;
@@ -130,7 +132,7 @@ body {
 }
 
 .menu button:hover {
-    background: #f0f0f0;
+    background: var(--blancoSecundario);
 }
 
 .user-button {
@@ -150,12 +152,9 @@ body {
     border-radius: 50%;
 }
 
-/* --------------------------------- */
-/* <!-- MENU HAMBURGUESA --> */
-/* --------------------------------- */
-/* Menú Hamburguesa (solo para móvil) */
+/* Menú Hamburguesa */
 .hamburger {
-    display: none; /* Oculto por defecto */
+    display: none;
     flex-direction: column;
     cursor: pointer;
     padding: 10px;
@@ -164,7 +163,7 @@ body {
 .hamburger div {
     width: 25px;
     height: 3px;
-    background-color: black;
+    background-color: var(--negro);
     margin: 4px 0;
 }
 
@@ -173,9 +172,9 @@ body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 96px; /* Ajusta según la altura del header */
+    top: 96px;
     right: 0;
-    background: #5D828A;
+    background: var(--azulHeader);
     width: 100%;
     align-items: center;
     gap: 10px;
@@ -187,79 +186,80 @@ body {
 /* Pantallas pequeñas (móviles) */
 @media (max-width: 767px) {
     .hamburger {
-        display: flex; /* Mostrar el ícono de hamburguesa */
+        display: flex;
     }
 
     .nav {
-        display: none; /* Ocultar el menú normal */
+        display: none;
     }
 
     .nav.active {
-        display: flex; /* Mostrar el menú cuando está activo */
+        display: flex;
     }
 
     .logo {
-        margin-left: 10px; /* Margen reducido */
+        margin-left: 10px;
     }
 }
 
 /* Pantallas medianas (tablets) */
 @media (min-width: 768px) and (max-width: 1023px) {
     .header {
-        height: 80px; /* Altura reducida */
+        height: 80px;
     }
 
     .logo {
-        margin-left: 30px; /* Margen ajustado */
+        margin-left: 30px;
     }
 
     .nav {
-        padding-right: 30px; /* Padding ajustado */
-        gap: 15px; /* Espacio entre elementos ajustado */
+        padding-right: 30px;
+        gap: 15px;
     }
 
     .nav a {
-        font-size: 16px; /* Tamaño de fuente ajustado */
+        font-size: 16px;
     }
 
     .nav a div {
-        padding: 8px 12px; /* Padding ajustado */
+        padding: 8px 12px;
     }
 }
 
 /* Pantallas grandes (escritorio) */
 @media (min-width: 1024px) {
     .header {
-        height: 96px; /* Altura original */
+        height: 96px;
     }
 
     .logo {
-        margin-left: 62px; /* Margen original */
+        margin-left: 62px;
     }
 
     .nav {
-        padding-right: 62px; /* Padding original */
-        gap: 20px; /* Espacio entre elementos original */
+        padding-right: 62px;
+        gap: 20px;
     }
 
     .nav a {
-        font-size: 18px; /* Tamaño de fuente original */
+        font-size: 18px;
     }
 
     .nav a div {
-        padding: 10px 15px; /* Padding original */
+        padding: 10px 15px;
     }
 }
+
 /* Título */
 .header-title {
     width: 100%;
-    background: #CFCFCF;
+    background: var(--grisFondo);
     text-align: center;
     padding: 50px 0;
 }
 
 .header-title-text {
-    color: black;
+    color: var(--negro);
     font-size: 40px;
     font-weight: 700;
 }
@@ -267,47 +267,47 @@ body {
 /* Actividades */
 .activities-container {
     display: flex;
-    flex-direction: column; /* Organiza las tarjetas en columna */
-    gap: 30px; /* Espaciado entre tarjetas */
+    flex-direction: column;
+    gap: 30px;
     padding: 40px;
-    max-width: 1200px; /* Ajusta el ancho máximo */
+    max-width: 1200px;
     margin: auto;
 }
 
 .activity-card {
-    background: white;
-    border: 5px #5D828A solid;
+    background: var(--fondoCard);
+    border: 5px solid var(--bordeCard);
     padding: 20px;
     border-radius: 10px;
     box-sizing: border-box;
-    width: 100%; /* Ocupa todo el ancho disponible */
-    max-width: 900px; /* Ajusta el ancho máximo de la tarjeta */
-    margin: auto; /* Centra la tarjeta */
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
 }
 
 .activity-title {
     font-size: 24px;
     font-weight: 700;
-    text-align: center; /* Centra el título */
-    margin-bottom: 20px; /* Espacio debajo del título */
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .activity-image {
-    width: 100%; /* Ocupa el 100% del ancho de la tarjeta */
-    height: 200px; /* Altura fija para la imagen */
+    width: 100%;
+    height: 200px;
     border-radius: 8px;
-    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
-    margin-bottom: 20px; /* Espacio debajo de la imagen */
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 
 .activity-description {
     font-size: 18px;
     font-weight: 400;
-    margin-bottom: 20px; /* Espacio debajo de la descripción */
+    margin-bottom: 20px;
 }
 
 .activity-materials {
-    width: 100%; /* Ocupa todo el ancho */
+    width: 100%;
 }
 
 .activity-materials h3 {
@@ -322,7 +322,7 @@ body {
 }
 
 .activity-materials ul li {
-    background-color: #f4f4f4;
+    background-color: var(--fondoMateriales);
     margin: 5px 0;
     padding: 10px;
     border-radius: 4px;
@@ -331,41 +331,28 @@ body {
 /* RESPONSIVE */
 @media (max-width: 900px) {
     .activities-container {
-        padding: 20px; /* Reduce el padding en pantallas pequeñas */
+        padding: 20px;
     }
 
     .activity-card {
-        padding: 15px; /* Reduce el padding en pantallas pequeñas */
+        padding: 15px;
     }
 
     .activity-title {
-        font-size: 20px; /* Reduce el tamaño del título */
+        font-size: 20px;
     }
 
     .activity-description {
-        font-size: 16px; /* Reduce el tamaño de la descripción */
+        font-size: 16px;
     }
 
     .activity-materials h3 {
-        font-size: 18px; /* Reduce el tamaño del subtítulo */
+        font-size: 18px;
     }
 }
 
 @media (max-width: 600px) {
     .activity-image {
-        height: 150px; /* Reduce la altura de la imagen en móviles */
-    }
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .activities-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 tarjetas por fila */
-    }
-}
-
-@media (max-width: 600px) {
-    .activities-container {
-        grid-template-columns: repeat(1, 1fr); /* 1 tarjeta por fila */
+        height: 150px;
     }
 }
