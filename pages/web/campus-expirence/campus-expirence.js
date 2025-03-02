@@ -17,3 +17,19 @@ window.addEventListener("scroll", function () {
     // Aplica el margen calculado
     menuFijo.style.marginTop = `${margenSuperior}px`;
 });
+
+// MENÚ HAMBURGUESA
+const hamburguesa = document.querySelector(".hamburguesa");
+const menuMovil = document.querySelector(".menu-movil");
+
+hamburguesa.addEventListener("click", () => {
+    menuMovil.classList.toggle("visible");
+});
+
+// Cerrar menú al hacer clic en un enlace
+const enlacesMovil = document.querySelectorAll(".opciones-movil a");
+enlacesMovil.forEach(enlace => {
+    enlace.addEventListener("click", () => {
+        menuMovil.classList.remove("visible");
+    });
+});

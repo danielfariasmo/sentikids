@@ -1,208 +1,226 @@
-/* Estilos generales */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-  }
-  
-  .container {
-    width: 1420px;
-    height: 692px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background: #FF725E;
-  }
-  
-  .content {
-    position: relative;
-    z-index: 1;
-    padding: 42px 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 31px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 500px; /* Ancho fijo para el formulario */
-    min-height: 500px; /* Altura mínima para evitar que crezca */
-    overflow: hidden; /* Evita que el contenido se desborde */
+:root {
+  /*TAMAÑO TEXTO*/
+  --titulo: 1.5rem;
+  --texto: 1.125rem;
+  --mensaje: 1rem;
+
+  /*TIPO DE LETRA*/
+  --regular: 'Poppins-regular';
+  --bold: 'Poppins-bold';
+
+  /*COLORES*/
+  --blanco: #f3f3f3;
+  --negro: #333;
+  --principal: #FF725E;
+  --secundario: #CD4533;
+  --fondo: #f7f7f7;
+  --fondo2: #e0e0e0;
+  --error: #D0090B;
+  --correcto: #50812A;
+
+  /*SOMBRAS*/
+  --sombra1: rgba(0, 0, 0, 0.50);
 }
-  
-  .logo {
-    width: 432px;
-    height: 140px;
-  }
-  
-  h1 {
-    text-align: center;
-    color: black;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 50.40px;
-    margin: 0;
-  }
-  
-  /* Estilos del formulario */
-  form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .form__group {
-    margin-bottom: 20px;
-  }
-  
-  .form__label {
-    display: block;
-    font-size: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    line-height: 28px;
-    color: black;
-    margin-bottom: 10px;
-  }
-  
-  .form__input-group {
-    position: relative;
-  }
-  
-  .form__input,
-  .form__select {
-    width: 93%;
-    height: auto;
-    padding: 10px 16px;
-    border-radius: 6px;
-    border: 1px solid black;
-    font-size: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    line-height: 28px;
-    color: black;
-    outline: none;
-    appearance: none; /* Elimina el estilo predeterminado del select */
-    background-color: white;
-    cursor: pointer;
+
+@font-face {
+  font-family: 'Poppins-regular';
+  src: url(../../../assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Poppins-bold';
+  src: url(../../../assets/fonts/Poppins-Bold.ttf);
+}
+
+/*----------------------------------------
+    ESTILOS GENERALES
+-----------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--regular);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--blanco);
+}
+
+/*----------------------------------------
+  CONTENEDOR PRINCIPAL
+-----------------------------------------*/
+.container {
+  position: relative;
+  width: 90%;
+  max-width: 420px;
+  background: var(--principal);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px var(--sombra1);
+  text-align: center;
+}
+
+.content {
+  background-color: var(--blanco);
+  padding: 10px;
+}
+
+/* Fondo */
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Logo */
+.logo {
+  width: 300PX;
+  margin-bottom: 1.5rem;
+}
+
+/*----------------------------------------
+  ESTILOS DEL FORMULARIO
+-----------------------------------------*/
+h1 {
+  font-size: var(--titulo);
+  font-family: var(--bold);
+  color: var(--negro);
+  margin-bottom: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* GRUPOS DEL FORMULARIO */
+.form__group {
+  text-align: left;
+  position: relative;
+}
+
+.form__label {
+  font-size: var(--texto);
+  color: var(--negro);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.form__input-group, 
+.form__select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* INPUTS Y SELECT */
+.form__input, 
+.form__select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1.8px solid var(--negro);
+  border-radius: 6px;
+  transition: border 0.3s ease-in-out;
+}
+
+/* Cuando el campo es incorrecto */
+.form__group-incorrect .form__input,
+.form__group-incorrect .form__select {
+  border-color: var(--error);
+}
+
+/* Cuando el campo es correcto */
+.form__group-correct .form__input,
+.form__group-correct .form__select {
+  border-color: var(--correcto);
+}
+
+/*----------------------------------------
+  ICONO DE VALIDACIÓN (OCULTO POR DEFECTO)
+-----------------------------------------*/
+.form__validation-status {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: none; 
+}
+
+/* Se activa cuando el JS le agrega la clase */
+.form__group-correct .form__validation-status,
+.form__group-incorrect .form__validation-status {
+  display: inline-block;
+}
+
+/*----------------------------------------
+  MENSAJES DE ERROR
+-----------------------------------------*/
+.form__input-error {
+  font-size: var(--mensaje);
+  color: var(--error);
+  display: none; /* Se oculta por defecto */
+}
+
+/* Mostrar error cuando JS lo active */
+.form__input-error-active {
+  display: block;
+}
+
+/*----------------------------------------
+  BOTÓN
+-----------------------------------------*/
+button {
+  background: var(--principal);
+  color: var(--negro);
+  font-size: var(--texto);
+  border: none;
+  font-family: var(--bold);
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: var(--secundario);
+}
+
+/*----------------------------------------
+  MENSAJE DE RESPUESTA
+-----------------------------------------*/
+#respuesta {
+  margin-top: 1rem;
+  font-size: var(--texto);
+  font-family: var(--bold);
+}
+
+/*----------------------------------------
+  RESPONSIVE
+-----------------------------------------*/
+@media screen and (max-width: 480px) {
+  .container {
+      padding: 2rem;
+      width: 95%;
   }
 
-  .form__select{
-    width: 100%;
+  h1 {
+      font-size: 1.3rem;
   }
-  
-  .form__input:focus,
-  .form__select:focus {
-    border: 2px solid blue;
-    box-shadow: 0px 0px 10px rgba(163, 163, 163, 0.4);
+
+  .form__input, 
+  .form__select {
+      font-size: 0.9rem;
   }
-  
-  /* Estilos para el ícono del select */
-  .form__select-wrapper {
-    position: relative;
-  }
-  
-  .form__select-wrapper::after {
-    content: "▼"; /* Ícono de flecha */
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none; /* Evita que el ícono interfiera con el clic en el select */
-    font-size: 14px;
-    color: black;
-  }
-  
-  .form__validation-status {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
-  }
-  
-  .form__input-error {
-    font-size: 14px;
-    color: red;
-    margin-top: 5px;
-    display: none;
-    position: absolute; /* Posiciona el mensaje de error de manera absoluta */
-    margin-left: 3px;
-    left: 0;
-    width: 100%; /* Asegura que el mensaje no desplace otros elementos */
 }
-  
-  .form__input-error-active {
-    display: block;
-  }
-  
-  /* Estilos para los estados de validación */
-  .form__group-correct .form__validation-status {
-    opacity: 1;
-    z-index: 1000;
-  }
-  
-  .form__group-incorrect .form__input,
-  .form__group-incorrect .form__select {
-    border: 2px solid red;
-  }
-  
-  .form__group-incorrect .form__validation-status {
-    opacity: 1;
-  }
-  
-  /* Estilos del botón */
-  button[type="submit"] {
-    height: 45px;
-    padding: 20px 30px;
-    background: #CD4533;
-    border-radius: 5px;
-    border: 1px solid #CD4533;
-    color: white;
-    font-size: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    line-height: 21px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-  }
-  
-  button[type="submit"]:hover {
-    background: #b03a2a;
-  }
-  
-  /* Estilos para el mensaje de respuesta */
-  #respuesta {
-    text-align: center;
-    font-size: 18px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    color: black;
-    margin-top: 20px;
-  }
-  
-  #respuesta.success {
-    color: green;
-  }
-  
-  #respuesta.error {
-    color: red;
-  }

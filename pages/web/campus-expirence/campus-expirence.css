@@ -1,21 +1,32 @@
 :root {
-    --blanco: #fefefe;
-    --negro: #000;
-    --fuente: 'Poppins', sans-serif;
-    --sombra: rgba(255, 255, 255, 0.6);
-    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    --principal: #80C4D3;
-    --secundario: #5A9EB3;
-    --blancoSecundario: #e0e0e0;
-    ---blancoMenu: #ddd;
-    --informacion: #10BFFB;
-    --sombraInformacion: rgba(16, 191, 251, 0.5);
-    --sombraOscura: rgba(0, 0, 0, 0.5);
-    --sombraOscura2: rgba(0, 0, 0, 0.3);
-    --rojoPrincipal: #CD4533;
-    --rojoSecundario: #A32F23;
-    --salmon: #FFD6D0;
-    --negroSecundario: #333;
+    /*TAMAÑO TEXTO*/
+    --titulo: 2.5rem;
+    --subtitulo: 1.5rem;
+    --texto: 1.125rem;
+    --tituloTarjeta: 1.25rem;
+    --tarjeta: 1rem;
+
+    /*TIPO DE LETRA*/
+    --regular: 'Poppins-regular';
+    --bold: 'Poppins-bold';
+
+    /*COLORES*/
+    --blanco: #f3f3f3;
+    --negro: #333;
+    --negro2: #000;
+    --principal: #FF725E;
+    --secundario: #CD4533;
+    --azul: #80C4D3;
+    --fondoMenu1: #FFD6D0;
+    --fondoMenu2: #ddd;
+
+    /*SOMBRAS*/
+    --sombra1: rgba(0, 0, 0, 0.1);
+    --sombra2: rgba(0, 0, 0, 0.2);
+    --sombra3: rgba(0, 0, 0, 0.3);
+    --sombra4: rgba(0, 0, 0, 0.4);
+    --sombra5: rgba(0, 0, 0, 0.5);
+    --sombraMenu: rgba(255, 255, 255, 0.781);
 }
 
 @font-face {
@@ -40,11 +51,11 @@ GENERAL
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins-regular';
+    font-family: var(--regular);
     background: var(--blanco);
     color: var(--negro);
     overflow-x: hidden;
-  }
+}
 
 .main {
     max-width: 1200px;
@@ -58,13 +69,12 @@ h1, h2, h3 {
 
 a {
     text-decoration: none;
-    color: var(--blanco);
-    font-size: 18px;
+    color: var(--negro);
 }
 
 button {
-    font-family: 'Poppins-bold';
-    font-size: 16px;
+    font-family: var(--bold);
+    font-size: var(--tarjeta);
 }
 
 /*----------------------------------------
@@ -77,13 +87,13 @@ MENU
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    background-color: var(--salmon);
-    border-bottom: 1px solid var(---blancoMenu);
+    background-color: var(--fondoMenu1);
+    border-bottom: 1px solid var(--fondoMenu2);
     position: relative;
     z-index: 1;
     overflow: hidden;
-    font-family: 'Poppins-bold';
-    font-size: 18px;
+    font-family: var(--regular);
+    font-size: var(--texto);
 }
 
 /* Menú fijo */
@@ -92,8 +102,8 @@ MENU
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.781);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--sombraMenu);
+    box-shadow: 0 2px 5px var(--sombra1);
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px;
@@ -112,44 +122,44 @@ MENU
 
 .opciones a {
     text-decoration: none;
-    color: var(--negroSecundario);
+    color: var(--negro);
     transition: color 0.3s;
-    font-family: 'Poppins-bold';
+    font-family: var(--regular);
+    font-size: var(--texto);
 }
 
 .opciones a:hover {
-    color: #FF725E;
+    color: var(--principal);
 }
 
 /* Estilos para los botones dentro de .menu-principal */
 .menu-principal button {
-    background: none; 
+    background: none;
     border: none;
-    color: var(--black); 
+    color: var(--negro);
     padding: 10px 20px;
     padding-left: 100px;
     cursor: pointer;
-    transition: color 0.3s ease; 
+    transition: color 0.3s ease;
 }
 
 /* Hover para los botones normales */
 .menu-principal button:hover {
-    color: #FF725E; /* Rojo al pasar el mouse */
+    color: var(--principal);
 }
 
 /* Estilos para "Inscribirse" */
 .menu-principal .btn-inscribirse {
-    background-color: #CD4533; /* Fondo rojo */
-    color: var(--white); /* Texto blanco */
-    border-radius: 5px; /* Bordes redondeados */
+    background-color: var(--secundario);
+    border-radius: 5px;
     padding: 5px 20px;
-    transition: background-color 0.3s ease; /* Transición suave para el hover */
+    transition: background-color 0.3s ease;
 }
 
 /* Hover para el botón "Inscribirse" */
 .menu-principal .btn-inscribirse:hover {
-    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
-    color: var(--white); /* Texto blanco */
+    background-color: var(--principal);
+    color: var(--negro);
 }
 
 .logo {
@@ -162,12 +172,11 @@ MENU
     height: 50px;
 }
 
-
 /*----------------------------------------
 HEADER
 -----------------------------------------*/
 .hero {
-    background-image: url(../../../assets/img/laboratorio_sensorial.jpg);
+    background-image: url(../../../assets/img/campus-expirence.jpg);
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -175,18 +184,27 @@ HEADER
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--blanco);
+    color: var(--negro);
     text-align: center;
     position: relative;
+    background-color: rgba(0, 0, 0, 0.4); /* Color oscuro */
+    background-blend-mode: multiply; /* Mezcla la imagen con el color de fondo */
+}
+
+.hero-title {
+    font-size: var(--titulo);
 }
 
 /*----------------------------------------
 TITULO
 -----------------------------------------*/
 .main h1 {
-    font-size: 56px;
+    font-size: var(--titulo);
     text-align: center;
-    color: var(--rojoPrincipal);
+}
+
+#main-title {
+    color: var(--principal);
 }
 
 /*----------------------------------------
@@ -213,6 +231,7 @@ img {
 .card_image {
     max-height: 50%;
 }
+
 .cards_item {
     display: flex;
     padding: 1rem;
@@ -221,7 +240,7 @@ img {
 .card {
     background-color: var(--blanco);
     border-radius: 0.25rem;
-    box-shadow: 0 20px 40px -14px var(--sombraOscura2);
+    box-shadow: 0 20px 40px -14px var(--sombra3);
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -231,26 +250,26 @@ img {
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 25px 50px -12px var(--sombraOscura);
+    box-shadow: 0 25px 50px -12px var(--sombra5);
 }
 
 .card_content {
     padding: 1rem;
     height: 50%;
-    background: linear-gradient(to bottom right, var(--rojoPrincipal) 70%, var(--salmon) 100%);
+    background: linear-gradient(to bottom right, var(--principal) 70%, var(--secundario) 100%);
 }
 
 .card_title {
-    color: var(--blanco);
-    font-size: 1.3rem;
+    color: var(--negro);
+    font-size: var(--tituloTarjeta);
     font-weight: 700;
     letter-spacing: 1px;
     margin: 0px;
 }
 
 .card_text {
-    color: var(--blanco);
-    font-size: 1rem;
+    color: var(--negro);
+    font-size: var(--tarjeta);
     line-height: 1.5;
     margin-bottom: 1.25rem;
 }
@@ -262,8 +281,8 @@ FOOTER
     position: relative;
     padding: 40px 30px;
     text-align: left;
-    background: black;
-    color: white;
+    background: var(--negro2);
+    color: var(--blanco);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -292,8 +311,8 @@ FOOTER
 
 .about-text {
     width: 50%;
-    font-size: 25px;
-    color: white;
+    font-size: var(--subtitulo);
+    color: var(--blanco);
     margin-top: 50px;
 }
 
@@ -308,7 +327,7 @@ FOOTER
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 16px;
+    font-size: var(--tarjeta);
 }
 
 .info-item iframe {
@@ -319,13 +338,12 @@ FOOTER
 }
 
 .highlight {
-    color: #CD4533;
-    font-weight: 700;
+    color: var(--principal);
 }
 
 .footer {
     width: 100%;
-    background: black;
+    background: var(--negro2);
     text-align: center;
     padding: 20px 0;
     margin-top: auto;
@@ -333,7 +351,7 @@ FOOTER
 
 .footer-divider {
     height: 2px;
-    background: white;
+    background: var(--blanco);
     width: 50%;
     margin: 0 auto 20px;
 }
@@ -342,8 +360,12 @@ FOOTER
     display: flex;
     justify-content: center;
     gap: 20px;
-    color: white;
+    color: var(--blanco);
     font-size: 18px;
+}
+
+.footer-links a {
+    color: var(--blanco);
 }
 
 .social-icons {
@@ -354,7 +376,7 @@ FOOTER
 }
 
 .copyright {
-    color: white;
+    color: var(--blanco);
     opacity: 0.5;
     margin-top: 20px;
 }
@@ -376,12 +398,15 @@ Estilos Responsive para Tablets
     .about-section {
         padding: 20px;
     }
+
     .footer {
         padding: 20px;
     }
+
     .about-content {
         flex-direction: column;
     }
+
     .about-text, .contact-info {
         width: 100%;
     }
@@ -406,12 +431,12 @@ Estilos Responsive para Móviles
         font-size: 14px;
         margin-top: 20px;
     }
-    
+
     .about-text {
         font-size: 20px;
     }
-    
-    .footer{
+
+    .footer {
         width: 100%;
         align-items: center;
     }
@@ -426,3 +451,86 @@ Estilos Responsive para Móviles
     }
 }
 
+/*MENU MOVIL*/
+/* Estilos para el botón de menú hamburguesa */
+.hamburguesa {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-left: 250px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000000; /* Asegurar que está encima */
+    position: relative;
+}
+
+.hamburguesa-linea {
+    width: 30px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+}
+
+.menu-movil {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Oculto por defecto */
+    width: 80%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding-top: 60px;
+}
+
+.menu-movil.visible {
+    left: 0; /* Mostrar menú */
+}
+
+.opciones-movil {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.opciones-movil a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.opciones-movil a:hover {
+    color: #FF725E;
+}
+
+/*RESPONISVE DEL MENÚ*/
+@media (max-width: 768px) {
+    .hamburguesa {
+        display: flex; /* Mostrar botón hamburguesa en móviles */
+    }
+
+    .botonesMenu {
+        /* display: none; */
+        padding-right: 50px;
+    }
+
+    .menu-fijo {
+        display: none; /* Ocultar menú fijo en móviles */
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-movil {
+        visibility: hidden;
+        opacity: 0;
+        left: -100%;
+        transition: opacity 0.3s ease, left 0.3s ease;
+    }
+    .hamburguesa{
+        display: none;
+    }
+}

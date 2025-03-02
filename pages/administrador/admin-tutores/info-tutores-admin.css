@@ -1,20 +1,33 @@
 :root {
-    --blanco: #fefefe;
+    /*TAMAÑO TEXTO*/
+    --titulo: 2.5rem;
+    --subtitulo: 1.75rem;
+    --titulo2: 1.50rem;
+    --texto: 1.25rem;
+    --texto2: 1rem;
+    --menu: 1.25rem;
+    --menu2: 1.5rem;
+
+    /*TIPO DE LETRA*/
+    --regular: 'Poppins-regular';
+    --bold: 'Poppins-bold';
+
+    /*COLORES*/
+    --blanco: #f3f3f3;
+    --blanco2: #e0e0e0;
     --negro: #000;
-    --fuente: 'Poppins', sans-serif;
-    --sombra: rgba(255, 255, 255, 0.6);
-    --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    --principal: #80C4D3;
-    --secundario: #5A9EB3;
-    --blancoSecundario: #e0e0e0;
-    --informacion: #10BFFB;
-    --sombraInformacion: rgba(16, 191, 251, 0.5);
-    --sombraOscura: rgba(0, 0, 0, 0.5);
-    --sombraOscura2: rgba(0, 0, 0, 0.2);
-    --rojoPrincipal: #CD4533;
-    --rojoSecundario: #A32F23;
-    --grisClaro: #949494;
-    --negroClaro: #333;
+    --negro2: #333;
+    --azul: #80C4D3;
+    --azul2: #5A9EB3;
+    --fondo: #e0e0e0;
+    --gris: #949494;
+
+    /*SOMBRAS*/
+    --sombra1: rgba(0, 0, 0, 0.1);
+    --sombra2: rgba(0, 0, 0, 0.2);
+    --sombra3: rgba(0, 0, 0, 0.3);
+    --sombra4: rgba(0, 0, 0, 0.4);
+    --sombra5: rgba(0, 0, 0, 0.5);
 }
 
 @font-face {
@@ -28,16 +41,16 @@
 }
 
 /*----------------------------------------
-  GENERAL
-  -----------------------------------------*/
-  * {
+GENERAL
+-----------------------------------------*/
+* {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins-regular';
+    font-family: var(--regular);
     background: var(--blanco);
     color: var(--negro);
     overflow-x: hidden;
@@ -50,12 +63,22 @@ main {
 }
 
 h1, h2, h3 {
-    font-family: 'Poppins-bold';
+    font-family: var(--bold);
+    color: var(--negro2);
 }
+
+h2 {
+    font-size: var(--subtitulo);
+}
+
+h3 {
+    font-size: var(--titulo2);
+}
+
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--negro2);
 }
 
 /*----------------------------------------
@@ -80,9 +103,9 @@ HEADER
 Titulo
 -----------------------------------------*/
 .section-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--blancoSecundario);
+    font-size: var(--titulo);
+    font-family: var(--bold);
+    color: var(--blanco);
     text-align: center;
 }
 
@@ -94,8 +117,8 @@ Cartas
     max-width: 1440px;
     margin: 20px auto;
     position: relative;
-    background: var(--blanco);
-    box-shadow: 0px 4px 8px var(--sombraOscura2);
+    background: var(--fondo);
+    box-shadow: 0px 4px 8px var(--sombra3);
     border-radius: 12px;
     overflow: hidden;
     padding: 20px;
@@ -104,7 +127,7 @@ Cartas
 .card {
     background: var(--blanco);
     border-radius: 12px;
-    box-shadow: 0px 4px 8px var(--sombraOscura2);
+    box-shadow: 0px 4px 8px var(--sombra3);
     padding: 20px;
     margin-top: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -112,11 +135,11 @@ Cartas
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 8px 16px var(--sombraOscura);
+    box-shadow: 0px 8px 16px var(--sombra5);
 }
 
 .hijos-container, .otros-tutores-container {
-    font-size: 16px;
+    font-size: var(--texto);
     line-height: 1.6;
 }
 
@@ -125,8 +148,8 @@ Cartas
 }
 
 .hijos-container strong, .otros-tutores-container strong {
-    color: var(--negro);
-    font-family: 'Poppins-bold';
+    color: var(--negro2);
+    font-family: var(--bold);
 }
 
 /*----------------------------------------
@@ -147,11 +170,10 @@ BOTONES
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: var(--texto);
+    font-family: var(--bold);
     cursor: pointer;
     border: none;
-    font-family: 'Poppins-regular';
 }
 
 /*BTN: Volver a Tutores*/
@@ -163,7 +185,7 @@ BOTONES
 }
 
 .sin-button:hover {
-    background: var(--grisClaro);
+    background: var(--gris);
 }
 
 /*----------------------------------------
@@ -212,14 +234,15 @@ Estilos Responsive para Móviles
 
     .section-title {
         padding: 10px 0;
-      }
-      .section-title h1 {
+    }
+
+    .section-title h1 {
         font-size: 30px;
-      }
-    
-      .container {
-        padding: 0 10px; 
-      }
+    }
+
+    .container {
+        padding: 0 10px;
+    }
 
     .button {
         width: 100%;

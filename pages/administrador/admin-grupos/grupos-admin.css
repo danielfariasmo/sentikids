@@ -1,18 +1,34 @@
 :root {
-  --blanco: #fefefe;
+  /*TAMAÑO TEXTO*/
+  --titulo: 2.5rem;
+  --titulo2: 2rem;
+  --texto: 1.25rem;
+  --texto2: 1rem;
+  --menu: 1.25rem;
+  --menu2: 1.5rem;
+
+  /*TIPO DE LETRA*/
+  --regular: 'Poppins-regular';
+  --bold: 'Poppins-bold';
+
+  /*COLORES*/
+  --blanco: #f3f3f3;
+  --blanco2: #e0e0e0;
   --negro: #000;
-  --fuente: 'Poppins', sans-serif;
+  --negro2: #333;
+  --azul: #80C4D3;
+  --azul2: #5A9EB3;
+  --gris: #949494;
+  --deshabilitado: #ccc;
+
+  /*SOMBRAS*/
   --sombra: rgba(255, 255, 255, 0.6);
-  --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  --principal: #80C4D3;
-  --secundario: #5A9EB3;
-  --blancoSecundario: #e0e0e0;
-  --informacion: #10BFFB;
-  --sombraInformacion: rgba(16, 191, 251, 0.5);
-  --sombraOscura: rgba(0, 0, 0, 0.5);
-  --sombraOscura2: rgba(0, 0, 0, 0.3);
-  --rojoPrincipal: #CD4533;
-  --rojoSecundario: #A32F23;
+  --sombraTabla: rgba(0, 0, 0, 0.25);
+  --sombra1: rgba(0, 0, 0, 0.1);
+  --sombra2: rgba(0, 0, 0, 0.2);
+  --sombra3: rgba(0, 0, 0, 0.3);
+  --sombra4: rgba(0, 0, 0, 0.4);
+  --sombra5: rgba(0, 0, 0, 0.5);
 }
 
 @font-face {
@@ -35,7 +51,7 @@ GENERAL
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
   background: var(--blanco);
   color: var(--negro);
   overflow-x: hidden;
@@ -48,12 +64,13 @@ main {
 }
 
 h1, h2, h3 {
-  font-family: 'Poppins-bold';
+  font-family: var(--bold);
+  color: var(--negro2);
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--negro2);
 }
 
 /*----------------------------------------
@@ -67,17 +84,18 @@ HEADER
   height: 96px;
   background: var(--negro);
   box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+  position: fixed; 
+  top: 0;          
+  left: 0;         
+  width: 100%;     
+  z-index: 1000;   
 }
 
 .logo {
   width: 150px;
   height: 40px;
 }
+
 .cerrar-sesion {
   width: 32px;
   height: 32px;
@@ -116,7 +134,6 @@ MENÚ HAMBURGUESA
 /*----------------------------------------
 MENÚ
 -----------------------------------------*/
-
 .menu ul {
   display: flex;
   gap: 32px;
@@ -128,12 +145,12 @@ MENÚ
 .menu a {
   text-decoration: none;
   color: var(--blanco);
-  font-size: 20px;
+  font-size: var(--menu);
 }
 
 .menu a:hover {
   text-shadow: 2px 2px 5px var(--sombra);
-  font-size: 22px;
+  font-size: var(--menu2);
 }
 
 /*----------------------------------------
@@ -149,7 +166,7 @@ Primera section
 }
 
 .section-title h1 {
-  font-size: 56px;
+  font-size: var(--titulo);
   line-height: 78.4px;
   margin: 0;
   text-align: center;
@@ -160,44 +177,44 @@ Tabla
 -----------------------------------------*/
 /**Contenedor Principal */
 .container {
-  width: 100%; 
-  max-width: 1440px; 
+  width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
   position: relative;
   background: var(--blanco);
-  box-shadow: 0px 4px 4px var(--sombraOscura2);
-  overflow-x: auto; 
+  box-shadow: 0px 4px 4px var(--sombra4);
+  overflow-x: auto;
 }
 
 /* Contenedor de tabla */
 .content {
   margin-bottom: 30px;
   background: var(--blanco);
-  padding: 10px; 
+  padding: 10px;
 }
 
 table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 10px;
-  min-width: 600px; 
+  min-width: 600px;
 }
 
 .table-header th {
   padding: 10px;
-  background-color: var(--principal);
+  background-color: var(--azul);
   border-bottom: 2px solid;
   text-align: center;
-  font-weight: bold;
-  font-size: 14px; 
+  font-family: var(--bold);
+  font-size: var(--texto2);
 }
 
 tbody td {
-  padding: 8px; 
+  padding: 8px;
   text-align: center;
   background-color: var(--blanco);
-  border-bottom: 1px solid var(--blancoSecundario);
-  font-size: 14px; 
+  border-bottom: 1px solid var(--blanco2);
+  font-size: var(--texto2);
 }
 
 tbody tr:last-child td {
@@ -212,26 +229,23 @@ tbody tr:last-child td {
 
 /** Boton +info*/
 .information {
-  width: 80px; 
-  height: 30px; 
-  color: var(--negro);
-  border-color: var(--principal);
+  width: 80px;
+  height: 30px;
+  color: var(--negro2);
   border-radius: 5px;
-  background-color: var(--principal);
+  background-color: var(--azul);
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 12px; 
-  font-weight: bold;
-  font-family: 'Poppins-regular';
+  font-size: var(--texto2);
+  font-family: var(--regular);
 }
 
 .information:hover {
-  background-color: var(--secundario);
-  border-color: var(--secundario);
+  background-color: var(--azul2);
 }
-
 
 /*----------------------------------------
 POP UP
@@ -240,42 +254,39 @@ POP UP
 .modal {
   display: none;
   position: fixed;
-  z-index: 100;
+  z-index: 10000;
   padding-top: 50px;
   left: 0;
-  top: 100px;
+  top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: var(--sombraOscura);
+  background-color: var(--sombra5);
 }
 
 .modal-content {
   position: relative;
-  background-color: var(--blanco);
+  background-color: var(--blanco2);
   margin: auto;
   padding: 20px;
-  border: 1px solid var(--grisClaro);
+  border: 1px solid var(--gris);
   width: 90%;
   max-width: 600px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 var(--sombra2), 0 6px 20px 0 var(--sombraTabla);
   animation-name: animatetop;
   animation-duration: 0.4s;
-   /* Asegurar que el modal esté centrado */
-   top: 0;
-   transform: translateY(0);
 }
 
-/* Animación */
+/* Add Animation */
 @keyframes animatetop {
   from {
-      top: -30000px;
-      opacity: 0;
+    top: -300px;
+    opacity: 0;
   }
 
   to {
-      top: 0;
-      opacity: 1;
+    top: 0;
+    opacity: 1;
   }
 }
 
@@ -295,7 +306,7 @@ POP UP
 
 .modal-header {
   padding: 10px 16px;
-  background-color: var(--negro);
+  background-color: var(--negro2);
   color: var(--blanco);
 }
 
@@ -308,22 +319,27 @@ POP UP
 }
 
 .modal-body {
-  background-color: var(--blancoSecundario);
-  /* Fondo suave */
+  background-color: var(--blanco2);
   padding: 20px;
 }
 
-/* Estilo de los campos de búsqueda y los resultados */
+/*----------------------------------------
+CAMBIAR MONITOR
+-----------------------------------------*/
 #search-coach {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
-  border: 2px solid var(--informacion);
+  font-size: var(--texto2);
+  border: 2px solid var(--azul);
   border-radius: 5px;
   background: var(--blanco);
-  color: var(--negro);
+  color: var(--negro2);
   margin-bottom: 20px;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
+}
+
+#search-coach:hover {
+  border-color: var(--azul2);
 }
 
 .result-item {
@@ -331,9 +347,9 @@ POP UP
   align-items: center;
   margin-bottom: 15px;
   padding: 10px;
-  background: white;
+  background: var(--blanco2);
   border-radius: 5px;
-  box-shadow: 0 2px 4px var(--sombraOscura2);
+  box-shadow: 0 2px 4px var(--sombra3);
 }
 
 .result-item input[type="checkbox"] {
@@ -343,26 +359,26 @@ POP UP
 }
 
 .result-item label {
-  font-size: 18px;
+  font-size: var(--texto);
   font-weight: 500;
   color: var(--negroClaro);
 }
 
 /* Estilo del botón de agregar al grupo */
 #add-coach:disabled {
-  background-color: #ccc;
-  color: #666;
+  background-color: var(--deshabilitado);
+  color: var(--gris);
   cursor: not-allowed;
-  border: 2px solid #ccc;
+  border: 2px solid var(--deshabilitado);
 }
 
 #add-coach {
-  background-color: var(--principal);
+  background-color: var(--azul);
   color: var(--negro);
-  border: 2px solid var(--principal);
+  border: 2px solid var(--azul);
   padding: 12px 30px;
-  font-size: 24px;
-  font-weight: bold;
+  font-family: var(--bold);
+  font-size: var(--texto);
   cursor: pointer;
   border-radius: 5px;
   display: block;
@@ -371,8 +387,8 @@ POP UP
 }
 
 #add-coach:hover {
-  background-color: var(--secundario);
-  border-color: var(--secundario);
+  background-color: var(--azul2);
+  border-color: var(--azul2);
 }
 
 /*----------------------------------------
@@ -384,7 +400,7 @@ Alerta
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--sombraOscura);
+  background: var(--sombra5);
   display: none;
   align-items: center;
   justify-content: center;
@@ -392,26 +408,26 @@ Alerta
 }
 
 .alert-content {
-  background: var(--blanco);
+  background: var(--blanco2);
   padding: 20px;
   text-align: center;
-  box-shadow: 0 4px 8px var(--sombraOscura2);
+  box-shadow: 0 4px 8px var(--sombra3);
 }
 
 .alert-content h2 {
   margin: 0 0 10px;
-  color: var(--principal);
+  color: var(--negro2);
 }
 
 #close-alert {
   margin-top: 15px;
   padding: 10px 20px;
-  background-color: var(--principal);
-  color: white;
+  background-color: var(--azul);
+  color: var(--blanco);
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-family: 'Poppins-regular';
+  font-family: var(--regular);
 }
 
 #close-alert:hover {
