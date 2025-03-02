@@ -1,4 +1,10 @@
 <?php
+/*---------------------------------------------------------------
+Función para generar el hash de la contraseña
+---------------------------------------------------------------*/
+function hashPassword($password) {
+    return password_hash($password, PASSWORD_DEFAULT);
+}
 
 /*---------------------------------------------------------------
 ADMINISTRADORES
@@ -15,8 +21,7 @@ $admin = "CREATE TABLE IF NOT EXISTS administrador (
 mysqli_query($connection, $admin) or die("ERROR: no se puede crear la tabla administradores: " . mysqli_error($connection));
 
 $insertAdmin = "INSERT INTO administrador (id_administrador, nombre_usuario, clave_usuario, nombre, apellidos, correo_electronico) VALUES 
-                    (1, 'danielfarias', 'daniel', 'Daniel', 'Farias Morales', 'fariasd99@gmail.com'),
-                    (2, 'juliana', 'juliana', 'Juliana', 'Gonzalez Olivares', 'juliana@correo.com')";
+                    (1, 'danielfarias', '" . hashPassword('daniel') . "', 'Daniel', 'Farias Morales', 'fariasd99@gmail.com')";
 mysqli_query($connection, $insertAdmin) or die("ERROR: no se puede insertar en la tabla administradores: " . mysqli_error($connection));
 
 /*---------------------------------------------------------------
@@ -36,30 +41,14 @@ $coach = "CREATE TABLE IF NOT EXISTS monitor (
 mysqli_query($connection, $coach) or die("ERROR: no se puede crear la tabla monitores: " . mysqli_error($connection));
 
 $insertCoach = "INSERT INTO monitor (id_monitor, nombre_usuario, clave_usuario, dni, nombre, apellidos, correo_electronico, telefono) VALUES 
-                    (1, 'danielgonzalez', 'daniel', '43456952Y', 'Daniel', 'Gonzalez Garrote', 'danielgonzalez@gmail.com', '658991011'),
-                    (2, 'mariahernandez', 'maria', '12345678X', 'Maria', 'Hernandez Lopez', 'mariahernandez@gmail.com', '612345678'),
-                    (3, 'pedrolopez', 'pedro', '23456789Y', 'Pedro', 'Lopez Garcia', 'pedrolopez@gmail.com', '623456789'),
-                    (4, 'juanperez', 'juan', '34567890Z', 'Juan', 'Perez Martinez', 'juanperez@gmail.com', '634567890'),
-                    (5, 'luisgarcia', 'luis', '45678901A', 'Luis', 'Garcia Fernandez', 'luisgarcia@gmail.com', '645678901'),
-                    (6, 'davidarranz', 'david', '45876315G', 'David', 'Arranz Fernandez', 'davidarranz@gmail.com', '687996633'),
-                    (7, 'cristinaperez', 'cristina', '56789012B', 'Cristina', 'Perez Gutierrez', 'cristinaperez@gmail.com', '656789012'),
-                    (8, 'andresmartin', 'andres', '67890123C', 'Andres', 'Martin Alvarez', 'andresmartin@gmail.com', '667890123'),
-                    (9, 'soniatorres', 'sonia', '78901234D', 'Sonia', 'Torres Ramirez', 'soniatorres@gmail.com', '678901234'),
-                    (10, 'alejandromolina', 'alejandro', '89012345E', 'Alejandro', 'Molina Sanchez', 'alejandromolina@gmail.com', '689012345'),
-                    (11, 'lauragonzalez', 'laura', '90123456F', 'Laura', 'Gonzalez Herrera', 'lauragonzalez@gmail.com', '690123456'),
-                    (12, 'fernandolopez', 'fernando', '01234567G', 'Fernando', 'Lopez Diaz', 'fernandolopez@gmail.com', '601234567'),
-                    (13, 'raquelmartinez', 'raquel', '12345678H', 'Raquel', 'Martinez Castro', 'raquelmartinez@gmail.com', '612345678'),
-                    (14, 'carlossanchez', 'carlos', '23456789I', 'Carlos', 'Sanchez Ruiz', 'carlossanchez@gmail.com', '623456789'),
-                    (15, 'patriciacastro', 'patricia', '34567890J', 'Patricia', 'Castro Fernandez', 'patriciacastro@gmail.com', '634567890'),
-                    (16, 'jesusnavarro', 'jesus', '45678901K', 'Jesus', 'Navarro Ortega', 'jesusnavarro@gmail.com', '645678901'),
-                    (17, 'monicagomez', 'monica', '56789012L', 'Monica', 'Gomez Jimenez', 'monicagomez@gmail.com', '656789012'),
-                    (18, 'javierrodriguez', 'javier', '67890123M', 'Javier', 'Rodriguez Serrano', 'javierrodriguez@gmail.com', '667890123'),
-                    (19, 'nuriamoreno', 'nuria', '78901234N', 'Nuria', 'Moreno Vargas', 'nuriamoreno@gmail.com', '678901234'),
-                    (20, 'franciscorios', 'francisco', '89012345O', 'Francisco', 'Rios Marin', 'franciscorios@gmail.com', '689012345'),
-                    (21, 'silviaramirez', 'silvia', '90123456P', 'Silvia', 'Ramirez Delgado', 'silviaramirez@gmail.com', '690123456');";
+                    (1, 'danielgonzalez', '" . hashPassword('daniel') . "', '43456952Y', 'Daniel', 'Gonzalez Garrote', 'danielgonzalez@gmail.com', '658991011'),
+                    (2, 'mariahernandez', '" . hashPassword('maria') . "', '12345678X', 'Maria', 'Hernandez Lopez', 'mariahernandez@gmail.com', '612345678'),
+                    (3, 'pedrolopez', '" . hashPassword('pedro') . "', '23456789Y', 'Pedro', 'Lopez Garcia', 'pedrolopez@gmail.com', '623456789'),
+                    (4, 'juanperez', '" . hashPassword('juan') . "', '34567890Z', 'Juan', 'Perez Martinez', 'juanperez@gmail.com', '634567890'),
+                    (5, 'luisgarcia', '" . hashPassword('luis') . "', '45678901A', 'Luis', 'Garcia Fernandez', 'luisgarcia@gmail.com', '645678901'),
+                    (6, 'davidarranz', '" . hashPassword('david') . "', '45876315G', 'David', 'Arranz Fernandez', 'davidarranz@gmail.com', '687996633')";
 
 mysqli_query($connection, $insertCoach) or die("ERROR: no se puede insertar en la tabla monitores: " . mysqli_error($connection));
-
 
 /*---------------------------------------------------------------
 TUTORES
@@ -78,11 +67,6 @@ $tutor = "CREATE TABLE IF NOT EXISTS tutor (
     codigo VARCHAR(255) 
 );";
 mysqli_query($connection, $tutor) or die("ERROR: no se puede crear la tabla tutores: " . mysqli_error($connection));
-
-// Función para generar el hash de la contraseña
-function hashPassword($password) {
-    return password_hash($password, PASSWORD_DEFAULT);
-}
 
 // Insertar tutores con contraseñas cifradas
 $insertTutor = "INSERT INTO tutor (id_tutor, nombre_usuario, clave_usuario, dni, nombre, apellidos, correo_electronico, telefono) VALUES 

@@ -25,43 +25,61 @@ var swiper = new Swiper(".slide-content", {
         },
     },
 });
-// MENÚ HAMBURGUESA
-const hamburguesa = document.querySelector(".hamburguesa");
-const menuMovil = document.querySelector(".menu-movil");
 
-hamburguesa.addEventListener("click", () => {
-    menuMovil.classList.toggle("visible");
-});
+/**------------------------------------
+ * MENU FIJO
+ --------------------------------------*/
+ const menuFijo = document.querySelector(".menu-fijo");
+ const menuPrincipal = document.querySelector(".menu-principal");
+ const MARGEN_INICIAL_ESCRITORIO = 48; // Margen inicial para escritorio
+ const MARGEN_INICIAL_MOVIL = 202; // Margen inicial para móviles
+ 
+ // Función para ajustar el margen superior del menú fijo
+ function ajustarMargenMenuFijo() {
+     const scrollActual = window.scrollY;
+ 
+     // Determinar el margen inicial según el tamaño de la pantalla
+     const margenInicial = window.innerWidth <= 768 ? MARGEN_INICIAL_MOVIL : MARGEN_INICIAL_ESCRITORIO;
+ 
+     // Calcula el margen superior basado en el scroll
+     let margenSuperior = margenInicial - scrollActual;
+ 
+     // Asegura que el margen no sea menor que 0
+     margenSuperior = Math.max(margenSuperior, 0);
+ 
+     // Aplica el margen calculado
+     menuFijo.style.marginTop = `${margenSuperior}px`;
+ }
+ 
+ // Ajustar el margen inicial en móviles
+ if (window.innerWidth <= 768) {
+     menuFijo.style.marginTop = `${MARGEN_INICIAL_MOVIL}px`;
+ } else {
+     menuFijo.style.marginTop = `${MARGEN_INICIAL_ESCRITORIO}px`;
+ }
+ 
+ // Escuchar el evento scroll para ajustar el margen
+ window.addEventListener("scroll", function () {
+     ajustarMargenMenuFijo();
+ });
+ 
+ // Escuchar el evento resize para ajustar el margen inicial
+ window.addEventListener("resize", function () {
+     if (window.innerWidth <= 768) {
+         menuFijo.style.marginTop = `${MARGEN_INICIAL_MOVIL}px`;
+     } else {
+         menuFijo.style.marginTop = `${MARGEN_INICIAL_ESCRITORIO}px`;
+     }
+ });
 
-// Cerrar menú al hacer clic en un enlace
-const enlacesMovil = document.querySelectorAll(".opciones-movil a");
-enlacesMovil.forEach(enlace => {
-    enlace.addEventListener("click", () => {
-        menuMovil.classList.remove("visible");
-    });
-});
+/**------------------------------------
+ * Menu hamburguesa
+ --------------------------------------*/
+ document.addEventListener("DOMContentLoaded", function () {
+    const botonMenu = document.querySelector(".menu-hamburguesa");
+    const menuOpciones = document.querySelector(".opciones");
 
-// MENÚ FIJO (tu código existente)
-const menuFijo = document.querySelector(".menu-fijo");
-menuFijo.style.marginTop = "48px";
-const MARGEN_INICIAL = 48;
-
-window.addEventListener("scroll", function () {
-    const scrollActual = window.scrollY;
-    let margenSuperior = MARGEN_INICIAL - scrollActual;
-    margenSuperior = Math.max(margenSuperior, 0);
-    menuFijo.style.marginTop = `${margenSuperior}px`;
-});
-//EMPRESAS COLABORADORAS
-document.addEventListener("DOMContentLoaded", function () {
-    var swiperEmpresas = new Swiper(".empresas-swiper", {
-        loop: true,
-        autoplay: {
-            delay: 4000, // Cambia la imagen cada 4s
-            disableOnInteraction: false,
-        },
-        slidesPerView: "auto", // Ajusta automáticamente según el tamaño
-        spaceBetween: 20,
-        centeredSlides: true, // Centra las imágenes en el carrusel
+    botonMenu.addEventListener("click", function () {
+        menuOpciones.classList.toggle("activo");
     });
 });
