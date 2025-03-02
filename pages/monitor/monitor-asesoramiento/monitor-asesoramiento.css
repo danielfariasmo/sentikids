@@ -1,13 +1,16 @@
 :root {
     --blanco: #fefefe;
     --negro: #000;
+    /*TIPO DE LETRA*/
     --fuente: 'Poppins-regular';
+     /*COLORES*/
     --sombra: rgba(255, 255, 255, 0.6);
     --sombraTabla: 0px 4px 4px rgba(0, 0, 0, 0.25);
     --principal: #80C4D3;
     --secundario: #5A9EB3;
     --blancoSecundario: #e0e0e0;
     --informacion: #10BFFB;
+    /*SOMBRAS*/
     --sombraInformacion: rgba(16, 191, 251, 0.5);
     --sombraOscura: rgba(0, 0, 0, 0.5);
     --sombraOscura2: rgba(0, 0, 0, 0.3);
@@ -95,8 +98,7 @@ body {
 }
 
 .nav a div:hover {
-    background-color: transparent;
-    color: var(--rojoPrincipal);
+    color: #80C4D3;
 }
 
 .notification-tutor {
@@ -144,7 +146,6 @@ body {
 .menu button:hover {
     background: var(--blancoSecundario);
 }
-
 .user-button {
     display: flex;
     align-items: center;
@@ -215,6 +216,7 @@ body {
     background: var(--grisFondo);
     text-align: center;
     padding: 50px 0;
+    font-family: 'Poppins-bold';
 }
 
 .header-title-text {
@@ -257,6 +259,18 @@ body {
 .notification-text {
     font-size: 18px;
     font-weight: 400;
+}
+.titulonoti{
+    width: 96%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Poppins-regular';
+}
+.textarea{
+    font-family: 'Poppins-regular';
 }
 
 /* Botón Crear Notificación */
@@ -338,6 +352,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    font-family: 'Poppins-regular';
 }
 
 .popup-content textarea {
@@ -352,6 +367,7 @@ body {
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
+    font-family: 'Poppins-regular';
 }
 
 .send-btn:hover {

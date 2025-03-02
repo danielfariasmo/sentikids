@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     '${student.telefono_persona_confianza}',
                                     '${student.dni_persona_confianza}'
                                 )">
-                                Más info
+                                + info
                             </button>
                         </td>
                     `;
@@ -122,10 +122,10 @@ document.addEventListener("DOMContentLoaded", function () {
         sessionStorage.setItem("cerrado", "true");
 
         // Reemplazar el historial para que no pueda volver atrás
-        window.history.replaceState(null, "", "../../web/home/login.html");
+        window.history.replaceState(null, "", "../../web/home/index.html");
 
         // Redirigir instantáneamente
-        window.location.href = "../../web/home/login.html";
+        window.location.href = "../../web/home/index.html";
     });
 
     // Si el usuario cerró sesión, evitar que vuelva atrás instantáneamente
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sessionStorage.removeItem("cerrado"); // Evitar bucles infinitos
 
         // Reemplazar la entrada actual en el historial para bloquear el "Atrás"
-        window.history.replaceState(null, "", "../../web/home/login.html");
+        window.history.replaceState(null, "", "../../web/home/index.html");
 
         // Redirigir instantáneamente sin recargar
         window.location.replace("../../web/home/login.html");
@@ -146,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.history.pushState(null, "", window.location.href);
     window.onpopstate = function () {
         if (!sessionStorage.getItem("usuario") && !localStorage.getItem("usuario")) {
-            window.history.replaceState(null, "", "../../web/home/login.html");
-            window.location.replace("../../web/home/login.html");
+            window.history.replaceState(null, "", "../../web/home/index.html");
+            window.location.replace("../../web/home/index.html");
         } else {
             window.history.pushState(null, "", window.location.href);
         }

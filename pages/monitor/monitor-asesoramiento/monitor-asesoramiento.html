@@ -46,7 +46,12 @@
     <div class="container">
 
         <div class="header-title">
-            <div class="header-title-text">Notificaciones</div>
+            <div class="header-title-text">NOTIFICACIONES</div>
+        </div>
+
+         <!-- Botón Crear Notificación -->
+         <div class="create-notification" onclick="openPopup()">
+            <div class="create-notification-text">Crear Notificación</div>
         </div>
 
         <!-- Notificaciones -->
@@ -78,10 +83,7 @@
             </div>
         </div>
 
-        <!-- Botón Crear Notificación -->
-        <div class="create-notification" onclick="openPopup()">
-            <div class="create-notification-text">Crear Notificación</div>
-        </div>
+       
 
     </div>
 
@@ -94,11 +96,11 @@
             <label for="recipient">Seleccione el destinatario:</label>
             <select id="recipient" name="recipient"> </select>
 
-            <label for="title">Título:</label>
-            <input type="text" id="title" name="title" required>
+            <label for="title" >Título:</label>
+            <input type="text" id="title" name="title" required class="titulonoti">
 
             <label for="message">Mensaje:</label>
-            <textarea id="message" name="message" rows="4" cols="40"></textarea>
+            <textarea id="message" name="message" rows="4" cols="40" class="textarea"></textarea>
             <button type="submit" class="send-btn">Enviar</button>
         </form>
         <div id="success-message" class="success-message">¡Notificación enviada con éxito!</div>
