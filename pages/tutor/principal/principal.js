@@ -174,12 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("reiniciar Popup");
 
         if (popup) {
-            // 1. Reiniciar el scroll del popup
+            //1 Reiniciar el scroll del popup
             setTimeout(() => {
                 popup.scrollTop = 0;
             }, 10); // Espera 10ms para asegurarte de que se ha renderizado bien
 
-            // 2. Ocultar los mensajes de validación sin borrar su contenido
+            // 2 Ocultar los mensajes de validación sin borrar su contenido
             const formulario = popup.querySelector('form'); // Selecciona el formulario dentro del popup
             if (formulario) {
                 const mensajesError = formulario.querySelectorAll('.error, .success'); // Selecciona todos los mensajes de error y éxito
@@ -198,12 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("reiniciar Popup");
 
         if (popup) {
-            // 1. Reiniciar el scroll del popup
+            //1. Reiniciar el scroll del popup
             setTimeout(() => {
                 popup.scrollTop = 0;
             }, 10); // Espera 10ms para asegurarte de que se ha renderizado bien
 
-            // 2. Ocultar los mensajes de validación sin borrar su contenido
+            //2. Ocultar los mensajes de validación sin borrar su contenido
             const formulario = popup.querySelector('form'); // Selecciona el formulario dentro del popup
             if (formulario) {
                 const mensajesError = formulario.querySelectorAll('.error, .success'); // Selecciona todos los mensajes de error y éxito
@@ -218,8 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     campo.classList.remove('error'); // Elimina la clase de error si la tiene
                 });
 
-                // 4. Restablecer el estado de validación del formulario (opcional)
-                formulario.classList.remove('was-validated'); // Si usas Bootstrap, esto es importante
+                //formulario.classList.remove('was-validated');
             }
         }
     }
@@ -418,6 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data.status === "success") {
                         borrarMensaje("AjustesError2"); // Borrar mensaje específico para este formulario
                         popupOverlay2.style.display = "none";
+                        location.reload();
                     } else {
                         mostrarMensaje(data.message, true, "AjustesError2"); // Mostrar mensaje de error
                     }
@@ -887,7 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 if (data.status === 'success') {
                     // Recargar la lista actualizada
-                    loadChildren();
+                    location.reload();
                 } else {
                     alert("Error al eliminar: " + data.message);
                 }
@@ -923,3 +923,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+/*---------------------------------------------------------------
+Funcionalidad de cerrar sesión
+---------------------------------------------------------------*/
+$(document).ready(function () {
+    $("#btnCerrarSesion").click(function () {
+        $.ajax({
+            url: "cerrar-sesion.php",
+            type: "POST",
+            dataType: "json",
+            success: function (response) {
+                if (response.status === "success") {
+                    window.location.href = "../../web/home/index.html";
+                } else {
+                    console.error("Error al cerrar sesión:", response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error en la solicitud AJAX:", error);
+            }
+        });
+    });
+});
+
