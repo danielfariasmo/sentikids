@@ -33,11 +33,20 @@ $apellidos2 = mysqli_real_escape_string($conexion, $_POST['apellidos2'] ?? '');
 $dni2 = mysqli_real_escape_string($conexion, $_POST['dni2'] ?? '');
 $telefono2 = mysqli_real_escape_string($conexion, $_POST['telefono2'] ?? '');
 $usuario = mysqli_real_escape_string($conexion, $_POST['usuario'] ?? '');
-$contra = mysqli_real_escape_string($conexion, $_POST['contra'] ?? '');
+$contra = $_POST['contra'] ?? ''; // No sanitizar la contraseña para evitar alteraciones
+
+// Validar que la contraseña no esté vacía
+if (empty($contra)) {
+    echo json_encode(['status' => 'error', 'message' => 'La contraseña es obligatoria']);
+    exit;
+}
+
+// Generar el hash de la contraseña
+$hashContra = password_hash($contra, PASSWORD_DEFAULT);
 
 // Insertar el tutor
 $queryTutor = "INSERT INTO tutor (nombre, apellidos, dni, correo_electronico, telefono, nombre_usuario, clave_usuario) 
-               VALUES ('$nombre', '$apellidos', '$dni', '$email', '$telefono', '$usuario', '$contra')";
+               VALUES ('$nombre', '$apellidos', '$dni', '$email', '$telefono', '$usuario', '$hashContra')";
 if (mysqli_query($conexion, $queryTutor)) {
     $tutorId = mysqli_insert_id($conexion);
 
@@ -67,7 +76,7 @@ if (mysqli_query($conexion, $queryTutor)) {
         }
     }
 
-    //notificación para el tutor
+    // Notificación para el tutor
     $titulo = "Bienvenido a Sentikids";
     $mensaje = "Gracias por registrarte en Sentikids. Esperamos que disfrutes de nuestros servicios.";
     $fecha = date('Y-m-d H:i:s'); // Fecha actual

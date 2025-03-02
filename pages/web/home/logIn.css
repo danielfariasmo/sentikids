@@ -1,7 +1,7 @@
 /* Estilos generales */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins-Regular', sans-serif;
     background-color: #dbecef;
     display: flex;
     justify-content: center;
@@ -210,3 +210,6 @@ input:-webkit-autofill {
     transition: background-color 5000s ease-in-out 0s; /* Elimina transiciones bruscas */
 }
 
+a {
+    color: #ff6f61; 
+}

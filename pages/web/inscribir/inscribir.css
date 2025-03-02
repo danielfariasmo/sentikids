@@ -13,10 +13,16 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins-regular', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--black);
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins-regular', sans-serif;
     background: var(--background);
     line-height: 1.6;
     color: #2c3e50;
@@ -27,7 +33,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     padding: 20px;
     margin-top: 60px;
 }
@@ -128,7 +133,7 @@ body {
     display: block;
 }
 
-.form-container button {
+.formButton button {
     width: 100%;
     padding: 12px;
     background-color: var(--information);
@@ -140,7 +145,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.form-container button:hover {
+.formButton button:hover {
     background-color: darken(var(--information), 10%);
 }
 
@@ -283,8 +288,7 @@ body {
 
 .opciones a {
     text-decoration: none;
-    color: #2c3e50;
-    font-weight: bold;
+    color: #333;
     transition: color 0.3s;
 }
 
@@ -292,12 +296,16 @@ body {
     color: #FF725E;
 }
 
+.botonesMenu a {
+    font-family: 'Poppins-bold', 'Poppins', sans-serif;
+}
+
 /* Estilos para los botones dentro de .menu-principal */
 .menu-principal button {
     font-weight: 600; /* Semi-bold */
     background: none; /* Sin fondo */
     border: none;
-    color: #2c3e50; /* Color del texto */
+    color: var(--black); /* Color del texto */
     padding: 10px 20px;
     padding-left: 100px;
     cursor: pointer;
@@ -334,6 +342,47 @@ body {
     height: 50px;
 }
 
+.logo-menu {
+    margin-top: 1000px;
+    padding-top: 100px;
+}
+
+
+
+/* Estilos para los botones dentro de .menu-principal */
+.menu-principal button {
+    font-weight: 600; /* Semi-bold */
+    background: none; /* Sin fondo */
+    border: none;
+    color: #2c3e50; /* Color del texto */
+    padding: 10px 20px;
+    padding-left: 100px;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Hover para los botones normales */
+.menu-principal button:hover {
+    color: #FF725E; /* Rojo al pasar el mouse */
+}
+
+/* Estilos para "Inscribirse" */
+.menu-principal .btn-inscribirse {
+    background-color: #CD4533; /* Fondo rojo */
+    color: var(--white); /* Texto blanco */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 20px;
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Hover para el botón "Inscribirse" */
+.menu-principal .btn-inscribirse:hover {
+    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
+    color: var(--white); /* Texto blanco */
+}
+
+
+
 /* Hero section */
 .hero {
     background-image: url(../../../assets/img/inscripcion3.jpg);
@@ -352,7 +401,7 @@ body {
 /* Breadcrumb */
 .breadcrumb {
     top: 20px;
-    font-size: 14px;
+    font-size: 16px;
     color: #2c3e50;
 }
 
@@ -368,7 +417,7 @@ body {
 /* Título del hero */
 .hero-title {
     color: #3a3a3a;
-    font-size: 48px;
+    font-size: 40px;
     margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -409,12 +458,28 @@ select {
     flex-direction: row;
 }
 
+p {
+    font-size: 18px;
+}
+
 h1 {
     text-align: center;
     color: #2c3e50;
-    font-size: 2.5em;
+    font-size: 40px;
     margin-bottom: 20px;
 }
+
+.excepcion {
+    font-size: 35px;
+    text-align: left;
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
 hr { 
     border: none;
     height: 1px;
@@ -478,8 +543,8 @@ hr {
 
 
 .feature h2 {
-    color: #2980b9;
-    font-size: 1.5em;
+    color: #2c3e50;
+    font-size: 24px;
     margin-bottom: 15px;
 }
 
@@ -600,7 +665,7 @@ FOOTER
     margin-top: 20px;
 }
 
-button {
+.botoncito button {
     background-color: #ff8c79;
     color: white;
     border: none;
@@ -611,6 +676,29 @@ button {
     transition: background 0.3s ease;
 }
 
-button:hover {
+.botoncito button:hover {
     background-color: #FF725E;
+}
+
+
+/*BOTON X*/
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FF725E;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    transition: background 0.3s ease; /* Efecto de transición */
+}
+
+.close-button:hover {
+    background: #c15142; /* Cambia el color al pasar el mouse */
 }

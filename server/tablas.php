@@ -64,10 +64,11 @@ mysqli_query($connection, $insertCoach) or die("ERROR: no se puede insertar en l
 /*---------------------------------------------------------------
 TUTORES
 ---------------------------------------------------------------*/
+// Crear la tabla tutor
 $tutor = "CREATE TABLE IF NOT EXISTS tutor (
     id_tutor INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50),
-    clave_usuario VARCHAR(255),
+    clave_usuario VARCHAR(255),  
     dni VARCHAR(9) NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
@@ -78,12 +79,18 @@ $tutor = "CREATE TABLE IF NOT EXISTS tutor (
 );";
 mysqli_query($connection, $tutor) or die("ERROR: no se puede crear la tabla tutores: " . mysqli_error($connection));
 
+// Función para generar el hash de la contraseña
+function hashPassword($password) {
+    return password_hash($password, PASSWORD_DEFAULT);
+}
+
+// Insertar tutores con contraseñas cifradas
 $insertTutor = "INSERT INTO tutor (id_tutor, nombre_usuario, clave_usuario, dni, nombre, apellidos, correo_electronico, telefono) VALUES 
-                (1, 'candela', 'candela', '50558596J', 'Candela', 'Martinez Sanchez', 'candelamartinez@gmail.com', '654591011'),
-                (2, 'sara', 'sara', '48978563P', 'Sara', 'Villanueva Rosa', 'saravillanueva@gmail.com', '600002563'),
-                (3, 'irene', 'irene', '43854741M', 'Irene', 'del Rincon Bello', 'irenedelrincon@gmail.com', '677889630'),
-                (4, 'raquel', 'raquel', '41456789F', 'Raquel', 'Cerdá Losa', 'raquelcerda@gmail.com', '630901045'),
-                (5, 'raul', 'raul', '55789635L', 'Raúl', 'Perez Jiménez', 'raulperez@gmail.com', '777985236');";
+                (1, 'candela', '" . hashPassword('candela') . "', '50558596J', 'Candela', 'Martinez Sanchez', 'candelamartinez@gmail.com', '654591011'),
+                (2, 'sara', '" . hashPassword('sara') . "', '48978563P', 'Sara', 'Villanueva Rosa', 'saravillanueva@gmail.com', '600002563'),
+                (3, 'irene', '" . hashPassword('irene') . "', '43854741M', 'Irene', 'del Rincon Bello', 'irenedelrincon@gmail.com', '677889630'),
+                (4, 'raquel', '" . hashPassword('raquel') . "', '41456789F', 'Raquel', 'Cerdá Losa', 'raquelcerda@gmail.com', '630901045'),
+                (5, 'raul', '" . hashPassword('raul') . "', '55789635L', 'Raúl', 'Perez Jiménez', 'raulperez@gmail.com', '777985236');";
 mysqli_query($connection, $insertTutor) or die("ERROR: no se puede insertar en la tabla tutores: " . mysqli_error($connection));
 
 /*---------------------------------------------------------------
@@ -158,7 +165,7 @@ $kid = "CREATE TABLE IF NOT EXISTS hijo (
     nombre VARCHAR(255) NOT NULL, 
     apellidos VARCHAR(255) NOT NULL, 
     fecha_nacimiento DATE, 
-    dieta ENUM('sin restricciones', 'sin gluten', 'sin lacteos'),
+    dieta VARCHAR(255) NOT NULL,
     alergias VARCHAR(255), 
     FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor),
     FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
