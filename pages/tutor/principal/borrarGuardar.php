@@ -42,28 +42,40 @@ if (isset($data['action'])) {
 
         try {
             // 1. Borrar las notificaciones relacionadas con el tutor
-            $sql_delete_notificaciones = "DELETE FROM notificacion WHERE id_tutor = $id_tutor";
-            if (!$conn->query($sql_delete_notificaciones)) {
-                throw new Exception("Error al borrar notificaciones: " . $conn->error);
+            $sql_delete_notificaciones = "DELETE FROM notificacion WHERE id_tutor = ?";
+            $stmt = $conn->prepare($sql_delete_notificaciones);
+            $stmt->bind_param("i", $id_tutor);
+            if (!$stmt->execute()) {
+                throw new Exception("Error al borrar notificaciones: " . $stmt->error);
             }
+            $stmt->close();
 
             // 2. Borrar los hijos del tutor
-            $sql_delete_hijos = "DELETE FROM hijo WHERE id_tutor = $id_tutor";
-            if (!$conn->query($sql_delete_hijos)) {
-                throw new Exception("Error al borrar hijos: " . $conn->error);
+            $sql_delete_hijos = "DELETE FROM hijo WHERE id_tutor = ?";
+            $stmt = $conn->prepare($sql_delete_hijos);
+            $stmt->bind_param("i", $id_tutor);
+            if (!$stmt->execute()) {
+                throw new Exception("Error al borrar hijos: " . $stmt->error);
             }
+            $stmt->close();
 
             // 3. Borrar las personas de confianza
-            $sql_delete_pc = "DELETE FROM persona_confianza WHERE id_tutor = $id_tutor";
-            if (!$conn->query($sql_delete_pc)) {
-                throw new Exception("Error al borrar personas de confianza: " . $conn->error);
+            $sql_delete_pc = "DELETE FROM persona_confianza WHERE id_tutor = ?";
+            $stmt = $conn->prepare($sql_delete_pc);
+            $stmt->bind_param("i", $id_tutor);
+            if (!$stmt->execute()) {
+                throw new Exception("Error al borrar personas de confianza: " . $stmt->error);
             }
+            $stmt->close();
 
             // 4. Borrar el tutor
-            $sql_delete_tutor = "DELETE FROM tutor WHERE id_tutor = $id_tutor";
-            if (!$conn->query($sql_delete_tutor)) {
-                throw new Exception("Error al borrar tutor: " . $conn->error);
+            $sql_delete_tutor = "DELETE FROM tutor WHERE id_tutor = ?";
+            $stmt = $conn->prepare($sql_delete_tutor);
+            $stmt->bind_param("i", $id_tutor);
+            if (!$stmt->execute()) {
+                throw new Exception("Error al borrar tutor: " . $stmt->error);
             }
+            $stmt->close();
 
             // Confirmar la transacción si todo está bien
             $conn->commit();

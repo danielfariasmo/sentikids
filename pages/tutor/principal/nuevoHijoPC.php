@@ -1,4 +1,6 @@
 <?php
+header("Content-Type: application/json");
+
 // Incluir la conexión a la base de datos
 include "../../../server/database.php";
 
@@ -27,6 +29,12 @@ if ($rol !== 'tutor') {
 // Conectar a la base de datos
 $conn = new mysqli($servidor, $usuarioBD, $password, $db);
 
+// Verificar la conexión
+if ($conn->connect_error) {
+    echo json_encode(['status' => 'error', 'message' => 'Error de conexión: ' . $conn->connect_error]);
+    exit;
+}
+
 // Obtener los datos del formulario
 $funcion = $_POST['funcion'] ?? null;
 
@@ -45,12 +53,18 @@ if ($funcion === 'nuevoHijoPC') {
         $sql = "INSERT INTO hijo (nombre, apellidos, fecha_nacimiento, dieta, alergias, id_tutor) 
                 VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
+
+        if (!$stmt) {
+            echo json_encode(['status' => 'error', 'message' => 'Error en la preparación de la consulta: ' . $conn->error]);
+            exit;
+        }
+
         $stmt->bind_param('sssssi', $nombre, $apellidos, $fecha_nacimiento, $dieta, $alergias, $id_tutor);
 
         if ($stmt->execute()) {
             echo json_encode(['status' => 'success', 'message' => 'Hijo añadido correctamente.']);
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error al añadir el hijo.']);
+            echo json_encode(['status' => 'error', 'message' => 'Error al añadir el hijo: ' . $stmt->error]);
         }
 
         $stmt->close();
@@ -66,12 +80,18 @@ if ($funcion === 'nuevoHijoPC') {
         $sql = "INSERT INTO persona_confianza (nombre, apellidos, dni, telefono, id_tutor) 
                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
+
+        if (!$stmt) {
+            echo json_encode(['status' => 'error', 'message' => 'Error en la preparación de la consulta: ' . $conn->error]);
+            exit;
+        }
+
         $stmt->bind_param('ssssi', $nombre, $apellidos, $dni, $telefono, $id_tutor);
 
         if ($stmt->execute()) {
             echo json_encode(['status' => 'success', 'message' => 'Persona de confianza añadida correctamente.']);
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error al añadir la persona de confianza.']);
+            echo json_encode(['status' => 'error', 'message' => 'Error al añadir la persona de confianza: ' . $stmt->error]);
         }
 
         $stmt->close();
@@ -84,3 +104,4 @@ if ($funcion === 'nuevoHijoPC') {
 
 // Cerrar la conexión
 $conn->close();
+?>
