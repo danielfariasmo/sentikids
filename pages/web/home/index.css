@@ -1284,3 +1284,11 @@ MENU FIJO - MENÚ HAMBURGUESA EN MÓVILES
         display: flex;
     }
 }
+
+.hero-home {
+    transition: background-image 0.5s ease-in-out;
+}
+
+.hero-content {
+    transition: opacity 0.5s ease-in-out;
+}

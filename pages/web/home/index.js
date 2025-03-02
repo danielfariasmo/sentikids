@@ -106,13 +106,33 @@ function changeHeroContent(index) {
 // Event listeners para los botones circulares
 circleButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-        changeHeroContent(index);
+        currentIndex = index; // Actualizar el índice actual
+        changeHeroContent(currentIndex);
+        resetInterval(); // Reiniciar el intervalo
     });
 });
 
-// Inicializar con el primer conjunto de datos
-changeHeroContent(0);
+// Variables para la animación automática
+let currentIndex = 0;
+let interval;
 
+// Función para iniciar la animación automática
+function startInterval() {
+    interval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % heroData.length; // Cambiar al siguiente índice
+        changeHeroContent(currentIndex);
+    }, 5000); // Cambiar cada 5 segundos (5000 ms)
+}
+
+// Función para reiniciar el intervalo
+function resetInterval() {
+    clearInterval(interval); // Detener el intervalo actual
+    startInterval(); // Iniciar un nuevo intervalo
+}
+
+// Inicializar con el primer conjunto de datos
+changeHeroContent(currentIndex);
+startInterval(); // Iniciar la animación automática
 /**------------------------------------
 * PREGUNTAS FRECUENTES
 --------------------------------------*/
