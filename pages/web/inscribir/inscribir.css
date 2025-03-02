@@ -1,19 +1,57 @@
 :root {
-    --white: #fff;
-    --black: #2c3e50;
-    --success: #50812A;
-    --information: #6291E8;
-    --warning: #ffcd2b;
-    --error: #F66060;
-    --background: #ffffff;
+    /*TAMAÑO TEXTO*/
+    --titulo: 2.5rem;
+    --subtitulo: 1.5rem;
+    --subtitulo2: 1.30rem;
+    --texto: 1.125rem;
+    --tituloTarjeta: 1.25rem;
+    --tarjeta: 1rem;
+
+    /*TIPO DE LETRA*/
+    --regular: 'Poppins-regular';
+    --bold: 'Poppins-bold';
+
+    /*COLORES*/
+    --blanco: #f3f3f3;
+    --blanco1: #fff;
+    --negro: #333;
+    --negro2: #000;
+    --principal: #FF725E;
+    --secundario: #CD4533;
+    --azul: #80C4D3;
+    --azul2: #5A9EB3;
+    --fondoMenu1: #FFD6D0;
+    --fondoMenu2: #ddd;
+    --error: #D0090B;
+    --error2: #c15142;
+    --correcto: #50812A;
+
+    /*SOMBRAS*/
+    --sombra1: rgba(0, 0, 0, 0.1);
+    --sombra2: rgba(0, 0, 0, 0.2);
+    --sombra3: rgba(0, 0, 0, 0.3);
+    --sombra4: rgba(0, 0, 0, 0.4);
+    --sombra5: rgba(0, 0, 0, 0.5);
+    --sombraMenu: rgba(255, 255, 255, 0.781);
 }
 
-/* Estilos generales */
+@font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+}
+
+/*----------------------------------------
+GENERAL
+-----------------------------------------*/
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Poppins-regular', sans-serif;
 }
 
 a {
@@ -22,13 +60,15 @@ a {
 }
 
 body {
-    font-family: 'Poppins-regular', sans-serif;
-    background: var(--background);
+    font-family: var(--regular);
+    background: var(--blanco);
     line-height: 1.6;
-    color: #2c3e50;
+    color: var(--negro);
 }
 
-/* Contenedor del formulario */
+/*----------------------------------------
+FORMULARIO
+-----------------------------------------*/
 .form-wrapper {
     display: flex;
     justify-content: center;
@@ -40,11 +80,11 @@ body {
 .form-container {
     width: 100%;
     max-width: 800px;
-    background: var(--white);
+    background: var(--blanco);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 2.5px solid #FFD6D0;
+    box-shadow: 0 4px 8px var(--sombra3);
+    border: 2.5px solid var(--secundario);
 }
 
 #userForm {
@@ -74,9 +114,9 @@ body {
     width: 100%;
     height: 45px;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: var(--texto);
     padding: 0 12px;
-    border: 2px solid var(--black);
+    border: 2px solid var(--negro);
     background: transparent;
     outline: none;
 }
@@ -89,7 +129,7 @@ body {
 
 .input-field select {
     appearance: none; /* Elimina el estilo por defecto del select */
-    background: var(--white);
+    background: var(--blanco);
     cursor: pointer;
 }
 
@@ -102,11 +142,11 @@ body {
     position: absolute;
     top: 15px;
     left: 12px;
-    color: #2c3e50;
+    color: var(--negro);
     font-size: 14px;
     pointer-events: none;
     transition: 0.3s;
-    background: var(--white);
+    background: var(--blanco);
     padding: 0 4px;
 }
 
@@ -117,14 +157,14 @@ body {
 .input-field select:focus ~ label,
 .input-field select:not(:placeholder-shown) ~ label {
     top: -8px;
-    font-size: 12px;
-    color: #2c3e50;
-    background: var(--white);
+    font-size: var(--texto);
+    color: var(--negro);
+    background: var(--blanco);
 }
 
 .error {
     color: var(--error);
-    font-size: 0.9rem;
+    font-size: var(--tarjeta);
     margin-top: 5px;
     display: none;
 }
@@ -136,17 +176,18 @@ body {
 .formButton {
     width: 100%;
     padding: 12px;
-    background-color: #68AEBE;
+    background-color: var(--secundario);
     color: var(--white);
     border: none;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: var(--texto);
+    font-family: var(--bold);
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .formButton:hover {
-    background-color: darken(var(--information), 10%);
+    background-color: var(--principal);
 }
 
 .child-block {
@@ -162,6 +203,17 @@ body {
 .botoncito {
     grid-column: 1 / -1;
     margin-bottom: 10px;
+    color: var(--negro);
+    font-size: var(--tarjeta);
+    font-family: var(--bold);
+    background-color: var(--azul);
+    border: 2px solid var(--azul);
+    height: 2em;
+    cursor: pointer;
+}
+
+.botoncito:hover{
+    background-color: var(--azul2);
 }
 
 .child-block {
@@ -171,15 +223,17 @@ body {
 .child-block h2 {
     grid-column: 1 / -1;
     margin-bottom: 10px;
-    font-size: 1.5rem;
-    color: #2c3e50;
+    font-size: var(--subtitulo);
+    font-family: var(--bold);
+    color: var(--negro);
 }
 
 .child-block h3 {
     grid-column: 1 / -1;
     margin-bottom: 10px;
-    font-size: 1.2rem;
-    color: #2c3e50;
+    font-size: var(--subtitulo2);
+    font-family: var(--bold);
+    color: var(--negro);
 }
 
 .child-block .input-field {
@@ -192,9 +246,9 @@ body {
     width: 100%;
     height: 45px;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: var(--texto);
     padding: 0 12px;
-    border: 2px solid #2c3e50;
+    border: 2px solid var(--negro);
     background: transparent;
     outline: none;
 }
@@ -207,7 +261,7 @@ body {
 
 .child-block .input-field select {
     appearance: none;
-    background: var(--white);
+    background: var(--blanco);
     cursor: pointer;
 }
 
@@ -215,11 +269,11 @@ body {
     position: absolute;
     top: 15px;
     left: 12px;
-    color: var(--black);
+    color: var(--negro);
     font-size: 14px;
     pointer-events: none;
     transition: 0.3s;
-    background: var(--white);
+    background: var(--black);
     padding: 0 4px;
 }
 
@@ -230,14 +284,14 @@ body {
 .child-block .input-field select:focus ~ label,
 .child-block .input-field select:not(:placeholder-shown) ~ label {
     top: -8px;
-    font-size: 12px;
-    color: var(--black);
-    background: var(--white);
+    font-size: var(--tarjeta);
+    color: var(--negro);
+    background: var(--blanco);
 }
 
 .child-block .error {
     color: var(--error);
-    font-size: 0.9rem;
+    font-size: var(--tarjeta);
     margin-top: 5px;
     display: none;
 }
@@ -246,8 +300,9 @@ body {
     display: block;
 }
 
-/******* MENÚ **********/
-
+/*----------------------------------------
+MENU
+-----------------------------------------*/
 /* Menú principal */
 .menu-principal {
     height: 48px;
@@ -255,11 +310,14 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    background-color: #FFD6D0;
-    border-bottom: 1px solid #ddd;
+    background-color: var(--fondoMenu1);
+    border-bottom: 1px solid var(--fondoMenu2);
     position: relative;
     z-index: 1;
     overflow: hidden;
+    font-family: var(--regular);
+    font-size: var(--texto);
+    cursor: pointer;
 }
 
 /* Menú fijo */
@@ -268,13 +326,14 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.781);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--sombraMenu);
+    box-shadow: 0 2px 5px var(--sombra1);
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px;
     transition: top 0.3s ease;
     z-index: 1000;
+    cursor: pointer;
 }
 
 .menu-fijo.visible {
@@ -288,48 +347,44 @@ body {
 
 .opciones a {
     text-decoration: none;
-    color: #333;
+    color: var(--negro);
     transition: color 0.3s;
+    font-family: var(--regular);
+    font-size: var(--texto);
 }
 
 .opciones a:hover {
-    color: #FF725E;
-}
-
-.botonesMenu a {
-    font-family: 'Poppins-bold', 'Poppins', sans-serif;
+    color: var(--principal);
 }
 
 /* Estilos para los botones dentro de .menu-principal */
 .menu-principal button {
-    font-weight: 600; /* Semi-bold */
-    background: none; /* Sin fondo */
+    background: none;
     border: none;
-    color: var(--black); /* Color del texto */
+    color: var(--negro);
     padding: 10px 20px;
     padding-left: 100px;
     cursor: pointer;
-    transition: color 0.3s ease; /* Transición suave para el hover */
+    transition: color 0.3s ease;
 }
 
 /* Hover para los botones normales */
 .menu-principal button:hover {
-    color: #FF725E; /* Rojo al pasar el mouse */
+    color: var(--principal);
 }
 
 /* Estilos para "Inscribirse" */
 .menu-principal .btn-inscribirse {
-    background-color: #CD4533; /* Fondo rojo */
-    color: var(--white); /* Texto blanco */
-    border-radius: 5px; /* Bordes redondeados */
+    background-color: var(--secundario);
+    border-radius: 5px;
     padding: 5px 20px;
-    transition: background-color 0.3s ease; /* Transición suave para el hover */
+    transition: background-color 0.3s ease;
 }
 
 /* Hover para el botón "Inscribirse" */
 .menu-principal .btn-inscribirse:hover {
-    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
-    color: var(--white); /* Texto blanco */
+    background-color: var(--principal);
+    color: var(--negro);
 }
 
 .logo {
@@ -342,50 +397,21 @@ body {
     height: 50px;
 }
 
-.logo-menu {
-    margin-top: 1000px;
-    padding-top: 100px;
+/* Estilos generales */
+.menu-hamburguesa {
+    display: none; /* Oculto en pantallas grandes */
 }
 
-
-
-/* Estilos para los botones dentro de .menu-principal */
-.menu-principal button {
-    font-weight: 600; /* Semi-bold */
-    background: none; /* Sin fondo */
-    border: none;
-    color: #2c3e50; /* Color del texto */
-    padding: 10px 20px;
-    padding-left: 100px;
-    cursor: pointer;
-    transition: color 0.3s ease; /* Transición suave para el hover */
+.menu-principal a {
+    font-family: var(--bold);
+    font-size: 16px;
 }
 
-/* Hover para los botones normales */
-.menu-principal button:hover {
-    color: #FF725E; /* Rojo al pasar el mouse */
-}
-
-/* Estilos para "Inscribirse" */
-.menu-principal .btn-inscribirse {
-    background-color: #CD4533; /* Fondo rojo */
-    color: var(--white); /* Texto blanco */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 5px 20px;
-    transition: background-color 0.3s ease; /* Transición suave para el hover */
-}
-
-/* Hover para el botón "Inscribirse" */
-.menu-principal .btn-inscribirse:hover {
-    background-color: #FF725E; /* Rojo más oscuro al pasar el mouse */
-    color: var(--white); /* Texto blanco */
-}
-
-
-
-/* Hero section */
+/*----------------------------------------
+HEADER
+-----------------------------------------*/
 .hero {
-    background-image: url(../../../assets/img/inscripcion3.jpg);
+    background-image: url(../../../assets/img/buenaCalidad2.jpg);
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -393,33 +419,22 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--negro);
     text-align: center;
     position: relative;
+    background-color: rgba(0, 0, 0, 0.4); /* Color oscuro */
+    background-blend-mode: multiply; /* Mezcla la imagen con el color de fondo */
 }
 
-/* Breadcrumb */
-.breadcrumb {
-    top: 20px;
-    font-size: 16px;
-    color: #2c3e50;
-}
-
-.breadcrumb a {
-    color: #2c3e50;
-    text-decoration: none;
-}
-
-.breadcrumb a:hover {
-    text-decoration: underline;
-}
-
-/* Título del hero */
 .hero-title {
-    color: #3a3a3a;
-    font-size: 40px;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: var(--titulo);
+    color: var(--blanco);
+}
+.breadcrumb{
+    color: var(--blanco);
+}
+.breadcrumb a{
+    color: var(--blanco);
 }
 
 /* Estilos para inputs, textareas y selects */
@@ -429,11 +444,12 @@ select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 2px solid var(--black);
+    border: 2px solid var(--negro);
     border-radius: 6px;
-    font-size: 16px;
+    font-size: var(--tarjeta);
+    font-family: var(--regular);
     outline: none;
-    background: var(--white);
+    background: var(--blanco);
 }
 
 textarea {
@@ -443,7 +459,7 @@ textarea {
 
 select {
     appearance: none; /* Elimina el estilo por defecto del select */
-    background: var(--white);
+    background: var(--blanco);
     cursor: pointer;
 }
 
@@ -464,26 +480,26 @@ p {
 
 h1 {
     text-align: center;
-    color: #2c3e50;
-    font-size: 40px;
+    color: var(--negro);
+    font-size: var(--titulo);
+    font-family: var(--bold);
     margin-bottom: 20px;
 }
 
 .excepcion {
-    font-size: 35px;
     text-align: left;
 }
 
 h2 {
-    color: #2c3e50;
-    font-size: 24px;
+    font-size: var(--subtitulo);
+    font-family: var(--bold);
     margin-bottom: 20px;
 }
 
 hr { 
     border: none;
     height: 1px;
-    background-color: #2c3e509f;
+    background-color: var(--negro2);
     width: 100%;
     max-width: 900px; /* Limita el ancho del hr */
 }
@@ -495,7 +511,7 @@ hr {
 
 .intro {
     text-align: center;
-    font-size: 1.2em;
+    font-size: var(--texto);
     margin-bottom: 40px;
 }
 
@@ -507,9 +523,9 @@ hr {
 }
 
 .feature {
-    background-color: #fff;
+    background-color: var(--blanco1);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--sombra3);
     padding: 20px;
     width: calc(50% - 40px);
     box-sizing: border-box;
@@ -543,13 +559,13 @@ hr {
 
 
 .feature h2 {
-    color: #2c3e50;
+    color: var(--negro);
     font-size: 24px;
     margin-bottom: 15px;
 }
 
 .feature p {
-    font-size: 1em;
+    font-size: var(--tarjeta);
     line-height: 1.6;
 }
 
@@ -559,8 +575,6 @@ hr {
     }
 }
 
-
-
 /*----------------------------------------
 FOOTER
 -----------------------------------------*/
@@ -568,8 +582,8 @@ FOOTER
     position: relative;
     padding: 40px 30px;
     text-align: left;
-    background: black;
-    color: white;
+    background: var(--negro2);
+    color: var(--blanco);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -598,8 +612,8 @@ FOOTER
 
 .about-text {
     width: 50%;
-    font-size: 25px;
-    color: white;
+    font-size: var(--subtitulo);
+    color: var(--blanco);
     margin-top: 50px;
 }
 
@@ -614,7 +628,7 @@ FOOTER
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 16px;
+    font-size: var(--tarjeta);
 }
 
 .info-item iframe {
@@ -625,13 +639,12 @@ FOOTER
 }
 
 .highlight {
-    color: #CD4533;
-    font-weight: 700;
+    color: var(--principal);
 }
 
 .footer {
     width: 100%;
-    background: #2c3e50;
+    background: var(--negro2);
     text-align: center;
     padding: 20px 0;
     margin-top: auto;
@@ -639,7 +652,7 @@ FOOTER
 
 .footer-divider {
     height: 2px;
-    background: white;
+    background: var(--blanco);
     width: 50%;
     margin: 0 auto 20px;
 }
@@ -648,8 +661,12 @@ FOOTER
     display: flex;
     justify-content: center;
     gap: 20px;
-    color: white;
+    color: var(--blanco);
     font-size: 18px;
+}
+
+.footer-links a {
+    color: var(--blanco);
 }
 
 .social-icons {
@@ -660,34 +677,20 @@ FOOTER
 }
 
 .copyright {
-    color: white;
+    color: var(--blanco);
     opacity: 0.5;
     margin-top: 20px;
 }
 
-.botoncito{
-    background-color: #ff8c79;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.botoncito:hover {
-    background-color: #FF725E;
-}
-
-
-/*BOTON X*/
+/*----------------------------------------
+BOTON X
+-----------------------------------------*/
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #FF725E;
-    color: white;
+    background: var(--error);
+    color: var(--blanco1);
     border: none;
     border-radius: 50%;
     width: 25px;
@@ -700,5 +703,181 @@ FOOTER
 }
 
 .close-button:hover {
-    background: #c15142; /* Cambia el color al pasar el mouse */
+    background: var(--error2); /* Cambia el color al pasar el mouse */
+}
+
+/*----------------------------------------
+MENU PRINCIPAL - FORMATO VERTICAL EN MÓVILES
+-----------------------------------------*/
+@media screen and (max-width: 768px) {
+
+    .menu-hamburguesa {
+        display: block !important; /* FORZAR que se vea */
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--negro);
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        z-index: 1100;
+    }
+
+    .menu-principal {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .botonesMenu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu-principal button {
+        padding-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/*----------------------------------------
+MENU FIJO - MENÚ HAMBURGUESA EN MÓVILES
+-----------------------------------------*/
+@media screen and (max-width: 768px) {
+    .menu-fijo {
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        height: 50px;
+    }
+
+    .menu-hamburguesa {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--negro);
+    }
+
+    .opciones {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--sombraMenu);
+        box-shadow: 0 2px 5px var(--sombra1);
+        padding: 10px 0;
+    }
+
+    .opciones a {
+        text-align: center;
+        padding: 10px;
+        display: block;
+    }
+
+    .opciones.activo {
+        display: flex;
+    }
+}
+
+/*----------------------------------------
+Estilos Responsive para Tablets 
+(768px - 1024px)
+-----------------------------------------*/
+@media (max-width: 768px) {
+    /*FOOTER*/
+    .about-section {
+        padding: 20px;
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text, .contact-info {
+        width: 100%;
+    }
+}
+
+
+/*----------------------------------------
+Estilos Responsive para Móviles 
+(hasta 768px)
+-----------------------------------------*/
+
+@media (max-width: 480px) {
+
+    /*Footer*/
+    .contact-info {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .about-text {
+        font-size: 20px;
+    }
+
+    .footer {
+        width: 100%;
+        align-items: center;
+    }
+
+    .footer-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .social-icons {
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .intro {
+        font-size: var(--texto-mobile); 
+        margin-bottom: 20px; 
+    }
+
+    .features {
+        flex-direction: column; 
+        gap: 15px; 
+    }
+
+    .feature {
+        width: 100%; 
+        padding: 15px; 
+        flex-direction: column; 
+        text-align: center; 
+    }
+
+    .feature-icon {
+        width: 60px; 
+        margin-bottom: 10px; 
+    }
+
+    .feature h2 {
+        font-size: 20px; 
+        margin-bottom: 10px; 
+    }
+
+    .feature p {
+        font-size: 14px; 
+        line-height: 1.5; 
+    }
 }

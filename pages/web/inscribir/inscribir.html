@@ -12,15 +12,22 @@
 <body>
     <!-- Primer menú -->
     <div class="menu-principal">
-        <a href="../home/index.html"><img class="logo" src="../../../assets/img/logo-sin-fondo.png" alt="Logo"></a>
+        <a href="../home/index.html">
+            <img class="logo" src="../../../assets/img/logo-sin-fondo.png" alt="Logo">
+        </a>
         <div class="botonesMenu">
-            <button class="btn-area-privada"><a href="../home/logIn.html" target="_blank">Área privada</a></button>
-            <button class="btn-inscribirse"><a href="../inscribir/inscribir.html">Inscribirse</a></button>
+            <button class="btn-area-privada">
+                <a href="../home/logIn.html" target="_blank">Área privada</a>
+            </button>
+            <button class="btn-inscribirse">
+                <a href="../inscribir/inscribir.html">Inscribirse</a>
+            </button>
         </div>
     </div>
 
-    <!-- Segundo menú fijo -->
+    <!-- Segundo menú fijo con menú hamburguesa -->
     <div class="menu-fijo">
+        <button class="menu-hamburguesa">☰</button>
         <div class="opciones">
             <a href="../nosotros/nosotros.html">Nosotros</a>
             <a href="../campus-expirence/campus-expirence.html">Campus Experience</a>
@@ -29,10 +36,11 @@
         </div>
     </div>
 
+    <!-- HEADER -->
     <div class="hero">
         <h1 class="hero-title">INSCRIPCIÓN</h1>
         <div class="breadcrumb">
-            <a href="../home/inicio.html">Inicio</a> &raquo; <a href="#">Inscribirse</a>
+            <a href="../home/inicio.html">Inicio</a> &raquo; <a href="../inscribir/inscribir.html">Inscribirse</a>
         </div>
     </div>
 
@@ -255,10 +263,10 @@
         <div class="footer-content">
             <div class="footer-divider"></div>
             <div class="footer-links">
-                <div>Nosotros</div>
-                <div>Campus Experience</div>
-                <div>Precios</div>
-                <div>Contacto</div>
+                <div><a href="../nosotros/nosotros.html">Nosotros</a></div>
+                <div><a href="../campus-expirence/campus-expirence.html">Campus Expirence</a></div>
+                <div><a href="../precios/precios.html">Precios</a></div>
+                <div><a href="../contacto/contacto.html">Contacto</a></div>
             </div>
             <div class="social-icons">
                 <div class="icon">
@@ -272,11 +280,17 @@
                         <img src="../../../assets/icon/logotipo-de-instagram.png" alt="Instagram">
                     </a>
                 </div>
+                <div class="icon">
+                    <a href="https://www.facebook.com/share/1BSx2ZYBke/?mibextid=wwXIfr" target="_blank">
+                        <img src="../../../assets/icon/facebook.png" alt="Facebook">
+                    </a>
+                </div>
             </div>
             <div class="copyright">Copyright © 2025. All Right Reserved.</div>
         </div>
     </div>
 
+    <!-- JAVASCRIPT -->
     <script src="inscribir.js"></script>
 </body>
 
