@@ -153,7 +153,7 @@
 
     <!-- Popup Añadir Niño/a-->
     <div class="popup-overlay2" id="popupOverlay2">
-        <div class="popup">
+        <div class="popup" id="popup2">
             <h2>Añadir nuevo niño/a</h2>
             <div class="form-container">
                 <form id="userForm_hijo">
@@ -178,7 +178,8 @@
                     </div>
 
                     <h2>Detalles adicionales</h2>
-                    <label for="diet">Dieta</label>
+                    <div>
+                        <label for="diet">Dieta</label>
                     <select id="diet" name="diet[]">
                         <option value="none">Sin restricciones</option>
                         <option value="gluten-free">Sin gluten</option>
@@ -189,6 +190,7 @@
                     <textarea id="allergies" name="allergies[]"></textarea><br>
 
                     <span id="AjustesError2" class="error hidden"></span>
+                    </div>
                 </form>
 
                 <div class="button-group">
@@ -203,30 +205,30 @@
 
     <!-- Popup Añadir Persona de Confianza-->
     <div class="popup-overlay3" id="popupOverlay3">
-        <div class="popup">
+        <div class="popup" id="popup3">
             <h2>Añadir nueva Persona de Confianza</h2>
             <div class="form-container">
                 <form id="userForm_pc">
                     <h2>Información Básica</h2>
                     <div class="input-grid">
                         <div class="input-field">
-                            <input type="text" id="name2" name="nombre2" placeholder=""><br>
+                            <input type="text" id="name3" name="nombre2" placeholder=""><br>
                             <label for="name2">Nombre</label>
                             <span class="error hidden" id="name3Error">Por favor, introduce un nombre válido.</span>
                         </div>
                         <div class="input-field">
-                            <input type="text" id="lastName2" name="apellidos2" placeholder=""><br>
+                            <input type="text" id="lastName3" name="apellidos2" placeholder=""><br>
                             <label for="lastName2">Apellidos</label>
                             <span class="error hidden" id="lastName3Error">Por favor, introduce un apellido
                                 válido.</span>
                         </div>
                         <div class="input-field">
-                            <input type="text" id="dni2" name="dni2" placeholder=""><br>
+                            <input type="text" id="dni3" name="dni2" placeholder=""><br>
                             <label for="dni2">DNI</label>
                             <span class="error hidden" id="dni3Error">Por favor, introduce un dni válido.</span>
                         </div>
                         <div class="input-field">
-                            <input type="tel2" id="tel2" name="telefono2" placeholder=""><br>
+                            <input type="tel2" id="tel3" name="telefono2" placeholder=""><br>
                             <label for="tel2">Telefono</label>
                             <span class="error hidden" id="tel3Error">Por favor, introduce un telefono válido.</span>
                         </div>

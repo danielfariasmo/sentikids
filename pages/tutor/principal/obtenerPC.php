@@ -10,9 +10,9 @@ $password = "";
 $db = "sentikids";
 
 // Conexión a la base de datos
-$conexion = mysqli_connect($servidor, $usuarioBD, $password, $db);
-if (!$conexion) {
-    echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos']);
+$conexion = new mysqli($servidor, $usuarioBD, $password, $db);
+if ($conexion->connect_errno) {
+    echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos: ' . $conexion->connect_error]);
     exit;
 }
 
@@ -35,22 +35,36 @@ if ($rol !== 'tutor') {
 // Obtener el ID del tutor desde la sesión
 $id_tutor = $_SESSION['id_usuario'];
 
-// Consulta para obtener las personas de confianza
-$sql = "SELECT id_otro_tutor, nombre, apellidos, telefono FROM persona_confianza WHERE id_tutor = '$id_tutor'";
-$result = $conexion->query($sql);
+// Consulta para obtener las personas de confianza 
+$sql = "SELECT id_otro_tutor, nombre, apellidos, telefono FROM persona_confianza WHERE id_tutor = ?";
+$stmt = $conexion->prepare($sql);
 
-if (!$result) {
-    echo json_encode(['status' => 'error', 'message' => 'Error en la consulta SQL']);
+if (!$stmt) {
+    echo json_encode(['status' => 'error', 'message' => 'Error en la preparación de la consulta: ' . $conexion->error]);
     exit;
 }
 
+// Vincular el parámetro (id_tutor) a la consulta
+$stmt->bind_param("i", $id_tutor); // "i" indica que el parámetro es un entero
+
+// Ejecutar la consulta
+if (!$stmt->execute()) {
+    echo json_encode(['status' => 'error', 'message' => 'Error al ejecutar la consulta: ' . $stmt->error]);
+    exit;
+}
+
+// Obtener el resultado de la consulta
+$result = $stmt->get_result();
 $trusted = [];
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $trusted[] = $row;
     }
 }
 
+// Cerrar la sentencia y la conexión
+$stmt->close();
 $conexion->close();
 
 // Devolver la información en formato JSON

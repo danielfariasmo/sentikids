@@ -10,9 +10,9 @@ $password = "";
 $db = "sentikids";
 
 // Conexión a la base de datos
-$conexion = mysqli_connect($servidor, $usuarioBD, $password, $db);
-if (!$conexion) {
-    echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos']);
+$conexion = new mysqli($servidor, $usuarioBD, $password, $db);
+if ($conexion->connect_errno) {
+    echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos: ' . $conexion->connect_error]);
     exit;
 }
 
@@ -38,6 +38,7 @@ $id_tutor = $_SESSION['id_usuario'];
 // Base de la consulta: obtener la información de los hijos del tutor
 $queryHijo = "
     SELECT 
+        h.id_hijo,  
         h.nombre AS nombre_hijo,
         h.apellidos AS apellidos_hijo,
         h.alergias,
@@ -49,24 +50,39 @@ $queryHijo = "
     FROM hijo h
     LEFT JOIN grupo g ON h.id_grupo = g.id_grupo
     LEFT JOIN monitor m ON g.id_monitor = m.id_monitor
-    WHERE h.id_tutor = '$id_tutor'
+    WHERE h.id_tutor = ?
 ";
 
 // Si se ha pasado el parámetro 'nombre', agregarlo a la condición
 if (isset($_GET['nombre'])) {
-    $nombre = mysqli_real_escape_string($conexion, $_GET['nombre']);
-    $queryHijo .= " AND h.nombre = '$nombre'";
+    $queryHijo .= " AND h.nombre = ?";
 }
 
-$resultHijo = mysqli_query($conexion, $queryHijo);
+// Preparar la consulta
+$stmt = $conexion->prepare($queryHijo);
 
-if (!$resultHijo) {
-    echo json_encode(['status' => 'error', 'message' => 'Error al consultar la información del hijo']);
+if (!$stmt) {
+    echo json_encode(['status' => 'error', 'message' => 'Error en la preparación de la consulta: ' . $conexion->error]);
     exit;
 }
 
-// Obtener la información del hijo como un array asociativo
-$hijo = mysqli_fetch_assoc($resultHijo);
+// Vincular los parámetros
+if (isset($_GET['nombre'])) {
+    $nombre = $_GET['nombre'];
+    $stmt->bind_param("is", $id_tutor, $nombre); // "i" para id_tutor (entero), "s" para nombre (cadena)
+} else {
+    $stmt->bind_param("i", $id_tutor); // Solo id_tutor (entero)
+}
+
+// Ejecutar la consulta
+if (!$stmt->execute()) {
+    echo json_encode(['status' => 'error', 'message' => 'Error al ejecutar la consulta: ' . $stmt->error]);
+    exit;
+}
+
+// Obtener el resultado de la consulta
+$resultHijo = $stmt->get_result();
+$hijo = $resultHijo->fetch_assoc();
 
 if (!$hijo) {
     echo json_encode(['status' => 'error', 'message' => 'No se encontró información del hijo']);
@@ -84,6 +100,7 @@ $horario_grupo_url = empty($hijo['horario_grupo_url']) ? 'no asignado' : $hijo['
 echo json_encode([
     'status' => 'success',
     'data' => [
+        'id_hijo' => $hijo['id_hijo'],
         'nombreHijo' => $hijo['nombre_hijo'],
         'apellidos' => $hijo['apellidos_hijo'],
         'alergias' => $hijo['alergias'],
@@ -97,6 +114,7 @@ echo json_encode([
     ]
 ]);
 
-// Cerrar la conexión
-mysqli_close($conexion);
+// Cerrar la sentencia y la conexión
+$stmt->close();
+$conexion->close();
 ?>

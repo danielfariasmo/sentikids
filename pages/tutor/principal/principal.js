@@ -31,16 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="textoAlergias">Alergias o otras condiciones que quieres que sepamos</p>
                 <textarea class="textAreaAlergias" rows="4" cols="50"></textarea>
 
-    <div class="botones-container">
-        <button class="actualizarN default" id="actualizarN">Actualizar</button>
-        <span class="feedback hidden" id="actualizado">Información actualizada correctamente.</span>
-        <div class="multimedia">
-            <button class="horarioButton" id="horarioButton">Horario</button>
-            <a class="fotosGrupo" target="_blank"></a>
-        </div>
-    </div>
-</div>
-<div class="infoTrust" style="display:none;"></div>
+                <div class="botones-container">
+                    <button class="actualizarN default" id="actualizarN">Actualizar</button>
+                    <span class="feedback hidden" id="actualizado">Información actualizada correctamente.</span>
+                    <div class="multimedia">
+                        <button class="horarioButton" id="horarioButton">Horario</button>
+                        <a class="fotosGrupo" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="infoTrust" style="display:none;"></div>
         `;
         }
     }
@@ -134,12 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-
-    // Manejar el clic del botón "Borrar cuenta"
     document.getElementById('closeAccountBtn').addEventListener('click', function (event) {
-        event.preventDefault(); // Evitar cualquier comportamiento por defecto
-        window.location.href = '../../web/home/logIn.html'; // Te lleva al iniciar sesión
+        event.preventDefault(); // Evitar el comportamiento por defecto
+    
+        fetch('cerrarSesion.php', { method: 'GET' }) // Llama al PHP que destruye la sesión
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    window.location.href = '../../web/home/logIn.html'; // Redirige tras cerrar sesión
+                }
+            })
+            .catch(error => console.error("Error al cerrar sesión:", error));
     });
+    
 
     menuBtn.addEventListener('click', () => {
         menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
@@ -164,10 +171,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function reiniciarPopup() {
         const popup = document.getElementById("popup");
+        console.log("reiniciar Popup");
+
         if (popup) {
+            // 1. Reiniciar el scroll del popup
             setTimeout(() => {
                 popup.scrollTop = 0;
             }, 10); // Espera 10ms para asegurarte de que se ha renderizado bien
+
+            // 2. Ocultar los mensajes de validación sin borrar su contenido
+            const formulario = popup.querySelector('form'); // Selecciona el formulario dentro del popup
+            if (formulario) {
+                const mensajesError = formulario.querySelectorAll('.error, .success'); // Selecciona todos los mensajes de error y éxito
+                mensajesError.forEach(mensaje => {
+                    mensaje.classList.add('hidden'); // Oculta el mensaje sin borrar su contenido
+                });
+
+
+                obtenerDatosTutor();
+            }
+        }
+    }
+
+    function reiniciarPopupCampos() {
+        const popup = document.getElementById("popup2");
+        console.log("reiniciar Popup");
+
+        if (popup) {
+            // 1. Reiniciar el scroll del popup
+            setTimeout(() => {
+                popup.scrollTop = 0;
+            }, 10); // Espera 10ms para asegurarte de que se ha renderizado bien
+
+            // 2. Ocultar los mensajes de validación sin borrar su contenido
+            const formulario = popup.querySelector('form'); // Selecciona el formulario dentro del popup
+            if (formulario) {
+                const mensajesError = formulario.querySelectorAll('.error, .success'); // Selecciona todos los mensajes de error y éxito
+                mensajesError.forEach(mensaje => {
+                    mensaje.classList.add('hidden'); // Oculta el mensaje sin borrar su contenido
+                });
+
+                // 3. Limpiar los valores de los campos del formulario
+                const campos = formulario.querySelectorAll('input, textarea, select');
+                campos.forEach(campo => {
+                    campo.value = ''; // Limpia el valor del campo
+                    campo.classList.remove('error'); // Elimina la clase de error si la tiene
+                });
+
+                // 4. Restablecer el estado de validación del formulario (opcional)
+                formulario.classList.remove('was-validated'); // Si usas Bootstrap, esto es importante
+            }
+        }
+    }
+
+    function reiniciarPopupPc() {
+        const popup = document.getElementById("popup3");
+        console.log("reiniciar Popup");
+
+        if (popup) {
+            const formulario = popup.querySelector('form'); // Selecciona el formulario dentro del popup
+            if (formulario) {
+                const mensajesError = formulario.querySelectorAll('.error, .success'); // Selecciona todos los mensajes de error y éxito
+                mensajesError.forEach(mensaje => {
+                    mensaje.classList.add('hidden'); // Oculta el mensaje sin borrar su contenido
+                });
+
+                //Limpiar los valores de los campos del formulario
+                const campos = formulario.querySelectorAll('input, textarea, select');
+                campos.forEach(campo => {
+                    campo.value = ''; // Limpia el valor del campo
+                    campo.classList.remove('error'); // Elimina la clase de error si la tiene
+                });
+            }
         }
     }
 
@@ -188,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById("newChildBtn").addEventListener("click", function () {
-        reiniciarPopup();
+        reiniciarPopupCampos();
         document.querySelector(".popup-overlay2").style.display = "flex";
     });
 
@@ -204,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById("newTrustBtn").addEventListener("click", function () {
+        reiniciarPopupPc();
         document.querySelector(".popup-overlay3").style.display = "flex";
     });
 
@@ -245,7 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Llamar a la función para obtener los datos del tutor al cargar la página
     obtenerDatosTutor();
-
 
     // Mostrar mensaje de validación
     function mostrarMensaje(mensaje, esError, mensajeId) {
@@ -373,6 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data.status === "success") {
                         borrarMensaje("AjustesError3"); // Borrar mensaje específico para este formulario
                         popupOverlay3.style.display = "none";
+                        cargarInfoTrust();
                     } else {
                         mostrarMensaje(data.message, true, "AjustesError3"); // Mostrar mensaje de error
                     }
@@ -392,11 +468,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let esValido = true;
 
         switch (true) {
-            case ["name", "name2", "lastName", "lastName2"].includes(elemento.id):
+            case ["name", "name2", "name3", "lastName", "lastName2", "lastName3"].includes(elemento.id):
                 esValido = /^[a-zA-ZÀ-ÿ\s]{2,40}$/.test(valor);
                 break;
 
             case elemento.id === "dni":
+                esValido = /^[0-9]{8}[A-Za-z]$/.test(valor) && validarLetraDNI(valor);
+                break;
+
+            case elemento.id === "dni3":
                 esValido = /^[0-9]{8}[A-Za-z]$/.test(valor) && validarLetraDNI(valor);
                 break;
 
@@ -405,6 +485,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
 
             case elemento.id === "tel":
+                esValido = /^(\+34|0034|34)?[6-9]\d{8}$/.test(valor);
+                break;
+
+            case elemento.id === "tel3":
                 esValido = /^(\+34|0034|34)?[6-9]\d{8}$/.test(valor);
                 break;
 
@@ -557,7 +641,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     rightContainer.innerHTML = '';
                     cargarNotificaciones(rightContainer);
                 } else if (this.textContent === 'Mis Personas de Confianza') {
-                    console.log("pilla el boton")
                     // Para "Mis Personas de Confianza", cargar la lista de personas de confianza
                     cargarInfoTrust();
                 } else {
@@ -640,6 +723,45 @@ document.addEventListener('DOMContentLoaded', () => {
                         horarioButton.style.display = 'block';
                         horarioButton.onclick = () => cargarHorario(container, infoHijo.horarioUrl, infoHijo.nombreHijo);
                     }
+
+                    // Botón de actualizar
+                    const actualizarButton = infoChildDiv.querySelector('.actualizarN');
+                    if (actualizarButton) {
+                        // Asignar el ID del niño/a al botón de actualizar
+                        actualizarButton.setAttribute('data-id', infoHijo.id_hijo);
+
+                        // Agregar el evento de clic para actualizar
+                        actualizarButton.onclick = () => {
+                            const idNino = actualizarButton.getAttribute('data-id'); // Obtener el ID del niño/a
+                            const alergias = textAreaAlergias.value; // Obtener el valor del textarea
+
+                            console.log("id:" + idNino);
+
+                            // Enviar los datos al servidor
+                            fetch("actualizarAlergias.php", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/x-www-form-urlencoded",
+                                },
+                                body: `id_hijo=${idNino}&alergias=${encodeURIComponent(alergias)}`,
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.status === "success") {
+                                        // Mostrar el mensaje de éxito
+                                        const feedback = infoChildDiv.querySelector('.feedback');
+                                        if (feedback) {
+                                            feedback.classList.remove('hidden');
+                                        }
+                                    } else {
+                                        alert("Error: " + data.message); // Mostrar un mensaje de error
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error("Error:", error);
+                                });
+                        };
+                    }
                 } else {
                     console.error('Error:', data.message);
                 }
@@ -674,7 +796,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para cargar la información de las personas de confianza
     function cargarInfoTrust() {
         const container = document.querySelector('#right-container');
-        console.log("carga pc")
 
         // Restaurar la estructura fija del right-container
         resetRightContainer();
@@ -682,17 +803,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Seleccionar el contenedor .infoTrust
         const infoTrustDiv = container.querySelector('.infoTrust');
 
-        console.log("carga pc2")
         // Ocultar .infoChild (si está visible)
         const infoChildDiv = container.querySelector('.infoChild');
         if (infoChildDiv) {
             infoChildDiv.style.display = 'none';
         }
-        console.log("carga pc3")
+
         // Mostrar .infoTrust
         infoTrustDiv.style.display = 'block';
 
-        console.log("carga pc4")
         // Obtener las personas de confianza desde el servidor
         fetch('obtenerPC.php')
             .then(response => response.json())
@@ -705,21 +824,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 const persons = data.data;
                 infoTrustDiv.innerHTML = ''; // Limpiar el contenedor
 
-                // Crear elementos para cada persona de confianza
-                persons.forEach(person => {
-                    const personDiv = document.createElement('div');
-                    personDiv.className = 'trusted-item';
-                    personDiv.innerHTML = `
-                        <span>${person.nombre} ${person.apellidos} (${person.telefono})</span>
-                        <span class="delete-icon" data-id="${person.id_otro_tutor}"></span>
-                    `;
-                    infoTrustDiv.appendChild(personDiv);
+                // Verificar si hay personas de confianza
+                if (persons.length === 0) {
+                    // Mostrar mensaje si no hay personas de confianza
+                    const noPersonsMessage = document.createElement('p');
+                    noPersonsMessage.textContent = "Actualmente no tienes ninguna persona de confianza agregada.";
+                    noPersonsMessage.style.textAlign = 'center';
+                    noPersonsMessage.style.color = '#888';
+                    infoTrustDiv.appendChild(noPersonsMessage);
+                } else {
+                    // Crear elementos para cada persona de confianza
+                    persons.forEach(person => {
+                        const personDiv = document.createElement('div');
+                        personDiv.className = 'trusted-item';
+                        personDiv.innerHTML = `
+                            <span>${person.nombre} ${person.apellidos} (${person.telefono})</span>
+                            <span class="delete-icon" data-id="${person.id_otro_tutor}"></span>
+                        `;
+                        infoTrustDiv.appendChild(personDiv);
 
-                    // Añadir evento para eliminar persona de confianza
-                    personDiv.querySelector('.delete-icon').addEventListener('click', function () {
-                        eliminarPersonaConfianza(person.id_otro_tutor);
+                        // Añadir evento para eliminar persona de confianza
+                        personDiv.querySelector('.delete-icon').addEventListener('click', function () {
+                            eliminarPersonaConfianza(person.id_otro_tutor);
+                        });
                     });
-                });
+                }
             })
             .catch(error => {
                 console.error('Error al obtener las personas de confianza:', error);

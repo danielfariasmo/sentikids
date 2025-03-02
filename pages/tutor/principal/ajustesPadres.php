@@ -42,13 +42,8 @@ if ($rol !== 'tutor') {
 $id_tutor = $_SESSION['id_usuario'];
 
 // Recoger y sanitizar los datos del formulario
-// $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
-// $apellido = mysqli_real_escape_string($conexion, $_POST['apellidos']);
-// $dni = mysqli_real_escape_string($conexion, $_POST['dni']);
 $email = mysqli_real_escape_string($conexion, $_POST['email']);
 $telefono = mysqli_real_escape_string($conexion, $_POST['tel']);
-//$poblacion = mysqli_real_escape_string($conexion, $_POST['poblacion']);
-//$usuario = mysqli_real_escape_string($conexion, $_POST['usuario']);
 $lastPassword = mysqli_real_escape_string($conexion, $_POST['lastPassword'] ?? '');
 $newPassword = mysqli_real_escape_string($conexion, $_POST['password'] ?? '');
 
@@ -60,6 +55,10 @@ if (mysqli_num_rows($resultUsuario) === 0) {
     echo json_encode(['status' => 'error', 'message' => 'Usuario no encontrado']);
     exit;
 }
+
+// Obtener la contraseña actual del tutor
+$usuario = mysqli_fetch_assoc($resultUsuario);
+$clave_usuario_actual = $usuario['clave_usuario'];
 
 // Actualizar información básica
 $queryActualizar = "UPDATE tutor 
@@ -75,15 +74,17 @@ if (!mysqli_query($conexion, $queryActualizar)) {
 
 // Cambiar contraseña (si se proporciona)
 if (!empty($lastPassword) && !empty($newPassword)) {
-    $queryVerificarPassword = "SELECT * FROM tutor WHERE id_tutor = '$id_tutor' AND clave_usuario = '$lastPassword'";
-    $resultVerificarPassword = mysqli_query($conexion, $queryVerificarPassword);
-
-    if (mysqli_num_rows($resultVerificarPassword) === 0) {
+    // Verificar la contraseña anterior usando password_verify
+    if (!password_verify($lastPassword, $clave_usuario_actual)) {
         echo json_encode(['status' => 'error', 'message' => 'La contraseña anterior es incorrecta']);
         exit;
     }
 
-    $queryCambiarPassword = "UPDATE tutor SET clave_usuario = '$newPassword' WHERE id_tutor = '$id_tutor'";
+    // Cifrar la nueva contraseña usando password_hash
+    $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+
+    // Actualizar la contraseña en la base de datos
+    $queryCambiarPassword = "UPDATE tutor SET clave_usuario = '$newPasswordHash' WHERE id_tutor = '$id_tutor'";
     if (!mysqli_query($conexion, $queryCambiarPassword)) {
         echo json_encode(['status' => 'error', 'message' => 'Error al cambiar la contraseña: ' . mysqli_error($conexion)]);
         exit;
