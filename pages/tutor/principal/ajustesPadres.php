@@ -10,8 +10,8 @@ $password = "";
 $db = "sentikids";
 
 // Conexión a la base de datos
-$conexion = mysqli_connect($servidor, $usuarioBD, $password, $db);
-if (!$conexion) {
+$conexion = new mysqli($servidor, $usuarioBD, $password, $db);
+if ($conexion->connect_error) {
     echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos']);
     exit;
 }
@@ -41,34 +41,39 @@ if ($rol !== 'tutor') {
 // Obtener el ID del tutor desde la sesión
 $id_tutor = $_SESSION['id_usuario'];
 
-// Recoger y sanitizar los datos del formulario
-$email = mysqli_real_escape_string($conexion, $_POST['email']);
-$telefono = mysqli_real_escape_string($conexion, $_POST['tel']);
-$lastPassword = mysqli_real_escape_string($conexion, $_POST['lastPassword'] ?? '');
-$newPassword = mysqli_real_escape_string($conexion, $_POST['password'] ?? '');
+// Recoger los datos del formulario
+$email = $_POST['email'] ?? '';
+$telefono = $_POST['tel'] ?? '';
+$lastPassword = $_POST['lastPassword'] ?? '';
+$newPassword = $_POST['password'] ?? '';
 
 // Verificar si el usuario existe
-$queryUsuario = "SELECT * FROM tutor WHERE id_tutor = '$id_tutor'";
-$resultUsuario = mysqli_query($conexion, $queryUsuario);
+$queryUsuario = "SELECT * FROM tutor WHERE id_tutor = ?";
+$stmt = $conexion->prepare($queryUsuario);
+$stmt->bind_param("i", $id_tutor);
+$stmt->execute();
+$resultUsuario = $stmt->get_result();
 
-if (mysqli_num_rows($resultUsuario) === 0) {
+if ($resultUsuario->num_rows === 0) {
     echo json_encode(['status' => 'error', 'message' => 'Usuario no encontrado']);
     exit;
 }
 
 // Obtener la contraseña actual del tutor
-$usuario = mysqli_fetch_assoc($resultUsuario);
+$usuario = $resultUsuario->fetch_assoc();
 $clave_usuario_actual = $usuario['clave_usuario'];
 
 // Actualizar información básica
 $queryActualizar = "UPDATE tutor 
                     SET 
-                        correo_electronico = '$email', 
-                        telefono = '$telefono'
-                    WHERE id_tutor = '$id_tutor'";
+                        correo_electronico = ?, 
+                        telefono = ?
+                    WHERE id_tutor = ?";
+$stmt = $conexion->prepare($queryActualizar);
+$stmt->bind_param("ssi", $email, $telefono, $id_tutor);
 
-if (!mysqli_query($conexion, $queryActualizar)) {
-    echo json_encode(['status' => 'error', 'message' => 'Error al actualizar la información: ' . mysqli_error($conexion)]);
+if (!$stmt->execute()) {
+    echo json_encode(['status' => 'error', 'message' => 'Error al actualizar la información: ' . $stmt->error]);
     exit;
 }
 
@@ -84,9 +89,12 @@ if (!empty($lastPassword) && !empty($newPassword)) {
     $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
 
     // Actualizar la contraseña en la base de datos
-    $queryCambiarPassword = "UPDATE tutor SET clave_usuario = '$newPasswordHash' WHERE id_tutor = '$id_tutor'";
-    if (!mysqli_query($conexion, $queryCambiarPassword)) {
-        echo json_encode(['status' => 'error', 'message' => 'Error al cambiar la contraseña: ' . mysqli_error($conexion)]);
+    $queryCambiarPassword = "UPDATE tutor SET clave_usuario = ? WHERE id_tutor = ?";
+    $stmt = $conexion->prepare($queryCambiarPassword);
+    $stmt->bind_param("si", $newPasswordHash, $id_tutor);
+
+    if (!$stmt->execute()) {
+        echo json_encode(['status' => 'error', 'message' => 'Error al cambiar la contraseña: ' . $stmt->error]);
         exit;
     }
 }
@@ -94,5 +102,5 @@ if (!empty($lastPassword) && !empty($newPassword)) {
 echo json_encode(['status' => 'success']);
 
 // Cerrar la conexión
-mysqli_close($conexion);
+$conexion->close();
 ?>
