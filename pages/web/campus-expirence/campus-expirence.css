@@ -198,6 +198,13 @@ HEADER
 
 .hero-title {
     font-size: var(--titulo);
+    color: var(--blanco);
+}
+.breadcrumb{
+    color: var(--blanco);
+}
+.breadcrumb a{
+    color: var(--blanco);
 }
 
 /*----------------------------------------

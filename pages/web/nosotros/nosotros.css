@@ -184,7 +184,7 @@ MENU
 HEADER
 -----------------------------------------*/
 .hero {
-    background-image: url(../../../assets/img/campus-expirence.jpg);
+    background-image: url(../../../assets/img/imagenjuntos1.jpg);
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -201,8 +201,14 @@ HEADER
 
 .hero-title {
     font-size: var(--titulo);
+    color: var(--blanco);
 }
-
+.breadcrumb{
+    color: var(--blanco);
+}
+.breadcrumb a{
+    color: var(--blanco);
+}
 /*----------------------------------------
 QUIENES SOMOS
 -----------------------------------------*/
