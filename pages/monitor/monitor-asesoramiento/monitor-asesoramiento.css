@@ -243,7 +243,7 @@ body {
 }
 
 .notification-card {
-    width: 280px;
+    width: 30%;
     background: var(--fondoCard);
     border: 5px solid var(--bordeCard);
     padding: 15px;
@@ -269,8 +269,15 @@ body {
     font-size: 16px;
     font-family: 'Poppins-regular';
 }
-.textarea{
-    font-family: 'Poppins-regular';
+.textarea {
+    font-family: 'Poppins-regular', sans-serif; /* Asegúrate de que la fuente esté cargada */
+    width: 100%; /* Ocupa el 100% del ancho del contenedor */
+    box-sizing: border-box; /* Incluye el padding y el borde en el tamaño total */
+    overflow-wrap: break-word; /* Rompe palabras largas */
+    white-space: pre-wrap; /* Mantiene los saltos de línea */
+    resize: vertical; /* Permite redimensionar verticalmente */
+    max-height: 200px; /* Limita la altura máxima */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
 }
 
 /* Botón Crear Notificación */
