@@ -1,37 +1,76 @@
 :root {
-    --white: #fff;
-    --black: #000;
-    --success: #50812A;
-    --information: #6291E8;
-    --warning: #ffcd2b;
-    --error: #F66060;
-    --background: #E5E5E5;
+
+    /*COLORES*/
+    --blanco: #fff;
+    --negro: #000;
+    --correcto: #50812A;
+    --informacion: #6291E8;
+    --advertencia: #ffcd2b;
+    --error: #D0090B;
+    --fondo: #E5E5E5;
+    --fondo2: #d3d3d3;
+    --textoColor1: #9e9e9e;
+    --textoColor2: #565656;
+
+    /*TIPO DE LETRA*/
+    --regular: 'Poppins-regular';
+    --bold: 'Poppins-bold';
+
+    /*TAMAÑO LETRA*/
+    --texto: 1.125rem; /*18*/
+    --texto2: 1.1875rem; /*19px*/
+    --texto3: 1rem; /*16px*/
+    --mensaje: 0.9rem; 
 }
 
+@font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+}
+
+/*----------------------------------------
+GENERAL
+-----------------------------------------*/
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--regular) !important;
     background: var(--background);
 }
 
-/* Estilo base */
+p {
+    font-family: var(--regular);
+}
+
+/*----------------------------------------
+ESTILO BASE
+-----------------------------------------*/
 .hidden {
     display: none;
 }
 
+.error, .success{
+    font-size: var(--mensaje);
+}
+
 .error {
-    color: red;
-    font-size: 0.9rem;
+    color: var(--error);
 }
 
 .success {
-    color: green;
-    font-size: 0.9rem;
+    color: var(--success);
 }
 
+/*----------------------------------------
+ESTILO PLACE
+-----------------------------------------*/
 /* Estilo place */
 .input-field {
     position: relative;
@@ -42,24 +81,24 @@ body {
     width: 350px;
     height: 60px;
     border-radius: 6px;
-    font-size: 18px;
+    font-size: var(--texto);
     padding: 0px 15px;
-    border: 2px solid #000000;
+    border: 2px solid var(--negro);
     background: transparent;
-    color: #000000;
+    color: var(--negro);
     outline: none;
     transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones suaves */
 }
 
 .input-field input:disabled {
-    background-color: #E5E5E5; /* Fondo gris para denotar que está desactivado */
-    color: #9e9e9e; /* Color de texto gris para hacerlo más claro */
-    border-color: #d3d3d3; /* Borde gris más claro */
+    background-color: var(--fondo); /* Fondo gris para denotar que está desactivado */
+    color: var(--textoColor1); /* Color de texto gris para hacerlo más claro */
+    border-color: var(--fondo2); /* Borde gris más claro */
     cursor: not-allowed; /* Cambia el cursor para que no se pueda interactuar */
 }
 
 .input-field input:disabled ~ label {
-    color: #565656; /* Color de texto más claro para el label cuando el input está desactivado */
+    color: var(--textoColor2); /* Color de texto más claro para el label cuando el input está desactivado */
 }
 
 .input-field label {
@@ -67,8 +106,8 @@ body {
     top: 40%;
     left: 15px;
     transform: translateY(-50%);
-    color: #000000;
-    font-size: 19px;
+    color: var(--texto);
+    font-size: var(--texto2);
     pointer-events: none;
     transition: .3s;
 }
@@ -76,14 +115,14 @@ body {
 input:focus ~ label,
 input:not(:placeholder-shown) ~ label {
     top: 0;
-    font-size: 16px;
+    font-size: var(--texto3);
     padding: 0 15px;
-    background: #E5E5E5;
+    background: var(--fondo);
 }
 
 input:-webkit-autofill {
     background-color: transparent !important; /* Transparente para mantener el diseño */
     color: inherit !important; /* Asegura que el color del texto sea consistente */
-    box-shadow: 0 0 0 1000px var(--background) inset !important; /* Elimina el color extraño del navegador */
+    box-shadow: 0 0 0 1000px var(--fondo) inset !important; /* Elimina el color extraño del navegador */
     transition: background-color 5000s ease-in-out 0s; /* Elimina transiciones bruscas */
 }
