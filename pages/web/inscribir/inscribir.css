@@ -84,7 +84,7 @@ FORMULARIO
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px var(--sombra3);
-    border: 2.5px solid var(--secundario);
+    border: 2.5px solid var(--principal);
 }
 
 #userForm {
@@ -176,7 +176,7 @@ FORMULARIO
 .formButton {
     width: 100%;
     padding: 12px;
-    background-color: var(--secundario);
+    background-color: var(--principal);
     color: var(--white);
     border: none;
     border-radius: 6px;
@@ -187,7 +187,7 @@ FORMULARIO
 }
 
 .formButton:hover {
-    background-color: var(--principal);
+    background-color: var(--secundario);
 }
 
 .child-block {

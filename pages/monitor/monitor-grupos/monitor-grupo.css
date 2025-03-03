@@ -177,10 +177,10 @@
     justify-content: center;
     width: 90%;
     margin: 20px auto;
-    margin-top: -20px;
+    margin-top: 45px;
     background: none;
     flex-grow: 1;
-    overflow: hidden;
+    overflow: hidden ;
   }
   
   thead {
@@ -397,6 +397,9 @@
 
   .logo {
       margin-left: 10px; /* Margen reducido */
+  }
+  .table{
+    overflow-x: scroll ;
   }
 }
 

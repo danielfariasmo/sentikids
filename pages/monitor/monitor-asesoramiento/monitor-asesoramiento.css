@@ -73,7 +73,8 @@ body {
 .logo {
     width: 258px;
     height: 68px;
-    margin-left: 62px;
+    /* margin-left: 62px; */
+    margin-left: -85px;
 }
 
 /* Menú de navegación */
@@ -198,7 +199,7 @@ body {
     .hamburger {
         display: flex;
         padding-left: 360px;
-        margin-top: -30px;
+        margin-top: -200px;
     }
 
     .nav {
@@ -259,6 +260,7 @@ body {
 .notification-text {
     font-size: 18px;
     font-weight: 400;
+    word-wrap: break-word;
 }
 .titulonoti{
     width: 96%;
