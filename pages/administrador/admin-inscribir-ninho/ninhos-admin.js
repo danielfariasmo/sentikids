@@ -124,18 +124,17 @@ $(document).ready(function () {
         previousValue = $(this).val();  
     });
 
-    // Actualizar el valor de "Grupo" cuando el usuario edite el campo
     $(document).on('change', '.grupo-input', function () {
         const idHijo = $(this).data("id");
         const grupoValue = $(this).val();
-
+    
         // Validación para permitir solo números del 1 al 5
         if (isNaN(grupoValue) || grupoValue < 1 || grupoValue > 5) {
             showCustomAlert('Por favor, ingresa un grupo del 1 al 5.');
             $(this).val(previousValue);
             return;
         }
-
+    
         // Enviar la actualización al servidor
         $.ajax({
             url: 'cambiar-grupo-ninhos.php',
@@ -146,12 +145,16 @@ $(document).ready(function () {
             },
             success: function (response) {
                 showCustomAlert(response);
+                if (response.includes("máximo de 10 niños")) {
+                    $(this).val(previousValue); // Restaurar valor anterior si el grupo está lleno
+                }
             },
             error: function () {
                 showCustomAlert('Hubo un error al actualizar los datos.');
             }
         });
     });
+    
 });
 
 /**------------------------------------
