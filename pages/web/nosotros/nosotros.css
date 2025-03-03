@@ -729,19 +729,34 @@ RESPONSIVE
     }
 }
 
+
+.menu-fijo.logoR {
+    display: none;
+}
+
+.logoR {
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.logoR img {
+    height: 30px;
+}
+
 /*----------------------------------------
 MENU PRINCIPAL - FORMATO VERTICAL EN MÓVILES
 -----------------------------------------*/
 @media screen and (max-width: 768px) {
 
     .menu-hamburguesa {
-        display: block !important; 
+        display: block !important; /* FORZAR que se vea */
         background: none;
         border: none;
         font-size: 24px;
         cursor: pointer;
         color: var(--negro);
-        position: absolute;
         right: 20px;
         top: 10px;
         z-index: 1100;
@@ -750,17 +765,22 @@ MENU PRINCIPAL - FORMATO VERTICAL EN MÓVILES
     .menu-principal {
         flex-direction: column;
         height: auto;
-        padding: 20px;
+        padding: 8px;
         text-align: center;
+        align-items: stretch;
     }
 
     .logo {
         margin-bottom: 15px;
+        display: none;
+    }
+
+    .logoR {
+        display: block;
     }
 
     .botonesMenu {
         display: flex;
-        flex-direction: column;
         gap: 10px;
     }
 
@@ -780,6 +800,13 @@ MENU FIJO - MENÚ HAMBURGUESA EN MÓVILES
         align-items: center;
         padding: 10px 20px;
         height: 50px;
+        top: 0px;
+        left: auto;
+        margin-top: 0;
+    }
+
+    .menu-fijo.logoR {
+        display: block;
     }
 
     .menu-hamburguesa {

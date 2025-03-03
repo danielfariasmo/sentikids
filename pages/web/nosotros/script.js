@@ -32,7 +32,7 @@ var swiper = new Swiper(".slide-content", {
  const menuFijo = document.querySelector(".menu-fijo");
  const menuPrincipal = document.querySelector(".menu-principal");
  const MARGEN_INICIAL_ESCRITORIO = 48; // Margen inicial para escritorio
- const MARGEN_INICIAL_MOVIL = 202; // Margen inicial para móviles
+ const MARGEN_INICIAL_MOVIL = 61; // Margen inicial para móviles
  
  // Función para ajustar el margen superior del menú fijo
  function ajustarMargenMenuFijo() {

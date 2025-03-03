@@ -700,7 +700,7 @@ Estilos Responsive para Tablets
 
     .botonesMenu {
         display: flex;
-        flex-direction: column;
+        /*flex-direction: column;*/
         gap: 10px;
     }
 
@@ -893,5 +893,117 @@ Estilos Responsive para Móviles
         text-align: center;
         margin-left: -5px;
         margin-right: 25px;
+    }
+}
+
+.menu-fijo.logoR {
+    display: none;
+}
+
+.logoR {
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.logoR img {
+    height: 30px;
+}
+
+/*----------------------------------------
+MENU PRINCIPAL - FORMATO VERTICAL EN MÓVILES
+-----------------------------------------*/
+@media screen and (max-width: 768px) {
+
+    .menu-hamburguesa {
+        display: block !important; /* FORZAR que se vea */
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--negro);
+        right: 20px;
+        top: 10px;
+        z-index: 1100;
+    }
+
+    .menu-principal {
+        /*flex-direction: column;*/
+        height: auto;
+        padding: 8px;
+        text-align: center;
+        align-items: stretch;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+        display: none;
+    }
+
+    .logoR {
+        display: block;
+    }
+
+    .botonesMenu {
+        display: flex;
+        gap: 10px;
+    }
+
+    .menu-principal button {
+        padding-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/*----------------------------------------
+MENU FIJO - MENÚ HAMBURGUESA EN MÓVILES
+-----------------------------------------*/
+@media screen and (max-width: 768px) {
+    .menu-fijo {
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        height: 50px;
+        top: 0px;
+        left: auto;
+        margin-top: 0;
+    }
+
+    .menu-fijo.logoR {
+        display: block;
+    }
+
+    .menu-hamburguesa {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--negro);
+    }
+
+    .opciones {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--sombraMenu);
+        box-shadow: 0 2px 5px var(--sombra1);
+        padding: 10px 0;
+    }
+
+    .opciones a {
+        text-align: center;
+        padding: 10px;
+        display: block;
+    }
+
+    .opciones.activo {
+        display: flex;
     }
 }
