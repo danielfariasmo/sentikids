@@ -54,7 +54,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--regular);
-    background: var(--blanco);
+    background: var(--blnaco2);
     color: var(--negro);
     overflow-x: hidden;
 }
@@ -118,6 +118,10 @@ MENU
     top: 0;
 }
 
+.menu-fijo.logoR {
+    display: none;
+}
+
 .opciones {
     display: flex;
     gap: 20px;
@@ -171,8 +175,19 @@ MENU
     margin: 0;
 }
 
+.logoR {
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
 .logo img {
     height: 50px;
+}
+
+.logoR img {
+    height: 30px;
 }
 
 /* Estilos generales */
@@ -579,12 +594,12 @@ GALERIA DE IMAGENES
     display: inline-block; 
     width: 100%;
     padding:10px;
-    background:var(--principal);
+    /*background:var(--principal);*/
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-shadow: 2px 2px 4px 0 var(--sombra4);
-    margin-bottom:15px;
+    /*margin-bottom:15px;*/
 }
 .item1 img {
   width:100%;
@@ -807,7 +822,7 @@ INSCRIPCIONES ABIERTAS
     max-width: 1200px; 
     margin: 20px auto;
     padding: 20px;
-    background: var(--principal);
+    background: var(--fondoMenu1);
     box-sizing: border-box;
     height: auto; 
     margin-top: -160px;
@@ -826,7 +841,7 @@ INSCRIPCIONES ABIERTAS
 }
 
 .shadow-effect {
-    background: var(--azul);
+    background: var(--blanco);
     padding: 20px;
     border-radius: 4px;
     text-align: center;
@@ -895,7 +910,7 @@ INSCRIPCIONES ABIERTAS
     display: inline-block;
     width: 100%;
     padding: 10px;
-    background: var(--blanco);
+    /*background: var(--blanco);*/
     box-sizing: border-box;
     margin-bottom: 15px;
 }
@@ -1227,7 +1242,6 @@ MENU PRINCIPAL - FORMATO VERTICAL EN MÓVILES
         font-size: 24px;
         cursor: pointer;
         color: var(--negro);
-        position: absolute;
         right: 20px;
         top: 10px;
         z-index: 1100;
@@ -1236,17 +1250,22 @@ MENU PRINCIPAL - FORMATO VERTICAL EN MÓVILES
     .menu-principal {
         flex-direction: column;
         height: auto;
-        padding: 20px;
+        padding: 8px;
         text-align: center;
+        align-items: stretch;
     }
 
     .logo {
         margin-bottom: 15px;
+        display: none;
+    }
+
+    .logoR {
+        display: block;
     }
 
     .botonesMenu {
         display: flex;
-        flex-direction: column;
         gap: 10px;
     }
 
@@ -1266,6 +1285,13 @@ MENU FIJO - MENÚ HAMBURGUESA EN MÓVILES
         align-items: center;
         padding: 10px 20px;
         height: 50px;
+        top: 0px;
+        left: auto;
+        margin-top: 0;
+    }
+
+    .menu-fijo.logoR {
+        display: block;
     }
 
     .menu-hamburguesa {

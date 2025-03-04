@@ -73,7 +73,8 @@ body {
 .logo {
     width: 258px;
     height: 68px;
-    margin-left: 62px;
+    /* margin-left: 62px; */
+    margin-left: -85px;
 }
 
 /* Menú de navegación */
@@ -198,7 +199,7 @@ body {
     .hamburger {
         display: flex;
         padding-left: 360px;
-        margin-top: -30px;
+        margin-top: -200px;
     }
 
     .nav {
@@ -259,6 +260,7 @@ body {
 .notification-text {
     font-size: 18px;
     font-weight: 400;
+    word-wrap: break-word;
 }
 .titulonoti{
     width: 96%;
@@ -403,4 +405,21 @@ body {
     .notification-card {
         width: 90%;
     }
+}
+
+/* EJEMPLO ALERTS */
+/* Estilo para el alert personalizado */
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #80C4D3;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    font-family:"Poppins-regular";
+    font-size: 14px;
 }

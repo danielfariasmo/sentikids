@@ -7,10 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const recipient = document.getElementById("recipient").value;
             const message = document.getElementById("message").value;
-            const successMessage = document.getElementById("success-message");
+
+            // Crear un div para el alert personalizado
+            const customAlert = document.createElement("div");
+            customAlert.className = "custom-alert";
+            document.body.appendChild(customAlert);
 
             if (!recipient || !message) {
-                alert("Por favor, complete todos los campos.");
+                customAlert.textContent = "Por favor, complete todos los campos.";
+                customAlert.style.display = "block";
+                setTimeout(() => {
+                    customAlert.style.display = "none";
+                }, 3000); // Ocultar después de 3 segundos
                 return;
             }
 
@@ -26,14 +34,27 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    successMessage.style.display = "block";
+                    customAlert.textContent = "Notificación enviada con éxito.";
+                    customAlert.style.display = "block";
                     form.reset();
-                    setTimeout(closePopup, 2000);
+                    setTimeout(() => {
+                        customAlert.style.display = "none";
+                    }, 3000); // Ocultar después de 3 segundos
                 } else {
-                    alert("Error: " + data.message);
+                    customAlert.textContent = "Error: " + data.message;
+                    customAlert.style.display = "block";
+                    setTimeout(() => {
+                        customAlert.style.display = "none";
+                    }, 3000); // Ocultar después de 3 segundos
                 }
             })
-            // .catch(error => console.error("Error en la solicitud:", error));
+            .catch(error => {
+                customAlert.textContent = "Error en la solicitud: " + error;
+                customAlert.style.display = "block";
+                setTimeout(() => {
+                    customAlert.style.display = "none";
+                }, 3000); // Ocultar después de 3 segundos
+            });
         });
     }
 });
