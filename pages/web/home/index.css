@@ -54,7 +54,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--regular);
-    background: var(--blanco);
+    background: var(--blnaco2);
     color: var(--negro);
     overflow-x: hidden;
 }
@@ -594,12 +594,12 @@ GALERIA DE IMAGENES
     display: inline-block; 
     width: 100%;
     padding:10px;
-    background:var(--principal);
+    /*background:var(--principal);*/
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-shadow: 2px 2px 4px 0 var(--sombra4);
-    margin-bottom:15px;
+    /*margin-bottom:15px;*/
 }
 .item1 img {
   width:100%;
@@ -822,7 +822,7 @@ INSCRIPCIONES ABIERTAS
     max-width: 1200px; 
     margin: 20px auto;
     padding: 20px;
-    background: var(--principal);
+    background: var(--fondoMenu1);
     box-sizing: border-box;
     height: auto; 
     margin-top: -160px;
@@ -841,7 +841,7 @@ INSCRIPCIONES ABIERTAS
 }
 
 .shadow-effect {
-    background: var(--azul);
+    background: var(--blanco);
     padding: 20px;
     border-radius: 4px;
     text-align: center;
@@ -910,7 +910,7 @@ INSCRIPCIONES ABIERTAS
     display: inline-block;
     width: 100%;
     padding: 10px;
-    background: var(--blanco);
+    /*background: var(--blanco);*/
     box-sizing: border-box;
     margin-bottom: 15px;
 }
