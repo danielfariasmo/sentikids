@@ -587,7 +587,7 @@ GALERIA DE IMAGENES
 }
 
 .masonry {
-    padding: 0;
+    padding-bottom: 50px;
 }
 
 .item1 {

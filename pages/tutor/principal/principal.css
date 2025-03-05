@@ -8,6 +8,17 @@
     --background: #E5E5E5;
 }
 
+@font-face {
+    font-family: 'Poppins-regular';
+    src: url(../../../assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins-bold';
+    src: url(../../../assets/fonts/Poppins-Bold.ttf);
+}
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -15,7 +26,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins-regular', sans-serif;
     background: var(--background);
 }
 
@@ -197,7 +208,7 @@ body {
 
 .input-field input {
     width: 100%;
-    height: 45px;
+    height: 50px;
     border-radius: 6px;
     font-size: 16px;
     padding: 0 12px;
@@ -522,7 +533,7 @@ p {
 }
 
 span {
-    font-size: 13px;
+    font-size: 16px;
     color: #474747;
 }
 
