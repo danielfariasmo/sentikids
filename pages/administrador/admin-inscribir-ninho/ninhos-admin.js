@@ -82,9 +82,9 @@ $(document).ready(function () {
                 <td class="apellidos">${hijo.apellidos}</td>
                 <td>${hijo.fecha_nacimiento}</td>
                 <td>${hijo.dieta}</td>
-                <td>${hijo.alergias}</td>
+                <td>${hijo.alergias ? hijo.alergias : 'ninguna'}</td>
                 <td>
-                    <input type="text" class="grupo-input" value="${hijo.id_grupo}" data-id="${hijo.id_hijo}" min="1" max="5"/>
+                    <input type="text" class="grupo-input" value="${hijo.id_grupo ? hijo.id_grupo : 0}" data-id="${hijo.id_hijo}" min="1" max="5"/>
                 </td>
                 <td>
                   <button class="information">
