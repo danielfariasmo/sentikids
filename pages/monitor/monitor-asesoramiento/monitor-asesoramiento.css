@@ -73,8 +73,7 @@ body {
 .logo {
     width: 258px;
     height: 68px;
-    /* margin-left: 62px; */
-    margin-left: -85px;
+    margin-left: 62px; 
 }
 
 /* Menú de navegación */
