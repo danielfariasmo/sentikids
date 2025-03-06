@@ -30,6 +30,10 @@ body {
     background: var(--background);
 }
 
+button {
+    font-family: 'POPPINS-REGULAR';
+}
+
 /** Menú desplegable **/
 .menu-container {
     position: relative;
@@ -37,6 +41,7 @@ body {
 }
 
 .menu-button {
+    font-family: 'Poppins-regular';
     background: none;
     border: none;
     cursor: pointer;
@@ -65,6 +70,7 @@ body {
     background: none;
     border: none;
     cursor: pointer;
+    font-family: 'POPPINS-REGULAR';
 }
 
 .menu button:hover {
@@ -215,6 +221,7 @@ body {
     border: 2px solid var(--black);
     background: transparent;
     outline: none;
+    font-family: 'POPPINS-REGULAR';
 }
 
 .input-field input::placeholder {
@@ -231,6 +238,7 @@ body {
     transition: 0.3s;
     background: var(--white); /* Fondo para que no se superponga con el borde */
     padding: 0 4px; /* Espacio interno para que no toque el borde */
+    font-family: 'POPPINS-REGULAR';
 }
 
 .input-field input:focus ~ label,
@@ -890,4 +898,11 @@ button.cambiarContra:hover {
         flex-direction: column;
         align-items: center;
     }
+}
+
+
+input:-webkit-autofill {
+    background-color: transparent !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
