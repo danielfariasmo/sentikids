@@ -914,3 +914,10 @@ Estilos Responsive para Móviles
         line-height: 1.5; 
     }
 }
+
+
+input:-webkit-autofill {
+    background-color: transparent !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px #f3f3f3 inset !important;
+}
